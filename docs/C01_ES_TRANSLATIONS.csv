@@ -1,0 +1,36 @@
+﻿key,english,spanish,status,evidence_or_note
+home.brandTagline,We Haul It All.,Lo recogemos todo.,proposed,Brand tagline; C01-specific Spanish Figma counterpart absent
+home.location,"Phoenix, Arizona","Phoenix, Arizona",verified/proper,C15-ES 974:8843; proper name unchanged
+home.heroTitleOne,Get It Gone.,Lo retiramos.,proposed,Short localized hero; fit same headline rhythm
+home.heroTitleTwo,The Easy Way.,Así de fácil.,proposed,Short localized hero; fit same headline rhythm
+home.heroSubtitle,"On-demand hauling, junk removal, moving and more — right at your fingertips.","Retiro de objetos, mudanzas y más servicios, al alcance de tu mano.",proposed,Home-only descriptive copy
+home.searchPlaceholder,What do you need help with?,¿En qué podemos ayudarte?,verified,C15-ES 974:8843 visible heading
+home.searchNoResults,No services found,No encontramos servicios para tu búsqueda.,proposed,Search empty state not in C01 Figma
+home.searchClear,Clear search,Borrar búsqueda,proposed,Accessibility and clear control
+home.serviceJunkRemoval,Junk Removal,Retiro de objetos,verified,C15-ES 974:8843
+home.serviceMoving,Moving,Mudanzas,verified,C15-ES 974:8843
+home.serviceFurniturePickup,Furniture Pickup,Retiro de muebles,verified,C15-ES 974:8843
+home.serviceApplianceRemoval,Appliance Removal,Retiro de electrodomésticos,verified,C15-ES 974:8843
+home.serviceMattressRemoval,Mattress Removal,Retiro de colchones,verified,C15-ES 974:8843
+home.serviceGarageCleanout,Garage Cleanout,Limpieza de garaje,verified,C15-ES 974:8843
+home.serviceStorePickup,Store Pickup,Recogida en tienda,verified,C15-ES 974:8843
+home.serviceAssemblyAddon,Assembly Add-on,Montaje adicional,proposed,Optional paid extra; not listed in C15-ES 974:8843
+home.bookAService,Book a Service,Reservar un servicio,proposed,Consistent with navbar Reservar
+home.recentJobs,Recent Jobs,Trabajos recientes,proposed,Navbar Mis trabajos source-backed; Home title itself not in Figma ES
+home.seeAll,See All,Ver todo,proposed,Home-only CTA
+home.jobJunkRemoval,Junk Removal,Retiro de objetos,verified,C15-ES 974:8843
+home.completed,Completed,Completado,proposed,Recent job status; demo only
+home.recentJobDate,"Apr 12, 2024",12 abr. 2024,proposed,Localized format of exact Figma fixture date
+home.savedAddresses,Saved Addresses,Direcciones guardadas,verified,C10-ES 347:315
+home.savedAddressType,Home,Casa,proposed,Address type label distinct from navbar Inicio
+nav.home,Home,Inicio,verified,C10-ES 347:315
+nav.jobs,My Jobs,Mis trabajos,verified,C10-ES 347:315
+nav.book,Book,Reservar,verified,C10-ES 347:315
+nav.deals,Deals,Ofertas,verified,C10-ES 347:315
+nav.account,Account,Cuenta,verified,C10-ES 347:315
+home.noticeBooking,Service Discovery & Booking (C15) is scheduled for an upcoming phase.,La selección de servicios y las reservas (C15) estarán disponibles en una próxima fase.,proposed,Honest unbuilt screen notice
+home.noticeJobs,My Jobs (W07) is scheduled for an upcoming phase.,Mis trabajos (W07) estarán disponibles en una próxima fase.,proposed,Honest unbuilt screen notice
+home.noticeAddresses,Saved Addresses (C11) is scheduled for an upcoming phase.,Direcciones guardadas (C11) estarán disponibles en una próxima fase.,proposed,Honest unbuilt screen notice
+home.noticeNotifications,Notifications (C13) is scheduled for an upcoming phase.,Las notificaciones (C13) estarán disponibles en una próxima fase.,proposed,Honest unbuilt screen notice
+home.noticeAssembly,Assembly Add-on is an optional paid extra and cannot be booked as a standalone service.,El montaje es un complemento opcional de pago y no se puede reservar por separado.,proposed,Disabled/optional extra disclosure
+home.noticeLocation,"Only the Phoenix, Arizona demo service area is shown.","Esta demostración muestra únicamente la zona de servicio de Phoenix, Arizona.",proposed,"Local preview, not real geolocation or coverage"

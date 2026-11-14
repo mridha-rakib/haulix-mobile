@@ -37,6 +37,23 @@ interface CustomerBottomNavProps {
  * 3. Deals tab is visual-only per Figma documentation.
  * 4. Strictly NOT added to auth screens (C06-C09).
  */
+const ROUTE_MAP: Partial<Record<NavTabId, string>> = {
+  home: "/(app)",
+  account: "/(app)/account",
+};
+
+const getUpcomingNotice = (tab: NavTabId, t: (key: string) => string): string | undefined => {
+  if (tab === "deals") return t("account.dealsNoticeMessage") || DEALS_NOTICE;
+  if (tab === "jobs")
+    return t("home.recentJobsNotice") || "My Jobs (W07) is scheduled for an upcoming phase.";
+  if (tab === "book")
+    return (
+      t("home.bookServiceNotice") ||
+      "Service Discovery & Booking (C15) is scheduled for an upcoming phase."
+    );
+  return undefined;
+};
+
 export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
   activeTab = "account",
   onTabPress,
@@ -54,44 +71,21 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
   const totalNavHeight = BASE_NAV_HEIGHT + safeBottom;
 
   const handlePress = (tab: NavTabId) => {
-    if (tab === activeTab) {
-      return;
-    }
-    if (tab === "deals") {
-      onShowNotice?.(t("account.dealsNoticeMessage") || DEALS_NOTICE);
-      onTabPress?.(tab);
-      return;
-    }
-    if (tab === "home") {
+    if (tab === activeTab) return;
+
+    const route = ROUTE_MAP[tab];
+    if (route) {
       if (onTabPress) {
         onTabPress(tab);
       } else {
-        router.replace("/(app)");
+        router.replace(route as never);
       }
       return;
     }
-    if (tab === "account") {
-      if (onTabPress) {
-        onTabPress(tab);
-      } else {
-        router.replace("/(app)/account");
-      }
-      return;
-    }
-    if (tab === "jobs") {
-      onShowNotice?.(
-        t("home.recentJobsNotice") || "My Jobs (W07) is scheduled for an upcoming phase."
-      );
-      onTabPress?.(tab);
-      return;
-    }
-    if (tab === "book") {
-      onShowNotice?.(
-        t("home.bookServiceNotice") ||
-          "Service Discovery & Booking (C15) is scheduled for an upcoming phase."
-      );
-      onTabPress?.(tab);
-      return;
+
+    const notice = getUpcomingNotice(tab, t);
+    if (notice) {
+      onShowNotice?.(notice);
     }
     onTabPress?.(tab);
   };

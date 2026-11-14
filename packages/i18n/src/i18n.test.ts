@@ -72,6 +72,57 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     expect(en.home.seeAll).toBe("See All ›");
   });
 
+  it("verifies exact C01 Spanish strings matching translation mapping (C01_ES_TRANSLATIONS.csv)", () => {
+    expect(es.home.brandTagline).toBe("Lo recogemos todo.");
+    expect(es.home.location).toBe("Phoenix, Arizona");
+    expect(es.home.heroTitleOne).toBe("Lo retiramos.");
+    expect(es.home.heroTitleTwo).toBe("Así de fácil.");
+    expect(es.home.heroSubtitle).toBe(
+      "Retiro de objetos, mudanzas y más servicios, al alcance de tu mano."
+    );
+    expect(es.home.searchPlaceholder).toBe("¿En qué podemos ayudarte?");
+    expect(es.home.searchNoResults).toBe("No encontramos servicios para tu búsqueda.");
+    expect(es.home.searchClear).toBe("Borrar búsqueda");
+    expect(es.home.serviceJunkRemoval).toBe("Retiro de objetos");
+    expect(es.home.serviceMoving).toBe("Mudanzas");
+    expect(es.home.serviceFurniturePickup).toBe("Retiro de muebles");
+    expect(es.home.serviceApplianceRemoval).toBe("Retiro de electrodomésticos");
+    expect(es.home.serviceMattressRemoval).toBe("Retiro de colchones");
+    expect(es.home.serviceGarageCleanout).toBe("Limpieza de garaje");
+    expect(es.home.serviceStorePickup).toBe("Recogida en tienda");
+    expect(es.home.serviceAssemblyAddon).toBe("Montaje adicional");
+    expect(es.home.bookAService).toBe("Reservar un servicio");
+    expect(es.home.bookService).toBe("Reservar un servicio ›");
+    expect(es.home.recentJobs).toBe("Trabajos recientes");
+    expect(es.home.savedAddresses).toBe("Direcciones guardadas");
+    expect(es.home.seeAllRaw).toBe("Ver todo");
+    expect(es.home.jobJunkRemoval).toBe("Retiro de objetos");
+    expect(es.home.completed).toBe("Completado");
+    expect(es.home.recentJobDate).toBe("12 abr. 2024");
+    expect(es.home.savedAddressType).toBe("Casa");
+    expect(es.nav.home).toBe("Inicio");
+    expect(es.nav.jobs).toBe("Mis trabajos");
+    expect(es.nav.book).toBe("Reservar");
+    expect(es.nav.deals).toBe("Ofertas");
+    expect(es.nav.account).toBe("Cuenta");
+    expect(es.home.noticeBooking).toBe(
+      "La selección de servicios y las reservas (C15) estarán disponibles en una próxima fase."
+    );
+    expect(es.home.noticeJobs).toBe("Mis trabajos (W07) estarán disponibles en una próxima fase.");
+    expect(es.home.noticeAddresses).toBe(
+      "Direcciones guardadas (C11) estarán disponibles en una próxima fase."
+    );
+    expect(es.home.noticeNotifications).toBe(
+      "Las notificaciones (C13) estarán disponibles en una próxima fase."
+    );
+    expect(es.home.noticeAssembly).toBe(
+      "El montaje es un complemento opcional de pago y no se puede reservar por separado."
+    );
+    expect(es.home.noticeLocation).toBe(
+      "Esta demostración muestra únicamente la zona de servicio de Phoenix, Arizona."
+    );
+  });
+
   it("verifies exact C10-S English strings from Figma node 333:171", () => {
     expect(en.profileUpdated.title).toBe("Profile updated.");
     expect(en.profileUpdated.subtitle).toBe("Your customer details are ready for future bookings.");

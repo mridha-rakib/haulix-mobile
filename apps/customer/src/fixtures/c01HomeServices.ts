@@ -1,21 +1,18 @@
-import type { FC } from "react";
-import {
-  type IconProps,
-  ServiceApplianceIcon,
-  ServiceAssemblyAddonIcon,
-  ServiceFurnitureIcon,
-  ServiceGarageIcon,
-  ServiceJunkIcon,
-  ServiceMattressIcon,
-  ServiceMovingIcon,
-  ServiceStoreIcon,
-} from "../components/home/C01Icons";
+export type ServiceIconName =
+  | "junk"
+  | "moving"
+  | "furniture"
+  | "appliance"
+  | "mattress"
+  | "garage"
+  | "store"
+  | "assembly";
 
 export interface ServiceCategoryItem {
   id: string;
   name: string;
   i18nKey: string;
-  icon: FC<IconProps>;
+  iconName: ServiceIconName;
   isDisabled?: boolean;
 }
 
@@ -24,49 +21,49 @@ export const C01_SERVICE_CATEGORIES: ServiceCategoryItem[] = [
     id: "junk-removal",
     name: "Junk Removal",
     i18nKey: "home.serviceJunkRemoval",
-    icon: ServiceJunkIcon,
+    iconName: "junk",
   },
   {
     id: "moving",
     name: "Moving",
     i18nKey: "home.serviceMoving",
-    icon: ServiceMovingIcon,
+    iconName: "moving",
   },
   {
     id: "furniture-pickup",
     name: "Furniture Pickup",
     i18nKey: "home.serviceFurniturePickup",
-    icon: ServiceFurnitureIcon,
+    iconName: "furniture",
   },
   {
     id: "appliance-removal",
     name: "Appliance Removal",
     i18nKey: "home.serviceApplianceRemoval",
-    icon: ServiceApplianceIcon,
+    iconName: "appliance",
   },
   {
     id: "mattress-removal",
     name: "Mattress Removal",
     i18nKey: "home.serviceMattressRemoval",
-    icon: ServiceMattressIcon,
+    iconName: "mattress",
   },
   {
     id: "garage-cleanout",
     name: "Garage Cleanout",
     i18nKey: "home.serviceGarageCleanout",
-    icon: ServiceGarageIcon,
+    iconName: "garage",
   },
   {
     id: "store-pickup",
     name: "Store Pickup",
     i18nKey: "home.serviceStorePickup",
-    icon: ServiceStoreIcon,
+    iconName: "store",
   },
   {
     id: "assembly-addon",
     name: "Assembly Add-on",
     i18nKey: "home.serviceAssemblyAddon",
-    icon: ServiceAssemblyAddonIcon,
+    iconName: "assembly",
     isDisabled: true,
   },
 ];

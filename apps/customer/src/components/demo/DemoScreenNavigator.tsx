@@ -17,6 +17,23 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c01-en",
+    name: "C01 · Home & Services (English)",
+    figmaNode: "Node 439:3498",
+    route: "/(app)",
+    locale: "en",
+    description: "HAULIX Home with hero truck, search, services grid & recent jobs",
+  },
+  {
+    id: "c01-es",
+    name: "C01 · Inicio y Servicios (Español)",
+    figmaNode: "Node 439:3498 / 974:8843",
+    route: "/(app)",
+    locale: "es",
+    description:
+      "HAULIX Inicio en español: camión hero, búsqueda, 8 servicios y trabajos recientes",
+  },
+  {
     id: "c06-en",
     name: "C06 · Email Sign-in (English)",
     figmaNode: "Node 331:2",
