@@ -39,6 +39,26 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     const enEditKeys = Object.keys(en.editProfile).sort();
     const esEditKeys = Object.keys(es.editProfile).sort();
     expect(enEditKeys).toEqual(esEditKeys);
+
+    const enProfileUpdatedKeys = Object.keys(en.profileUpdated).sort();
+    const esProfileUpdatedKeys = Object.keys(es.profileUpdated).sort();
+    expect(enProfileUpdatedKeys).toEqual(esProfileUpdatedKeys);
+  });
+
+  it("verifies exact C10-S English strings from Figma node 333:171", () => {
+    expect(en.profileUpdated.title).toBe("Profile updated.");
+    expect(en.profileUpdated.subtitle).toBe("Your customer details are ready for future bookings.");
+    expect(en.profileUpdated.accountChipSuffix).toBe("CUSTOMER ACCOUNT");
+    expect(en.profileUpdated.cardTitle).toBe("Saved profile");
+    expect(en.profileUpdated.changesSavedPrefix).toBe("Changes saved ·");
+    expect(en.profileUpdated.emailLabel).toBe("Email");
+    expect(en.profileUpdated.verifiedPhoneLabel).toBe("Verified phone");
+    expect(en.profileUpdated.pendingPhoneLabel).toBe("Phone · verification pending");
+    expect(en.profileUpdated.note).toBe(
+      "Profile changes will not modify existing completed booking records."
+    );
+    expect(en.profileUpdated.backToAccount).toBe("Back to My Account");
+    expect(en.profileUpdated.savedAddresses).toBe("Saved Addresses");
   });
 
   it("verifies exact C10-E English strings from Figma node 333:116", () => {

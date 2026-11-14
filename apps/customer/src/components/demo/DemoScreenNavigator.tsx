@@ -112,6 +112,14 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     locale: "es",
     description: "Edición de perfil Bryan Lopez, validación y guardado local",
   },
+  {
+    id: "c10s-en",
+    name: "C10-S · Profile Updated (English)",
+    figmaNode: "Node 333:171",
+    route: "/profile-updated",
+    locale: "en",
+    description: "Profile updated success card, dynamic details & account navigation",
+  },
 ];
 
 /**

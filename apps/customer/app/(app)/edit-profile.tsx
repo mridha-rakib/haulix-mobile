@@ -22,6 +22,7 @@ import {
 } from "../../src/components/account/C10Icons";
 import { CustomerBottomNav } from "../../src/components/navigation/CustomerBottomNav";
 import {
+  c10DemoProfile,
   computeInitials,
   getC10DemoProfile,
   loadProfileEdits,
@@ -232,40 +233,60 @@ export default function EditProfileScreen() {
       return;
     }
 
-    const action = computeSaveAction(
-      name,
-      email,
-      initialName,
-      initialEmail,
-      isPhoneChanged,
-      t as (k: string) => string
-    );
-    if (!action.canSave) {
+    if (currentLocale === "es") {
+      const action = computeSaveAction(
+        name,
+        email,
+        initialName,
+        initialEmail,
+        isPhoneChanged,
+        t as (k: string) => string
+      );
+      if (!action.canSave) {
+        setNoticeMessage(action.notice);
+        setIsSuccessNotice(false);
+        return;
+      }
+
+      const trimmedName = name.trim();
+      const trimmedEmail = email.trim();
+      const initials = computeInitials(trimmedName);
+
+      await saveProfileEdits("es", {
+        name: trimmedName,
+        email: trimmedEmail,
+        initials,
+      });
+
+      setIsSuccessNotice(true);
       setNoticeMessage(action.notice);
-      setIsSuccessNotice(false);
+
+      setTimeout(() => {
+        if (router.canGoBack()) {
+          router.back();
+        } else {
+          router.replace("/(app)/account");
+        }
+      }, 400);
       return;
     }
 
+    // English save flow: Persist local demo edits and navigate to C10-S
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
+    const trimmedPhone = phone.trim();
     const initials = computeInitials(trimmedName);
+    const isPhoneVerified = trimmedPhone === c10DemoProfile.phone;
 
-    await saveProfileEdits(currentLocale, {
+    await saveProfileEdits("en", {
       name: trimmedName,
       email: trimmedEmail,
+      phone: trimmedPhone,
       initials,
+      isPhoneVerified,
     });
 
-    setIsSuccessNotice(true);
-    setNoticeMessage(action.notice);
-
-    setTimeout(() => {
-      if (router.canGoBack()) {
-        router.back();
-      } else {
-        router.replace("/(app)/account");
-      }
-    }, 400);
+    router.replace("/(app)/profile-updated");
   };
 
   const handleCancel = () => {

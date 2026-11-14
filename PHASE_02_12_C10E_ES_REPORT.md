@@ -27,24 +27,24 @@ The implementation preserves a single, reusable route at [apps/customer/app/(app
 
 ## 2. Authoritative Figma Mapping & Reference Architecture
 
-| Attribute / Component | English Baseline (`333:116`) | Spanish Specification (`347:315` / `333:116`) | Implementation Details |
-| :--- | :--- | :--- | :--- |
-| **Route Path** | `/(app)/edit-profile` | `/(app)/edit-profile` (Shared Route) | Dynamic locale-aware route rendering |
-| **Screen Title** | "Edit profile" | **"Editar perfil"** | `t("editProfile.screenTitle")` (28px Bold `#F5F7F6`) |
-| **Subtitle Guidance** | "Only customer-owned contact details can be edited here." | **"Aquí solo puedes editar tus datos de contacto."** | `t("editProfile.screenDescription")` (13px Regular `#8C9B95`) |
-| **Customer Identity** | Sarah Mitchell (`SM`) | **Bryan Lopez (`BL`)** | Dynamic initials compute & fallback |
-| **Account Badge Chip** | `SARAH MITCHELL · CUSTOMER ACCOUNT` | **`BRYAN LOPEZ  ·  CUENTA DE CLIENTE`** | Verified green shield + double-space dot separator |
-| **Card Header** | "Profile information" | **"Información del perfil"** | 16px SemiBold `#F5F7F6` container card |
-| **Full Name Label** | "FULL NAME" | **"NOMBRE COMPLETO"** | Inter SemiBold 12px with `EditNameIcon` SVG |
-| **Full Name Default** | "Sarah Mitchell" | **"Bryan Lopez"** | Preloaded from Spanish customer fixture |
-| **Email Label** | "EMAIL" | **"CORREO ELECTRÓNICO"** | Inter SemiBold 12px, starting left border |
-| **Email Default** | `sarah.mitchell@example.test` | **`bryan.lopez@example.test`** | RFC 5322 regex validation |
-| **Phone Label** | "PHONE" | **"TELÉFONO"** | Inter SemiBold 12px with `EditPhoneShieldIcon` SVG |
-| **Phone Default** | `+1 602-555-0142` | **`+1 602-555-0142`** | Active Arizona demo number |
-| **Phone Help Text** | "Phone changes require successful verification before use." | **"Los cambios de número de teléfono requieren verificación antes de usarse."** | 12px Regular `#6D7D73` caption |
-| **Primary CTA** | "Save Changes" (`#CCFF00`) | **"Guardar cambios"** (`#CCFF00`) | 54px Lime button, commits local ES overlay |
-| **Secondary CTA** | "Cancel Editing" (`#151A19`) | **"Cancelar edición"** (`#151A19`) | Surface button with Lime text, returns to C10 |
-| **Bottom Navigation** | Home, My Jobs, Book, Deals, Account | **Inicio, Mis trabajos, Reservar, Ofertas, Cuenta** | Sculpted C01 navbar, `Account` active, zero dead strip |
+| Attribute / Component  | English Baseline (`333:116`)                                | Spanish Specification (`347:315` / `333:116`)                                   | Implementation Details                                        |
+| :--------------------- | :---------------------------------------------------------- | :------------------------------------------------------------------------------ | :------------------------------------------------------------ |
+| **Route Path**         | `/(app)/edit-profile`                                       | `/(app)/edit-profile` (Shared Route)                                            | Dynamic locale-aware route rendering                          |
+| **Screen Title**       | "Edit profile"                                              | **"Editar perfil"**                                                             | `t("editProfile.screenTitle")` (28px Bold `#F5F7F6`)          |
+| **Subtitle Guidance**  | "Only customer-owned contact details can be edited here."   | **"Aquí solo puedes editar tus datos de contacto."**                            | `t("editProfile.screenDescription")` (13px Regular `#8C9B95`) |
+| **Customer Identity**  | Sarah Mitchell (`SM`)                                       | **Bryan Lopez (`BL`)**                                                          | Dynamic initials compute & fallback                           |
+| **Account Badge Chip** | `SARAH MITCHELL · CUSTOMER ACCOUNT`                         | **`BRYAN LOPEZ  ·  CUENTA DE CLIENTE`**                                         | Verified green shield + double-space dot separator            |
+| **Card Header**        | "Profile information"                                       | **"Información del perfil"**                                                    | 16px SemiBold `#F5F7F6` container card                        |
+| **Full Name Label**    | "FULL NAME"                                                 | **"NOMBRE COMPLETO"**                                                           | Inter SemiBold 12px with `EditNameIcon` SVG                   |
+| **Full Name Default**  | "Sarah Mitchell"                                            | **"Bryan Lopez"**                                                               | Preloaded from Spanish customer fixture                       |
+| **Email Label**        | "EMAIL"                                                     | **"CORREO ELECTRÓNICO"**                                                        | Inter SemiBold 12px, starting left border                     |
+| **Email Default**      | `sarah.mitchell@example.test`                               | **`bryan.lopez@example.test`**                                                  | RFC 5322 regex validation                                     |
+| **Phone Label**        | "PHONE"                                                     | **"TELÉFONO"**                                                                  | Inter SemiBold 12px with `EditPhoneShieldIcon` SVG            |
+| **Phone Default**      | `+1 602-555-0142`                                           | **`+1 602-555-0142`**                                                           | Active Arizona demo number                                    |
+| **Phone Help Text**    | "Phone changes require successful verification before use." | **"Los cambios de número de teléfono requieren verificación antes de usarse."** | 12px Regular `#6D7D73` caption                                |
+| **Primary CTA**        | "Save Changes" (`#CCFF00`)                                  | **"Guardar cambios"** (`#CCFF00`)                                               | 54px Lime button, commits local ES overlay                    |
+| **Secondary CTA**      | "Cancel Editing" (`#151A19`)                                | **"Cancelar edición"** (`#151A19`)                                              | Surface button with Lime text, returns to C10                 |
+| **Bottom Navigation**  | Home, My Jobs, Book, Deals, Account                         | **Inicio, Mis trabajos, Reservar, Ofertas, Cuenta**                             | Sculpted C01 navbar, `Account` active, zero dead strip        |
 
 ---
 
@@ -83,7 +83,7 @@ The implementation preserves a single, reusable route at [apps/customer/app/(app
 6. [apps/customer/src/components/demo/DemoScreenNavigator.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/src/components/demo/DemoScreenNavigator.tsx)
    - Added direct shortcut `c10e-es` ("C10-E · Editar Perfil (Español)") to `IMPLEMENTED_SCREENS`.
 
-7. [apps/customer/src/__tests__/edit-profile.test.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/src/__tests__/edit-profile.test.tsx)
+7. [apps/customer/src/**tests**/edit-profile.test.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/src/__tests__/edit-profile.test.tsx)
    - Added comprehensive tests for Spanish C10-E rendering, Bryan Lopez baseline, required validation errors in Spanish, save/cancel lifecycle, English/Spanish profile isolation, and phone pending-verification banners.
 
 ---
@@ -116,17 +116,17 @@ The implementation preserves a single, reusable route at [apps/customer/app/(app
 
 All screenshots were captured live via ADB on the physical **Realme Note 60 (RMX3930)** running Android 15 (API 35).
 
-| Screenshot Filename | Description & Verification Proof |
-| :--- | :--- |
-| [android-C10E-es-default.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-default.png) | **Default Spanish Form:** Preloaded with Bryan Lopez, `bryan.lopez@example.test`, `+1 602-555-0142`, `BRYAN LOPEZ  ·  CUENTA DE CLIENTE` chip, and Spanish CTAs. |
-| [android-C10E-es-keyboard.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-keyboard.png) | **Active Input with Native Keyboard:** Native Gboard open, cursor handle, smooth viewport adjustment without clipping. |
-| [android-C10E-es-invalid-name.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-invalid-name.png) | **Blank Name Validation:** Red border and localized error `"El nombre completo es obligatorio."` |
-| [android-C10E-es-invalid-email.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-invalid-email.png) | **Invalid Email Validation:** Red border and localized error `"Introduce una dirección de correo electrónico válida."` |
-| [android-C10E-es-phone-pending.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-phone-pending.png) | **Phone Pending Verification:** Verified shield removed, amber notice banner displayed with `"Restaurar el teléfono original"` button. |
-| [android-C10E-es-save-to-c10.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-save-to-c10.png) | **Saved Changes to C10 Spanish:** Saving valid changes updates C10 Spanish overview with new name and updated initials. |
-| [android-C10E-es-cancel-to-c10.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-cancel-to-c10.png) | **Cancel Editing:** Discards unsaved modifications and cleanly returns to C10 Spanish. |
-| [android-C10E-es-bottom-nav.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-bottom-nav.png) | **Bottom Navbar Fidelity:** Spanish navigation labels (`Inicio`, `Mis trabajos`, `Reservar`, `Ofertas`, `Cuenta`), Account active with Lime highlight, sculpted curve, zero dead space above Android system navigation bar. |
-| [android-C10E-en-regression.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-en-regression.png) | **English Regression & Profile Isolation:** English Sarah Mitchell profile (`SM`) remains completely unpolluted by Spanish modifications. |
+| Screenshot Filename                                                                                                                              | Description & Verification Proof                                                                                                                                                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [android-C10E-es-default.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-default.png)             | **Default Spanish Form:** Preloaded with Bryan Lopez, `bryan.lopez@example.test`, `+1 602-555-0142`, `BRYAN LOPEZ  ·  CUENTA DE CLIENTE` chip, and Spanish CTAs.                                                            |
+| [android-C10E-es-keyboard.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-keyboard.png)           | **Active Input with Native Keyboard:** Native Gboard open, cursor handle, smooth viewport adjustment without clipping.                                                                                                      |
+| [android-C10E-es-invalid-name.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-invalid-name.png)   | **Blank Name Validation:** Red border and localized error `"El nombre completo es obligatorio."`                                                                                                                            |
+| [android-C10E-es-invalid-email.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-invalid-email.png) | **Invalid Email Validation:** Red border and localized error `"Introduce una dirección de correo electrónico válida."`                                                                                                      |
+| [android-C10E-es-phone-pending.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-phone-pending.png) | **Phone Pending Verification:** Verified shield removed, amber notice banner displayed with `"Restaurar el teléfono original"` button.                                                                                      |
+| [android-C10E-es-save-to-c10.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-save-to-c10.png)     | **Saved Changes to C10 Spanish:** Saving valid changes updates C10 Spanish overview with new name and updated initials.                                                                                                     |
+| [android-C10E-es-cancel-to-c10.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-cancel-to-c10.png) | **Cancel Editing:** Discards unsaved modifications and cleanly returns to C10 Spanish.                                                                                                                                      |
+| [android-C10E-es-bottom-nav.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-es-bottom-nav.png)       | **Bottom Navbar Fidelity:** Spanish navigation labels (`Inicio`, `Mis trabajos`, `Reservar`, `Ofertas`, `Cuenta`), Account active with Lime highlight, sculpted curve, zero dead space above Android system navigation bar. |
+| [android-C10E-en-regression.png](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/qa/c10e/android-C10E-en-regression.png)       | **English Regression & Profile Isolation:** English Sarah Mitchell profile (`SM`) remains completely unpolluted by Spanish modifications.                                                                                   |
 
 ---
 
@@ -135,22 +135,27 @@ All screenshots were captured live via ADB on the physical **Realme Note 60 (RMX
 All quality gates passed with zero errors:
 
 ### 1. Biome Check (`pnpm check`)
+
 ```bash
 $ biome check .
 Checked 170 files in 109ms. No fixes applied.
 ```
+
 - **Result:** 170 files checked, **0 errors, 0 warnings**.
 
 ### 2. TypeScript Compilation (`pnpm typecheck`)
+
 ```bash
 $ turbo run typecheck
  Tasks:    7 successful, 7 total
 Cached:    6 cached, 7 total
   Time:    4.057s
 ```
+
 - **Result:** 7/7 workspaces cleanly compiled with **0 type errors**.
 
 ### 3. Jest Test Suites (`pnpm test`)
+
 ```bash
 $ turbo run test
 @haulix/utils: 21 passed, 21 total
@@ -161,9 +166,11 @@ $ turbo run test
 @haulix/customer: 80 passed, 80 total
  Tasks:    7 successful, 7 total
 ```
+
 - **Total Tests Passing:** **135 passed, 135 total** across 15 test suites monorepo-wide.
 
 ### 4. Monorepo Health (`pnpm doctor`)
+
 ```bash
 ✓ Versions: pnpm 11.25.0, Node.js 26.0.0
 ✓ Install method: @pnpm/exe
@@ -181,14 +188,14 @@ All checks passed
 ## 7. Issues Corrected During QA
 
 1. **Biome Cognitive Complexity:**
-   - *Issue:* `EditProfileScreen` exceeded Biome's complexity limit of 15 due to multi-field validation, conditional banner logic, and localized button rendering.
-   - *Fix:* Factored `validateInputs`, `computeSaveAction`, `NoticeBanner`, and `CustomerChip` into dedicated, pure helper components.
+   - _Issue:_ `EditProfileScreen` exceeded Biome's complexity limit of 15 due to multi-field validation, conditional banner logic, and localized button rendering.
+   - _Fix:_ Factored `validateInputs`, `computeSaveAction`, `NoticeBanner`, and `CustomerChip` into dedicated, pure helper components.
 2. **Dual-Locale Overlay Collisions:**
-   - *Issue:* A single storage key caused Spanish and English demo profiles to overwrite each other.
-   - *Fix:* Split into isolated SecureStore keys (`haulix_c10_en_profile_overlay` and `haulix_c10_es_profile_overlay`) with separate in-memory caches and pub/sub subscribers.
+   - _Issue:_ A single storage key caused Spanish and English demo profiles to overwrite each other.
+   - _Fix:_ Split into isolated SecureStore keys (`haulix_c10_en_profile_overlay` and `haulix_c10_es_profile_overlay`) with separate in-memory caches and pub/sub subscribers.
 3. **Sculpted Bottom Nav Center Tap Interception:**
-   - *Issue:* The elevated Book (+) floating circle button at horizontal center (`X=360`) absorbed touches meant for the action buttons when scrolled to the bottom.
-   - *Fix:* Ensured adequate bottom scroll padding (`paddingBottom: 140`) so action buttons scroll completely clear of the floating navigation curve.
+   - _Issue:_ The elevated Book (+) floating circle button at horizontal center (`X=360`) absorbed touches meant for the action buttons when scrolled to the bottom.
+   - _Fix:_ Ensured adequate bottom scroll padding (`paddingBottom: 140`) so action buttons scroll completely clear of the floating navigation curve.
 
 ---
 
@@ -197,4 +204,3 @@ All checks passed
 - **SMS Verification Backend:** Phone number changes remain simulated and honest. They do not trigger real SMS OTP dispatch until the backend integration phase.
 - **Frontend-Only Scope:** Profile changes are stored locally in SecureStore and memory for client review and demo QA purposes.
 - **Hard Stop:** Phase 02.12 is complete. No additional screens (C10-S, C10-F, C11) were started.
-
