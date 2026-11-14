@@ -1,0 +1,7 @@
+asset,figma_node_id,source_description,format,source_dimensions,delivery_path,notes
+mail,641:274,Vector Icon mail,SVG,24x24,assets/original-figma-svg/auth_mail.svg,Exact Figma export verified
+lock,641:281,Vector Icon lock,SVG,24x24,assets/original-figma-svg/auth_lock.svg,Exact Figma export verified
+eye_outline,641:284,Password visibility eye outline,SVG,17x11,assets/original-figma-svg/password_eye_outline.svg,Exact Figma export verified
+eye_pupil,641:285,Password visibility pupil,SVG,5x5,assets/original-figma-svg/password_eye_pupil.svg,Exact Figma export verified
+apple_provider,641:292,Official Apple Logo imported SVG,SVG,24x44,assets/original-figma-svg/apple_provider_logo.svg,Exact Figma export verified
+google_provider,641:300,Official Google G imported SVG source rendered as PNG,PNG,88x88,assets/original-figma-png/google_g_figma_2x.png,Exact Figma raster export 2x verified against Figma source checksum

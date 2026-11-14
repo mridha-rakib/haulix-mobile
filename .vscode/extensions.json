@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "expo.vscode-expo-tools",
+    "ms-vscode.vscode-typescript-next",
+    "dbaeumer.vscode-eslint",
+    "orta.vscode-jest"
+  ],
+  "unwantedRecommendations": ["esbenp.prettier-vscode"]
+}

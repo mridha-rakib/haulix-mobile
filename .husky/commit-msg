@@ -1,0 +1,19 @@
+#!/bin/sh
+# commit-msg hook — validates commit message format
+# Convention: Conventional Commits (https://www.conventionalcommits.org/)
+
+commit_msg=$(cat "$1")
+pattern="^(feat|fix|chore|docs|style|refactor|test|build|ci|perf|revert)(\(.+\))?(!)?: .{1,100}"
+
+if ! echo "$commit_msg" | grep -Eq "$pattern"; then
+  echo ""
+  echo "❌  Invalid commit message format."
+  echo ""
+  echo "   Expected: type(scope)?: description"
+  echo "   Example:  feat(customer): add welcome screen"
+  echo ""
+  echo "   Types: feat|fix|chore|docs|style|refactor|test|build|ci|perf|revert"
+  echo ""
+  exit 1
+fi
+

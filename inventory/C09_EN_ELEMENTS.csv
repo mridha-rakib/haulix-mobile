@@ -1,0 +1,13 @@
+figma_node,element,x,y,width,height,implementation_notes
+435:417,Status bar reference,22,22,386,38,native status bar; do not reproduce iOS status bar on Android
+331:122,Brand,22,81,386,89,reuse existing HAULIX wordmark
+331:127,Intro,22,191,386,78,Title Account connected. / fictional subtitle
+331:130,Arizona chip,22,290,386,38,#1A2510 radius12
+331:132,Provider verification card,22,349,386,191,#151A19 radius18
+331:133,Google success status row,17,17,349,45,"dev-only fictional success, #222827 radius10"
+331:136,Fictional account row,17,73,349,58,Sarah Mitchell and fictional example.test email
+331:141,Explanation,17,142,345,32,shown only in dev fixture
+331:142,Action block,22,561,386,127,two actions
+331:144,Primary CTA,10,2,366,54,Go to My Account; guarded/no auth
+331:147,Secondary CTA,10,2,366,54,Sign in another way; tap C06
+331:149,Demo disclaimer,22,709,375,12,DEMO ONLY • No real authentication or messaging

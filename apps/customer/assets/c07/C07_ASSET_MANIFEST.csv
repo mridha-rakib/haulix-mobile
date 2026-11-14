@@ -1,0 +1,9 @@
+filename,Figma_Node_ID,format,source,implementation_policy,source_size
+c07_user.svg,617:161,SVG,C07 original export,NEW: install once to customer assets,24x24
+c07_phone.svg,617:175,SVG,C07 original export,NEW: install once to customer assets,24x24
+auth_mail.svg,617:168 (visually equal C06 641:274),SVG,Previously verified original C06,REUSE installed C06 version; no duplicate code,24x24
+auth_lock.svg,617:184 (visually equal C06 641:281),SVG,Previously verified original C06,REUSE installed C06 version; no duplicate code,24x24
+password_eye_outline.svg,617:182 (visually equal C06 641:284),SVG,Previously verified original C06,REUSE installed C06 version,17x11
+password_eye_pupil.svg,617:183 (visually equal C06 641:285),SVG,Previously verified original C06,REUSE installed C06 version,5x5
+apple_provider_logo.svg,617:201 (matching mark with C06 641:292),SVG,Previously verified original C06,REUSE installed C06 version,24x44
+google_g_figma_2x.png,617:209 (matching mark with C06 641:300),PNG,Previously verified original C06 2x export,REUSE installed C06 version,88x88 / 44x44 display

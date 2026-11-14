@@ -1,0 +1,47 @@
+﻿authority,suggested_i18n_key,en_reference,es_copy,figma_node
+Figma,account.title,My Account,Mi cuenta,347:326
+Figma,account.description,Manage your HAULIX customer profile and booking preferences.,Administra tu perfil y tus preferencias de servicio.,347:327
+Figma,account.session,SARAH MITCHELL  ·  CUSTOMER ACCOUNT,BRYAN LOPEZ  ·  CUENTA DE CLIENTE,347:331
+Figma,account.verifiedTitle,Verified customer,Cliente verificado,347:333
+Figma,account.customerLabel,Customer,Cliente,347:339
+Figma,account.demoName,Sarah Mitchell,Bryan Lopez,347:340
+Figma,account.emailLabel,Email,Correo,347:343
+Figma,account.demoEmail,sarah.mitchell@example.test,bryan.lopez@example.test,347:344
+Figma,account.phoneVerified,Phone · verified,Teléfono verificado,347:349
+Figma,account.demoPhone,+1 602-555-0142,+1 602-555-0142,347:350
+Figma,account.verificationDescription,Account verified · Arizona service area,Cuenta verificada · Zona de Arizona,347:354
+Figma,account.demoInitials,SM,BL,941:8505
+Figma,account.preferencesTitle,Account & preferences,Cuenta y preferencias,347:356
+Figma,account.pickupLabel,Saved pickup address,Dirección de recogida,347:362
+Figma,account.pickupValue,"1234 E Example Lane, Phoenix","1234 E Example Lane, Phoenix",347:363
+Figma,account.languageLabel,Language,Idioma,347:369
+Figma,account.languageValue,English (United States),Español (Estados Unidos),347:370
+Figma,account.paymentLabel,Payment methods,Métodos de pago,347:376
+Figma,account.paymentValue,TEST payment reference saved,Referencia de prueba guardada,347:377
+Figma,account.bookingLabel,Active booking,Reserva activa,347:382
+Figma,account.bookingValue,HX-DEMO-1027 · Junk Removal,HX-DEMO-1027 · Retirada de objetos,347:383
+Figma,account.signOut,↗ Sign out,↗ Cerrar sesión,347:385
+Figma,account.changeLanguage,🌐 Español  ·  Cambiar idioma,Español seleccionado · Cambiar a inglés,348:133
+Figma,account.securityHeading,SECURITY & PROFILE PHOTO,SEGURIDAD Y FOTO DE PERFIL,937:8495
+Figma,account.changePassword,Change password,Cambiar contraseña,937:8500
+Figma,account.photoShortcut,Profile photo · Add / change / remove,Foto · Añadir / cambiar / eliminar,937:8507
+Figma,account.editProfile,Edit Profile,Editar perfil,I347:387;7:51
+Figma,account.savedAddresses,Saved Addresses,Direcciones guardadas,I347:389;7:53
+Figma,nav.home,Home,Inicio,I965:10500;957:8738
+Figma,nav.myJobs,My Jobs,Mis trabajos,I965:10500;957:8739
+Figma,nav.book,Book,Reservar,I965:10500;957:8741
+Figma,nav.deals,Deals,Ofertas,I965:10500;957:8742
+Figma,nav.account,Account,Cuenta,I965:10500;957:8743
+proposed-photo-ui,photo.title,Profile photo,Foto de perfil,not present in Figma
+proposed-photo-ui,photo.chooseGallery,Choose from gallery,Elegir de la galería,not present in Figma
+proposed-photo-ui,photo.takePhoto,Take photo,Tomar foto,not present in Figma
+proposed-photo-ui,photo.changeGallery,Change from gallery,Cambiar desde la galería,not present in Figma
+proposed-photo-ui,photo.takeNewPhoto,Take new photo,Tomar otra foto,not present in Figma
+proposed-photo-ui,photo.remove,Remove photo,Eliminar foto,not present in Figma
+proposed-photo-ui,photo.save,Save photo,Guardar foto,not present in Figma
+proposed-photo-ui,photo.cancel,Cancel,Cancelar,not present in Figma
+proposed-photo-ui,photo.removeConfirmTitle,Remove profile photo?,¿Eliminar la foto de perfil?,not present in Figma
+proposed-photo-ui,photo.confirmRemove,Remove,Eliminar,not present in Figma
+proposed-photo-ui,photo.keep,Keep photo,Conservar foto,not present in Figma
+proposed-photo-ui,photo.permissionDenied,Permission denied,Permiso denegado,not present in Figma
+proposed-photo-ui,photo.selectError,Unable to load photo,No se pudo cargar la foto,not present in Figma
