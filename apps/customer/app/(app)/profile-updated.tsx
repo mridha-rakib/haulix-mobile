@@ -1,5 +1,5 @@
 import { colors, fontFamily, fontSize, radius, spacing } from "@haulix/design-tokens";
-import { useTranslation } from "@haulix/i18n";
+import { getCurrentLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import {
 import { CustomerBottomNav } from "../../src/components/navigation/CustomerBottomNav";
 import {
   c10DemoProfile,
+  c10DemoProfileEs,
   getC10DemoProfile,
   loadProfileEdits,
   subscribeToProfileEdits,
@@ -39,18 +40,19 @@ export default function ProfileUpdatedScreen() {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const [profile, setProfile] = useState(() => getC10DemoProfile("en"));
+  const currentLocale = (getCurrentLocale() as "en" | "es") || "en";
+  const [profile, setProfile] = useState(() => getC10DemoProfile(currentLocale));
   const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    loadProfileEdits("en").then(() => {
-      setProfile(getC10DemoProfile("en"));
+    loadProfileEdits(currentLocale).then(() => {
+      setProfile(getC10DemoProfile(currentLocale));
     });
     const unsubscribe = subscribeToProfileEdits(() => {
-      setProfile(getC10DemoProfile("en"));
+      setProfile(getC10DemoProfile(currentLocale));
     });
     return unsubscribe;
-  }, []);
+  }, [currentLocale]);
 
   // Hardware back button handler for Android: Return to Account Overview cleanly
   useEffect(() => {
@@ -70,9 +72,10 @@ export default function ProfileUpdatedScreen() {
     setNoticeMessage(t("profileUpdated.savedAddressesNotice"));
   };
 
-  const savedName = profile.name || c10DemoProfile.name;
-  const savedEmail = profile.email || c10DemoProfile.email;
-  const savedPhone = profile.phone || c10DemoProfile.phone;
+  const baseFixture = currentLocale === "es" ? c10DemoProfileEs : c10DemoProfile;
+  const savedName = profile.name || baseFixture.name;
+  const savedEmail = profile.email || baseFixture.email;
+  const savedPhone = profile.phone || baseFixture.phone;
   const isPhoneVerified = profile.isPhoneVerified ?? true;
 
   const chipLabel = `${savedName.trim().toUpperCase()}  ·  ${t("profileUpdated.accountChipSuffix")}`;

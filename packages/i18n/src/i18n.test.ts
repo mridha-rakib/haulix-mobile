@@ -43,6 +43,33 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     const enProfileUpdatedKeys = Object.keys(en.profileUpdated).sort();
     const esProfileUpdatedKeys = Object.keys(es.profileUpdated).sort();
     expect(enProfileUpdatedKeys).toEqual(esProfileUpdatedKeys);
+
+    const enHomeKeys = Object.keys(en.home).sort();
+    const esHomeKeys = Object.keys(es.home).sort();
+    expect(enHomeKeys).toEqual(esHomeKeys);
+  });
+
+  it("verifies exact C01 English strings from Figma node 439:3498", () => {
+    expect(en.home.brandTagline).toBe("We Haul It All.");
+    expect(en.home.location).toBe("Phoenix, Arizona");
+    expect(en.home.heroTitleWhite).toBe("Get It Gone.");
+    expect(en.home.heroTitleLime).toBe("The Easy Way.");
+    expect(en.home.heroSubtitle).toBe(
+      "On-demand hauling, junk removal, moving and more — right at your fingertips."
+    );
+    expect(en.home.searchPlaceholder).toBe("What do you need help with?");
+    expect(en.home.bookService).toBe("Book a Service ›");
+    expect(en.home.serviceJunkRemoval).toBe("Junk Removal");
+    expect(en.home.serviceMoving).toBe("Moving");
+    expect(en.home.serviceFurniturePickup).toBe("Furniture Pickup");
+    expect(en.home.serviceApplianceRemoval).toBe("Appliance Removal");
+    expect(en.home.serviceMattressRemoval).toBe("Mattress Removal");
+    expect(en.home.serviceGarageCleanout).toBe("Garage Cleanout");
+    expect(en.home.serviceStorePickup).toBe("Store Pickup");
+    expect(en.home.serviceAssemblyAddon).toBe("Assembly Add-on");
+    expect(en.home.recentJobsTitle).toBe("Recent Jobs");
+    expect(en.home.savedAddressesTitle).toBe("Saved Addresses");
+    expect(en.home.seeAll).toBe("See All ›");
   });
 
   it("verifies exact C10-S English strings from Figma node 333:171", () => {
@@ -59,6 +86,27 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     );
     expect(en.profileUpdated.backToAccount).toBe("Back to My Account");
     expect(en.profileUpdated.savedAddresses).toBe("Saved Addresses");
+  });
+
+  it("verifies exact C10-S Spanish strings matching translation mapping (C10S_ES_TRANSLATIONS.csv)", () => {
+    expect(es.profileUpdated.title).toBe("Cambios guardados");
+    expect(es.profileUpdated.subtitle).toBe(
+      "Tus datos de cliente están listos para futuras reservas."
+    );
+    expect(es.profileUpdated.accountChipSuffix).toBe("CUENTA DE CLIENTE");
+    expect(es.profileUpdated.cardTitle).toBe("Perfil guardado");
+    expect(es.profileUpdated.changesSavedPrefix).toBe("Cambios guardados ·");
+    expect(es.profileUpdated.emailLabel).toBe("Correo");
+    expect(es.profileUpdated.verifiedPhoneLabel).toBe("Teléfono verificado");
+    expect(es.profileUpdated.pendingPhoneLabel).toBe("Teléfono · verificación pendiente");
+    expect(es.profileUpdated.note).toBe(
+      "Los cambios en el perfil no modifican los registros de reservas ya finalizadas."
+    );
+    expect(es.profileUpdated.backToAccount).toBe("Volver a mi cuenta");
+    expect(es.profileUpdated.savedAddresses).toBe("Direcciones guardadas");
+    expect(es.profileUpdated.savedAddressesNotice).toBe(
+      "Direcciones guardadas (C11) estarán disponibles en una próxima fase."
+    );
   });
 
   it("verifies exact C10-E English strings from Figma node 333:116", () => {

@@ -120,6 +120,14 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     locale: "en",
     description: "Profile updated success card, dynamic details & account navigation",
   },
+  {
+    id: "c10s-es",
+    name: "C10-S · Cambios guardados (Español)",
+    figmaNode: "Node 333:171 / 930:10246",
+    route: "/profile-updated",
+    locale: "es",
+    description: "Ficha de cambios guardados en español, datos dinámicos de Bryan Lopez",
+  },
 ];
 
 /**

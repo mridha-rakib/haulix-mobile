@@ -1,5 +1,6 @@
 import { colors, fontFamily } from "@haulix/design-tokens";
 import { useTranslation } from "@haulix/i18n";
+import { useRouter } from "expo-router";
 import type { FC } from "react";
 import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -42,6 +43,7 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
   onShowNotice,
 }) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const insets = useSafeAreaInsets();
   const screenWidth = Dimensions.get("window").width;
 
@@ -52,27 +54,43 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
   const totalNavHeight = BASE_NAV_HEIGHT + safeBottom;
 
   const handlePress = (tab: NavTabId) => {
+    if (tab === activeTab) {
+      return;
+    }
     if (tab === "deals") {
       onShowNotice?.(t("account.dealsNoticeMessage") || DEALS_NOTICE);
+      onTabPress?.(tab);
       return;
     }
     if (tab === "home") {
-      onShowNotice?.(
-        t("account.pendingNoticeMessage") || "Home: Scheduled for Phase 03 Customer Home rollout."
-      );
+      if (onTabPress) {
+        onTabPress(tab);
+      } else {
+        router.replace("/(app)");
+      }
+      return;
+    }
+    if (tab === "account") {
+      if (onTabPress) {
+        onTabPress(tab);
+      } else {
+        router.replace("/(app)/account");
+      }
       return;
     }
     if (tab === "jobs") {
       onShowNotice?.(
-        t("account.pendingNoticeMessage") ||
-          "My Jobs: Scheduled for Phase 03 Customer Bookings rollout."
+        t("home.recentJobsNotice") || "My Jobs (W07) is scheduled for an upcoming phase."
       );
+      onTabPress?.(tab);
       return;
     }
     if (tab === "book") {
       onShowNotice?.(
-        t("account.pendingNoticeMessage") || "Book: Scheduled for Phase 03 Instant Booking flow."
+        t("home.bookServiceNotice") ||
+          "Service Discovery & Booking (C15) is scheduled for an upcoming phase."
       );
+      onTabPress?.(tab);
       return;
     }
     onTabPress?.(tab);

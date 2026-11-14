@@ -1,0 +1,16 @@
+name,kind,figma_node,figma_image_hash,url,target,notes
+Hero full-bleed HAULIX truck source photo,original PNG (required),439:3532,d7030a44d74746699857307ad773b998bd435629,https://www.figma.com/api/mcp/asset/2452ed4a-d3d0-43f8-a4f2-237c0719a216,assets/original-images/c01_hero_truck_original.png,"Source image fill; local handoff cannot fetch externally; agent MUST download and verify actual truck photo. Do not use stock, placeholder, web URL at runtime."
+Recent Jobs genuine photo thumbnail,original PNG (required),439:3621,e40b63a4296dacff042f9bb6d02147c906634c6c,https://www.figma.com/api/mcp/asset/1dcf0206-e11c-4e7e-a334-eb581daabd14,assets/original-images/c01_recent_job_original.png,Source image fill; do not substitute. Download on agent device.
+C01-W authoritative screenshot,Figma PNG reference (QA only),439:3498,,https://www.figma.com/api/mcp/asset/508073ed-f909-4089-bae1-a5e243fe8a99.png,docs/figma-C01W-en-reference.png,"QA-only screenshot, do not use screenshot as implementation asset."
+search_31.svg,original SVG included,439:3540,,,assets/original-svg/search_31.svg,sha256=b9d2ec82104ea8fbe244fe6a4cfd0be0afaa1433593c72f6cdf62eb715c30520
+service_junk_46x34.svg,original SVG included,439:3549,,,assets/original-svg/service_junk_46x34.svg,sha256=d57d6ddb90b40655e292fa7274fdd5d34abbcd9e06f22a995665bfe5677b2713
+service_moving_32.svg,original SVG included,439:3557,,,assets/original-svg/service_moving_32.svg,sha256=59799f118852a36236ac73749991b9c3e8bef9b31efa857e663c119d40047f5b
+service_furniture_32.svg,original SVG included,439:3567,,,assets/original-svg/service_furniture_32.svg,sha256=5c21f1470a52a0a3415fbb6a69d85c1f8a226575c4af66360d2706a6aa6aa0cd
+service_appliance_32.svg,original SVG included,439:3576,,,assets/original-svg/service_appliance_32.svg,sha256=ac991f81596bc033cbd09444e656d194297ac68fbe2176811ab35078850105b8
+service_mattress_32.svg,original SVG included,439:3586,,,assets/original-svg/service_mattress_32.svg,sha256=4fcc16be99081fd78c84370fc34b6f192ad6bd90b0ef2e575e57cb2613277e04
+service_garage_32.svg,original SVG included,439:3594,,,assets/original-svg/service_garage_32.svg,sha256=1914767cff5f49ce0fd8f16097cb7592a39bed834c176cb535cd6268e98f4e12
+service_store_32.svg,original SVG included,439:3602,,,assets/original-svg/service_store_32.svg,sha256=7a1b8d3ea31ba0aa4ce3813395d6e88741280f9b2a0930e3cbdafb3cd4ee4f23
+service_assembly_addon_32.svg,original SVG included,439:3610,,,assets/original-svg/service_assembly_addon_32.svg,sha256=b16557dcdbc711d81c6fc82548ba55e95c10f6d15c94f7ada3eb3da5a2f14c46
+saved_home_36.svg,original SVG included,439:3632,,,assets/original-svg/saved_home_36.svg,sha256=82d48278be3787655aea6327975cb14902521006eb71fee7c01698624c0e3ce6
+header_location_pin_18x22.svg,original SVG included,I563:3383;558:298,,,assets/original-svg/header_location_pin_18x22.svg,sha256=68bbc6a2e99560fa5adacb8892626f7ceba738db49c0c1aacf1631c7cde3ef5e
+header_location_chevron_16x14.svg,original SVG included,I563:3383;558:302,,,assets/original-svg/header_location_chevron_16x14.svg,sha256=d7e5b8cff9999317e16c18b2874fd8831d5f2c11c4fad742d683be83eef3d4df

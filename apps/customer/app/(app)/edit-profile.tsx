@@ -23,6 +23,7 @@ import {
 import { CustomerBottomNav } from "../../src/components/navigation/CustomerBottomNav";
 import {
   c10DemoProfile,
+  c10DemoProfileEs,
   computeInitials,
   getC10DemoProfile,
   loadProfileEdits,
@@ -91,33 +92,6 @@ function validateInputs(
   }
 
   return { isValid, errors };
-}
-
-function computeSaveAction(
-  name: string,
-  email: string,
-  initialName: string,
-  initialEmail: string,
-  isPhoneChanged: boolean,
-  t: (k: string) => string
-): { canSave: boolean; notice: string | null } {
-  if (isPhoneChanged) {
-    return {
-      canSave: false,
-      notice: t("editProfile.phonePendingVerificationNotice"),
-    };
-  }
-  const hasChanges = name.trim() !== initialName.trim() || email.trim() !== initialEmail.trim();
-  if (!hasChanges) {
-    return {
-      canSave: false,
-      notice: t("editProfile.noChangesNotice"),
-    };
-  }
-  return {
-    canSave: true,
-    notice: t("editProfile.savedLocallyNotice"),
-  };
 }
 
 interface NoticeBannerProps {
@@ -233,52 +207,14 @@ export default function EditProfileScreen() {
       return;
     }
 
-    if (currentLocale === "es") {
-      const action = computeSaveAction(
-        name,
-        email,
-        initialName,
-        initialEmail,
-        isPhoneChanged,
-        t as (k: string) => string
-      );
-      if (!action.canSave) {
-        setNoticeMessage(action.notice);
-        setIsSuccessNotice(false);
-        return;
-      }
-
-      const trimmedName = name.trim();
-      const trimmedEmail = email.trim();
-      const initials = computeInitials(trimmedName);
-
-      await saveProfileEdits("es", {
-        name: trimmedName,
-        email: trimmedEmail,
-        initials,
-      });
-
-      setIsSuccessNotice(true);
-      setNoticeMessage(action.notice);
-
-      setTimeout(() => {
-        if (router.canGoBack()) {
-          router.back();
-        } else {
-          router.replace("/(app)/account");
-        }
-      }, 400);
-      return;
-    }
-
-    // English save flow: Persist local demo edits and navigate to C10-S
+    const baseFixture = currentLocale === "es" ? c10DemoProfileEs : c10DemoProfile;
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
     const trimmedPhone = phone.trim();
     const initials = computeInitials(trimmedName);
-    const isPhoneVerified = trimmedPhone === c10DemoProfile.phone;
+    const isPhoneVerified = trimmedPhone === baseFixture.phone;
 
-    await saveProfileEdits("en", {
+    await saveProfileEdits(currentLocale, {
       name: trimmedName,
       email: trimmedEmail,
       phone: trimmedPhone,

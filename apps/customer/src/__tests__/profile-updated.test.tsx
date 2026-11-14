@@ -1,18 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
 import { colors } from "@haulix/design-tokens";
-import { enTranslations as en } from "@haulix/i18n";
+import { enTranslations as en, esTranslations as es } from "@haulix/i18n";
 import {
   c10DemoProfile,
+  c10DemoProfileEs,
   computeInitials,
   getC10DemoProfile,
   resetProfileEdits,
   saveEnProfileEdits,
+  saveEsProfileEdits,
 } from "../fixtures/c10DemoProfile";
 
-describe("C10-S Profile Updated / Success (English ONLY) — Figma Node 333:171", () => {
+describe("C10-S Profile Updated / Success (English & Spanish) — Figma Node 333:171 & 930:10246", () => {
   const routePath = path.resolve(__dirname, "../../app/(app)/profile-updated.tsx");
   const editProfileRoutePath = path.resolve(__dirname, "../../app/(app)/edit-profile.tsx");
+  const demoNavigatorPath = path.resolve(__dirname, "../components/demo/DemoScreenNavigator.tsx");
 
   beforeEach(async () => {
     await resetProfileEdits();
@@ -155,6 +158,110 @@ describe("C10-S Profile Updated / Success (English ONLY) — Figma Node 333:171"
     const source = fs.readFileSync(routePath, "utf8");
     expect(source).not.toContain("if (!__DEV__)");
     expect(source).not.toContain("isAuthenticated");
+  });
+
+  it("verifies exact C10-S Spanish strings match translation mapping (C10S_ES_TRANSLATIONS.csv)", () => {
+    expect(es.profileUpdated.title).toBe("Cambios guardados");
+    expect(es.profileUpdated.subtitle).toBe(
+      "Tus datos de cliente están listos para futuras reservas."
+    );
+    expect(es.profileUpdated.accountChipSuffix).toBe("CUENTA DE CLIENTE");
+    expect(es.profileUpdated.cardTitle).toBe("Perfil guardado");
+    expect(es.profileUpdated.changesSavedPrefix).toBe("Cambios guardados ·");
+    expect(es.profileUpdated.emailLabel).toBe("Correo");
+    expect(es.profileUpdated.verifiedPhoneLabel).toBe("Teléfono verificado");
+    expect(es.profileUpdated.pendingPhoneLabel).toBe("Teléfono · verificación pendiente");
+    expect(es.profileUpdated.note).toBe(
+      "Los cambios en el perfil no modifican los registros de reservas ya finalizadas."
+    );
+    expect(es.profileUpdated.backToAccount).toBe("Volver a mi cuenta");
+    expect(es.profileUpdated.savedAddresses).toBe("Direcciones guardadas");
+    expect(es.profileUpdated.savedAddressesNotice).toBe(
+      "Direcciones guardadas (C11) estarán disponibles en una próxima fase."
+    );
+  });
+
+  it("verifies default Spanish profile returns Bryan Lopez fixture when no edits exist", () => {
+    const profile = getC10DemoProfile("es");
+    expect(profile.name).toBe(c10DemoProfileEs.name);
+    expect(profile.email).toBe(c10DemoProfileEs.email);
+    expect(profile.phone).toBe(c10DemoProfileEs.phone);
+    expect(profile.isPhoneVerified).toBe(true);
+    expect(profile.sessionChip).toBe("BRYAN LOPEZ  ·  CUENTA DE CLIENTE");
+  });
+
+  it("verifies dynamic name and email updates in Spanish demo profile", async () => {
+    await saveEsProfileEdits({
+      name: "Bryan Lopez Mendoza",
+      email: "bryan.mendoza@example.test",
+      initials: computeInitials("Bryan Lopez Mendoza"),
+    });
+
+    const updated = getC10DemoProfile("es");
+    expect(updated.name).toBe("Bryan Lopez Mendoza");
+    expect(updated.email).toBe("bryan.mendoza@example.test");
+    expect(updated.phone).toBe(c10DemoProfileEs.phone);
+    expect(updated.isPhoneVerified).toBe(true);
+    expect(updated.sessionChip).toBe("BRYAN LOPEZ MENDOZA  ·  CUENTA DE CLIENTE");
+  });
+
+  it("verifies changed phone number establishes honest pending-verification state in Spanish", async () => {
+    await saveEsProfileEdits({
+      name: "Bryan Lopez",
+      email: "bryan.lopez@example.test",
+      phone: "+1 602-555-7777",
+      isPhoneVerified: false,
+    });
+
+    const updated = getC10DemoProfile("es");
+    expect(updated.phone).toBe("+1 602-555-7777");
+    expect(updated.isPhoneVerified).toBe(false);
+  });
+
+  it("verifies restoring Spanish phone number to fixture restores verified status", async () => {
+    await saveEsProfileEdits({
+      phone: "+1 602-555-7777",
+      isPhoneVerified: false,
+    });
+    expect(getC10DemoProfile("es").isPhoneVerified).toBe(false);
+
+    await saveEsProfileEdits({
+      phone: c10DemoProfileEs.phone,
+      isPhoneVerified: true,
+    });
+    expect(getC10DemoProfile("es").isPhoneVerified).toBe(true);
+    expect(getC10DemoProfile("es").phone).toBe(c10DemoProfileEs.phone);
+  });
+
+  it("verifies Spanish save does NOT modify English Sarah Mitchell profile (Reverse Locale Isolation)", async () => {
+    await saveEsProfileEdits({
+      name: "Bryan Modificado",
+      email: "bryan.mod@example.test",
+      phone: "+1 602-555-8888",
+      isPhoneVerified: false,
+    });
+
+    const enProfile = getC10DemoProfile("en");
+    const esProfile = getC10DemoProfile("es");
+
+    expect(esProfile.name).toBe("Bryan Modificado");
+    expect(esProfile.email).toBe("bryan.mod@example.test");
+    expect(esProfile.isPhoneVerified).toBe(false);
+
+    // English profile must remain completely untouched
+    expect(enProfile.name).toBe("Sarah Mitchell");
+    expect(enProfile.email).toBe("sarah.mitchell@example.test");
+    expect(enProfile.phone).toBe("+1 602-555-0142");
+    expect(enProfile.isPhoneVerified).toBe(true);
+    expect(enProfile.sessionChip).toBe("SARAH MITCHELL · CUSTOMER ACCOUNT");
+  });
+
+  it("verifies DemoScreenNavigator includes c10s-es entry", () => {
+    const navSource = fs.readFileSync(demoNavigatorPath, "utf8");
+    expect(navSource).toContain('id: "c10s-es"');
+    expect(navSource).toContain('name: "C10-S · Cambios guardados (Español)"');
+    expect(navSource).toContain('locale: "es"');
+    expect(navSource).toContain('route: "/profile-updated"');
   });
 
   it("verifies all QA automation testIDs are present in C10-S", () => {
