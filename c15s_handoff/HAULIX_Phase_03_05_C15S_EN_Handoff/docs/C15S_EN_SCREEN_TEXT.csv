@@ -1,0 +1,18 @@
+element,figma_english_copy,figma_text_node,notes
+step_indicator,W02 · SERVICE DISCOVERY & INTAKE / C15-S,382:250 / 382:251,Figma copy
+title,Junk Removal,382:253,Junk-only Figma exemplar; dynamic in runtime
+subtitle,Selected for booking HX-DEMO-1027. Confirm where the crew will collect your items.,382:254,Exact Junk-only Figma copy
+customer_chip,SARAH MITCHELL · HX-DEMO-1027,382:258,Runtime binds English local profile name
+section_selected,Selected service,382:261,Figma copy
+tile_badge,SELECTED,I382:262;317:83,Figma copy
+tile_title,Junk Removal,I382:262;317:84,Default fixture
+tile_description,Non-hazardous junk and bulky-item pickup,I382:262;317:85,Default fixture
+no_price,Illustrative draft · No price calculated yet,382:271,Figma copy
+how_heading,How this booking works,382:274,Figma copy
+how_step_1,1. Confirm eligible Arizona pickup address,382:275,Figma copy
+how_step_2,"2. Describe items, access and upload supporting photos",382:276,Figma copy
+how_step_3,3. Review corrected AI suggestions in W03 before a quote,382:277,Figma copy
+continue,Continue to service area,I382:280;7:51,Navigates to C16 in Figma; upcoming notice in current frontend
+change,Change service   ›,382:283,Return to C15
+footer_1,"DEMO ONLY  ·  No confirmed booking, rates or payment",382:285,Figma copy
+footer_2,"SRS  BK-01, BK-02, SV-01  ·  430 px / vertical scroll",382:286,Figma copy

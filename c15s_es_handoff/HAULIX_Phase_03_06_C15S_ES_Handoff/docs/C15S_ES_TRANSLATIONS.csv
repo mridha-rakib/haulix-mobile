@@ -1,0 +1,29 @@
+﻿key,english,spanish,source_figma_node,provenance_and_behavior
+w02Indicator,W02 · SERVICE DISCOVERY & INTAKE,W02 · SERVICIOS Y SOLICITUD,974:8969,Exact Figma
+screenCode,/ C15-S,/ C15-S,974:8970,Exact Figma
+heading.default,Junk Removal,Retiro de objetos,974:8972,Exact Figma default; dynamic based on selected ID
+selectionSubtitle,Selected for booking HX-DEMO-1027. Confirm where the crew will collect your items.,Elegido para HX-DEMO-1027. Confirma el punto de recogida.,974:8973,Exact Figma
+contextCustomer,SARAH MITCHELL · HX-DEMO-1027,{SPANISH_PROFILE_NAME_UPPER} · HX-DEMO-1027,974:8977,Static Figma Sarah; dynamic Bryan/local Spanish fixture for runtime
+selectedSection,Selected service,Servicio elegido,974:8980,Exact Figma
+selectedStatus,SELECTED,SELECCIONADO,I974:8981;317:83,Exact Figma
+selectedTileTitle.default,Junk Removal,Retiro de objetos,I974:8981;317:84,Exact Figma default; dynamic selected service
+selectedTileSupporting.default,Non-hazardous junk and bulky-item pickup,Retiro y eliminación de residuos no peligrosos,I974:8981;317:85;974:8869,Spanish C15-S Figma inadvertently English; Spanish approved C15 description used
+draftNote,Illustrative draft · No price calculated yet,Borrador ilustrativo · Sin precio calculado,974:8982,Exact Figma
+processHeading,How this booking works,Cómo funciona la solicitud,974:8985,Exact Figma
+step1,1. Confirm eligible Arizona pickup address,1. Confirma una dirección válida en Arizona,974:8986,Exact Figma
+step2,"2. Describe items, access and upload supporting photos","2. Describe objetos, acceso y sube fotos",974:8987,Exact Figma
+step3,3. Review corrected AI suggestions in W03 before a quote,3. Revisa las sugerencias de IA en W03 antes del precio,974:8988,Exact Figma
+continueCTA,Continue to service area,Continuar a zona de servicio,I974:8991;7:51,Exact Figma; future C16 pending notice
+changeCTA,Change service ›,Cambiar servicio ›,974:8993,Exact Figma; navigate C15 Spanish
+footer,"DEMO ONLY · No confirmed booking, rates or payment","SOLO DEMO · Sin reserva, tarifa ni pago confirmado",974:8995,Exact Figma
+footerSRS,"SRS BK-01, BK-02, SV-01 · 430 px / vertical scroll","SRS BK-01, BK-02, SV-01 · 430 px / desplazamiento vertical",974:8996,Exact Figma
+service.junk,Junk Removal,Retiro de objetos,974:8868,Approved C15-ES
+service.moving,Moving,Mudanzas,974:8879,Approved C15-ES
+service.furniture,Furniture Pickup,Retiro de muebles,974:8887,Approved C15-ES
+service.appliance,Appliance Removal,Retiro de electrodomésticos,974:8895,Approved C15-ES
+service.mattress,Mattress Removal,Retiro de colchones,974:8903,Approved C15-ES
+service.garage,Garage Cleanout,Limpieza de garaje,974:8911,Approved C15-ES
+service.store,Store Pickup,Recogida en tienda,974:8921,Approved C15-ES
+pendingC16,Service Area Eligibility (C16) scheduled for future phase,La verificación de la zona de servicio (C16) estará disponible en una próxima fase.,,Proposed; truthful localized notice; not Figma exact
+backA11y,Back to Service Discovery,Volver a selección de servicios,,Proposed accessible label; not Figma exact
+defaultQaA11y,Default sample service,Servicio de ejemplo,,Proposed QA-only accessibility/fixture label; not Figma exact

@@ -185,7 +185,7 @@ describe("C15 Service Discovery — Bilingual Implementation (Figma 382:126 & 97
     expect(homeSource).toContain("svc.isDisabled");
   });
 
-  it("verifies DemoScreenNavigator contains both c15-en and c15-es entries", () => {
+  it("verifies DemoScreenNavigator contains c15-en, c15-es, and c15s-en entries", () => {
     const navSource = fs.readFileSync(demoNavigatorPath, "utf8");
     expect(navSource).toContain('id: "c15-en"');
     expect(navSource).toContain('name: "C15 · Service Discovery (English)"');
@@ -193,6 +193,18 @@ describe("C15 Service Discovery — Bilingual Implementation (Figma 382:126 & 97
     expect(navSource).toContain('name: "C15 · Seleccionar Servicio (Español)"');
     expect(navSource).toContain('figmaNode: "Node 974:8843"');
     expect(navSource).toContain('locale: "es"');
+    expect(navSource).toContain('id: "c15s-en"');
+    expect(navSource).toContain('name: "C15-S · Service Selected (English)"');
+    expect(navSource).toContain('figmaNode: "Node 382:241"');
+    expect(navSource).toContain('id: "c15s-es"');
+    expect(navSource).toContain('name: "C15-S · Servicio Elegido (Español)"');
+    expect(navSource).toContain('figmaNode: "Node 974:8965"');
+  });
+
+  it("verifies C15 connects to C15-S passing selectedServiceId for both English and Spanish", () => {
+    const source = fs.readFileSync(serviceDiscoveryRoutePath, "utf8");
+    expect(source).toContain('pathname: "/service-selected"');
+    expect(source).toContain("params: { service: selectedServiceId }");
   });
 
   it("verifies design tokens use authoritative HAULIX lime and dark background", () => {

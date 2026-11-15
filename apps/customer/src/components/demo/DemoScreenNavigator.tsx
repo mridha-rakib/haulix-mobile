@@ -50,6 +50,22 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     description: "C15 selección de servicio y zona de Phoenix en español con perfil Bryan Lopez",
   },
   {
+    id: "c15s-en",
+    name: "C15-S · Service Selected (English)",
+    figmaNode: "Node 382:241",
+    route: "/service-selected",
+    locale: "en",
+    description: "W02 Selected service card, booking steps, C16 notice & change service",
+  },
+  {
+    id: "c15s-es",
+    name: "C15-S · Servicio Elegido (Español)",
+    figmaNode: "Node 974:8965",
+    route: "/service-selected",
+    locale: "es",
+    description: "C15-S servicio elegido en español con perfil Bryan Lopez, pasos y aviso C16",
+  },
+  {
     id: "c06-en",
     name: "C06 · Email Sign-in (English)",
     figmaNode: "Node 331:2",

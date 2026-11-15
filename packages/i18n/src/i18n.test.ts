@@ -51,6 +51,66 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     const enC15Keys = Object.keys(en.c15).sort();
     const esC15Keys = Object.keys(es.c15).sort();
     expect(enC15Keys).toEqual(esC15Keys);
+
+    const enC15sKeys = Object.keys(en.c15s).sort();
+    const esC15sKeys = Object.keys(es.c15s).sort();
+    expect(enC15sKeys).toEqual(esC15sKeys);
+  });
+
+  it("verifies exact C15-S English strings from Figma node 382:241 and C15S_EN_SCREEN_TEXT.csv", () => {
+    expect(en.c15s.stepIndicator).toBe("W02 · SERVICE DISCOVERY & INTAKE");
+    expect(en.c15s.stepSub).toBe("/ C15-S");
+    expect(en.c15s.defaultTitle).toBe("Junk Removal");
+    expect(en.c15s.subtitle).toBe(
+      "Selected for booking {{bookingId}}. Confirm where the crew will collect your items."
+    );
+    expect(en.c15s.customerContext).toBe("{{name}} · {{bookingId}}");
+    expect(en.c15s.selectedServiceTitle).toBe("Selected service");
+    expect(en.c15s.selectedBadge).toBe("SELECTED");
+    expect(en.c15s.defaultTileTitle).toBe("Junk Removal");
+    expect(en.c15s.defaultTileSubtitle).toBe("Non-hazardous junk and bulky-item pickup");
+    expect(en.c15s.noPriceNote).toBe("Illustrative draft · No price calculated yet");
+    expect(en.c15s.howBookingWorksTitle).toBe("How this booking works");
+    expect(en.c15s.step1).toBe("1. Confirm eligible Arizona pickup address");
+    expect(en.c15s.step2).toBe("2. Describe items, access and upload supporting photos");
+    expect(en.c15s.step3).toBe("3. Review corrected AI suggestions in W03 before a quote");
+    expect(en.c15s.continueCta).toBe("Continue to service area");
+    expect(en.c15s.changeServiceCta).toBe("Change service   ›");
+    expect(en.c15s.footerNoticeDemo).toBe("DEMO ONLY  ·  No confirmed booking, rates or payment");
+    expect(en.c15s.footerNoticeSrs).toBe("SRS  BK-01, BK-02, SV-01  ·  430 px / vertical scroll");
+    expect(en.c15s.noticeC16).toBe(
+      "Service Area Eligibility (C16) is scheduled for an upcoming phase."
+    );
+    expect(en.c15s.backA11y).toBe("Back to Service Discovery");
+    expect(en.c15s.defaultQaA11y).toBe("Default sample service");
+  });
+
+  it("verifies exact C15-S Spanish translation strings from Figma node 974:8965 and C15S_ES_TRANSLATIONS.csv", () => {
+    expect(es.c15s.stepIndicator).toBe("W02 · SERVICIOS Y SOLICITUD");
+    expect(es.c15s.stepSub).toBe("/ C15-S");
+    expect(es.c15s.defaultTitle).toBe("Retiro de objetos");
+    expect(es.c15s.subtitle).toBe("Elegido para {{bookingId}}. Confirma el punto de recogida.");
+    expect(es.c15s.customerContext).toBe("{{name}} · {{bookingId}}");
+    expect(es.c15s.selectedServiceTitle).toBe("Servicio elegido");
+    expect(es.c15s.selectedBadge).toBe("SELECCIONADO");
+    expect(es.c15s.defaultTileTitle).toBe("Retiro de objetos");
+    expect(es.c15s.defaultTileSubtitle).toBe("Retiro y eliminación de residuos no peligrosos");
+    expect(es.c15s.noPriceNote).toBe("Borrador ilustrativo · Sin precio calculado");
+    expect(es.c15s.howBookingWorksTitle).toBe("Cómo funciona la solicitud");
+    expect(es.c15s.step1).toBe("1. Confirma una dirección válida en Arizona");
+    expect(es.c15s.step2).toBe("2. Describe objetos, acceso y sube fotos");
+    expect(es.c15s.step3).toBe("3. Revisa las sugerencias de IA en W03 antes del precio");
+    expect(es.c15s.continueCta).toBe("Continuar a zona de servicio");
+    expect(es.c15s.changeServiceCta).toBe("Cambiar servicio   ›");
+    expect(es.c15s.footerNoticeDemo).toBe("SOLO DEMO  ·  Sin reserva, tarifa ni pago confirmado");
+    expect(es.c15s.footerNoticeSrs).toBe(
+      "SRS  BK-01, BK-02, SV-01  ·  430 px / desplazamiento vertical"
+    );
+    expect(es.c15s.noticeC16).toBe(
+      "La verificación de la zona de servicio (C16) estará disponible en una próxima fase."
+    );
+    expect(es.c15s.backA11y).toBe("Volver a selección de servicios");
+    expect(es.c15s.defaultQaA11y).toBe("Servicio de ejemplo");
   });
 
   it("verifies exact C15 Spanish translation strings matching Figma node 974:8843 and C15_ES_TRANSLATIONS.csv", () => {

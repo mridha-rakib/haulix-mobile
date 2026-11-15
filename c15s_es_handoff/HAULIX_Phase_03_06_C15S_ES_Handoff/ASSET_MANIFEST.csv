@@ -1,0 +1,3 @@
+﻿relative_path,type,provenance,bytes,sha256,usage
+assets/reused-original-svg/c15s_back_arrow.svg,SVG,"original Figma node, reused unchanged from Phase 03.05 zip",251,0230eefbbbdecaf8df1c75ea096916a1d33f0e63d293a16393d988f870e1bd45,Existing apps/customer/assets/c15s/original-svg should take precedence; ZIP is fallback
+assets/reused-original-svg/c15s_selected_truck.svg,SVG,"original Figma node, reused unchanged from Phase 03.05 zip",890,282f22722fe856cd718808dab5b8151696ed9214e23481511a37c79c6fca87de,Existing apps/customer/assets/c15s/original-svg should take precedence; ZIP is fallback

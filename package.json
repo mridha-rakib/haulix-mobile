@@ -26,7 +26,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.13",
     "@babel/preset-typescript": "^7.29.7",
-    "@biomejs/biome": "2.6.6",
+    "@biomejs/biome": "2.6.7",
     "@types/jest": "^29.5.14",
     "@types/node": "^26.6.6",
     "@types/pngjs": "^6.0.5",

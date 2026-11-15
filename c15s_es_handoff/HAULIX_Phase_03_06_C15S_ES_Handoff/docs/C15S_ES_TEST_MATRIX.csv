@@ -1,0 +1,17 @@
+﻿case_id,scenario,action_or_input,expected_result
+ES-01,Spanish C15-S direct entry default,Missing service param,C15-S ES shows Retiro de objetos preview; no crash
+ES-02,Validated Spanish C15 selection,Tap Elegir retiro de objetos,Navigates same selected route; selected service id stays canonical
+ES-03,Moving select from Spanish C15,Select Mudanzas then Elegir mudanzas,C15-S Mudanzas; correct icon and description
+ES-04,All seven categories,Select each canonical ID,Correct Spanish name and supported description
+ES-05,Unknown selected service ID,Open invalid service param,"Safe local default or explicit recovery, no runtime failure"
+ES-06,Spanish profile dynamic,Saved Spanish edited name,Uses saved Spanish customer name in context chip
+ES-07,Locale isolation,"Change ES name, open EN",EN profile remains unchanged; no Sarah in ES runtime
+ES-08,Spanish selected tile description,Direct default selected view,"Approved C15-ES Spanish supporting text, not English Figma leftover"
+ES-09,Change service CTA,Tap Cambiar servicio,Returns to C15 Spanish with prior selection preserved
+ES-10,System Back and header Back,Android Back and header arrow,"Return to C15 Spanish, no loop/locale switch"
+ES-11,C16 honest notice,Tap Continuar a zona de servicio,Localized dismissible coming-soon message; no fake eligibility
+ES-12,Scroll and safe area,360dp Android device,"Buttons/footer reachable; no navbar, no bottom gap"
+ES-13,Long translated text,Retiro de electrodomésticos,Wraps without clipping or card overlap
+ES-14,English regression,C15 EN → C15-S EN select Moving,English UI remains correct; Sarah profile maintained
+ES-15,Demo-only integrity,Open via QA navigator with/without auth,No fake session or blocking guard in preview
+ES-16,Bilingual navigation from Home,C01 ES service tile → C15 ES → C15-S ES,Correct service selected end-to-end

@@ -1,0 +1,14 @@
+id,assertion,verification_method,priority
+QA01,English C15 Junk CTA routes to selected state,native tap + automated test,Required
+QA02,Moving selection title and supporting icon correct,native tap + automated test,Required
+QA03,Other 5 categories map to source canonical IDs,automated test,Required
+QA04,Missing/invalid service param uses labeled Junk fixture,automated test + direct QA route,Required
+QA05,Back header returns C15,native tap,Required
+QA06,Change service returns C15 and keeps selection,native tap,Required
+QA07,Android hardware Back returns C15,ADB input keyevent 4,Required
+QA08,Continue to C16 shows honest upcoming notice,native tap,Required
+QA09,Spanish C15 remains upcoming notice not C15-S English,native tap + regression test,Required
+QA10,No bottom navbar and no auth restriction,visual + component test,Required
+QA11,Native status/safe-area 360dp correct,visual and screenshot,Required
+QA12,No false persistence of quote/booking/eligibility,code search + tests,Required
+QA13,pnpm check/typecheck/test/doctor,CLI logs,Required

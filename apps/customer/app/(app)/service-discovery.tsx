@@ -1,7 +1,7 @@
 import { colors, fontFamily } from "@haulix/design-tokens";
 import { getCurrentLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -203,11 +203,13 @@ function CustomerDraftSummarySection({
 function FourActionButtons({
   localizedServiceName,
   onAction,
+  onSelectServiceCta,
   t,
   isSpanish,
 }: {
   localizedServiceName: string;
   onAction: (key: string, fallback: string) => void;
+  onSelectServiceCta?: () => void;
   t: (k: string) => string;
   isSpanish?: boolean;
 }) {
@@ -223,14 +225,18 @@ function FourActionButtons({
       <Pressable
         testID="c15-select-service-btn"
         style={styles.primaryLimeButton}
-        onPress={() =>
-          onAction(
-            "c15.noticeC15S",
-            isSpanish
-              ? "La siguiente etapa de selección del servicio estará disponible próximamente."
-              : "Service intake and selection (C15-S) is scheduled for an upcoming phase."
-          )
-        }
+        onPress={() => {
+          if (onSelectServiceCta) {
+            onSelectServiceCta();
+          } else {
+            onAction(
+              "c15.noticeC15S",
+              isSpanish
+                ? "La siguiente etapa de selección del servicio estará disponible próximamente."
+                : "Service intake and selection (C15-S) is scheduled for an upcoming phase."
+            );
+          }
+        }}
         accessibilityRole="button"
         accessibilityLabel={selectCtaText}
       >
@@ -302,6 +308,7 @@ function FourActionButtons({
 
 export default function ServiceDiscoveryScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
   const currentLocale = (getCurrentLocale() as "en" | "es") || "en";
   const isSpanish = currentLocale === "es";
   const params = useLocalSearchParams<{ service?: string }>();
@@ -417,6 +424,12 @@ export default function ServiceDiscoveryScreen() {
         <FourActionButtons
           localizedServiceName={localizedServiceName}
           onAction={notify}
+          onSelectServiceCta={() => {
+            router.push({
+              pathname: "/service-selected",
+              params: { service: selectedServiceId },
+            });
+          }}
           t={t}
           isSpanish={isSpanish}
         />
