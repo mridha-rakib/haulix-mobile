@@ -47,6 +47,44 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
     const enHomeKeys = Object.keys(en.home).sort();
     const esHomeKeys = Object.keys(es.home).sort();
     expect(enHomeKeys).toEqual(esHomeKeys);
+
+    const enC15Keys = Object.keys(en.c15).sort();
+    const esC15Keys = Object.keys(es.c15).sort();
+    expect(enC15Keys).toEqual(esC15Keys);
+  });
+
+  it("verifies exact C15 Spanish translation strings matching Figma node 974:8843 and C15_ES_TRANSLATIONS.csv", () => {
+    expect(es.c15.stepIndicator).toBe("W02 · SERVICIOS Y SOLICITUD");
+    expect(es.c15.stepSub).toBe("/ C15");
+    expect(es.c15.title).toBe("¿En qué podemos ayudarte?");
+    expect(es.c15.subtitle).toBe("Elige el servicio autorizado que necesitas.");
+    expect(es.c15.serviceAreaTitle).toBe("Zona de servicio");
+    expect(es.c15.serviceAreaRegion).toBe("Phoenix, Arizona · Zona inicial");
+    expect(es.c15.serviceAreaNote).toBe("La cobertura en Arizona se valida antes de reservar");
+    expect(es.c15.availableServicesTitle).toBe("Servicios disponibles");
+    expect(es.c15.serviceJunkRemoval).toBe("Retiro de objetos");
+    expect(es.c15.subtitleJunkRemoval).toBe("Retiro y eliminación de residuos no peligrosos");
+    expect(es.c15.serviceMoving).toBe("Mudanzas");
+    expect(es.c15.subtitleMoving).toBe("Transporte del origen al destino");
+    expect(es.c15.serviceFurniturePickup).toBe("Retiro de muebles");
+    expect(es.c15.subtitleFurniturePickup).toBe("Sofás, mesas y otros muebles");
+    expect(es.c15.serviceApplianceRemoval).toBe("Retiro de electrodomésticos");
+    expect(es.c15.subtitleApplianceRemoval).toBe("Retiro autorizado de electrodomésticos");
+    expect(es.c15.serviceMattressRemoval).toBe("Retiro de colchones");
+    expect(es.c15.subtitleMattressRemoval).toBe("Revisión de manejo y eliminación de colchones");
+    expect(es.c15.serviceGarageCleanout).toBe("Limpieza de garaje");
+    expect(es.c15.subtitleGarageCleanout).toBe("Fotos, acceso y revisión de contaminación");
+    expect(es.c15.serviceStorePickup).toBe("Recogida en tienda");
+    expect(es.c15.subtitleStorePickup).toBe("Recogida y entrega de pedidos");
+    expect(es.c15.serviceInfo).toBe("Información del servicio");
+    expect(es.c15.noQuoteNote).toBe("Aún no hay cotización ni cita confirmada.");
+    expect(es.c15.checkServiceArea).toBe("Verificar zona de servicio ›");
+    expect(es.c15.viewLocationRestrictions).toBe("Ver restricciones de ubicación ›");
+    expect(es.c15.serviceNotListed).toBe("¿No ves tu servicio? Ver opciones ›");
+    expect(es.c15.footerNoticeDemo).toBe("SOLO DEMO · Sin reserva, tarifa ni pago confirmado");
+    expect(es.c15.footerNoticeSrs).toBe(
+      "SRS BK-01, SV-01, AI-12 · 430 px / desplazamiento vertical"
+    );
   });
 
   it("verifies exact C01 English strings from Figma node 439:3498", () => {

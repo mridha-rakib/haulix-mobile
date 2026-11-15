@@ -1,0 +1,5 @@
+asset_group,canonical_source,phase_03_04_action,notes
+C15_service_icons,apps/customer/assets/c15/original-svg/,reuse existing originals,"10 original Figma SVGs integrated Phase 03.03"
+C15Icons_component,apps/customer/src/components/discovery/C15Icons.tsx,reuse existing typed SVG wrappers,"Do not redraw; inspect current path"
+C15_reference_ES,Figma node 974:8843,capture only as QA reference,"No screenshot image is embedded in this ZIP"
+C01_home_assets,apps/customer/assets/c01/,keep unchanged,"Do not redownload truck hero / job thumbnail for C15"

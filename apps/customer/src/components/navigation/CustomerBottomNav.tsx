@@ -70,8 +70,21 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
   const safeBottom = Math.max(insets.bottom, 0);
   const totalNavHeight = BASE_NAV_HEIGHT + safeBottom;
 
+  const handleBookPress = (tab: NavTabId) => {
+    if (onTabPress) {
+      onTabPress(tab);
+    } else {
+      router.push("/service-discovery" as never);
+    }
+  };
+
   const handlePress = (tab: NavTabId) => {
     if (tab === activeTab) return;
+
+    if (tab === "book") {
+      handleBookPress(tab);
+      return;
+    }
 
     const route = ROUTE_MAP[tab];
     if (route) {

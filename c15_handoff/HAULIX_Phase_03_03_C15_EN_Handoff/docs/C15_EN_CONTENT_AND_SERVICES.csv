@@ -1,0 +1,8 @@
+service_id,figma_en_title,figma_en_subtitle,source_row_node,future_destination_node,future_state,current_phase_behavior
+junk-removal,Junk Removal,Non-hazardous hauling and disposal,382:152,382:805,C18-J,Preview selection and truthful upcoming notice; NO C18 route
+moving,Moving,Pickup-to-destination transport,382:160,382:881,C18-M,Preview selection and truthful upcoming notice; NO C18 route
+furniture-pickup,Furniture Pickup,"Sofas, tables and other furniture",382:171,382:959,C18-F,Preview selection and truthful upcoming notice; NO C18 route
+appliance-removal,Appliance Removal,Approved appliance removal,382:179,387:177,C18-A,Preview selection and truthful upcoming notice; NO C18 route
+mattress-removal,Mattress Removal,Mattress handling and disposal review,382:187,387:274,C18-T,Preview selection and truthful upcoming notice; NO C18 route
+garage-cleanout,Garage Cleanout,"Photos, access and contamination screening",382:195,382:1056,C18-G,Preview selection and truthful upcoming notice; NO C18 route
+store-pickup,Store Pickup,Store order collection and delivery,382:203,382:1115,C18-R,Preview selection and truthful upcoming notice; NO C18 route

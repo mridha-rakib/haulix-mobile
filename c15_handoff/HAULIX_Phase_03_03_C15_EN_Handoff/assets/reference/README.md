@@ -1,0 +1,1 @@
+Figma screenshot reference is node 382:126 (430 x 1791). Capture the screenshot in Agent environment and save to docs/qa/c15/figma-C15-en-reference.png. **Do not use a screenshot as a runtime UI asset.** No raster photograph is present in C15.

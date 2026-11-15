@@ -34,6 +34,22 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "HAULIX Inicio en español: camión hero, búsqueda, 8 servicios y trabajos recientes",
   },
   {
+    id: "c15-en",
+    name: "C15 · Service Discovery (English)",
+    figmaNode: "Node 382:126",
+    route: "/service-discovery",
+    locale: "en",
+    description: "W02 Service discovery & intake with 7 categories and Arizona service area",
+  },
+  {
+    id: "c15-es",
+    name: "C15 · Seleccionar Servicio (Español)",
+    figmaNode: "Node 974:8843",
+    route: "/service-discovery",
+    locale: "es",
+    description: "C15 selección de servicio y zona de Phoenix en español con perfil Bryan Lopez",
+  },
+  {
     id: "c06-en",
     name: "C06 · Email Sign-in (English)",
     figmaNode: "Node 331:2",

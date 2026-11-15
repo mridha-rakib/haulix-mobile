@@ -1,6 +1,7 @@
 import { colors, fontFamily, radius, spacing } from "@haulix/design-tokens";
 import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Dimensions,
@@ -512,6 +513,7 @@ function HomeSavedAddressesSection({
 
 export default function HomeScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
   const screenWidth = Dimensions.get("window").width;
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -585,7 +587,16 @@ export default function HomeScreen() {
           <ServicesGrid
             services={filteredServices}
             cardWidth={cardWidth}
-            onSelectService={(svc) => setNoticeMessage(getServiceNotice(svc, t))}
+            onSelectService={(svc) => {
+              if (svc.isDisabled) {
+                setNoticeMessage(getServiceNotice(svc, t));
+                return;
+              }
+              router.push({
+                pathname: "/service-discovery",
+                params: { service: svc.id },
+              });
+            }}
             onClearSearch={() => setSearchQuery("")}
             emptyText={
               t("home.searchNoResults") ||
@@ -597,12 +608,9 @@ export default function HomeScreen() {
 
           {/* 5. Primary Book a Service CTA (Figma 439:3617) */}
           <BookServiceCTA
-            onBook={() =>
-              notify(
-                "home.noticeBooking",
-                "Service Discovery & Booking (C15) is scheduled for an upcoming phase."
-              )
-            }
+            onBook={() => {
+              router.push("/service-discovery");
+            }}
             label={
               t("home.bookService") ||
               (t("home.bookAService") ? `${t("home.bookAService")} ›` : "Book a Service ›")

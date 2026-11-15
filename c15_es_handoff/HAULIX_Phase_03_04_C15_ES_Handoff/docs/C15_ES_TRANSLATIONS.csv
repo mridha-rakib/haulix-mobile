@@ -1,0 +1,37 @@
+key,english,spanish,figma_node,provenance_or_behavior
+w02Indicator,W02 · SERVICE DISCOVERY & INTAKE,W02 · SERVICIOS Y SOLICITUD,974:8847,Figma exact
+title,What can we help with?,¿En qué podemos ayudarte?,974:8850,Figma exact
+subtitle,Choose the approved service that matches your task.,Elige el servicio autorizado que necesitas.,974:8851,Figma exact
+contextProfile,SARAH MITCHELL · HX-DEMO-1027,{SPANISH_PROFILE_NAME_UPPER} · HX-DEMO-1027,974:8855,Figma static Sarah; runtime Bryan/local Spanish profile
+areaTitle,Service area,Zona de servicio,974:8858,Figma exact
+areaLocation,"Phoenix, Arizona · Initial service region","Phoenix, Arizona · Zona inicial",974:8859,Figma exact
+areaCaution,Eligible Arizona service area checked again before booking,La cobertura en Arizona se valida antes de reservar,974:8860,Figma exact; no live eligibility
+servicesTitle,Available services,Servicios disponibles,974:8863,Figma exact
+junk.name,Junk Removal,Retiro de objetos,974:8868,Figma exact
+junk.description,Non-hazardous hauling and disposal,Retiro y eliminación de residuos no peligrosos,974:8869,Figma exact
+moving.name,Moving,Mudanzas,974:8879,Figma exact
+moving.description,Pickup-to-destination transport,Transporte del origen al destino,974:8880,Figma exact
+furniture.name,Furniture Pickup,Retiro de muebles,974:8887,Figma exact
+furniture.description,"Sofas, tables and other furniture","Sofás, mesas y otros muebles",974:8888,Figma exact
+appliance.name,Appliance Removal,Retiro de electrodomésticos,974:8895,Figma exact
+appliance.description,Approved appliance removal,Retiro autorizado de electrodomésticos,974:8896,Figma exact
+mattress.name,Mattress Removal,Retiro de colchones,974:8903,Figma exact
+mattress.description,Mattress handling and disposal review,Revisión de manejo y eliminación de colchones,974:8904,Figma exact
+garage.name,Garage Cleanout,Limpieza de garaje,974:8911,Figma exact
+garage.description,"Photos, access and contamination screening","Fotos, acceso y revisión de contaminación",974:8912,Figma exact
+store.name,Store Pickup,Recogida en tienda,974:8921,Figma exact
+store.description,Store order collection and delivery,Recogida y entrega de pedidos,974:8922,Figma exact
+profileSection,For Sarah Mitchell,Para {SPANISH_PROFILE_NAME},974:8927,Figma static Sarah; runtime Bryan/local Spanish profile
+serviceInfo,Service information,Información del servicio,974:8931,Figma exact
+draft,Draft booking HX-DEMO-1027 · Junk Removal,Solicitud HX-DEMO-1027 · {SELECTED_SERVICE_ES},974:8932,Figma first service; dynamic canonical selected ID
+notConfirmed,No quote or appointment has been confirmed yet.,Aún no hay cotización ni cita confirmada.,974:8933,Figma exact
+selectCTA,Select Junk Removal,Elegir {SELECTED_SERVICE_ES_LOWER},I974:8936;7:51,Figma first service; dynamic canonical selected ID
+checkAreaCTA,Check Service Area ›,Verificar zona de servicio ›,974:8938,Figma exact
+restrictionsCTA,View location restrictions ›,Ver restricciones de ubicación ›,974:8940,Figma exact
+notListedCTA,Service not listed? Check options ›,¿No ves tu servicio? Ver opciones ›,I974:8942;7:51,Figma exact
+footer,"DEMO ONLY · No confirmed booking, rates or payment","SOLO DEMO · Sin reserva, tarifa ni pago confirmado",974:8944,Figma exact
+footerSRS,"SRS BK-01, SV-01, AI-12 · 430 px / vertical scroll","SRS BK-01, SV-01, AI-12 · 430 px / desplazamiento vertical",974:8945,Figma exact
+pendingSelect,Selection complete (not implemented),La siguiente etapa de selección del servicio estará disponible próximamente.,,Proposed truthful QA notice; not Figma text
+pendingC16,Service area check upcoming,La verificación de la zona de servicio estará disponible próximamente.,,Proposed truthful QA notice; not Figma text
+pendingRestrictions,Location restrictions upcoming,Las restricciones de ubicación se mostrarán en una próxima fase.,,Proposed truthful QA notice; not Figma text
+pendingNotListed,Other service options upcoming,Las opciones de servicios adicionales estarán disponibles en una próxima fase.,,Proposed truthful QA notice; not Figma text
