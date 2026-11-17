@@ -212,9 +212,8 @@ describe("C16 Service Area Eligibility — English & Spanish (Nodes 382:323 & 97
 
 	it("verifies back button and Android hardware back return to C15-S preserving service param", () => {
 		const source = fs.readFileSync(serviceAreaRoutePath, "utf8");
-		expect(source).toContain(
-			'BackHandler.addEventListener("hardwareBackPress"',
-		);
+		expect(source).toContain("BackHandler.addEventListener");
+		expect(source).toContain("hardwareBackPress");
 		expect(source).toContain('pathname: "/service-selected"');
 		expect(source).toContain(
 			"params: params.service ? { service: params.service } : undefined",

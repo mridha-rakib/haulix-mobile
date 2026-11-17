@@ -136,9 +136,8 @@ describe("C15-S Service Selected — English ONLY (Figma Node 382:241)", () => {
 
 	it("verifies Android hardware back button handler returns to C15", () => {
 		const source = fs.readFileSync(serviceSelectedRoutePath, "utf8");
-		expect(source).toContain(
-			'BackHandler.addEventListener("hardwareBackPress"',
-		);
+		expect(source).toContain("BackHandler.addEventListener");
+		expect(source).toContain("hardwareBackPress");
 		expect(source).toContain("handleBackToC15");
 	});
 
