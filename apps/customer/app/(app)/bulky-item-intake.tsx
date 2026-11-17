@@ -62,14 +62,14 @@ export default function BulkyItemIntakeScreen() {
     (tierId: string) => {
       setSelectedTierId(tierId);
       if (tierId === "appliance-removal") {
-        setNoticeMessage(t("c18f.noticeTierA"));
+        router.push("/appliance-intake");
       } else if (tierId === "mattress-removal") {
-        setNoticeMessage(t("c18f.noticeTierT"));
+        router.push("/mattress-intake");
       } else if (tierId === "assembly-help") {
         setNoticeMessage(t("c18f.noticeTierAddon"));
       }
     },
-    [t]
+    [router, t]
   );
 
   const handleReviewCta = useCallback(() => {

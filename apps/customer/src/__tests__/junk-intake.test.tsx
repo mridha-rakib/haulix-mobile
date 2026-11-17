@@ -2,8 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { enTranslations as en, esTranslations as es } from "@haulix/i18n";
 import { getC10DemoProfile, resetProfileEdits } from "../fixtures/c10DemoProfile";
-import { C15_SERVICES } from "../fixtures/c15Services";
-import { C18J_DEFAULT_DATA, C18J_DEMO_CONSTANTS } from "../fixtures/c18jJunkIntake";
 
 describe("C18-J Junk Removal Intake — English (Node 382:805) & Spanish (Node 977:9100)", () => {
   const c18jRoutePath = path.resolve(__dirname, "../../app/(app)/junk-intake.tsx");

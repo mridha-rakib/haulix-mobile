@@ -18,6 +18,70 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c18re-es",
+    name: "C18-R-E · Pedido Minorista Faltante (Español)",
+    figmaNode: "Node 980:9247",
+    route: "/retail-order-missing",
+    locale: "es",
+    description: "W02 Estado de error por falta de información de pedido en recogida comercial",
+  },
+  {
+    id: "c18re-en",
+    name: "C18-R-E · Retail Missing Order (English)",
+    figmaNode: "Node 382:1197",
+    route: "/retail-order-missing",
+    locale: "en",
+    description: "W02 Retail missing order error state with action required badge and guidance",
+  },
+  {
+    id: "c19-es",
+    name: "C19 · Lista de Objetos (Español)",
+    figmaNode: "Node 980:9314",
+    route: "/item-inventory",
+    locale: "es",
+    description: "W02 Revisión de inventario de 3 objetos con fotos y resumen antes de W03",
+  },
+  {
+    id: "c19-en",
+    name: "C19 · Item Inventory Review (English)",
+    figmaNode: "Node 382:1248",
+    route: "/item-inventory",
+    locale: "en",
+    description: "W02 Item inventory review with 3 declared items, genuine photos & summary",
+  },
+  {
+    id: "c18a-es",
+    name: "C18-A · Retiro de Electrodomésticos (Español)",
+    figmaNode: "Node 977:9572",
+    route: "/appliance-intake",
+    locale: "es",
+    description: "W02 Retiro de electrodomésticos en español con dimensiones, desconexión y CTAs",
+  },
+  {
+    id: "c18a-en",
+    name: "C18-A · Appliance Removal Intake (English)",
+    figmaNode: "Node 387:177",
+    route: "/appliance-intake",
+    locale: "en",
+    description: "W02 Appliance removal intake with washing machine specs, disconnect check & CTAs",
+  },
+  {
+    id: "c18t-es",
+    name: "C18-T · Retiro de Colchones (Español)",
+    figmaNode: "Node 977:9685",
+    route: "/mattress-intake",
+    locale: "es",
+    description: "W02 Retiro de colchones en español con dimensiones, cantidad, idoneidad y CTAs",
+  },
+  {
+    id: "c18t-en",
+    name: "C18-T · Mattress Removal Intake (English)",
+    figmaNode: "Node 387:274",
+    route: "/mattress-intake",
+    locale: "en",
+    description: "W02 Mattress removal intake with queen mattress specs, disposal check & CTAs",
+  },
+  {
     id: "c18j-es",
     name: "C18-J · Retiro de Chatarra (Español)",
     figmaNode: "Node 977:9100",
@@ -383,7 +447,7 @@ export const DemoScreenNavigator: React.FC = () => {
         pathname: screen.route as Href,
         params: screen.params,
       } as unknown as Href);
-    } else if (currentPath !== screen.route) {
+    } else {
       router.replace(screen.route as Href);
     }
   };

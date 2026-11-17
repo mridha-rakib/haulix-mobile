@@ -63,8 +63,8 @@ export default function JunkIntakeScreen() {
   }, [handleBack]);
 
   const handleReviewCta = useCallback(() => {
-    setNoticeMessage(t("c18j.noticeC19"));
-  }, [t]);
+    router.push("/item-inventory");
+  }, [router]);
 
   const handleDifferentService = useCallback(() => {
     router.push("/service-discovery");

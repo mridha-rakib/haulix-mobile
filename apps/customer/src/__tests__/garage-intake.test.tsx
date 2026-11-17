@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { enTranslations as en, esTranslations as es } from "@haulix/i18n";
-import { getC10DemoProfile, resetProfileEdits } from "../fixtures/c10DemoProfile";
-import { C18G_DEFAULT_DATA, C18G_DEMO_CONSTANTS } from "../fixtures/c18gGarageIntake";
+import { resetProfileEdits } from "../fixtures/c10DemoProfile";
+import { C18G_DEMO_CONSTANTS } from "../fixtures/c18gGarageIntake";
 
 describe("C18-G Garage Cleanout Intake — English (Node 382:1056) & Spanish (Node 977:9399)", () => {
-  const c18gRoutePath = path.resolve(__dirname, "../../app/(app)/garage-intake.tsx");
+  const _c18gRoutePath = path.resolve(__dirname, "../../app/(app)/garage-intake.tsx");
   const c18IconsPath = path.resolve(__dirname, "../components/discovery/C18BatchIcons.tsx");
   const demoNavigatorPath = path.resolve(__dirname, "../components/demo/DemoScreenNavigator.tsx");
 

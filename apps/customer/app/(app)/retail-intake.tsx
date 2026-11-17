@@ -58,8 +58,8 @@ export default function RetailIntakeScreen() {
   }, [t]);
 
   const handleMissingOrderCta = useCallback(() => {
-    setNoticeMessage(t("c18r.noticeC18RE"));
-  }, [t]);
+    router.push("/retail-order-missing");
+  }, [router]);
 
   const data = C18R_DEFAULT_DATA;
 

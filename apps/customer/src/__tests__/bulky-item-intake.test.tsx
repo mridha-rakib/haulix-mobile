@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { enTranslations as en, esTranslations as es } from "@haulix/i18n";
-import { getC10DemoProfile, resetProfileEdits } from "../fixtures/c10DemoProfile";
-import { C18F_DEFAULT_DATA, C18F_DEMO_CONSTANTS } from "../fixtures/c18fBulkyIntake";
+import { resetProfileEdits } from "../fixtures/c10DemoProfile";
+import { C18F_DEFAULT_DATA } from "../fixtures/c18fBulkyIntake";
 
 describe("C18-F Bulky Item Intake — English (Node 382:959) & Spanish (Node 977:9286)", () => {
-  const c18fRoutePath = path.resolve(__dirname, "../../app/(app)/bulky-item-intake.tsx");
+  const _c18fRoutePath = path.resolve(__dirname, "../../app/(app)/bulky-item-intake.tsx");
   const c18IconsPath = path.resolve(__dirname, "../components/discovery/C18BatchIcons.tsx");
   const demoNavigatorPath = path.resolve(__dirname, "../components/demo/DemoScreenNavigator.tsx");
 
