@@ -183,6 +183,15 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
 			"W02 Destino de entrega de mudanza con tarjetas de recogida/entrega, revisión segura y CTAs",
 	},
 	{
+		id: "c18m-en",
+		name: "C18-M · Moving Service Intake (English)",
+		figmaNode: "Node 382:881",
+		route: "/moving-intake",
+		locale: "en",
+		description:
+			"W02 Moving details with route, inventory, access, load/crew review & CTAs",
+	},
+	{
 		id: "c06-en",
 		name: "C06 · Email Sign-in (English)",
 		figmaNode: "Node 331:2",

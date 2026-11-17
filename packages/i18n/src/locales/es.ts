@@ -621,6 +621,56 @@ const es: En = {
 			'El servicio solicitado "{{service}}" no está reconocido. El destino de mudanza requiere un servicio aprobado.',
 		noticeDismiss: "Cerrar",
 	},
+	c18m: {
+		stepIndicator: "W02 · SERVICIOS Y SOLICITUD",
+		stepSub: "  /  C18-M",
+		title: "Detalles de mudanza",
+		subtitle:
+			"Escenario ficticio separado HX-DEMO-MOVE-1034 · Sin cotización de producción.",
+		customerContext: "{{name}} · {{bookingId}}",
+		fictionalCustomerBadge: "DANIEL RUIZ · HX-DEMO-MOVE-1034",
+		fictionalCustomerName: "Daniel Ruiz · ficticio",
+		sectionARouteTitle: "Ruta de mudanza",
+		labelCustomer: "Cliente",
+		labelPickup: "Recogida",
+		defaultPickupAddress: "2140 E Sample Road, Phoenix, AZ 85016",
+		labelDropoff: "Entrega",
+		defaultDropoffAddress: "5678 N Demo Avenue, Phoenix, AZ 85012",
+		labelRequestedScope: "Alcance solicitado",
+		defaultRequestedScope: "Mudanza del hogar · Apartamento de 1 dormitorio",
+		sectionBInventoryTitle: "Inventario y acceso",
+		labelLargeItems: "Artículos grandes",
+		defaultLargeItems: "Sofá de 2 plazas ×1; tocador ×1; 12 cajas de mudanza",
+		labelEstimatedWeight: "Peso estimado",
+		defaultEstimatedWeight: "Estimación del cliente ~550 lb en total",
+		labelOriginStairs: "Escaleras de origen",
+		defaultOriginStairs: "Planta baja",
+		labelDestinationStairs: "Escaleras de destino",
+		defaultDestinationStairs: "1 piso, sin ascensor",
+		labelPackingRequest: "Solicitud de embalaje",
+		defaultPackingRequest: "Sin servicio de embalaje adicional seleccionado",
+		sectionCAssessmentTitle:
+			"Evaluación de carga y personal de trabajo requerida",
+		badgeReviewRequired: "Revisión necesaria",
+		assessmentDescription:
+			"La cantidad de personal y la idoneidad del vehículo se determinan según las reglas de capacidad aprobadas.",
+		runtimeClarification:
+			"Esta solicitud de mudanza es una demostración y no modifica otras reservas.",
+		figmaStaticClarification:
+			"Esto es independiente de la reserva de retiro de chatarra de Sarah Mitchell.",
+		continueCta: "Continuar detalles de mudanza",
+		returnServiceListCta: "Volver a la lista de servicios   ›",
+		footerDemo: "SOLO DEMO · Sin reserva, tarifa ni pago confirmado",
+		footerSrs: "SRS  BK-02, BK-03, SV-14  ·  430 px / desplazamiento vertical",
+		backA11y: "Volver al destino de entrega de mudanza",
+		noticeC20M:
+			"La estimación de cotización de mudanza (C20-M) está programada para una próxima fase.",
+		noticeNonMoving:
+			"Los detalles de mudanza aplican específicamente a servicios de Mudanza. Actualmente tienes seleccionado {{service}}. Esta pantalla muestra una solicitud de demostración ilustrativa sin alterar tu reserva activa.",
+		noticeUnsupportedService:
+			'El servicio solicitado "{{service}}" no está reconocido. La solicitud de mudanza requiere un servicio aprobado.',
+		noticeDismiss: "Cerrar",
+	},
 	errors: {
 		network: "Error de red. Verifica tu conexión.",
 		generic: "Ocurrió un error inesperado.",

@@ -499,6 +499,11 @@ export default function MovingDestinationScreen() {
 		return resolveOriginAddress(params.pickupAddress, params.selectedAddressId);
 	}, [params.pickupAddress, params.selectedAddressId]);
 
+	const destinationValues = useMemo(
+		() => resolveDestinationValues(params, t),
+		[params, t],
+	);
+
 	const serviceState = useMemo(() => {
 		return resolveServiceState(params.service);
 	}, [params.service]);
@@ -515,11 +520,37 @@ export default function MovingDestinationScreen() {
 	}, [serviceState, t]);
 
 	const handleContinue = useCallback(() => {
-		setNoticeMessage(
-			t("c17d.noticeC18M") ||
-				"Moving intake (C18-M) is scheduled for an upcoming phase.",
-		);
-	}, [t]);
+		if (currentLocale === "en") {
+			router.push({
+				pathname: "/moving-intake",
+				params: {
+					service: params.service || "moving",
+					selectedAddressId: params.selectedAddressId,
+					pickupAddress: originAddress,
+					destinationAddress: destinationValues.dropoff,
+					destinationCityStateZip: destinationValues.cityStateZip,
+					destinationType: destinationValues.destType,
+					elevator: destinationValues.elevator,
+				},
+			});
+		} else {
+			setNoticeMessage(
+				t("c17d.noticeC18M") ||
+					"La solicitud de mudanza (C18-M) está programada para una próxima fase.",
+			);
+		}
+	}, [
+		currentLocale,
+		router,
+		params.service,
+		params.selectedAddressId,
+		originAddress,
+		destinationValues.dropoff,
+		destinationValues.cityStateZip,
+		destinationValues.destType,
+		destinationValues.elevator,
+		t,
+	]);
 
 	const handleReturnToPickup = useCallback(() => {
 		router.replace({
@@ -540,11 +571,6 @@ export default function MovingDestinationScreen() {
 	}, [router, handleReturnToPickup]);
 
 	useHardwareBack(handleBack);
-
-	const destinationValues = useMemo(
-		() => resolveDestinationValues(params, t),
-		[params, t],
-	);
 
 	return (
 		<HaulixSafeArea>

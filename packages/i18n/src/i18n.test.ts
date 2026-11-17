@@ -75,6 +75,79 @@ describe("@haulix/i18n — C06 Localization & Switching", () => {
 		const enC17dKeys = Object.keys(en.c17d).sort();
 		const esC17dKeys = Object.keys(es.c17d).sort();
 		expect(enC17dKeys).toEqual(esC17dKeys);
+
+		const enC18mKeys = Object.keys(en.c18m).sort();
+		const esC18mKeys = Object.keys(es.c18m).sort();
+		expect(enC18mKeys).toEqual(esC18mKeys);
+	});
+
+	it("verifies exact C18-M English strings from Figma node 382:881", () => {
+		expect(en.c18m.stepIndicator).toBe("W02 · SERVICE DISCOVERY & INTAKE");
+		expect(en.c18m.stepSub).toBe("  /  C18-M");
+		expect(en.c18m.title).toBe("Moving details");
+		expect(en.c18m.subtitle).toBe(
+			"Separate fictional scenario HX-DEMO-MOVE-1034 · No production quote.",
+		);
+		expect(en.c18m.customerContext).toBe("{{name}} · {{bookingId}}");
+		expect(en.c18m.fictionalCustomerBadge).toBe(
+			"DANIEL RUIZ · HX-DEMO-MOVE-1034",
+		);
+		expect(en.c18m.fictionalCustomerName).toBe("Daniel Ruiz · fictional");
+		expect(en.c18m.sectionARouteTitle).toBe("Moving route");
+		expect(en.c18m.labelCustomer).toBe("Customer");
+		expect(en.c18m.labelPickup).toBe("Pickup");
+		expect(en.c18m.defaultPickupAddress).toBe(
+			"2140 E Sample Road, Phoenix, AZ 85016",
+		);
+		expect(en.c18m.labelDropoff).toBe("Drop-off");
+		expect(en.c18m.defaultDropoffAddress).toBe(
+			"5678 N Demo Avenue, Phoenix, AZ 85012",
+		);
+		expect(en.c18m.labelRequestedScope).toBe("Requested scope");
+		expect(en.c18m.defaultRequestedScope).toBe(
+			"Household moving · 1-bedroom apartment",
+		);
+		expect(en.c18m.sectionBInventoryTitle).toBe("Inventory & access");
+		expect(en.c18m.labelLargeItems).toBe("Large items");
+		expect(en.c18m.defaultLargeItems).toBe(
+			"2-seat couch ×1; dresser ×1; 12 moving boxes",
+		);
+		expect(en.c18m.labelEstimatedWeight).toBe("Estimated weight");
+		expect(en.c18m.defaultEstimatedWeight).toBe(
+			"Customer estimate ~550 lb total",
+		);
+		expect(en.c18m.labelOriginStairs).toBe("Origin stairs");
+		expect(en.c18m.defaultOriginStairs).toBe("Ground floor");
+		expect(en.c18m.labelDestinationStairs).toBe("Destination stairs");
+		expect(en.c18m.defaultDestinationStairs).toBe("1 flight, no elevator");
+		expect(en.c18m.labelPackingRequest).toBe("Packing request");
+		expect(en.c18m.defaultPackingRequest).toBe(
+			"No additional packing service selected",
+		);
+		expect(en.c18m.sectionCAssessmentTitle).toBe(
+			"Load and crew assessment needed",
+		);
+		expect(en.c18m.badgeReviewRequired).toBe("Review required");
+		expect(en.c18m.assessmentDescription).toBe(
+			"Worker count/vehicle suitability is determined from approved capacity rules.",
+		);
+		expect(en.c18m.runtimeClarification).toBe(
+			"This moving intake is a demo and does not modify other bookings.",
+		);
+		expect(en.c18m.figmaStaticClarification).toBe(
+			"This is separate from Sarah Mitchell's junk removal booking.",
+		);
+		expect(en.c18m.continueCta).toBe("Continue moving details");
+		expect(en.c18m.returnServiceListCta).toBe("Return to service list   ›");
+		expect(en.c18m.footerDemo).toBe(
+			"DEMO ONLY  ·  No confirmed booking, rates or payment",
+		);
+		expect(en.c18m.footerSrs).toBe(
+			"SRS  BK-02, BK-03, SV-14  ·  430 px / vertical scroll",
+		);
+		expect(en.c18m.noticeC20M).toBe(
+			"Moving quote estimation (C20-M) is scheduled for an upcoming phase.",
+		);
 	});
 
 	it("verifies exact C17-D English strings from Figma node 382:744", () => {
