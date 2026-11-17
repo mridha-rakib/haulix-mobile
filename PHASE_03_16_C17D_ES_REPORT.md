@@ -19,6 +19,7 @@
 Phase 03.16 delivers the complete **Spanish localization and physical Android QA verification** for **C17-D Moving Drop-off Destination** (`C17-D-ES · Destino de mudanza`) in the HAULIX Customer App.
 
 Following the established HAULIX frontend development workflow:
+
 1. **Mandatory Figma MCP Direct Inspection:** Inspected authoritative Spanish Figma frame `974:9628` (430 × 1340 px) directly using `figma_figma` MCP tools (`get_metadata`, `get_design_context`, and reference screenshot retrieval).
 2. **Single Canonical Route Reused:** Maintained the single canonical route [apps/customer/app/(app)/moving-destination.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/app/(app)/moving-destination.tsx) without duplicate locale files (no `moving-destination-es.tsx`), while strictly preserving English C17-D behavior and regression test suites.
 3. **Dynamic Customer Profile Isolation:** Dynamically bound the Spanish customer context pill to `"BRYAN LOPEZ MENDOZA · HX-DEMO-MOVE-1034"`, strictly isolated from the English profile (`SARAH JANE MITCHELL · HX-DEMO-MOVE-1034`). The illustrative name "Daniel Ruiz" from Figma was treated purely as concept placeholder copy.
@@ -35,28 +36,28 @@ The authenticated `figma_figma` MCP was invoked with the mandatory `figma-design
 
 ### 2.1 Authoritative Node Specifications
 
-| Property                    | Spanish Figma Specification (Node `974:9628`)          | English Figma Reference (Node `382:744`)               | HAULIX Implementation                                       |
-| :-------------------------- | :----------------------------------------------------- | :----------------------------------------------------- | :---------------------------------------------------------- |
-| **Frame Name**              | `C17-D-ES · Destino de mudanza / W02 [LOCALIZACIÓN]`   | `C17-D · Moving destination / W02 [BK-02, SV-14]`      | `MovingDestinationScreen`                                   |
-| **Dimensions**              | 430 × 1340 px                                          | 430 × 1340 px                                          | Responsive ScrollView with 430 px max container             |
-| **Step Indicator**          | `W02 · SERVICIOS Y SOLICITUD` / `C17-D`                | `W02 · SERVICE DISCOVERY & INTAKE / C17-D`             | Header step eyebrow (`text-xs uppercase tracking-wider`)    |
-| **Screen Title**            | `¿Dónde se realiza la entrega?`                        | `Where is the drop-off?`                               | Inter 28px bold, `#FFFFFF`                                  |
-| **Screen Subtitle**         | `La mudanza requiere origen y destino validados.`      | (Omitted / implied in English)                         | 14px regular, `#BACAC2` (rendered when localized)           |
-| **Customer Chip**           | Illustrative Daniel Ruiz in concept                    | `SARAH JANE MITCHELL · HX-DEMO-MOVE-1034`              | `BRYAN LOPEZ MENDOZA · HX-DEMO-MOVE-1034` (dynamic Spanish) |
-| **Origin Section Title**    | `Recogida` (Clean title without A/B/C letter)          | `A. CONFIRMED PICKUP ORIGIN`                           | `Recogida` in Spanish; preserves A/B/C in English           |
-| **Origin Label**            | `Origen`                                               | `Pickup location (selected in C17)`                    | Dynamic binding to selected C17 address                     |
-| **Destination Section**     | `Destino`                                              | `B. MOVING DROP-OFF DESTINATION`                       | Structured card grid with 4 rows                            |
-| **Drop-off Address**        | `Dirección de entrega`: `5678 N Demo Avenue`           | `Drop-off address`: `5678 N Demo Avenue`               | Elevated surface container with `#35403B` border            |
-| **City / State / ZIP**      | `Ciudad / estado / código postal`: `Phoenix, AZ 85012` | `City / State / ZIP`: `Phoenix, AZ 85012`              | Two-line field layout matching Figma                        |
-| **Destination Type**        | `Tipo de destino`: `Residencial · Segundo piso`        | `Destination type`: `Residential · 2nd floor`          | Localized string resolution via `@haulix/i18n`              |
-| **Elevator Access**         | `Ascensor`: `No · Revisar escaleras`                   | `Elevator`: `No · Stairs need review`                  | Localized string resolution via `@haulix/i18n`              |
-| **Safety Section Title**    | `Se aplican controles de manejo seguro`                | `C. MOVING DROP-OFF DETAILS`                           | Verbatim Spanish title matching Figma                       |
-| **Safety Badge**            | `Revisión necesaria`                                   | `Review required`                                      | `#FFC85A` badge with original amber checkmark               |
-| **Safety Description**      | `Capacidad, escaleras y personal se evalúan al cotizar.` | (Integrated with check item)                          | 13px Inter regular `#BACAC2`                                |
-| **Primary CTA**             | `Continuar solicitud de mudanza`                       | `Continue moving intake`                               | `#BAFF42` Lime CTA (16px Inter SemiBold, `#0D1110` text)    |
-| **Secondary CTA**           | `Volver a dirección de origen   ›`                     | `Return to pickup address   ›`                         | Elevated surface container with `#35403B` border            |
-| **Footer Disclosures**      | `SOLO DEMO · Sin reserva, tarifa ni pago confirmado`   | `DEMO ONLY  ·  No confirmed booking, rates or payment` | Centered 12px Inter `#7A8C85`                               |
-| **Footer SRS Notice**       | `SRS  BK-02, SV-14  ·  430 px / desplazamiento vertical`| `SRS  BK-02, SV-14  ·  430 px / vertical scroll`      | Centered 12px Inter `#7A8C85`                               |
+| Property                 | Spanish Figma Specification (Node `974:9628`)            | English Figma Reference (Node `382:744`)               | HAULIX Implementation                                       |
+| :----------------------- | :------------------------------------------------------- | :----------------------------------------------------- | :---------------------------------------------------------- |
+| **Frame Name**           | `C17-D-ES · Destino de mudanza / W02 [LOCALIZACIÓN]`     | `C17-D · Moving destination / W02 [BK-02, SV-14]`      | `MovingDestinationScreen`                                   |
+| **Dimensions**           | 430 × 1340 px                                            | 430 × 1340 px                                          | Responsive ScrollView with 430 px max container             |
+| **Step Indicator**       | `W02 · SERVICIOS Y SOLICITUD` / `C17-D`                  | `W02 · SERVICE DISCOVERY & INTAKE / C17-D`             | Header step eyebrow (`text-xs uppercase tracking-wider`)    |
+| **Screen Title**         | `¿Dónde se realiza la entrega?`                          | `Where is the drop-off?`                               | Inter 28px bold, `#FFFFFF`                                  |
+| **Screen Subtitle**      | `La mudanza requiere origen y destino validados.`        | (Omitted / implied in English)                         | 14px regular, `#BACAC2` (rendered when localized)           |
+| **Customer Chip**        | Illustrative Daniel Ruiz in concept                      | `SARAH JANE MITCHELL · HX-DEMO-MOVE-1034`              | `BRYAN LOPEZ MENDOZA · HX-DEMO-MOVE-1034` (dynamic Spanish) |
+| **Origin Section Title** | `Recogida` (Clean title without A/B/C letter)            | `A. CONFIRMED PICKUP ORIGIN`                           | `Recogida` in Spanish; preserves A/B/C in English           |
+| **Origin Label**         | `Origen`                                                 | `Pickup location (selected in C17)`                    | Dynamic binding to selected C17 address                     |
+| **Destination Section**  | `Destino`                                                | `B. MOVING DROP-OFF DESTINATION`                       | Structured card grid with 4 rows                            |
+| **Drop-off Address**     | `Dirección de entrega`: `5678 N Demo Avenue`             | `Drop-off address`: `5678 N Demo Avenue`               | Elevated surface container with `#35403B` border            |
+| **City / State / ZIP**   | `Ciudad / estado / código postal`: `Phoenix, AZ 85012`   | `City / State / ZIP`: `Phoenix, AZ 85012`              | Two-line field layout matching Figma                        |
+| **Destination Type**     | `Tipo de destino`: `Residencial · Segundo piso`          | `Destination type`: `Residential · 2nd floor`          | Localized string resolution via `@haulix/i18n`              |
+| **Elevator Access**      | `Ascensor`: `No · Revisar escaleras`                     | `Elevator`: `No · Stairs need review`                  | Localized string resolution via `@haulix/i18n`              |
+| **Safety Section Title** | `Se aplican controles de manejo seguro`                  | `C. MOVING DROP-OFF DETAILS`                           | Verbatim Spanish title matching Figma                       |
+| **Safety Badge**         | `Revisión necesaria`                                     | `Review required`                                      | `#FFC85A` badge with original amber checkmark               |
+| **Safety Description**   | `Capacidad, escaleras y personal se evalúan al cotizar.` | (Integrated with check item)                           | 13px Inter regular `#BACAC2`                                |
+| **Primary CTA**          | `Continuar solicitud de mudanza`                         | `Continue moving intake`                               | `#BAFF42` Lime CTA (16px Inter SemiBold, `#0D1110` text)    |
+| **Secondary CTA**        | `Volver a dirección de origen   ›`                       | `Return to pickup address   ›`                         | Elevated surface container with `#35403B` border            |
+| **Footer Disclosures**   | `SOLO DEMO · Sin reserva, tarifa ni pago confirmado`     | `DEMO ONLY  ·  No confirmed booking, rates or payment` | Centered 12px Inter `#7A8C85`                               |
+| **Footer SRS Notice**    | `SRS  BK-02, SV-14  ·  430 px / desplazamiento vertical` | `SRS  BK-02, SV-14  ·  430 px / vertical scroll`       | Centered 12px Inter `#7A8C85`                               |
 
 ### 2.2 Visual Assets & Checkmark Vectors
 
@@ -74,6 +75,7 @@ The authenticated `figma_figma` MCP was invoked with the mandatory `figma-design
 ### 3.1 Single Canonical Route
 
 The screen is implemented in a single canonical route file:
+
 - File: [apps/customer/app/(app)/moving-destination.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/app/(app)/moving-destination.tsx)
 - No duplicate route files (no `moving-destination-es.tsx`).
 - Responsive layout supporting narrow screens, safe areas, and dynamic text scaling.
@@ -102,7 +104,9 @@ const elevatorAccess =
 ### 3.3 Upstream C17 Integration & State Repair
 
 Updated [apps/customer/app/(app)/pickup-address.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/app/(app)/pickup-address.tsx):
+
 - `handleMovingDropoff`:
+
   ```tsx
   const handleMovingDropoff = () => {
     router.push({
@@ -120,6 +124,7 @@ Updated [apps/customer/app/(app)/pickup-address.tsx](file:///c:/Users/rakib_bro/
 ### 3.4 Demo Screen Navigator Registration
 
 Registered in [DemoScreenNavigator.tsx](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/apps/customer/src/components/demo/DemoScreenNavigator.tsx):
+
 - `id: "c17d-es"`
 - `name: "C17-D · Destino de Mudanza (Español)"`
 - `figmaNode: "Node 974:9628"`
@@ -132,32 +137,32 @@ Registered in [DemoScreenNavigator.tsx](file:///c:/Users/rakib_bro/sta-projects/
 
 Dictionary strings were added to `@haulix/i18n` in [es.ts](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/packages/i18n/src/locales/es.ts) with full symmetry against [en.ts](file:///c:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/packages/i18n/src/locales/en.ts):
 
-| Dictionary Key               | Spanish Value (Figma Node `974:9628`)                                                                                                        |
-| :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| `c17d.stepIndicator`         | `"W02 · SERVICIOS Y SOLICITUD"`                                                                                                              |
-| `c17d.stepSub`               | `"  /  C17-D"`                                                                                                                               |
-| `c17d.title`                 | `"¿Dónde se realiza la entrega?"`                                                                                                            |
-| `c17d.subtitle`              | `"La mudanza requiere origen y destino validados."`                                                                                          |
-| `c17d.pickupSectionTitle`    | `"Recogida"`                                                                                                                                 |
-| `c17d.labelOrigin`           | `"Origen"`                                                                                                                                   |
-| `c17d.destinationSectionTitle` | `"Destino"`                                                                                                                                |
-| `c17d.labelDropoffAddress`   | `"Dirección de entrega"`                                                                                                                     |
-| `c17d.dropoffAddressValue`   | `"5678 N Demo Avenue"`                                                                                                                       |
-| `c17d.labelCityStateZip`     | `"Ciudad / estado / código postal"`                                                                                                          |
-| `c17d.cityStateZipValue`     | `"Phoenix, AZ 85012"`                                                                                                                        |
-| `c17d.labelDestinationType`  | `"Tipo de destino"`                                                                                                                          |
-| `c17d.destinationTypeValue`  | `"Residencial · Segundo piso"`                                                                                                               |
-| `c17d.labelElevator`         | `"Ascensor"`                                                                                                                                 |
-| `c17d.elevatorValue`         | `"No · Revisar escaleras"`                                                                                                                   |
-| `c17d.safetySectionTitle`    | `"Se aplican controles de manejo seguro"`                                                                                                    |
-| `c17d.reviewRequiredBadge`   | `"Revisión necesaria"`                                                                                                                       |
-| `c17d.safetyDescription`     | `"Capacidad, escaleras y personal se evalúan al cotizar."`                                                                                  |
-| `c17d.continueCta`           | `"Continuar solicitud de mudanza"`                                                                                                           |
-| `c17d.returnPickupCta`       | `"Volver a dirección de origen   ›"`                                                                                                         |
-| `c17d.footerDemo`            | `"SOLO DEMO · Sin reserva, tarifa ni pago confirmado"`                                                                                       |
-| `c17d.footerSrs`             | `"SRS  BK-02, SV-14  ·  430 px / desplazamiento vertical"`                                                                                   |
-| `c17d.noticeC18M`            | `"La solicitud de mudanza (C18-M) está programada para una próxima fase."`                                                                   |
-| `c17d.noticeNonMoving`       | `"El destino de entrega solo aplica a servicios de Mudanza. Actualmente tienes seleccionado {{service}}. Esta pantalla muestra una vista previa ilustrativa sin modificar tu reserva activa."` |
+| Dictionary Key                 | Spanish Value (Figma Node `974:9628`)                                                                                                                                                          |
+| :----------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `c17d.stepIndicator`           | `"W02 · SERVICIOS Y SOLICITUD"`                                                                                                                                                                |
+| `c17d.stepSub`                 | `"  /  C17-D"`                                                                                                                                                                                 |
+| `c17d.title`                   | `"¿Dónde se realiza la entrega?"`                                                                                                                                                              |
+| `c17d.subtitle`                | `"La mudanza requiere origen y destino validados."`                                                                                                                                            |
+| `c17d.pickupSectionTitle`      | `"Recogida"`                                                                                                                                                                                   |
+| `c17d.labelOrigin`             | `"Origen"`                                                                                                                                                                                     |
+| `c17d.destinationSectionTitle` | `"Destino"`                                                                                                                                                                                    |
+| `c17d.labelDropoffAddress`     | `"Dirección de entrega"`                                                                                                                                                                       |
+| `c17d.dropoffAddressValue`     | `"5678 N Demo Avenue"`                                                                                                                                                                         |
+| `c17d.labelCityStateZip`       | `"Ciudad / estado / código postal"`                                                                                                                                                            |
+| `c17d.cityStateZipValue`       | `"Phoenix, AZ 85012"`                                                                                                                                                                          |
+| `c17d.labelDestinationType`    | `"Tipo de destino"`                                                                                                                                                                            |
+| `c17d.destinationTypeValue`    | `"Residencial · Segundo piso"`                                                                                                                                                                 |
+| `c17d.labelElevator`           | `"Ascensor"`                                                                                                                                                                                   |
+| `c17d.elevatorValue`           | `"No · Revisar escaleras"`                                                                                                                                                                     |
+| `c17d.safetySectionTitle`      | `"Se aplican controles de manejo seguro"`                                                                                                                                                      |
+| `c17d.reviewRequiredBadge`     | `"Revisión necesaria"`                                                                                                                                                                         |
+| `c17d.safetyDescription`       | `"Capacidad, escaleras y personal se evalúan al cotizar."`                                                                                                                                     |
+| `c17d.continueCta`             | `"Continuar solicitud de mudanza"`                                                                                                                                                             |
+| `c17d.returnPickupCta`         | `"Volver a dirección de origen   ›"`                                                                                                                                                           |
+| `c17d.footerDemo`              | `"SOLO DEMO · Sin reserva, tarifa ni pago confirmado"`                                                                                                                                         |
+| `c17d.footerSrs`               | `"SRS  BK-02, SV-14  ·  430 px / desplazamiento vertical"`                                                                                                                                     |
+| `c17d.noticeC18M`              | `"La solicitud de mudanza (C18-M) está programada para una próxima fase."`                                                                                                                     |
+| `c17d.noticeNonMoving`         | `"El destino de entrega solo aplica a servicios de Mudanza. Actualmente tienes seleccionado {{service}}. Esta pantalla muestra una vista previa ilustrativa sin modificar tu reserva activa."` |
 
 ### 4.1 Section Title Audit Note
 
@@ -211,23 +216,23 @@ All physical QA tests were performed on a connected **Realme Note 60** running A
 
 ### QA Screenshots in `docs/qa/c17d/`
 
-|  #  | Filename                                        | Description                                                                                       |   Size    |
-| :-: | :---------------------------------------------- | :------------------------------------------------------------------------------------------------ | :-------: |
-|  1  | `android-C17D-es-initial.png`                   | Spanish C17-D initial view: FlowHeaderBack, Step Indicator, Title, Subtitle, and Profile Pill    | 144,747 B |
-|  2  | `android-C17D-es-pickup-section.png`            | Origin section (`Recogida`) showing confirmed pickup address (`1234 E Example Lane`)              | 144,511 B |
-|  3  | `android-C17D-es-destination-section.png`       | Destination section (`Destino`) with 4 localized rows (Address, City, Type, Elevator)            | 136,696 B |
-|  4  | `android-C17D-es-safety-review.png`             | Safety controls card (`Se aplican controles de manejo seguro`) with `Revisión necesaria` badge    | 136,696 B |
-|  5  | `android-C17D-es-action-buttons.png`            | Primary CTA (`Continuar solicitud de mudanza`), Secondary CTA, and Footer Disclosures             | 139,671 B |
-|  6  | `android-C17D-es-back-visible-scrolled.png`     | Pinned back button remains visible and interactive when scrolled to bottom of screen              | 139,937 B |
-|  7  | `android-C17-es-to-C17D.png`                    | Spanish C17 navigating to C17-D via `Ejemplo de entrega de mudanza   ›`                           | 155,915 B |
-|  8  | `android-C17D-es-return-to-C17.png`             | Secondary CTA (`Volver a dirección de origen   ›`) returns smoothly to Spanish C17                | 165,528 B |
-|  9  | `android-C17D-es-android-back.png`              | Android system hardware back press / gesture returns cleanly from C17-D to C17                    | 155,246 B |
-| 10  | `android-C17D-es-C18M-notice.png`               | Tapping `Continuar solicitud de mudanza` triggers honest upcoming C18-M notice banner             | 147,277 B |
-| 11  | `android-C17D-es-selected-pickup-preserved.png` | Confirmed origin displays user-selected address dynamically preserved from C17                   | 144,318 B |
-| 12  | `android-C17D-es-nonmoving-preview.png`         | Non-moving service renders honest informational preview banner without mutating active booking    | 161,542 B |
-| 13  | `android-C17D-es-narrow-safe-area.png`          | Responsive layout, padding, and safe area compliance on Realme 720×1600 px display                | 144,808 B |
-| 14  | `android-C17D-en-regression.png`                | English C17-D regression verification showing Sarah Mitchell profile and English copy             | 159,785 B |
-| 15  | `android-C17-es-regression.png`                 | Spanish C17 regression verification with both address cards and upcoming notice interactions      | 164,998 B |
+|  #  | Filename                                        | Description                                                                                    |   Size    |
+| :-: | :---------------------------------------------- | :--------------------------------------------------------------------------------------------- | :-------: |
+|  1  | `android-C17D-es-initial.png`                   | Spanish C17-D initial view: FlowHeaderBack, Step Indicator, Title, Subtitle, and Profile Pill  | 144,747 B |
+|  2  | `android-C17D-es-pickup-section.png`            | Origin section (`Recogida`) showing confirmed pickup address (`1234 E Example Lane`)           | 144,511 B |
+|  3  | `android-C17D-es-destination-section.png`       | Destination section (`Destino`) with 4 localized rows (Address, City, Type, Elevator)          | 136,696 B |
+|  4  | `android-C17D-es-safety-review.png`             | Safety controls card (`Se aplican controles de manejo seguro`) with `Revisión necesaria` badge | 136,696 B |
+|  5  | `android-C17D-es-action-buttons.png`            | Primary CTA (`Continuar solicitud de mudanza`), Secondary CTA, and Footer Disclosures          | 139,671 B |
+|  6  | `android-C17D-es-back-visible-scrolled.png`     | Pinned back button remains visible and interactive when scrolled to bottom of screen           | 139,937 B |
+|  7  | `android-C17-es-to-C17D.png`                    | Spanish C17 navigating to C17-D via `Ejemplo de entrega de mudanza   ›`                        | 155,915 B |
+|  8  | `android-C17D-es-return-to-C17.png`             | Secondary CTA (`Volver a dirección de origen   ›`) returns smoothly to Spanish C17             | 165,528 B |
+|  9  | `android-C17D-es-android-back.png`              | Android system hardware back press / gesture returns cleanly from C17-D to C17                 | 155,246 B |
+| 10  | `android-C17D-es-C18M-notice.png`               | Tapping `Continuar solicitud de mudanza` triggers honest upcoming C18-M notice banner          | 147,277 B |
+| 11  | `android-C17D-es-selected-pickup-preserved.png` | Confirmed origin displays user-selected address dynamically preserved from C17                 | 144,318 B |
+| 12  | `android-C17D-es-nonmoving-preview.png`         | Non-moving service renders honest informational preview banner without mutating active booking | 161,542 B |
+| 13  | `android-C17D-es-narrow-safe-area.png`          | Responsive layout, padding, and safe area compliance on Realme 720×1600 px display             | 144,808 B |
+| 14  | `android-C17D-en-regression.png`                | English C17-D regression verification showing Sarah Mitchell profile and English copy          | 159,785 B |
+| 15  | `android-C17-es-regression.png`                 | Spanish C17 regression verification with both address cards and upcoming notice interactions   | 164,998 B |
 
 ---
 
@@ -251,6 +256,7 @@ All authorized source files, test suites, documentation, and physical Android QA
 - **Primary Phase Commit Hash:** `7b917676c46411e152b227be9bf6bad26f17cabb`
 - **SSH Authentication Status:** Verified (`Hi mridha-rakib! You've successfully authenticated...`)
 - **Remote Push Result:**
+
   ```text
   To github.com:mridha-rakib/haulix-mobile.git
      2989abe..7b91767  main -> main
@@ -259,4 +265,3 @@ All authorized source files, test suites, documentation, and physical Android QA
   `git ls-remote origin refs/heads/main` confirmed remote `main` branch points to `7b917676c46411e152b227be9bf6bad26f17cabb`.
 
 **PHASE 03.16 IS FULLY COMPLETE, VERIFIED ON ANDROID, PUSHED TO GITHUB, AND READY FOR HANDOFF. STRICT HARD STOP OBSERVED.**
-
