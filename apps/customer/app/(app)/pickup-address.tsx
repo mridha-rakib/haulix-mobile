@@ -445,10 +445,44 @@ export default function PickupAddressScreen() {
   }, []);
 
   const handleConfirm = useCallback(() => {
-    setNoticeMessage(
-      t("c17.noticeC18") || "Service intake (C18) is scheduled for an upcoming phase."
-    );
-  }, [t]);
+    switch (selectedService.id) {
+      case "junk-removal":
+        router.push({
+          pathname: "/junk-intake",
+          params: { service: selectedService.id, selectedAddressId },
+        });
+        break;
+      case "moving":
+        router.push({
+          pathname: "/moving-destination",
+          params: { service: selectedService.id, selectedAddressId },
+        });
+        break;
+      case "furniture-pickup":
+        router.push({
+          pathname: "/bulky-item-intake",
+          params: { service: selectedService.id, selectedAddressId },
+        });
+        break;
+      case "garage-cleanout":
+        router.push({
+          pathname: "/garage-intake",
+          params: { service: selectedService.id, selectedAddressId },
+        });
+        break;
+      case "store-pickup":
+        router.push({
+          pathname: "/retail-intake",
+          params: { service: selectedService.id, selectedAddressId },
+        });
+        break;
+      default:
+        setNoticeMessage(
+          t("c17.noticeC18") || "Service intake (C18) is scheduled for an upcoming phase."
+        );
+        break;
+    }
+  }, [router, selectedService.id, selectedAddressId, t]);
 
   const handleAddAddress = useCallback(() => {
     router.push({

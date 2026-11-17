@@ -1,0 +1,226 @@
+import { colors } from "@haulix/design-tokens";
+import Svg, { Path, Rect, type SvgProps } from "react-native-svg";
+
+export interface C18BatchIconProps extends SvgProps {
+  size?: number;
+  color?: string;
+}
+
+/**
+ * 1. Customer Context Checkmark (17 × 17)
+ * Figma Node 382:818 / 382:896
+ */
+export function C18CheckIcon({ size = 17, color = colors.brand, ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 17 17" fill="none" {...props}>
+      <Path
+        d="M2.83333 9.20833L6.375 12.75L14.1667 4.95833"
+        stroke={color}
+        strokeWidth={1.275}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 2. C18 Junk Removal Truck / Container Icon (18 × 18)
+ * Represents heavy clearing, non-hazardous hauling
+ */
+export function C18JunkIcon({ size = 18, color = colors.brand, ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M3 6h18m-2 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M10 11v6M14 11v6"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 3. C18 Furniture / Armchair Icon (18 × 18)
+ * Represents bulky item, furniture moving & handling
+ */
+export function C18FurnitureIcon({ size = 18, color = colors.brand, ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M19 9V6a2 2 0 00-2-2H7a2 2 0 00-2 2v3"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3 11a2 2 0 012-2h14a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7z"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6 18v2M18 18v2"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 4. C18 Appliance / Refrigerator Icon (18 × 18)
+ */
+export function C18ApplianceIcon({
+  size = 18,
+  color = colors.secondaryText,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Rect x="5" y="2" width="14" height="20" rx="2" stroke={color} strokeWidth={1.75} />
+      <Path d="M5 10h14M9 5v2M9 13v3" stroke={color} strokeWidth={1.75} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+/**
+ * 5. C18 Mattress Icon (18 × 18)
+ */
+export function C18MattressIcon({
+  size = 18,
+  color = colors.secondaryText,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M3 7h18a2 2 0 012 2v6a2 2 0 01-2 2H3a2 2 0 01-2-2V9a2 2 0 012-2z"
+        stroke={color}
+        strokeWidth={1.75}
+      />
+      <Path d="M7 11h10M7 14h10" stroke={color} strokeWidth={1.75} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+/**
+ * 6. C18 Assembly / Tools Icon (18 × 18)
+ */
+export function C18ToolsIcon({
+  size = 18,
+  color = colors.secondaryText,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 7. C18 Garage Cleanout Icon (18 × 18)
+ */
+export function C18GarageIcon({ size = 18, color = colors.brand, ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path d="M7 13h10M7 16h10M7 19h10" stroke={color} strokeWidth={1.75} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+/**
+ * 8. C18 Retail Storefront Icon (18 × 18)
+ */
+export function C18RetailIcon({ size = 18, color = colors.brand, ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M3 9l2-5h14l2 5v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3 9h18M9 22V12h6v10"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 9. Hazard Shield / Review Icon (18 × 18)
+ */
+export function C18HazardShieldIcon({ size = 18, color = "#FFC85A", ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+        stroke={color}
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 8v4M12 16h.01"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 10. Chevron Right Icon (14 × 14)
+ */
+export function C18ChevronRightIcon({
+  size = 14,
+  color = colors.secondaryText,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M9 18l6-6-6-6"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

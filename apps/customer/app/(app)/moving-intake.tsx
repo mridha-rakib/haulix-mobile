@@ -556,7 +556,7 @@ export default function MovingIntakeScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const currentLocale = getCurrentLocale() as "en" | "es";
-  const scrollViewRef = useRef<ScrollView>(null);
+  const scrollViewRef = useRef<any>(null);
   const params = useLocalSearchParams<{
     service?: string;
     selectedAddressId?: string;

@@ -18,6 +18,72 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c18j-es",
+    name: "C18-J · Retiro de Chatarra (Español)",
+    figmaNode: "Node 977:9100",
+    route: "/junk-intake",
+    locale: "es",
+    description: "W02 Solicitud de retiro de chatarra en español con fotos de objetos y CTAs",
+  },
+  {
+    id: "c18j-en",
+    name: "C18-J · Junk Removal Intake (English)",
+    figmaNode: "Node 382:805",
+    route: "/junk-intake",
+    locale: "en",
+    description: "W02 Junk removal intake with genuine item photos, staging area & CTAs",
+  },
+  {
+    id: "c18f-es",
+    name: "C18-F · Muebles y Objetos Pesados (Español)",
+    figmaNode: "Node 977:9286",
+    route: "/bulky-item-intake",
+    locale: "es",
+    description: "W02 Retiro de muebles en español con selector de 4 niveles y especificaciones",
+  },
+  {
+    id: "c18f-en",
+    name: "C18-F · Furniture & Bulky Items (English)",
+    figmaNode: "Node 382:959",
+    route: "/bulky-item-intake",
+    locale: "en",
+    description: "W02 Furniture handling with 4 tier rows, inventory specs & CTAs",
+  },
+  {
+    id: "c18g-es",
+    name: "C18-G · Limpieza de Garaje (Español)",
+    figmaNode: "Node 977:9399",
+    route: "/garage-intake",
+    locale: "es",
+    description:
+      "W02 Limpieza de garaje en español con alcance, acceso y exclusión de residuos peligrosos",
+  },
+  {
+    id: "c18g-en",
+    name: "C18-G · Garage Cleanout Intake (English)",
+    figmaNode: "Node 382:1056",
+    route: "/garage-intake",
+    locale: "en",
+    description: "W02 Garage intake with scope, access, hazardous material screening & CTAs",
+  },
+  {
+    id: "c18r-es",
+    name: "C18-R · Recogida en Tienda (Español)",
+    figmaNode: "Node 977:9474",
+    route: "/retail-intake",
+    locale: "es",
+    description:
+      "W02 Recogida en tienda comercial en español con datos de pedido, entrega y aviso de API",
+  },
+  {
+    id: "c18r-en",
+    name: "C18-R · Retail Store Pickup (English)",
+    figmaNode: "Node 382:1115",
+    route: "/retail-intake",
+    locale: "en",
+    description: "W02 Store pickup with order authorization, delivery specs & API notice",
+  },
+  {
     id: "c18m-es",
     name: "C18-M · Solicitud de Mudanza (Español)",
     figmaNode: "Node 977:9192",
