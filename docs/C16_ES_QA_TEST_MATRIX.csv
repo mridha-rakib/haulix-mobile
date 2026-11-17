@@ -1,0 +1,27 @@
+id,scenario,expected
+ES-01,Default Spanish C16 top,"Spanish title, W02/C16, Bryan saved name, visible premium Back"
+ES-02,Premium address panel,Green location pin in heading and four separate elevated row cards
+ES-03,Four address icons,"Home, Buildings, Map and Envelope all rendered with dividers"
+ES-04,Eligibility panel,"Shield/check icons, Spanish candidate status & caveat; no false real verification"
+ES-05,Four CTA icons,"Pin dark on lime, Swap/Crosshair/Info lime on dark; all labels visible"
+ES-06,Top back button,Tap navigates to Spanish C15-S preserving selected service ID
+ES-07,Android hardware Back,"Returns Spanish C15-S preserving service ID, no loop"
+ES-08,Header stays pinned,Arrow visible while scrolled to bottom and banner visible
+ES-09,C01 ES → C15 ES → C15-S ES → C16 ES,End-to-end navigation from Spanish Home works
+ES-10,Selected Moving service,Mudanzas selection maintained through C16 and back
+ES-11,Long service title regression,"Retiro de electrodomésticos selection kept, readable Spanish C16 layout"
+ES-12,Primary CTA,Usar esta ubicación -> truthful localized C17 upcoming notice
+ES-13,Choose another location,"Localized C16-V upcoming notice, no false editor"
+ES-14,Outside-zone response,"Localized C16-F upcoming notice, no fake eligibility checks"
+ES-15,Location permission help,Localized C16-P notice; no native permission prompt
+ES-16,Notice dismiss,"Notice dismisses, icons/back remain visible"
+ES-17,360dp responsive,"No text/icon overlap, no footer clipping or extra black bottom gap"
+ES-18,English C16 regression,"Sarah/edited English profile, English copy, icons, Back, CTA routes maintained"
+ES-19,Spanish profile edit regression,"Saved Spanish name (e.g., Bryan Lopez Mendoza) updates chip; no Sarah leak"
+ES-20,Language switching,"Spanish/English copy switches, selected service and profiles isolated"
+ES-21,App relaunch,Persisted local demo profile/address remains if current app contract provides persistence
+ES-22,C15-S EN/ES back regression,"FlowHeaderBack arrow visible & responsive, native Back works"
+ES-23,QA direct entry,C16 ES opens via QA navigator and Back has safe fallback
+ES-24,Accessibility,"All four CTA touch targets, accessible labels, readable contrast and font scaling"
+ES-25,Quality pipeline,"pnpm check, typecheck, test, doctor pass with real stdout/exit codes"
+ES-26,No scope leak,"No C17/C16-V/F/E/P, no real GPS, no backend, no APK or git operations"

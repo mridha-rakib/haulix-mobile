@@ -1,0 +1,31 @@
+﻿key,english,spanish,figma_source,provenance
+stepLabel,W02 · SERVICE DISCOVERY & INTAKE,W02 · SERVICIOS Y SOLICITUD,974:9083,verified
+stepId,C16,C16,974:9084,verified
+heading,Check your service area,Consulta tu zona de servicio,974:9086,verified
+subtitle,Arizona is the only launch state. Availability depends on the exact address and service.,El lanzamiento es solo en Arizona. Depende de la dirección y servicio.,974:9087,verified
+customerChip,SARAH MITCHELL · HX-DEMO-1027,<NOMBRE DINÁMICO ES> · HX-DEMO-1027,974:9091,state override: Spanish local profile
+pickupSection,Requested pickup region,Zona de recogida solicitada,974:9094,verified
+streetLabel,Street address,Dirección,974:9097,verified
+streetValue,1234 E Example Lane,1234 E Example Lane,974:9098,demo fixture; preserve saved values
+cityLabel,City,Ciudad,974:9101,verified
+cityValue,Phoenix,Phoenix,974:9102,proper noun
+stateLabel,State,Estado,974:9105,verified
+stateValue,Arizona,Arizona,974:9106,proper noun
+zipLabel,ZIP code,Código postal,974:9109,verified
+zipValue,85014,85014,974:9110,demo fixture; preserve saved values
+eligibilityTitle,Arizona request · Demo eligible,Solicitud en Arizona · Apta en demo,974:9113,verified; illustrative only
+eligibilityStatus,Completed in this demo,Completado en esta demo,974:9117,verified; demo only
+candidateArea,"Phoenix, AZ 85014 · Candidate service area","Phoenix, AZ 85014 · Zona candidata",974:9118,verified
+dispatchCaveat,Final location eligibility and capacity are validated before dispatch.,La cobertura y capacidad finales se validan antes del despacho.,974:9119,verified
+primaryCTA,Use this location,Usar esta ubicación,I974:9122;7:51,verified
+changeLocation,Choose another location ›,Elegir otra ubicación ›,974:9124,verified
+outsideZone,See outside-zone response ›,Ver respuesta fuera de cobertura ›,974:9126,verified
+permissionHelp,Location permission help ›,Ayuda con permiso de ubicación ›,974:9128,verified
+footerDisclaimer,"DEMO ONLY · No confirmed booking, rates or payment","SOLO DEMO · Sin reserva, tarifa ni pago confirmado",974:9130,verified
+footerMeta,"SRS AI-12, BK-02, SV-08, SV-12 · 430 px / vertical scroll","SRS AI-12, BK-02, SV-08, SV-12 · 430 px / desplazamiento vertical",974:9131,verified
+noticeC17,Selection of pickup address (C17) is scheduled for a future phase.,La selección de dirección de recogida (C17) estará disponible en una próxima fase.,n/a,proposed: not in Figma state
+noticeC16V,Location checking (C16-V) is scheduled for a future phase.,La comprobación de ubicación (C16-V) estará disponible en una próxima fase.,n/a,proposed: not in Figma state
+noticeC16F,Outside service area response (C16-F) is scheduled for a future phase.,La respuesta fuera de la zona de servicio (C16-F) estará disponible en una próxima fase.,n/a,proposed: not in Figma state
+noticeC16P,Location permission help (C16-P) is scheduled for a future phase.,La ayuda de permisos de ubicación (C16-P) estará disponible en una próxima fase.,n/a,proposed: not in Figma state
+noticeDismiss,Dismiss,Cerrar,n/a,proposed accessibility/UI copy
+backAccessibility,Back,Volver,n/a,proposed accessibility/UI copy
