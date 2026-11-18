@@ -18,6 +18,73 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c21-es",
+    name: "C21 · Revisar Detalles del Servicio (Español)",
+    figmaNode: "Node 980:10268",
+    route: "/intake-review",
+    locale: "es",
+    description:
+      "W02 Resumen completo de solicitud con 7 fotos originales antes de revisión con IA",
+  },
+  {
+    id: "c21-en",
+    name: "C21 · Full Intake Review (English)",
+    figmaNode: "Node 382:1966",
+    route: "/intake-review",
+    locale: "en",
+    description: "W02 Complete intake summary with 7 original photo placements before AI review",
+  },
+  {
+    id: "c21v-es",
+    name: "C21-V · Solicitud No Lista (Español)",
+    figmaNode: "Node 980:10409",
+    route: "/intake-review-blocked",
+    locale: "es",
+    description:
+      "W02 Estado de validación bloqueada: peso o acceso desconocido que requiere acción",
+  },
+  {
+    id: "c21v-en",
+    name: "C21-V · Intake Not Ready Yet (English)",
+    figmaNode: "Node 382:2088",
+    route: "/intake-review-blocked",
+    locale: "en",
+    description:
+      "W02 Validation blocked state: unknown load weight or uncertain access requiring action",
+  },
+  {
+    id: "c21s-es",
+    name: "C21-S · Borrador Guardado (Español)",
+    figmaNode: "Node 980:10461",
+    route: "/intake-draft-saved",
+    locale: "es",
+    description: "W02 Borrador local de solicitud guardado para el cliente con fotos conservadas",
+  },
+  {
+    id: "c21s-en",
+    name: "C21-S · Intake Draft Saved (English)",
+    figmaNode: "Node 382:2124",
+    route: "/intake-draft-saved",
+    locale: "en",
+    description: "W02 Local intake draft saved for customer with preserved demonstration photos",
+  },
+  {
+    id: "c20m-es",
+    name: "C20-M · Confirmar Acceso de Mudanza (Español)",
+    figmaNode: "Node 980:10574",
+    route: "/moving-access",
+    locale: "es",
+    description: "W02 Origen, destino, escaleras y condiciones de mudanza residencial",
+  },
+  {
+    id: "c20m-en",
+    name: "C20-M · Confirm Moving Access (English)",
+    figmaNode: "Node 392:180",
+    route: "/moving-access",
+    locale: "en",
+    description: "W02 Moving route validation, origin/destination stairs and access review",
+  },
+  {
     id: "c20e-es",
     name: "C20-E · Solicitud de Manejo Adicional (Español)",
     figmaNode: "Node 980:9977",

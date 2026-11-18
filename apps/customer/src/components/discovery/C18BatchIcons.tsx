@@ -1,5 +1,5 @@
 import { colors } from "@haulix/design-tokens";
-import Svg, { Path, Rect, type SvgProps } from "react-native-svg";
+import Svg, { Circle, Path, Rect, type SvgProps } from "react-native-svg";
 
 export interface C18BatchIconProps extends SvgProps {
   size?: number;
@@ -417,6 +417,35 @@ export function C20RCheckboxIcon({
   return (
     <Svg width={size} height={size} viewBox="0 0 20 20" fill="none" {...props}>
       <Rect x="1" y="1" width="18" height="18" rx="4" stroke="#4A5550" strokeWidth={1.5} />
+    </Svg>
+  );
+}
+
+/**
+ * 18. Circle Checkmark Icon for C21-S (40 × 40 default, customizable)
+ */
+export function C21SCircleCheckIcon({
+  size = 40,
+  color = colors.brand,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 40 40" fill="none" {...props}>
+      <Circle
+        cx="20"
+        cy="20"
+        r="19"
+        stroke={color}
+        strokeWidth={2}
+        fill="rgba(186, 255, 66, 0.12)"
+      />
+      <Path
+        d="M12 20.5L17.5 26L28 15"
+        stroke={color}
+        strokeWidth={2.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </Svg>
   );
 }

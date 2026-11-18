@@ -650,13 +650,15 @@ export default function MovingIntakeScreen() {
 
   // CTA Handlers
   const handleContinue = useCallback(() => {
-    setNoticeMessage(
-      t("c18m.noticeC20M") ||
-        (currentLocale === "es"
-          ? "La estimación de cotización de mudanza (C20-M) está programada para una próxima fase."
-          : "Moving quote estimation (C20-M) is scheduled for an upcoming phase.")
-    );
-  }, [t, currentLocale]);
+    router.push({
+      pathname: "/moving-access",
+      params: {
+        pickupAddress: routeData.pickup,
+        dropoffAddress: routeData.dropoff,
+        selectedServiceId: "moving",
+      },
+    });
+  }, [router, routeData.pickup, routeData.dropoff]);
 
   const handleReturnToServiceList = useCallback(() => {
     router.replace({

@@ -194,13 +194,10 @@ describe("C18-M Moving Service Intake — Spanish Localization (Node 977:9192)",
     expect(source).toContain('service: "moving"');
   });
 
-  it("18. verifies primary CTA triggers honest Spanish C20-M upcoming notice banner", () => {
-    expect(es.c18m.noticeC20M).toBe(
-      "La estimación de cotización de mudanza (C20-M) está programada para una próxima fase."
-    );
+  it("18. verifies primary CTA connects to canonical C20-M moving access route", () => {
     const source = fs.readFileSync(c18mRoutePath, "utf8");
     expect(source).toContain("handleContinue");
-    expect(source).toContain("noticeC20M");
+    expect(source).toContain('pathname: "/moving-access"');
   });
 
   it("19. verifies non-Moving service triggers informative notice without creating moving booking", () => {

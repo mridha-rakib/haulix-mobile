@@ -89,8 +89,8 @@ export default function ServiceRestrictionsScreen() {
       return;
     }
     setIsValidationAlert(false);
-    setNoticeMessage(t("c20r.noticeC21"));
-  }, [acks.disclosedSafetyRisks, acks.itemsRepresentRequest, t]);
+    router.push("/intake-review");
+  }, [acks.disclosedSafetyRisks, acks.itemsRepresentRequest, router, t]);
 
   const handleNeedHelp = useCallback(() => {
     router.push("/restricted-material");
