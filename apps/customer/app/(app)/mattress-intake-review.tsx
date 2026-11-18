@@ -30,8 +30,8 @@ export default function MattressIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmIntake = useCallback(() => {
-    setNoticeMessage(t("c21t.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/mattress-ai-handoff");
+  }, [router]);
 
   const handleEditMattressDetails = useCallback(() => {
     router.push("/mattress-intake");

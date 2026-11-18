@@ -30,8 +30,8 @@ export default function ApplianceIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmIntake = useCallback(() => {
-    setNoticeMessage(t("c21a.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/appliance-ai-handoff");
+  }, [router]);
 
   const handleEditApplianceDetails = useCallback(() => {
     router.push("/appliance-intake");

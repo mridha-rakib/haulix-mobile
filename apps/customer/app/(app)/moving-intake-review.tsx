@@ -30,8 +30,8 @@ export default function MovingIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmIntake = useCallback(() => {
-    setNoticeMessage(t("c21m.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/moving-ai-handoff");
+  }, [router]);
 
   const handleEditMovingDetails = useCallback(() => {
     router.push("/moving-access");

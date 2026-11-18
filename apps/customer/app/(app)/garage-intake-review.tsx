@@ -30,8 +30,8 @@ export default function GarageIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmIntake = useCallback(() => {
-    setNoticeMessage(t("c21g.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/garage-ai-handoff");
+  }, [router]);
 
   const handleEditGarageDetails = useCallback(() => {
     router.push("/garage-intake");

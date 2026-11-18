@@ -18,6 +18,77 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "w03m-es",
+    name: "W03-M-HANDOFF · Entrada a Revisión de Mudanza con IA (Español)",
+    figmaNode: "Node 980:10826",
+    route: "/moving-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Entrada a revisión con IA de mudanza con datos de carga y tarifas pendientes",
+  },
+  {
+    id: "w03m-en",
+    name: "W03-M-HANDOFF · Moving AI Review Entry (English)",
+    figmaNode: "Node 392:405",
+    route: "/moving-ai-handoff",
+    locale: "en",
+    description: "W02/W03 Moving AI review entry preview with payload and rates pending anchor",
+  },
+  {
+    id: "w03a-es",
+    name: "W03-A-HANDOFF · Entrada a Revisión de Electrodomésticos (Español)",
+    figmaNode: "Node 980:11306",
+    route: "/appliance-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Revisión de electrodomésticos con verificación de modelo y desconexión pendiente",
+  },
+  {
+    id: "w03a-en",
+    name: "W03-A-HANDOFF · Appliance Removal AI Review Entry (English)",
+    figmaNode: "Node 394:341",
+    route: "/appliance-ai-handoff",
+    locale: "en",
+    description:
+      "W02/W03 Appliance removal review preview with model, condition, and unresolved conditions",
+  },
+  {
+    id: "w03t-es",
+    name: "W03-T-HANDOFF · Entrada a Revisión de Retiro de Colchones (Español)",
+    figmaNode: "Node 980:11366",
+    route: "/mattress-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Revisión de colchones con cantidad, elegibilidad de desecho y manejo seguro",
+  },
+  {
+    id: "w03t-en",
+    name: "W03-T-HANDOFF · Mattress Removal AI Review Entry (English)",
+    figmaNode: "Node 394:443",
+    route: "/mattress-ai-handoff",
+    locale: "en",
+    description:
+      "W02/W03 Mattress removal review preview with count, condition uncertainty, and disposal scope",
+  },
+  {
+    id: "w03g-es",
+    name: "W03-G-HANDOFF · Entrada a Revisión de Limpieza de Garaje (Español)",
+    figmaNode: "Node 980:11426",
+    route: "/garage-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Revisión de limpieza de garaje con volumen, materiales inciertos y normas de desecho",
+  },
+  {
+    id: "w03g-en",
+    name: "W03-G-HANDOFF · Garage Cleanout AI Review Entry (English)",
+    figmaNode: "Node 394:545",
+    route: "/garage-ai-handoff",
+    locale: "en",
+    description:
+      "W02/W03 Garage cleanout review preview with volume, uncertain materials, and safety scope",
+  },
+  {
     id: "c21a-es",
     name: "C21-A · Revisión de Solicitud de Retiro de Electrodomésticos (Español)",
     figmaNode: "Node 980:11066",
