@@ -78,8 +78,8 @@ export default function MattressIntakeScreen() {
   );
 
   const handleReviewCta = useCallback(() => {
-    setNoticeMessage(t("c18t.noticeC21T"));
-  }, [t]);
+    router.push("/mattress-intake-review");
+  }, [router]);
 
   const handleSeeCategories = useCallback(() => {
     router.push("/service-discovery");

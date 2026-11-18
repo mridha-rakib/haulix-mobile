@@ -78,8 +78,8 @@ export default function ApplianceIntakeScreen() {
   );
 
   const handleReviewCta = useCallback(() => {
-    setNoticeMessage(t("c18a.noticeC21A"));
-  }, [t]);
+    router.push("/appliance-intake-review");
+  }, [router]);
 
   const handleSeeCategories = useCallback(() => {
     router.push("/service-discovery");

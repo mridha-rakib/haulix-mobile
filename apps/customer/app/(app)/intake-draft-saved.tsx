@@ -36,8 +36,8 @@ export default function IntakeDraftSavedScreen() {
   const photoCount = draftState.photoCount || 4;
 
   const handleContinueToAi = useCallback(() => {
-    setNoticeMessage(t("c21s.noticeUpcomingC22"));
-  }, [t]);
+    router.push("/ai-review-handoff");
+  }, [router]);
 
   const handleReviewAgain = useCallback(() => {
     router.push("/intake-review");

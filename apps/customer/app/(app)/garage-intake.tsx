@@ -54,8 +54,8 @@ export default function GarageIntakeScreen() {
   }, [handleBack]);
 
   const handleListItemsCta = useCallback(() => {
-    setNoticeMessage(t("c18g.noticeC21G"));
-  }, [t]);
+    router.push("/garage-intake-review");
+  }, [router]);
 
   const handleBackToServices = useCallback(() => {
     router.push("/service-discovery");
