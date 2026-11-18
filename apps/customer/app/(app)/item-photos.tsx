@@ -73,20 +73,20 @@ export default function ItemPhotosScreen() {
   }, [handleBack]);
 
   const handleContinueToAccess = useCallback(() => {
-    setNoticeMessage(t("c19p.noticeC20"));
-  }, [t]);
+    router.push("/access-details");
+  }, [router]);
 
   const handleReplaceSofa = useCallback(() => {
-    setNoticeMessage(t("c19p.noticeC19PR"));
-  }, [t]);
+    router.push("/replace-item-photo");
+  }, [router]);
 
   const handleUploadFailure = useCallback(() => {
-    setNoticeMessage(t("c19p.noticeC19PF"));
-  }, [t]);
+    router.push("/photo-upload-failed");
+  }, [router]);
 
   const handleNoPhotosYet = useCallback(() => {
-    setNoticeMessage(t("c19p.noticeC19PE"));
-  }, [t]);
+    router.push("/item-photos-empty");
+  }, [router]);
 
   return (
     <HaulixSafeArea edges={["top", "left", "right"]} style={styles.safeArea}>

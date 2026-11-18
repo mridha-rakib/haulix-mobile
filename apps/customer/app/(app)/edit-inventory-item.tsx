@@ -19,6 +19,7 @@ import {
   subscribeToProfileEdits,
 } from "../../src/fixtures/c10DemoProfile";
 import { C19E_DEFAULT_ITEM } from "../../src/fixtures/c19eEditItem";
+import { updateDraftInventoryItem } from "../../src/fixtures/c19ItemInventory";
 
 function useCustomerProfile(locale: "en" | "es") {
   const [profile, setProfile] = useState(() => getC10DemoProfile(locale));
@@ -56,6 +57,12 @@ export default function EditInventoryItemScreen() {
   }, [handleBack]);
 
   const handleSave = useCallback(() => {
+    updateDraftInventoryItem("sofa", {
+      countDimensions: "Qty 1 · 82 × 35 × 34 in (Verified)",
+      countDimensionsEs: "Cant. 1 · 82 × 35 × 34 pulg. (Verificado)",
+      weight: "125 lb · customer estimate",
+      weightEs: "125 lb · estimación del cliente",
+    });
     setNoticeMessage(t("c19e.noticeSaved"));
   }, [t]);
 

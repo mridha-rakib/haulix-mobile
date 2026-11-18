@@ -95,3 +95,35 @@ export const C19_DEMO_CONSTANTS = {
   footerNotice2: "SRS  BK-03, AI-02, AI-03, AI-04  ·  430 px / vertical scroll",
   footerNotice2Es: "SRS  BK-03, AI-02, AI-03, AI-04  ·  430 px / desplazamiento vertical",
 } as const;
+
+let currentInventory: C19InventoryData = JSON.parse(JSON.stringify(C19_DEFAULT_DATA));
+type InventoryListener = (data: C19InventoryData) => void;
+const listeners = new Set<InventoryListener>();
+
+export function getDraftInventory(): C19InventoryData {
+  return currentInventory;
+}
+
+export function updateDraftInventoryItem(id: string, updates: Partial<C19DeclaredItem>): void {
+  currentInventory = {
+    ...currentInventory,
+    items: currentInventory.items.map((item) => (item.id === id ? { ...item, ...updates } : item)),
+  };
+  for (const listener of listeners) {
+    listener(currentInventory);
+  }
+}
+
+export function resetDraftInventory(): void {
+  currentInventory = JSON.parse(JSON.stringify(C19_DEFAULT_DATA));
+  for (const listener of listeners) {
+    listener(currentInventory);
+  }
+}
+
+export function subscribeToDraftInventory(listener: InventoryListener): () => void {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}

@@ -162,47 +162,6 @@ function resolveInitialNotice(
   return null;
 }
 
-function resolveRoutePickup(
-  pickupAddress?: string,
-  selectedAddressId?: string,
-  defaultPickup?: string
-): string {
-  if (pickupAddress) return pickupAddress;
-  if (selectedAddressId) {
-    const saved = C17_DEFAULT_SAVED_ADDRESSES.find((a) => a.id === selectedAddressId);
-    if (saved) return saved.fullAddress;
-  }
-  return defaultPickup || C18M_DEFAULT_ROUTE.pickup;
-}
-
-function resolveRouteDropoff(
-  dropoffAddress?: string,
-  cityStateZip?: string,
-  defaultDropoff?: string
-): string {
-  if (dropoffAddress) {
-    return cityStateZip ? `${dropoffAddress}, ${cityStateZip}` : dropoffAddress;
-  }
-  return defaultDropoff || C18M_DEFAULT_ROUTE.dropoff;
-}
-
-function resolveRouteCustomer(
-  isFictional: boolean,
-  fictionalName?: string,
-  profileName?: string,
-  locale?: string
-): string {
-  if (isFictional) {
-    return (
-      fictionalName || (locale === "es" ? "Daniel Ruiz · ficticio" : C18M_DEFAULT_ROUTE.customer)
-    );
-  }
-  if (locale === "es" && profileName === "Bryan Lopez") {
-    return "Bryan Lopez Mendoza";
-  }
-  return profileName || (locale === "es" ? "Bryan Lopez Mendoza" : "Sarah Mitchell");
-}
-
 function useCustomerProfile(locale: "en" | "es") {
   const [profile, setProfile] = useState(() => getC10DemoProfile(locale));
   const [prevLocale, setPrevLocale] = useState(locale);
@@ -556,7 +515,7 @@ export default function MovingIntakeScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const currentLocale = getCurrentLocale() as "en" | "es";
-  const scrollViewRef = useRef<any>(null);
+  const _scrollViewRef = useRef<ScrollView>(null);
   const params = useLocalSearchParams<{
     service?: string;
     selectedAddressId?: string;
@@ -614,24 +573,39 @@ export default function MovingIntakeScreen() {
 
   // Route details
   const routeData = useMemo<C18MRouteData>(() => {
+    let pickup = params.pickupAddress;
+    if (!pickup && params.selectedAddressId) {
+      const saved = C17_DEFAULT_SAVED_ADDRESSES.find((a) => a.id === params.selectedAddressId);
+      if (saved) {
+        pickup = saved.fullAddress;
+      }
+    }
+    if (!pickup) {
+      pickup = t("c18m.defaultPickupAddress") || C18M_DEFAULT_ROUTE.pickup;
+    }
+
+    let dropoff = params.destinationAddress;
+    if (dropoff && params.destinationCityStateZip) {
+      dropoff = `${dropoff}, ${params.destinationCityStateZip}`;
+    }
+    if (!dropoff) {
+      dropoff = t("c18m.defaultDropoffAddress") || C18M_DEFAULT_ROUTE.dropoff;
+    }
+
+    const customer = isFictional
+      ? strings.fictionalCustomerName ||
+        (currentLocale === "es" ? "Daniel Ruiz · ficticio" : C18M_DEFAULT_ROUTE.customer)
+      : currentLocale === "es" && profile.name === "Bryan Lopez"
+        ? "Bryan Lopez Mendoza"
+        : profile.name || (currentLocale === "es" ? "Bryan Lopez Mendoza" : "Sarah Mitchell");
+
+    const requestedScope = t("c18m.defaultRequestedScope") || C18M_DEFAULT_ROUTE.requestedScope;
+
     return {
-      customer: resolveRouteCustomer(
-        isFictional,
-        strings.fictionalCustomerName,
-        profile.name,
-        currentLocale
-      ),
-      pickup: resolveRoutePickup(
-        params.pickupAddress,
-        params.selectedAddressId,
-        t("c18m.defaultPickupAddress")
-      ),
-      dropoff: resolveRouteDropoff(
-        params.destinationAddress,
-        params.destinationCityStateZip,
-        t("c18m.defaultDropoffAddress")
-      ),
-      requestedScope: t("c18m.defaultRequestedScope") || C18M_DEFAULT_ROUTE.requestedScope,
+      customer,
+      pickup,
+      dropoff,
+      requestedScope,
     };
   }, [
     params.pickupAddress,
@@ -682,7 +656,6 @@ export default function MovingIntakeScreen() {
           ? "La estimación de cotización de mudanza (C20-M) está programada para una próxima fase."
           : "Moving quote estimation (C20-M) is scheduled for an upcoming phase.")
     );
-    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
   }, [t, currentLocale]);
 
   const handleReturnToServiceList = useCallback(() => {
@@ -721,7 +694,6 @@ export default function MovingIntakeScreen() {
         <FlowHeaderBack onBack={handleBack} testID="c18m-back-button" />
 
         <ScrollView
-          ref={scrollViewRef}
           style={styles.scrollArea}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
@@ -842,6 +814,7 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     paddingHorizontal: 12,
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
     marginBottom: 17,
     borderWidth: 1,
@@ -946,6 +919,7 @@ const styles = StyleSheet.create({
   },
   detailTextContainer: {
     flex: 1,
+    flexShrink: 1,
     justifyContent: "center",
     gap: 4,
   },

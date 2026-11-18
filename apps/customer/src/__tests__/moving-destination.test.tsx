@@ -182,14 +182,13 @@ describe("C17-D Moving Destination — Spanish Localization (Node 974:9628) & En
     expect(routeSource).toContain("hardwareBackPress");
   });
 
-  it("16. verifies primary CTA navigates directly to C18-M Moving Intake", () => {
-    expect(es.c17d.noticeC18M).toBe(
-      "La solicitud de mudanza (C18-M) está programada para una próxima fase."
-    );
+  it("16. verifies primary CTA routes to /moving-intake with preserved params in Spanish", () => {
+    expect(es.c17d.continueCta).toBe("Continuar solicitud de mudanza");
 
     const routeSource = fs.readFileSync(c17dRoutePath, "utf8");
     expect(routeSource).toContain('testID="c17d-primary-cta"');
     expect(routeSource).toContain('pathname: "/moving-intake"');
+    expect(routeSource).toContain("handleContinue");
   });
 
   it("17. verifies no quotation or fake booking is confirmed", () => {

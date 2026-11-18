@@ -12,7 +12,11 @@ import {
   loadProfileEdits,
   subscribeToProfileEdits,
 } from "../../src/fixtures/c10DemoProfile";
-import { C19_DEFAULT_DATA, C19_DEMO_CONSTANTS } from "../../src/fixtures/c19ItemInventory";
+import {
+  C19_DEMO_CONSTANTS,
+  getDraftInventory,
+  subscribeToDraftInventory,
+} from "../../src/fixtures/c19ItemInventory";
 
 const ITEM_IMAGES: Record<string, ImageSourcePropType> = {
   sofa: require("../../assets/images/intake/c18j-sofa.png"),
@@ -72,7 +76,10 @@ export default function ItemInventoryScreen() {
     router.push({ pathname: "/inventory-validation" });
   }, [router]);
 
-  const data = C19_DEFAULT_DATA;
+  const [data, setData] = useState(() => getDraftInventory());
+  useEffect(() => {
+    return subscribeToDraftInventory(setData);
+  }, []);
 
   return (
     <HaulixSafeArea edges={["top", "left", "right"]} style={styles.safeArea}>

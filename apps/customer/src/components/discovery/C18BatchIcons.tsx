@@ -282,3 +282,32 @@ export function C18AlertCircleIcon({
     </Svg>
   );
 }
+
+/**
+ * 13. Pin / Location Icon for C20 (21 × 21)
+ * Figma Node 382:1741 / 980:9930
+ */
+export function C20PinIcon({
+  size = 21,
+  color = colors.secondaryText,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 21 21" fill="none" {...props}>
+      <Path
+        d="M10.5 19.25C10.5 19.25 17.5 12.25 17.5 7.875C17.5 6.01848 16.7625 4.23801 15.4497 2.92525C14.137 1.6125 12.3565 0.875 10.5 0.875C8.64348 0.875 6.86301 1.6125 5.55025 2.92525C4.2375 4.23801 3.5 6.01848 3.5 7.875C3.5 12.25 10.5 19.25 10.5 19.25Z"
+        stroke={color}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12.25 7.875C12.25 8.8415 11.4665 9.625 10.5 9.625C9.5335 9.625 8.75 8.8415 8.75 7.875C8.75 6.9085 9.5335 6.125 10.5 6.125C11.4665 6.125 12.25 6.9085 12.25 7.875Z"
+        stroke={color}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

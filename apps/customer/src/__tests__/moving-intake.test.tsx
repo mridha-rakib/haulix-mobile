@@ -253,8 +253,8 @@ describe("C18-M Moving Service Intake — Spanish Localization (Node 977:9192)",
 
   it("24. verifies narrow-screen text wrapping and layout flexibility", () => {
     const source = fs.readFileSync(c18mRoutePath, "utf8");
-    expect(source).toContain("detailTextContainer");
-    expect(source).toContain("flex: 1");
+    expect(source).toContain("flexWrap");
+    expect(source).toContain("flexShrink");
   });
 
   it("25. verifies English C18-M regression passes intact", () => {
