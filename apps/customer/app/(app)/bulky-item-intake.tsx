@@ -73,8 +73,8 @@ export default function BulkyItemIntakeScreen() {
   );
 
   const handleReviewCta = useCallback(() => {
-    setNoticeMessage(t("c18f.noticeC21F"));
-  }, [t]);
+    router.push("/furniture-intake-review");
+  }, [router]);
 
   const handleSeeCategories = useCallback(() => {
     router.push("/service-discovery");

@@ -18,6 +18,76 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c20retail-es",
+    name: "C20-RETAIL · Revisar Acceso de Recogida en Tienda (Español)",
+    figmaNode: "Node 980:10668",
+    route: "/retail-collection-readiness",
+    locale: "es",
+    description: "W02 Confirmación de pedido en comercio, requisitos de recogida y entrega",
+  },
+  {
+    id: "c20retail-en",
+    name: "C20-RETAIL · Review Store Collection Access (English)",
+    figmaNode: "Node 392:265",
+    route: "/retail-collection-readiness",
+    locale: "en",
+    description:
+      "W02 Review store collection, pickup requirements, delivery access and exception policy",
+  },
+  {
+    id: "c21retail-es",
+    name: "C21-RETAIL · Revisión de Solicitud de Recogida Comercial (Español)",
+    figmaNode: "Node 980:10886",
+    route: "/retail-intake-review",
+    locale: "es",
+    description:
+      "W02 Confirmación de datos de recogida comercial y controles de políticas antes de W03",
+  },
+  {
+    id: "c21retail-en",
+    name: "C21-RETAIL · Retail Pickup Intake Review (English)",
+    figmaNode: "Node 392:456",
+    route: "/retail-intake-review",
+    locale: "en",
+    description: "W02 Retail pickup intake confirmation and scope checks before W03",
+  },
+  {
+    id: "c21m-es",
+    name: "C21-M · Revisión de Solicitud de Mudanza (Español)",
+    figmaNode: "Node 980:10766",
+    route: "/moving-intake-review",
+    locale: "es",
+    description:
+      "W02 Revisión de solicitud de mudanza residencial con controles de escaleras y capacidad",
+  },
+  {
+    id: "c21m-en",
+    name: "C21-M · Moving Intake Review (English)",
+    figmaNode: "Node 392:354",
+    route: "/moving-intake-review",
+    locale: "en",
+    description:
+      "W02 Moving intake confirmation, route details, stairs, and policy checks before W03",
+  },
+  {
+    id: "c21f-es",
+    name: "C21-F · Revisión de Solicitud de Retiro de Muebles (Español)",
+    figmaNode: "Node 980:11006",
+    route: "/furniture-intake-review",
+    locale: "es",
+    description:
+      "W02 Revisión de retiro de muebles voluminosos y evaluación de seguridad antes de W03",
+  },
+  {
+    id: "c21f-en",
+    name: "C21-F · Furniture Pickup Intake Review (English)",
+    figmaNode: "Node 394:188",
+    route: "/furniture-intake-review",
+    locale: "en",
+    description:
+      "W02 Furniture pickup intake review, dimensions, and service safety assessment before W03",
+  },
+  {
     id: "c21-es",
     name: "C21 · Revisar Detalles del Servicio (Español)",
     figmaNode: "Node 980:10268",

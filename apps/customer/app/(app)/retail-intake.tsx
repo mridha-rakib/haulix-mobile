@@ -54,8 +54,8 @@ export default function RetailIntakeScreen() {
   }, [handleBack]);
 
   const handleReviewCta = useCallback(() => {
-    setNoticeMessage(t("c18r.noticeC20R"));
-  }, [t]);
+    router.push("/retail-collection-readiness");
+  }, [router]);
 
   const handleMissingOrderCta = useCallback(() => {
     router.push("/retail-order-missing");

@@ -42,8 +42,8 @@ export default function MovingAccessScreen() {
     params.dropoffAddress || (isEs ? C20M_DEFAULT_DATA.dropoff : C20M_DEFAULT_DATA.dropoff);
 
   const handleReviewMovingIntake = useCallback(() => {
-    setNoticeMessage(t("c20m.noticeUpcomingC21M"));
-  }, [t]);
+    router.push("/moving-intake-review");
+  }, [router]);
 
   const handleReturnToServices = useCallback(() => {
     router.replace("/service-discovery");
