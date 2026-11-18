@@ -57,20 +57,20 @@ export default function ItemInventoryScreen() {
   }, [handleBack]);
 
   const handleContinueToPhotos = useCallback(() => {
-    setNoticeMessage(t("c19.noticeC19P"));
-  }, [t]);
+    router.push({ pathname: "/item-photos" });
+  }, [router]);
 
   const handleCorrectMeasurements = useCallback(() => {
-    setNoticeMessage(t("c19.noticeC19E"));
-  }, [t]);
+    router.push({ pathname: "/edit-inventory-item" });
+  }, [router]);
 
   const handleAddAnotherItem = useCallback(() => {
-    setNoticeMessage(t("c19.noticeC19A"));
-  }, [t]);
+    router.push({ pathname: "/add-inventory-item" });
+  }, [router]);
 
   const handleIncompleteExample = useCallback(() => {
-    setNoticeMessage(t("c19.noticeC19V"));
-  }, [t]);
+    router.push({ pathname: "/inventory-validation" });
+  }, [router]);
 
   const data = C19_DEFAULT_DATA;
 

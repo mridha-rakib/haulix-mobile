@@ -253,3 +253,32 @@ export function C18AlertTriangleIcon({
     </Svg>
   );
 }
+
+/**
+ * 12. Alert Circle Icon for C19-V (18 × 18)
+ * Figma Node 382:1469 / 980:9578
+ */
+export function C18AlertCircleIcon({
+  size = 18,
+  color = colors.error,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 8v4M12 16h.01"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
