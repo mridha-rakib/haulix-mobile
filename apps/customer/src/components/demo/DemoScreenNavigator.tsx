@@ -18,6 +18,72 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c20e-es",
+    name: "C20-E · Solicitud de Manejo Adicional (Español)",
+    figmaNode: "Node 980:9977",
+    route: "/extra-access-help",
+    locale: "es",
+    description: "W02 Solicitud opcional de desmontaje y revisión de alcance sin aprobación previa",
+  },
+  {
+    id: "c20e-en",
+    name: "C20-E · Request Additional Handling (English)",
+    figmaNode: "Node 382:1767",
+    route: "/extra-access-help",
+    locale: "en",
+    description: "W02 Optional table disassembly and handling request requiring quote approval",
+  },
+  {
+    id: "c20v-es",
+    name: "C20-V · Confirmación de Acceso al Lugar (Español)",
+    figmaNode: "Node 980:10048",
+    route: "/access-validation",
+    locale: "es",
+    description:
+      "W02 Estado de acceso incompleto: escaleras, estacionamiento y puertas sin confirmar",
+  },
+  {
+    id: "c20v-en",
+    name: "C20-V · Please Confirm Site Access (English)",
+    figmaNode: "Node 382:1822",
+    route: "/access-validation",
+    locale: "en",
+    description: "W02 Incomplete access state: missing stairs, parking and heavy-item clearance",
+  },
+  {
+    id: "c20r-es",
+    name: "C20-R · Confirmar Seguridad de Objetos (Español)",
+    figmaNode: "Node 980:10115",
+    route: "/service-restrictions",
+    locale: "es",
+    description:
+      "W02 Preguntas de seguridad y confirmación obligatoria del cliente para cotización",
+  },
+  {
+    id: "c20r-en",
+    name: "C20-R · Confirm Item Safety (English)",
+    figmaNode: "Node 382:1873",
+    route: "/service-restrictions",
+    locale: "en",
+    description: "W02 Item safety questions and required customer acknowledgements before review",
+  },
+  {
+    id: "c20x-es",
+    name: "C20-X · Revisión de Objeto Señalado (Español)",
+    figmaNode: "Node 980:10197",
+    route: "/restricted-material",
+    locale: "es",
+    description: "W02 Detener y aclarar recipientes sin etiqueta en garaje antes de continuar",
+  },
+  {
+    id: "c20x-en",
+    name: "C20-X · Restricted Material Review (English)",
+    figmaNode: "Node 382:1911",
+    route: "/restricted-material",
+    locale: "en",
+    description: "W02 Hold and clarify unlabeled containers in garage cleanout demo fixture",
+  },
+  {
     id: "c19pr-es",
     name: "C19-P-R · Reemplazo de Foto (Español)",
     figmaNode: "Node 980:9692",

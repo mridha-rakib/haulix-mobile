@@ -60,8 +60,12 @@ export default function AccessDetailsScreen() {
   }, [handleBack]);
 
   const handleContinueToRestrictions = useCallback(() => {
-    setNoticeMessage(t("c20.noticeC20R"));
-  }, [t]);
+    router.push("/service-restrictions");
+  }, [router]);
+
+  const handleExtraAccessHelp = useCallback(() => {
+    router.push("/extra-access-help");
+  }, [router]);
 
   const handleEditQuantities = useCallback(() => {
     router.push("/item-inventory");
@@ -131,23 +135,35 @@ export default function AccessDetailsScreen() {
         <View style={styles.sectionCard} testID="c20-additional-help-card">
           <Text style={styles.sectionTitle}>{t("c20.additionalHelpSectionTitle")}</Text>
 
-          <View style={styles.helpOptionRow} testID="c20-help-disassembly">
+          <Pressable
+            style={styles.helpOptionRow}
+            testID="c20-help-disassembly"
+            onPress={handleExtraAccessHelp}
+            accessibilityRole="button"
+            accessibilityLabel={t("c20.disassemblyTitle")}
+          >
             <C18CheckIcon size={21} color={colors.brand} />
             <View style={styles.helpOptionTextCol}>
               <Text style={styles.helpOptionTitle}>{t("c20.disassemblyTitle")}</Text>
               <Text style={styles.helpOptionSub}>{t("c20.disassemblySub")}</Text>
             </View>
             <C18ChevronRightIcon size={17} color="#788580" />
-          </View>
+          </Pressable>
 
-          <View style={styles.helpOptionRow} testID="c20-help-packing">
+          <Pressable
+            style={styles.helpOptionRow}
+            testID="c20-help-packing"
+            onPress={handleExtraAccessHelp}
+            accessibilityRole="button"
+            accessibilityLabel={t("c20.packingTitle")}
+          >
             <C20PinIcon size={21} color={colors.secondaryText} />
             <View style={styles.helpOptionTextCol}>
               <Text style={styles.helpOptionTitle}>{t("c20.packingTitle")}</Text>
               <Text style={styles.helpOptionSub}>{t("c20.packingSub")}</Text>
             </View>
             <C18ChevronRightIcon size={17} color="#788580" />
-          </View>
+          </Pressable>
         </View>
 
         {/* Section C: Crew Eligibility */}

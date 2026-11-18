@@ -311,3 +311,112 @@ export function C20PinIcon({
     </Svg>
   );
 }
+
+/**
+ * 14. Amber Check Icon for C20-E (18 × 18)
+ * Figma Node 382:1808 / 980:10013
+ */
+export function C20ECheckAmberIcon({ size = 18, color = "#FFC85A", ...props }: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 18 18" fill="none" {...props}>
+      <Path
+        d="M3 9.75L6.75 13.5L15 5.25"
+        stroke={color}
+        strokeWidth={1.35}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 15. Red Alert Triangle Icon for C20-V & C20-X (18 × 18)
+ * Figma Node 382:1859 / 382:1952 / 980:10080 / 980:10233
+ */
+export function C20AlertTriangleIcon({
+  size = 18,
+  color = "#F36D6D",
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 18 18" fill="none" {...props}>
+      <Path
+        d="M9 6.75V10.5M9 13.5H9.075M9 1.5L16.5 15.75H1.5L9 1.5Z"
+        stroke={color}
+        strokeWidth={1.35}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 16. Customer Declaration Circle Check Icon for C20-R (23 × 23)
+ * Figma Node 401:199 / 980:10132
+ */
+export function C20RDeclarationCheckIcon({
+  size = 23,
+  color = colors.brand,
+  ...props
+}: C18BatchIconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 23 23" fill="none" {...props}>
+      <Path
+        d="M21.0833 11.5C21.0833 16.7927 16.7927 21.0833 11.5 21.0833C6.20727 21.0833 1.91667 16.7927 1.91667 11.5C1.91667 6.20727 6.20727 1.91667 11.5 1.91667C16.7927 1.91667 21.0833 6.20727 21.0833 11.5Z"
+        stroke={color}
+        strokeWidth={1.725}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M5.75 11.5L9.58333 15.3333L17.25 7.66667"
+        stroke={color}
+        strokeWidth={1.725}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * 17. Interactive Customer Acknowledgement Checkbox for C20-R (20 × 20)
+ * Checked / Unchecked states
+ */
+export function C20RCheckboxIcon({
+  checked,
+  size = 20,
+  color = colors.brand,
+  ...props
+}: C18BatchIconProps & { checked: boolean }) {
+  if (checked) {
+    return (
+      <Svg width={size} height={size} viewBox="0 0 20 20" fill="none" {...props}>
+        <Rect
+          x="1"
+          y="1"
+          width="18"
+          height="18"
+          rx="4"
+          fill="rgba(186, 255, 66, 0.15)"
+          stroke={color}
+          strokeWidth={1.5}
+        />
+        <Path
+          d="M5 10.5L8.5 14L15 6"
+          stroke={color}
+          strokeWidth={1.8}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    );
+  }
+  return (
+    <Svg width={size} height={size} viewBox="0 0 20 20" fill="none" {...props}>
+      <Rect x="1" y="1" width="18" height="18" rx="4" stroke="#4A5550" strokeWidth={1.5} />
+    </Svg>
+  );
+}
