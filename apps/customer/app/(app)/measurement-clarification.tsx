@@ -59,12 +59,18 @@ export default function MeasurementClarificationScreen() {
   }, [handleBack]);
 
   const handleCorrectMeasurements = useCallback(() => {
-    setNoticeMessage(t("c23uMeasurementClarification.noticeCorrectMeasurements"));
-  }, [t]);
+    router.push({
+      pathname: "/correct-ai-items",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleAdminReview = useCallback(() => {
-    setNoticeMessage(t("c23uMeasurementClarification.noticeAdminReview"));
-  }, [t]);
+    router.push({
+      pathname: "/admin-review-pending",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

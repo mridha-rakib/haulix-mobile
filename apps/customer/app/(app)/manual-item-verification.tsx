@@ -59,12 +59,18 @@ export default function ManualItemVerificationScreen() {
   }, [handleBack]);
 
   const handleConfirmManual = useCallback(() => {
-    setNoticeMessage(t("c23mManualItemVerification.noticeConfirmManual"));
-  }, [t]);
+    router.push({
+      pathname: "/customer-confirmed-items",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleAdminReview = useCallback(() => {
-    setNoticeMessage(t("c23mManualItemVerification.noticeAdminReview"));
-  }, [t]);
+    router.push({
+      pathname: "/admin-review-pending",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

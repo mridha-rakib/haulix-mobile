@@ -18,6 +18,78 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c23c-es",
+    name: "C23-C · Corregir Detalles del Objeto (Español)",
+    figmaNode: "Node 987:10439",
+    route: "/correct-ai-items",
+    locale: "es",
+    description:
+      "W03 Inventario confirmado prevalece sobre sugerencias IA no verificadas; corrección de colchón",
+  },
+  {
+    id: "c23c-en",
+    name: "C23-C · Correct AI Items (English)",
+    figmaNode: "Node 412:625",
+    route: "/correct-ai-items",
+    locale: "en",
+    description:
+      "W03 Customer-confirmed inventory overrides unverified AI suggestions; mattress correction",
+  },
+  {
+    id: "c23s-es",
+    name: "C23-S · Objetos Confirmados por el Cliente (Español)",
+    figmaNode: "Node 987:10506",
+    route: "/customer-confirmed-items",
+    locale: "es",
+    description:
+      "W03 Tres categorías y cuatro piezas individuales confirmadas para cotización ilustrativa",
+  },
+  {
+    id: "c23s-en",
+    name: "C23-S · Customer Confirmed Items (English)",
+    figmaNode: "Node 412:683",
+    route: "/customer-confirmed-items",
+    locale: "en",
+    description:
+      "W03 Three categories; four individual pieces verified by customer carried into quote inputs",
+  },
+  {
+    id: "c23r-es",
+    name: "C23-R · Identificación de IA Rechazada (Español)",
+    figmaNode: "Node 987:10714",
+    route: "/rejected-ai-identification",
+    locale: "es",
+    description:
+      "W03 Eliminar sugerencia errónea sin borrar datos confirmados del cliente; 2 unidades frente a 1",
+  },
+  {
+    id: "c23r-en",
+    name: "C23-R · Rejected AI Identification (English)",
+    figmaNode: "Node 412:861",
+    route: "/rejected-ai-identification",
+    locale: "en",
+    description:
+      "W03 Remove incorrect AI suggestion without deleting customer booking data; 2 units vs 1",
+  },
+  {
+    id: "c24adm-es",
+    name: "C24-ADM · Revisión Pendiente de Tarifas de Servicio (Español)",
+    figmaNode: "Node 987:10887",
+    route: "/admin-review-pending",
+    locale: "es",
+    description:
+      "W03 Tarifas o elegibilidad requieren decisión autorizada de Admin antes del precio final",
+  },
+  {
+    id: "c24adm-en",
+    name: "C24-ADM · Admin Review Pending (English)",
+    figmaNode: "Node 412:1006",
+    route: "/admin-review-pending",
+    locale: "en",
+    description:
+      "W03 Service-specific rates or eligibility need authorized Admin decision before final price",
+  },
+  {
     id: "c22q-es",
     name: "C22-Q · Resultado de IA Incierto (Español)",
     figmaNode: "Node 987:10309",

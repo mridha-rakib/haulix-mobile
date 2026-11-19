@@ -69,12 +69,18 @@ export default function AIUncertainResultScreen() {
   }, [handleBack]);
 
   const handleCorrectList = useCallback(() => {
-    setNoticeMessage(t("c22qAiUncertainResult.noticeCorrectList"));
-  }, [t]);
+    router.push({
+      pathname: "/correct-ai-items",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleAdminReview = useCallback(() => {
-    setNoticeMessage(t("c22qAiUncertainResult.noticeAdminReview"));
-  }, [t]);
+    router.push({
+      pathname: "/admin-review-pending",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

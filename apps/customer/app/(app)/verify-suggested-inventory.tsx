@@ -74,8 +74,11 @@ export default function VerifySuggestedInventoryScreen() {
   }, [handleBack]);
 
   const handleCorrectQuantity = useCallback(() => {
-    setNoticeMessage(t("c23VerifySuggestedInventory.noticeCorrectQuantity"));
-  }, [t]);
+    router.push({
+      pathname: "/correct-ai-items",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleMeasurementsClarification = useCallback(() => {
     router.push({
@@ -85,8 +88,11 @@ export default function VerifySuggestedInventoryScreen() {
   }, [router, params.previewLocale]);
 
   const handleWrongSuggestion = useCallback(() => {
-    setNoticeMessage(t("c23VerifySuggestedInventory.noticeWrongSuggestion"));
-  }, [t]);
+    router.push({
+      pathname: "/rejected-ai-identification",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>
