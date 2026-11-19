@@ -1,17 +1,19 @@
 # HAULIX Customer App — Phase 03.24 Final Batch Report
+
 ## W02 — Intake Review, Validation, Draft Save & Moving Access
 
 **Project:** HAULIX Customer Mobile App  
 **Phase:** 03.24  
 **Deliverables:** 4 Canonical Routes × English + Spanish = 8 Localized Screen Variants  
 **Git Repository:** `git@github.com:mridha-rakib/haulix-mobile.git`  
-**Execution Date:** 2026-11-18  
+**Execution Date:** 2026-11-18
 
 ---
 
 ### 1. Executive Summary
 
 Phase 03.24 delivered the four concluding intake summary, validation gating, local draft preservation, and moving access check screens of the HAULIX W02 booking flow in full bilingual parity (English and Spanish):
+
 1. **C21** (`/intake-review`): Full Intake Review with 7 original photo placements (Nodes `382:1966` / `980:10268`)
 2. **C21-V** (`/intake-review-blocked`): Intake Not Ready Yet / Review Blocked (Nodes `382:2088` / `980:10409`)
 3. **C21-S** (`/intake-draft-saved`): Intake Draft Saved (Nodes `382:2124` / `980:10461`)
@@ -23,12 +25,12 @@ All 8 variants were inspected via `figma_figma` MCP, implemented using `@haulix/
 
 ### 2. Deliverables & Authoritative Figma Mapping
 
-| Screen Identifier | Route | Figma Node (EN) | Figma Node (ES) | Implementation File | Status |
-|---|---|---|---|---|---|
-| **C21** | `/intake-review` | `382:1966` (430 × 2716 px) | `980:10268` (430 × 2716 px) | `apps/customer/app/(app)/intake-review.tsx` | **COMPLETED** |
-| **C21-V** | `/intake-review-blocked` | `382:2088` (430 × 809 px) | `980:10409` (430 × 809 px) | `apps/customer/app/(app)/intake-review-blocked.tsx` | **COMPLETED** |
-| **C21-S** | `/intake-draft-saved` | `382:2124` (430 × 807 px) | `980:10461` (430 × 807 px) | `apps/customer/app/(app)/intake-draft-saved.tsx` | **COMPLETED** |
-| **C20-M** | `/moving-access` | `392:180` (430 × 1643 px) | `980:10574` (430 × 1643 px) | `apps/customer/app/(app)/moving-access.tsx` | **COMPLETED** |
+| Screen Identifier | Route                    | Figma Node (EN)            | Figma Node (ES)             | Implementation File                                 | Status        |
+| ----------------- | ------------------------ | -------------------------- | --------------------------- | --------------------------------------------------- | ------------- |
+| **C21**           | `/intake-review`         | `382:1966` (430 × 2716 px) | `980:10268` (430 × 2716 px) | `apps/customer/app/(app)/intake-review.tsx`         | **COMPLETED** |
+| **C21-V**         | `/intake-review-blocked` | `382:2088` (430 × 809 px)  | `980:10409` (430 × 809 px)  | `apps/customer/app/(app)/intake-review-blocked.tsx` | **COMPLETED** |
+| **C21-S**         | `/intake-draft-saved`    | `382:2124` (430 × 807 px)  | `980:10461` (430 × 807 px)  | `apps/customer/app/(app)/intake-draft-saved.tsx`    | **COMPLETED** |
+| **C20-M**         | `/moving-access`         | `392:180` (430 × 1643 px)  | `980:10574` (430 × 1643 px) | `apps/customer/app/(app)/moving-access.tsx`         | **COMPLETED** |
 
 ---
 

@@ -81,8 +81,11 @@ export default function AIProcessingScreen() {
   }, [router, currentLocale]);
 
   const handleUncertainExample = useCallback(() => {
-    setNoticeMessage(t("c22pAiProcessing.noticeUncertainResult"));
-  }, [t]);
+    router.push({
+      pathname: "/ai-uncertain-result",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>

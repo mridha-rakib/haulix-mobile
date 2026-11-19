@@ -18,6 +18,78 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c22q-es",
+    name: "C22-Q · Resultado de IA Incierto (Español)",
+    figmaNode: "Node 987:10309",
+    route: "/ai-uncertain-result",
+    locale: "es",
+    description:
+      "W03 Superposición o baja visibilidad impiden clasificar con fiabilidad; revisión de lista",
+  },
+  {
+    id: "c22q-en",
+    name: "C22-Q · Uncertain AI Result (English)",
+    figmaNode: "Node 412:515",
+    route: "/ai-uncertain-result",
+    locale: "en",
+    description:
+      "W03 Photo overlap or low visibility prevents reliable classification; list correction",
+  },
+  {
+    id: "c23-es",
+    name: "C23 · Verificar Inventario Sugerido (Español)",
+    figmaNode: "Node 987:10367",
+    route: "/verify-suggested-inventory",
+    locale: "es",
+    description:
+      "W03 Comparar sugerencias de IA con borrador del cliente; corregir cantidad de colchones",
+  },
+  {
+    id: "c23-en",
+    name: "C23 · Verify Suggested Inventory (English)",
+    figmaNode: "Node 412:563",
+    route: "/verify-suggested-inventory",
+    locale: "en",
+    description:
+      "W03 Compare AI suggestions with customer draft; correct mattress quantity mismatch",
+  },
+  {
+    id: "c23m-es",
+    name: "C23-M · Verificación Manual de Objetos (Español)",
+    figmaNode: "Node 987:10581",
+    route: "/manual-item-verification",
+    locale: "es",
+    description:
+      "W03 Confirmar objetos con inventario manual sin IA; tarifas y elegibilidad de Arizona",
+  },
+  {
+    id: "c23m-en",
+    name: "C23-M · Manual Item Verification (English)",
+    figmaNode: "Node 412:748",
+    route: "/manual-item-verification",
+    locale: "en",
+    description:
+      "W03 Confirm items with saved manual inventory without AI; tariff rules and admin review",
+  },
+  {
+    id: "c23u-es",
+    name: "C23-U · Aclaración de Medidas (Español)",
+    figmaNode: "Node 987:10646",
+    route: "/measurement-clarification",
+    locale: "es",
+    description:
+      "W03 Medidas inciertas de fotos; carga sin cotización garantizada y revisión manual",
+  },
+  {
+    id: "c23u-en",
+    name: "C23-U · Measurement Clarification (English)",
+    figmaNode: "Node 412:803",
+    route: "/measurement-clarification",
+    locale: "en",
+    description:
+      "W03 Photo measurement uncertainty; unverified dimensions require correction or admin review",
+  },
+  {
     id: "w03f-es",
     name: "W03-F-HANDOFF · Entrada a Revisión de Retiro de Muebles (Español)",
     figmaNode: "Node 980:11246",

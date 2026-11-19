@@ -1,21 +1,22 @@
 # HAULIX Customer App — Phase 03.24 Figma Source Audit
+
 ## Batch W02: Full Intake Review, Review Blocked, Draft Saved, & Moving Access
 
 **Figma File:** `https://www.figma.com/design/Q946h4YBGgyLsjnPtdyQNe/HAULIX-UI-UX-Concept`  
 **File Key:** `Q946h4YBGgyLsjnPtdyQNe`  
 **MCP Provider:** `figma_figma`  
-**Audit Date:** 2026-11-18  
+**Audit Date:** 2026-11-18
 
 ---
 
 ### 1. Authoritative Figma Frames & Dimensions
 
-| Screen Code | Route / Purpose | English Frame | English Dimensions | Spanish Frame | Spanish Dimensions | Reference Screenshot |
-|---|---|---|---|---|---|---|
-| **C21** | `/intake-review`<br>Full Intake Review | `382:1966` | 430 × 2716 px | `980:10268` | 430 × 2716 px | `c21-[en|es]-figma.png` |
-| **C21-V** | `/intake-review-blocked`<br>Review Blocked / Incomplete | `382:2088` | 430 × 809 px | `980:10409` | 430 × 809 px | `c21v-[en|es]-figma.png` |
-| **C21-S** | `/intake-draft-saved`<br>Intake Draft Saved | `382:2124` | 430 × 807 px | `980:10461` | 430 × 807 px | `c21s-[en|es]-figma.png` |
-| **C20-M** | `/moving-access`<br>Confirm Moving Access | `392:180` | 430 × 1643 px | `980:10574` | 430 × 1643 px | `c20m-[en|es]-figma.png` |
+| Screen Code | Route / Purpose                                         | English Frame | English Dimensions | Spanish Frame | Spanish Dimensions | Reference Screenshot |
+| ----------- | ------------------------------------------------------- | ------------- | ------------------ | ------------- | ------------------ | -------------------- |
+| **C21**     | `/intake-review`<br>Full Intake Review                  | `382:1966`    | 430 × 2716 px      | `980:10268`   | 430 × 2716 px      | `c21-[en             | es]-figma.png` |
+| **C21-V**   | `/intake-review-blocked`<br>Review Blocked / Incomplete | `382:2088`    | 430 × 809 px       | `980:10409`   | 430 × 809 px       | `c21v-[en            | es]-figma.png` |
+| **C21-S**   | `/intake-draft-saved`<br>Intake Draft Saved             | `382:2124`    | 430 × 807 px       | `980:10461`   | 430 × 807 px       | `c21s-[en            | es]-figma.png` |
+| **C20-M**   | `/moving-access`<br>Confirm Moving Access               | `392:180`     | 430 × 1643 px      | `980:10574`   | 430 × 1643 px      | `c20m-[en            | es]-figma.png` |
 
 ---
 

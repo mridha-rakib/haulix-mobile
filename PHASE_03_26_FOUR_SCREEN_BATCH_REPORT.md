@@ -26,12 +26,12 @@ All implementations strictly observe Figma design tokens (`@haulix/design-tokens
 
 ### Deliverables Checklist
 
-| Canonical Route | Screen Code | Description | English Figma Node | Spanish Figma Node | Status |
-|:---|:---|:---|:---|:---|:---:|
-| `/appliance-intake-review` | **C21-A** | Appliance Removal Intake Review | `394:290` (430 × 1043 px) | `980:11066` (430 × 1043 px) | **COMPLETED** |
-| `/mattress-intake-review` | **C21-T** | Mattress Removal Intake Review | `394:392` (430 × 1043 px) | `980:11126` (430 × 1043 px) | **COMPLETED** |
-| `/garage-intake-review` | **C21-G** | Garage Cleanout Intake Review | `394:494` (430 × 1043 px) | `980:11186` (430 × 1043 px) | **COMPLETED** |
-| `/ai-review-handoff` | **W03-HANDOFF** | General AI Review Entry Preview | `382:2161` (430 × 1043 px) | `980:10514` (430 × 1043 px) | **COMPLETED** |
+| Canonical Route            | Screen Code     | Description                     | English Figma Node         | Spanish Figma Node          |    Status     |
+| :------------------------- | :-------------- | :------------------------------ | :------------------------- | :-------------------------- | :-----------: |
+| `/appliance-intake-review` | **C21-A**       | Appliance Removal Intake Review | `394:290` (430 × 1043 px)  | `980:11066` (430 × 1043 px) | **COMPLETED** |
+| `/mattress-intake-review`  | **C21-T**       | Mattress Removal Intake Review  | `394:392` (430 × 1043 px)  | `980:11126` (430 × 1043 px) | **COMPLETED** |
+| `/garage-intake-review`    | **C21-G**       | Garage Cleanout Intake Review   | `394:494` (430 × 1043 px)  | `980:11186` (430 × 1043 px) | **COMPLETED** |
+| `/ai-review-handoff`       | **W03-HANDOFF** | General AI Review Entry Preview | `382:2161` (430 × 1043 px) | `980:10514` (430 × 1043 px) | **COMPLETED** |
 
 ---
 

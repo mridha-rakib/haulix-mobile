@@ -69,8 +69,11 @@ export default function AIMissingPhotosScreen() {
   }, [router, currentLocale, t]);
 
   const handleManualDetails = useCallback(() => {
-    setNoticeMessage(t("c22eAiMissingPhotos.noticeManualDetails"));
-  }, [t]);
+    router.push({
+      pathname: "/manual-item-verification",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>

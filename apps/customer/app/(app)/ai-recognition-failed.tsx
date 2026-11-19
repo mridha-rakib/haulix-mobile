@@ -74,8 +74,11 @@ export default function AIRecognitionFailedScreen() {
   }, [router, currentLocale, t]);
 
   const handleManualDetails = useCallback(() => {
-    setNoticeMessage(t("c22fAiRecognitionFailed.noticeManualDetails"));
-  }, [t]);
+    router.push({
+      pathname: "/manual-item-verification",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>

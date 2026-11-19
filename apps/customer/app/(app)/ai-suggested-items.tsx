@@ -75,12 +75,18 @@ export default function AISuggestedItemsScreen() {
   }, [handleBack]);
 
   const handleVerifyItems = useCallback(() => {
-    setNoticeMessage(t("c22dAiSuggestedItems.noticeUpcomingVerification"));
-  }, [t]);
+    router.push({
+      pathname: "/verify-suggested-inventory",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   const handleUncertainItem = useCallback(() => {
-    setNoticeMessage(t("c22dAiSuggestedItems.noticeUpcomingUncertainty"));
-  }, [t]);
+    router.push({
+      pathname: "/measurement-clarification",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>

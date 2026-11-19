@@ -69,8 +69,11 @@ export default function AIOfflineRecoveryScreen() {
   }, [router, currentLocale, t]);
 
   const handleReviewManual = useCallback(() => {
-    setNoticeMessage(t("c22oAiOfflineRecovery.noticeManualInventory"));
-  }, [t]);
+    router.push({
+      pathname: "/manual-item-verification",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>

@@ -1,21 +1,22 @@
 # HAULIX Customer App — Phase 03.23 Figma Source Audit
+
 ## Batch W02: Access Help, Access Validation, Service Restrictions, & Restricted Material Review
 
 **Figma File:** `https://www.figma.com/design/Q946h4YBGgyLsjnPtdyQNe/HAULIX-UI-UX-Concept`  
 **File Key:** `Q946h4YBGgyLsjnPtdyQNe`  
 **MCP Provider:** `figma_figma`  
-**Audit Date:** 2026-11-18  
+**Audit Date:** 2026-11-18
 
 ---
 
 ### 1. Authoritative Figma Frames & Dimensions
 
-| Screen Code | Route / Purpose | English Frame | English Dimensions | Spanish Frame | Spanish Dimensions | Reference Screenshot |
-|-------------|-----------------|---------------|--------------------|---------------|--------------------|----------------------|
-| **C20-E** | `/extra-access-help`<br>Request Additional Handling | `382:1767` | 430 × 1195 px | `980:9977` | 430 × 1195 px | `c20e-[en|es]-figma.png` |
-| **C20-V** | `/access-validation`<br>Please Confirm Site Access | `382:1822` | 430 × 1103 px | `980:10048` | 430 × 1103 px | `c20v-[en|es]-figma.png` |
-| **C20-R** | `/service-restrictions`<br>Confirm Item Safety | `382:1873` | 430 × 1269 px | `980:10115` | 430 × 1269 px | `c20r-[en|es]-figma.png` |
-| **C20-X** | `/restricted-material`<br>Restricted Material Review | `382:1911` | 430 × 1180 px | `980:10197` | 430 × 1180 px | `c20x-[en|es]-figma.png` |
+| Screen Code | Route / Purpose                                      | English Frame | English Dimensions | Spanish Frame | Spanish Dimensions | Reference Screenshot |
+| ----------- | ---------------------------------------------------- | ------------- | ------------------ | ------------- | ------------------ | -------------------- |
+| **C20-E**   | `/extra-access-help`<br>Request Additional Handling  | `382:1767`    | 430 × 1195 px      | `980:9977`    | 430 × 1195 px      | `c20e-[en            | es]-figma.png` |
+| **C20-V**   | `/access-validation`<br>Please Confirm Site Access   | `382:1822`    | 430 × 1103 px      | `980:10048`   | 430 × 1103 px      | `c20v-[en            | es]-figma.png` |
+| **C20-R**   | `/service-restrictions`<br>Confirm Item Safety       | `382:1873`    | 430 × 1269 px      | `980:10115`   | 430 × 1269 px      | `c20r-[en            | es]-figma.png` |
+| **C20-X**   | `/restricted-material`<br>Restricted Material Review | `382:1911`    | 430 × 1180 px      | `980:10197`   | 430 × 1180 px      | `c20x-[en            | es]-figma.png` |
 
 ---
 

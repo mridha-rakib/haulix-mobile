@@ -2,12 +2,12 @@
 
 ## 1. Authoritative Figma Frame Mapping
 
-| Screen ID | Screen Name | Node ID (EN) | Node ID (ES) | Canvas Size | Route Path |
-|:---|:---|:---|:---|:---|:---|
-| **C21-A** | Appliance Removal intake review | `394:290` | `980:11066` | 430 × 1043 px | `/appliance-intake-review` |
-| **C21-T** | Mattress Removal intake review | `394:392` | `980:11126` | 430 × 1043 px | `/mattress-intake-review` |
-| **C21-G** | Garage Cleanout intake review | `394:494` | `980:11186` | 430 × 1043 px | `/garage-intake-review` |
-| **W03-HANDOFF** | AI Recognition & Quotation available / Solicitud y revisión | `382:2161` | `980:10514` | 430 × 1043 px | `/ai-review-handoff` |
+| Screen ID       | Screen Name                                                 | Node ID (EN) | Node ID (ES) | Canvas Size   | Route Path                 |
+| :-------------- | :---------------------------------------------------------- | :----------- | :----------- | :------------ | :------------------------- |
+| **C21-A**       | Appliance Removal intake review                             | `394:290`    | `980:11066`  | 430 × 1043 px | `/appliance-intake-review` |
+| **C21-T**       | Mattress Removal intake review                              | `394:392`    | `980:11126`  | 430 × 1043 px | `/mattress-intake-review`  |
+| **C21-G**       | Garage Cleanout intake review                               | `394:494`    | `980:11186`  | 430 × 1043 px | `/garage-intake-review`    |
+| **W03-HANDOFF** | AI Recognition & Quotation available / Solicitud y revisión | `382:2161`   | `980:10514`  | 430 × 1043 px | `/ai-review-handoff`       |
 
 ---
 
