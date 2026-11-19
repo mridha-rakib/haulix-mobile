@@ -30,8 +30,8 @@ export default function AIReviewHandoffScreen() {
   }, [handleBack]);
 
   const handleBeginAIReview = useCallback(() => {
-    setNoticeMessage(t("w03handoff.noticeUpcomingC22"));
-  }, [t]);
+    router.push("/ai-recognition");
+  }, [router]);
 
   const handleEditItems = useCallback(() => {
     router.push("/item-inventory");

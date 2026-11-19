@@ -30,8 +30,8 @@ export default function FurnitureIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmDraft = useCallback(() => {
-    setNoticeMessage(t("c21f.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/furniture-ai-handoff");
+  }, [router]);
 
   const handleEditFurnitureScope = useCallback(() => {
     router.push("/bulky-item-intake");

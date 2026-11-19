@@ -18,6 +18,76 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "w03f-es",
+    name: "W03-F-HANDOFF · Entrada a Revisión de Retiro de Muebles (Español)",
+    figmaNode: "Node 980:11246",
+    route: "/furniture-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Revisión de retiro de muebles con cantidad, estado, desmontaje y tarifas pendientes",
+  },
+  {
+    id: "w03f-en",
+    name: "W03-F-HANDOFF · Furniture Pickup Review Entry (English)",
+    figmaNode: "Node 394:239",
+    route: "/furniture-ai-handoff",
+    locale: "en",
+    description:
+      "W02/W03 Furniture pickup review preview with count, disassembly, carry distance, and crew rules",
+  },
+  {
+    id: "w03r-es",
+    name: "W03-R-HANDOFF · Entrada a Revisión de Recogida Comercial (Español)",
+    figmaNode: "Node 980:10946",
+    route: "/retail-ai-handoff",
+    locale: "es",
+    description:
+      "W02/W03 Revisión de recogida comercial con pedido sin verificar, entrega y tarifas pendientes",
+  },
+  {
+    id: "w03r-en",
+    name: "W03-R-HANDOFF · Retail Pickup Review Entry (English)",
+    figmaNode: "Node 392:507",
+    route: "/retail-ai-handoff",
+    locale: "en",
+    description:
+      "W02/W03 Retail pickup review preview with store order, collection window, and rates pending",
+  },
+  {
+    id: "c22-es",
+    name: "C22 · Entrada a Reconocimiento de Fotos con IA (Español)",
+    figmaNode: "Node 987:9929",
+    route: "/ai-recognition",
+    locale: "es",
+    description: "W03 Analizar 4 fotos de objetos con IA orientativa y pruebas cargadas",
+  },
+  {
+    id: "c22-en",
+    name: "C22 · AI Review Entry / Analyze Item Photos (English)",
+    figmaNode: "Node 412:195",
+    route: "/ai-recognition",
+    locale: "en",
+    description:
+      "W03 Analyze 4 uploaded item photos with advisory guidance and intake ready ledger",
+  },
+  {
+    id: "c22p-es",
+    name: "C22-P · Demostración de Procesamiento IA (Español)",
+    figmaNode: "Node 987:10006",
+    route: "/ai-processing",
+    locale: "es",
+    description:
+      "W03 Estado simulado de procesamiento IA con progreso en 4 pasos y pruebas en análisis",
+  },
+  {
+    id: "c22p-en",
+    name: "C22-P · AI Processing Demonstration (English)",
+    figmaNode: "Node 412:262",
+    route: "/ai-processing",
+    locale: "en",
+    description: "W03 Simulated AI processing state with 4 progress steps and evidence analyzed",
+  },
+  {
     id: "w03m-es",
     name: "W03-M-HANDOFF · Entrada a Revisión de Mudanza con IA (Español)",
     figmaNode: "Node 980:10826",

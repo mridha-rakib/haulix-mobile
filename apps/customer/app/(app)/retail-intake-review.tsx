@@ -30,8 +30,8 @@ export default function RetailIntakeReviewScreen() {
   }, [handleBack]);
 
   const handleConfirmIntake = useCallback(() => {
-    setNoticeMessage(t("c21retail.noticeUpcomingW03"));
-  }, [t]);
+    router.push("/retail-ai-handoff");
+  }, [router]);
 
   const handleEditRetailOrder = useCallback(() => {
     router.push("/retail-collection-readiness");
