@@ -67,12 +67,18 @@ export default function AIProcessingScreen() {
   }, [handleBack]);
 
   const handleViewResult = useCallback(() => {
-    setNoticeMessage(t("c22pAiProcessing.noticeUpcomingResult"));
-  }, [t]);
+    router.push({
+      pathname: "/ai-suggested-items",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   const handleNetworkFailureExample = useCallback(() => {
-    setNoticeMessage(t("c22pAiProcessing.noticeNetworkFailure"));
-  }, [t]);
+    router.push({
+      pathname: "/ai-recognition-failed",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   const handleUncertainExample = useCallback(() => {
     setNoticeMessage(t("c22pAiProcessing.noticeUncertainResult"));

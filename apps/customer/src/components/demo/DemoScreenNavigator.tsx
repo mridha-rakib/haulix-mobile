@@ -88,6 +88,78 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     description: "W03 Simulated AI processing state with 4 progress steps and evidence analyzed",
   },
   {
+    id: "c22d-es",
+    name: "C22-D · Objetos Sugeridos por IA / Mismatch (Español)",
+    figmaNode: "Node 987:10084",
+    route: "/ai-suggested-items",
+    locale: "es",
+    description:
+      "W03 Objetos potenciales sugeridos por IA con discrepancia de cantidad e inventario preservado",
+  },
+  {
+    id: "c22d-en",
+    name: "C22-D · AI Suggested Items / Quantity Mismatch (English)",
+    figmaNode: "Node 412:328",
+    route: "/ai-suggested-items",
+    locale: "en",
+    description:
+      "W03 Potential items found by AI with quantity mismatch notice and customer inventory preserved",
+  },
+  {
+    id: "c22f-es",
+    name: "C22-F · Fallo de Reconocimiento / Borrador Conservado (Español)",
+    figmaNode: "Node 987:10154",
+    route: "/ai-recognition-failed",
+    locale: "es",
+    description:
+      "W03 Servicio no disponible con borrador conservado, adjuntos intactos y reintento demo",
+  },
+  {
+    id: "c22f-en",
+    name: "C22-F · Recognition Failed / Preserved Draft (English)",
+    figmaNode: "Node 412:388",
+    route: "/ai-recognition-failed",
+    locale: "en",
+    description:
+      "W03 Recognition service unavailable with preserved draft, attachments intact and demo retry",
+  },
+  {
+    id: "c22o-es",
+    name: "C22-O · Recuperación Sin Conexión (Español)",
+    figmaNode: "Node 987:10209",
+    route: "/ai-offline-recovery",
+    locale: "es",
+    description:
+      "W03 Estado sin conexión de red con inventario retenido y reintento de conexión seguro",
+  },
+  {
+    id: "c22o-en",
+    name: "C22-O · Offline Recovery (English)",
+    figmaNode: "Node 412:433",
+    route: "/ai-offline-recovery",
+    locale: "en",
+    description:
+      "W03 Temporarily offline state with retained draft and safe connection retry preview",
+  },
+  {
+    id: "c22e-es",
+    name: "C22-E · Fotos Faltantes / Verificación Manual (Español)",
+    figmaNode: "Node 987:10259",
+    route: "/ai-missing-photos",
+    locale: "es",
+    description:
+      "W03 Solicitud sin fotos cargadas con aviso de no invención de medidas y revisión manual",
+  },
+  {
+    id: "c22e-en",
+    name: "C22-E · Missing Photo Evidence / Manual Confirmation (English)",
+    figmaNode: "Node 412:474",
+    route: "/ai-missing-photos",
+    locale: "en",
+    description:
+      "W03 No uploaded image evidence with non-fabrication disclosure and manual intake review",
+  },
+  {
     id: "w03m-es",
     name: "W03-M-HANDOFF · Entrada a Revisión de Mudanza con IA (Español)",
     figmaNode: "Node 980:10826",

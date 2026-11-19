@@ -90,12 +90,18 @@ export default function AIRecognitionScreen() {
   }, [t]);
 
   const handleNoPhotos = useCallback(() => {
-    setNoticeMessage(t("c22AiRecognition.noticeNoPhotos"));
-  }, [t]);
+    router.push({
+      pathname: "/ai-missing-photos",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   const handleOfflineRecovery = useCallback(() => {
-    setNoticeMessage(t("c22AiRecognition.noticeOffline"));
-  }, [t]);
+    router.push({
+      pathname: "/ai-offline-recovery",
+      params: { previewLocale: currentLocale },
+    });
+  }, [router, currentLocale]);
 
   return (
     <HaulixSafeArea>
