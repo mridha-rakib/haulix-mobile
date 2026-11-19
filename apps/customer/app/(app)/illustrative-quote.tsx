@@ -80,16 +80,25 @@ export default function IllustrativeQuoteScreen() {
   }, [handleBack]);
 
   const handleReviewBreakdown = useCallback(() => {
-    setNoticeMessage(t("c24qIllustrativeQuote.noticeBreakdown"));
-  }, [t]);
+    router.push({
+      pathname: "/itemized-quote",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleRecalculate = useCallback(() => {
-    setNoticeMessage(t("c24qIllustrativeQuote.noticeRecalculate"));
-  }, [t]);
+    router.push({
+      pathname: "/quote-revision",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleExpiredExample = useCallback(() => {
-    setNoticeMessage(t("c24qIllustrativeQuote.noticeExpired"));
-  }, [t]);
+    router.push({
+      pathname: "/quote-expired",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

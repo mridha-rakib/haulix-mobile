@@ -18,6 +18,75 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c24f-es",
+    name: "C24-F · Estimación no disponible (Español)",
+    figmaNode: "Node 987:10837",
+    route: "/quote-error-recovery",
+    locale: "es",
+    description: "W03 No se pudo completar el cálculo; reintentar o enviar a revisión de Admin",
+  },
+  {
+    id: "c24f-en",
+    name: "C24-F · Estimate Isn't Available (English)",
+    figmaNode: "Node 412:965",
+    route: "/quote-error-recovery",
+    locale: "en",
+    description: "W03 Calculation could not be completed; retry estimate or request Admin review",
+  },
+  {
+    id: "c24rev-es",
+    name: "C24-REV · Recalcular tras editar (Español)",
+    figmaNode: "Node 987:11137",
+    route: "/quote-revision",
+    locale: "es",
+    description:
+      "W03 Recalcular con datos confirmados tras correcciones del cliente (colchón 2 unidades)",
+  },
+  {
+    id: "c24rev-en",
+    name: "C24-REV · Recalculate After an Edit (English)",
+    figmaNode: "Node 412:1214",
+    route: "/quote-revision",
+    locale: "en",
+    description:
+      "W03 Recalculate from confirmed inputs following customer corrections (queen mattress 2)",
+  },
+  {
+    id: "c25-es",
+    name: "C25 · Revisar desglose del precio (Español)",
+    figmaNode: "Node 987:11193",
+    route: "/itemized-quote",
+    locale: "es",
+    description: "W03 Desglose detallado de 6 cargos de ejemplo y subtotal ilustrativo de $356",
+  },
+  {
+    id: "c25-en",
+    name: "C25 · Review Your Price Breakdown (English)",
+    figmaNode: "Node 412:1260",
+    route: "/itemized-quote",
+    locale: "en",
+    description:
+      "W03 Six itemized example charges and illustrative $356 subtotal with price disclosure",
+  },
+  {
+    id: "c25x-es",
+    name: "C25-X · Debes actualizar tu estimación (Español)",
+    figmaNode: "Node 987:11394",
+    route: "/quote-expired",
+    locale: "es",
+    description:
+      "W03 Es necesario actualizar la estimación; ejemplo caducado y revalidación requerida",
+  },
+  {
+    id: "c25x-en",
+    name: "C25-X · Your Estimate Needs a Refresh (English)",
+    figmaNode: "Node 412:1429",
+    route: "/quote-expired",
+    locale: "en",
+    description:
+      "W03 Estimate refresh needed; demonstration snapshot expired, recheck inputs before continuing",
+  },
+  {
     id: "c24p-es",
     name: "C24-P · Cálculo de Estimación en Proceso (Español)",
     figmaNode: "Node 987:10772",

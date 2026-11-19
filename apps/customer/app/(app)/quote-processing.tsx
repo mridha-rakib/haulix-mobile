@@ -69,8 +69,11 @@ export default function QuoteProcessingScreen() {
   }, [router, params.previewLocale]);
 
   const handlePricingErrorExample = useCallback(() => {
-    setNoticeMessage(t("c24pQuoteProcessing.noticeEngineError"));
-  }, [t]);
+    router.push({
+      pathname: "/quote-error-recovery",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>
