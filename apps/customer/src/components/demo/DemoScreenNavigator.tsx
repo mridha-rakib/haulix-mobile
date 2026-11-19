@@ -18,6 +18,77 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c24p-es",
+    name: "C24-P · Cálculo de Estimación en Proceso (Español)",
+    figmaNode: "Node 987:10772",
+    route: "/quote-processing",
+    locale: "es",
+    description:
+      "W03 El motor de precios aprobado evaluaría los datos y reglas de Arizona; 4 piezas",
+  },
+  {
+    id: "c24p-en",
+    name: "C24-P · Quote Calculation Processing (English)",
+    figmaNode: "Node 412:910",
+    route: "/quote-processing",
+    locale: "en",
+    description:
+      "W03 Approved pricing engine evaluates confirmed inputs and Arizona rules; 4 pieces",
+  },
+  {
+    id: "c24adms-es",
+    name: "C24-ADM-S · Revisión de Admin Registrada (Español)",
+    figmaNode: "Node 987:10945",
+    route: "/admin-review-resolved",
+    locale: "es",
+    description: "W03 Ejemplo ilustrativo de resultado aprobado tras confirmar datos del cliente",
+  },
+  {
+    id: "c24adms-en",
+    name: "C24-ADM-S · Admin Review Resolved (English)",
+    figmaNode: "Node 412:1054",
+    route: "/admin-review-resolved",
+    locale: "en",
+    description:
+      "W03 Illustrative review outcome: approved example following confirmed customer scope",
+  },
+  {
+    id: "c24admd-es",
+    name: "C24-ADM-D · Se Solicitaron Más Detalles (Español)",
+    figmaNode: "Node 987:11000",
+    route: "/admin-clarification-requested",
+    locale: "es",
+    description:
+      "W03 La revisión requiere corrección; confirmar colchones, medidas, dificultad y acceso",
+  },
+  {
+    id: "c24admd-en",
+    name: "C24-ADM-D · Admin Clarification Requested (English)",
+    figmaNode: "Node 412:1099",
+    route: "/admin-clarification-requested",
+    locale: "en",
+    description:
+      "W03 Admin review requires correction before pricing; update item details fallback",
+  },
+  {
+    id: "c24q-es",
+    name: "C24-Q · Cotización Inmediata Ilustrativa (Español)",
+    figmaNode: "Node 987:11051",
+    route: "/illustrative-quote",
+    locale: "es",
+    description:
+      "W03 Ejemplo revisable de 4 piezas; subtotal estimado de servicio de $356 ilustrativo",
+  },
+  {
+    id: "c24q-en",
+    name: "C24-Q · Illustrative Quote Overview (English)",
+    figmaNode: "Node 412:1140",
+    route: "/illustrative-quote",
+    locale: "en",
+    description:
+      "W03 Reviewable example based on corrected 4-piece inventory; illustrative $356 subtotal",
+  },
+  {
     id: "c23c-es",
     name: "C23-C · Corregir Detalles del Objeto (Español)",
     figmaNode: "Node 987:10439",

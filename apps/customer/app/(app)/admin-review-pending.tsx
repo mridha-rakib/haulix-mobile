@@ -60,8 +60,11 @@ export default function AdminReviewPendingScreen() {
   }, [handleBack]);
 
   const handleApprovedExample = useCallback(() => {
-    setNoticeMessage(t("c24admAdminReviewPending.noticeApprovedExample"));
-  }, [t]);
+    router.push({
+      pathname: "/admin-review-resolved",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleProvideMoreDetail = useCallback(() => {
     router.push({
@@ -71,8 +74,11 @@ export default function AdminReviewPendingScreen() {
   }, [router, params.previewLocale]);
 
   const handleChangesExample = useCallback(() => {
-    setNoticeMessage(t("c24admAdminReviewPending.noticeChangesExample"));
-  }, [t]);
+    router.push({
+      pathname: "/admin-clarification-requested",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

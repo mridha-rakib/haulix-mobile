@@ -76,8 +76,11 @@ export default function CustomerConfirmedItemsScreen() {
   }, [handleBack]);
 
   const handleCalculateQuote = useCallback(() => {
-    setNoticeMessage(t("c23sCustomerConfirmedItems.noticeQuoteProcessing"));
-  }, [t]);
+    router.push({
+      pathname: "/quote-processing",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleEditItems = useCallback(() => {
     router.push({
