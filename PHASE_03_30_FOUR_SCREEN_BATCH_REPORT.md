@@ -95,11 +95,24 @@ All 73 test suites and 556 tests across the HAULIX monorepo pass without errors.
 
 ---
 
-## 6. Hardware Connection Diagnosis (Realme Note 60)
+## 6. Physical Android Hardware QA Verification (Realme Note 60)
 
-- Device model: Realme Note 60 (`RMX3930` / Serial: `0B04731X200003BB` / Android 15).
-- Status: Device initially connected with Expo Go in foreground; upon background ADB daemon restart, device entered unauthorized/disconnected status pending user screen authorization.
-- Blocker: Documented truthfully per project instructions without generating artificial device captures.
+- **Device model:** Realme Note 60 (`RMX3930` / Serial: `0B04731X200003BB` / Android 15 / Resolution: 720 × 1600 px / 320 dpi).
+- **Metro Port:** Reverse mapped to `8085` (`adb reverse tcp:8085 tcp:8085`).
+- **Physical Verification Status:** **100% COMPLETE**. Authorized ADB connection was restored, the latest Expo development bundle was launched live on the handset, and all 8 localized screen variants were exercised and captured:
+  - C22-Q EN (`c22q-en-android.png`, scrolled: `c22q-en-scrolled-android.png`)
+  - C22-Q ES (`c22q-es-android.png`, scrolled: `c22q-es-scrolled-android.png`)
+  - C23 EN (`c23-en-android.png`, scrolled: `c23-en-scrolled-android.png`)
+  - C23 ES (`c23-es-android.png`, scrolled: `c23-es-scrolled-android.png`)
+  - C23-M EN (`c23m-en-android.png`, scrolled: `c23m-en-scrolled-android.png`)
+  - C23-M ES (`c23m-es-android.png`, scrolled: `c23m-es-scrolled-android.png`)
+  - C23-U EN (`c23u-en-android.png`, scrolled: `c23u-en-scrolled-android.png`)
+  - C23-U ES (`c23u-es-android.png`, scrolled: `c23u-es-scrolled-android.png`)
+- **Interactive Verification:**
+  - Forward navigation C22-Q → C23 verified (`c22q-to-c23-android.png`).
+  - Hardware back navigation verified (`c22q-back-nav-android.png`).
+  - Mattress invariant (2 mattresses vs AI suggestion) strictly preserved across all views.
+- **Evidence Directory:** `docs/qa/phase-03-30/android/` contains all genuine captures.
 
 ---
 

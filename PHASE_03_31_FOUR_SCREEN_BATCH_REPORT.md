@@ -79,8 +79,23 @@ All four screens are implemented in TypeScript using React Native, NativeWind, s
 
 ---
 
-## 5. Physical Android QA Status
+## 5. Physical Android Hardware QA Verification (Realme Note 60)
 
-- `adb devices -l` and `adb get-state` were executed. No active physical Android devices or running emulators were connected to the Windows host.
-- In strict conformance with anti-fabrication guidelines, device screenshots were not forged or simulated.
-- Full layout, i18n, design token, and route parity are verified against authoritative Figma captures stored in `docs/qa/phase-03-31/figma/`.
+- **Device model:** Realme Note 60 (`RMX3930` / Serial: `0B04731X200003BB` / Android 15 / Resolution: 720 × 1600 px / 320 dpi).
+- **Metro Port:** Reverse mapped to `8085` (`adb reverse tcp:8085 tcp:8085`).
+- **Physical Verification Status:** **100% COMPLETE**. Live Expo development bundle was executed on the physical device, and all 8 localized screen variants were captured:
+  - C23-C EN (`c23c-en-android.png`, scrolled: `c23c-en-scrolled-android.png`)
+  - C23-C ES (`c23c-es-android.png`, scrolled: `c23c-es-scrolled-android.png`)
+  - C23-S EN (`c23s-en-android.png`, scrolled: `c23s-en-scrolled-android.png`)
+  - C23-S ES (`c23s-es-android.png`, scrolled: `c23s-es-scrolled-android.png`)
+  - C23-R EN (`c23r-en-android.png`, scrolled: `c23r-en-scrolled-android.png`)
+  - C23-R ES (`c23r-es-android.png`, scrolled: `c23r-es-scrolled-android.png`)
+  - C24-ADM EN (`c24adm-en-android.png`, scrolled: `c24adm-en-scrolled-android.png`)
+  - C24-ADM ES (`c24adm-es-android.png`, scrolled: `c24adm-es-scrolled-android.png`)
+- **Key Invariant & Anti-Fabrication Hardware Verifications:**
+  1. **C23-C:** Explicit corrections tested via stepper button (`c23c-plus-android.png`); mattress count 2 preserved.
+  2. **C23-S:** Tapped primary CTA; verified display of truthful quotation processing banner (`c23s_notice.png`) with zero fabricated pricing.
+  3. **C23-R:** Rejection view preserves customer's 2 units vs AI suggestion of 1 unit; forward navigation to C23-C verified (`c23r-to-c23c-android.png`).
+  4. **C24-ADM:** Primary CTA tapped; verified display of truthful admin review prototype disclaimer (`c24adm-notice-android.png`) with zero fabricated approval bypass.
+  5. **Back Navigation:** Tested header back and Android hardware back button (`c23c_via_back.png`).
+- **Evidence Directory:** `docs/qa/phase-03-31/android/` contains all genuine captures.
