@@ -18,6 +18,75 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c25a-es",
+    name: "C25-A · ¿Aceptar este alcance ilustrativo? (Español)",
+    figmaNode: "Node 987:11278",
+    route: "/quote-acceptance-review",
+    locale: "es",
+    description:
+      "W03 Revisión de alcance demo de $356; 4 piezas confirmadas sin cobro ni reserva real",
+  },
+  {
+    id: "c25a-en",
+    name: "C25-A · Accept This Illustrated Scope? (English)",
+    figmaNode: "Node 412:1335",
+    route: "/quote-acceptance-review",
+    locale: "en",
+    description:
+      "W03 Review illustrative $356 demo scope; 4 confirmed pieces without actual booking or charge",
+  },
+  {
+    id: "c25e-es",
+    name: "C25-E · Este precio todavía no puede emitirse (Español)",
+    figmaNode: "Node 987:11343",
+    route: "/unapproved-rate-rules",
+    locale: "es",
+    description: "W03 Configuración de precios no disponible; solicitud de revisión administrativa",
+  },
+  {
+    id: "c25e-en",
+    name: "C25-E · This Price Cannot Be Issued Yet (English)",
+    figmaNode: "Node 412:1388",
+    route: "/unapproved-rate-rules",
+    locale: "en",
+    description: "W03 Pricing configuration unavailable; service-rate review request to Admin",
+  },
+  {
+    id: "c26a-es",
+    name: "C26-A · Alcance de la cotización revisado (Español)",
+    figmaNode: "Node 987:11445",
+    route: "/scope-accepted",
+    locale: "es",
+    description:
+      "W03 Aceptación del alcance registrada (prototipo); aviso de próximos pasos hacia W04",
+  },
+  {
+    id: "c26a-en",
+    name: "C26-A · Quote Scope Reviewed (English)",
+    figmaNode: "Node 412:1470",
+    route: "/scope-accepted",
+    locale: "en",
+    description:
+      "W03 Scope acceptance recorded (prototype); next required steps guidance towards W04",
+  },
+  {
+    id: "c26r-es",
+    name: "C26-R · No se pudo registrar tu decisión (Español)",
+    figmaNode: "Node 987:11501",
+    route: "/scope-acceptance-recovery",
+    locale: "es",
+    description: "W03 Error al guardar sin crear reserva; reintento seguro con datos preservados",
+  },
+  {
+    id: "c26r-en",
+    name: "C26-R · Couldn't Record Your Decision (English)",
+    figmaNode: "Node 412:1517",
+    route: "/scope-acceptance-recovery",
+    locale: "en",
+    description:
+      "W03 Save failed with no booking created; safe retry preserving confirmed items and draft",
+  },
+  {
     id: "c24f-es",
     name: "C24-F · Estimación no disponible (Español)",
     figmaNode: "Node 987:10837",

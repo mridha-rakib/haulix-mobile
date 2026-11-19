@@ -65,8 +65,11 @@ export default function ItemizedQuoteScreen() {
   }, [handleBack]);
 
   const handleReviewAcceptance = useCallback(() => {
-    setNoticeMessage(t("c25ItemizedQuote.noticeAcceptanceScheduled"));
-  }, [t]);
+    router.push({
+      pathname: "/quote-acceptance-review",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleChangeInventory = useCallback(() => {
     router.push({
@@ -76,8 +79,11 @@ export default function ItemizedQuoteScreen() {
   }, [router, params.previewLocale]);
 
   const handleUnavailableState = useCallback(() => {
-    setNoticeMessage(t("c25ItemizedQuote.noticeUnavailableScheduled"));
-  }, [t]);
+    router.push({
+      pathname: "/unapproved-rate-rules",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

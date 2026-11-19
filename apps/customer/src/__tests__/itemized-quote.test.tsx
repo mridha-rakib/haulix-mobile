@@ -20,11 +20,13 @@ describe("C25 Itemized Quote & Terms — English (Node 412:1260) & Spanish (Node
     expect(navContent).toContain('route: "/itemized-quote"');
   });
 
-  it("verifies upstream C24-Q routes to C25, and C25 connects to C24-REV and C24-Q", () => {
+  it("verifies upstream C24-Q routes to C25, and C25 connects to C25-A, C25-E, and C24-REV", () => {
     const illustrativeContent = fs.readFileSync(illustrativeRoutePath, "utf8");
     expect(illustrativeContent).toContain('pathname: "/itemized-quote"');
 
     const routeContent = fs.readFileSync(routePath, "utf8");
+    expect(routeContent).toContain('pathname: "/quote-acceptance-review"');
+    expect(routeContent).toContain('pathname: "/unapproved-rate-rules"');
     expect(routeContent).toContain('pathname: "/quote-revision"');
     expect(routeContent).toContain('pathname: "/illustrative-quote"');
   });
@@ -78,10 +80,9 @@ describe("C25 Itemized Quote & Terms — English (Node 412:1260) & Spanish (Node
     expect(es.c25ItemizedQuote.tertiaryCta).toBe("Ver estado de precio no disponible  ›");
   });
 
-  it("verifies price disclosure guidance and notice banners", () => {
+  it("verifies price disclosure guidance and honest disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
-    expect(routeContent).toContain("noticeAcceptanceScheduled");
-    expect(routeContent).toContain("noticeUnavailableScheduled");
+    expect(routeContent).toContain("subtotalTariffNote");
     expect(routeContent).toContain("footerDemo");
     expect(routeContent).toContain("footerSrs");
   });
