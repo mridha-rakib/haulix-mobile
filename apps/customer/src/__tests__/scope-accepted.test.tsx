@@ -46,11 +46,11 @@ describe("C26-A Scope Accepted — English (Node 412:1470) & Spanish (Node 987:1
     expect(es.c26aScopeAccepted.secondaryCta).toBe("Volver a la estimación detallada  ›");
   });
 
-  it("verifies non-fabrication constraints, upcoming W04 banner, and honest disclaimers", () => {
+  it("verifies non-fabrication constraints, W03 to W04 navigation transition, and honest disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c26aScopeAccepted.footerDemo");
     expect(routeContent).toContain("c26aScopeAccepted.footerSrs");
-    expect(routeContent).toContain("c26aScopeAccepted.noticeW04Upcoming");
+    expect(routeContent).toContain('pathname: "/choose-service-time"');
     expect(routeContent).not.toContain("dispatchDriver");
     expect(routeContent).not.toContain("createBookingReceipt");
   });

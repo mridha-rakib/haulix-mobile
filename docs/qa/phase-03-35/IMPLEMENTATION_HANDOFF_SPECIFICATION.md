@@ -1,4 +1,5 @@
 # HAULIX Customer App — Phase 03.35
+
 ## W04 Implementation Handoff Specification
 
 **Target Implementation Phase:** Phase 03.36 (Frontend Application Routes)  
@@ -10,12 +11,12 @@
 
 The following routes are proposed for the upcoming application implementation phase:
 
-| Screen ID | Screen Name | Proposed Route File | Route Path |
-| :--- | :--- | :--- | :--- |
-| **C27** | Choose Your Service Time | `apps/customer/app/(app)/choose-service-time.tsx` | `/choose-service-time` |
-| **C27-A** | Request Service ASAP | `apps/customer/app/(app)/request-service-asap.tsx` | `/request-service-asap` |
-| **C27-S** | Select Available Window | `apps/customer/app/(app)/select-available-window.tsx` | `/select-available-window` |
-| **C28** | Review Your Booking | `apps/customer/app/(app)/review-booking.tsx` | `/review-booking` |
+| Screen ID | Screen Name              | Proposed Route File                                   | Route Path                 |
+| :-------- | :----------------------- | :---------------------------------------------------- | :------------------------- |
+| **C27**   | Choose Your Service Time | `apps/customer/app/(app)/choose-service-time.tsx`     | `/choose-service-time`     |
+| **C27-A** | Request Service ASAP     | `apps/customer/app/(app)/request-service-asap.tsx`    | `/request-service-asap`    |
+| **C27-S** | Select Available Window  | `apps/customer/app/(app)/select-available-window.tsx` | `/select-available-window` |
+| **C28**   | Review Your Booking      | `apps/customer/app/(app)/review-booking.tsx`          | `/review-booking`          |
 
 ---
 
@@ -24,6 +25,7 @@ The following routes are proposed for the upcoming application implementation ph
 Required translation dictionary namespaces for `en.ts` and `es.ts`:
 
 ### `c27ChooseServiceTime`
+
 - `screenTitle`: "Choose your service time" / "Elige cuándo necesitas el servicio"
 - `screenSubtitle`: "Choose an eligible ASAP request or a scheduled window." / "Elige una solicitud inmediata o un horario programado."
 - `progressLabel`: "01 / 04 · SCHEDULE" / "01 / 04 · HORARIO"
@@ -38,6 +40,7 @@ Required translation dictionary namespaces for `en.ts` and `es.ts`:
 - `noticeBody`: "Select a service option below. Availability must be checked by the server." / "Selecciona una opción. La disponibilidad debe validarse en el servidor."
 
 ### `c27aRequestServiceAsap`
+
 - `screenTitle`: "Request service ASAP" / "Solicitar servicio cuanto antes"
 - `screenSubtitle`: "A nearby verified driver must be eligible and online." / "Debe haber un conductor verificado, apto y disponible."
 - `eligibilityNote`: "ASAP · verified driver, location, capacity and schedule required" / "ASAP · sujeto a la ubicación, a los horarios y a un conductor elegible"
@@ -48,6 +51,7 @@ Required translation dictionary namespaces for `en.ts` and `es.ts`:
 - `noticeBody`: "No guaranteed driver or arrival time. Continue only if eligible capacity is confirmed." / "Sin conductor ni hora de llegada garantizados. Continuar solo si se valida la capacidad."
 
 ### `c27sSelectAvailableWindow`
+
 - `screenTitle`: "Select an available window" / "Elige un horario disponible"
 - `screenSubtitle`: "Same-day schedules need at least 60 minutes' notice." / "Las reservas para hoy requieren al menos 60 minutos de anticipación."
 - `selectDateHeader`: "SELECT A DATE" / "ELIGE UNA FECHA"
@@ -59,6 +63,7 @@ Required translation dictionary namespaces for `en.ts` and `es.ts`:
 - `noticeBody`: "Tue, Nov 3, 2026 • 10:00 AM–12:00 PM MST is an illustrative window, NOT live supply." / "Mar., 3 nov. 2026 • 10:00–12:00 MST es un horario ilustrativo; NO es disponibilidad real."
 
 ### `c28ReviewBooking`
+
 - `screenTitle`: "Review your booking" / "Revisa tu reserva"
 - `screenSubtitle`: "Confirm scope, sample estimate, time and cancellation policy." / "Confirma servicio, presupuesto de ejemplo, horario y condiciones."
 - `progressLabel`: "02 / 04 · TERMS" / "02 / 04 · CONDICIONES"
@@ -81,6 +86,7 @@ Required translation dictionary namespaces for `en.ts` and `es.ts`:
 ## 3. Automated-Test Acceptance Criteria
 
 For the future application implementation phase, the following test suites must be written:
+
 1. **`choose-service-time.test.tsx`:**
    - Verifies rendering in English and Spanish.
    - Verifies toggle between ASAP and Scheduled.

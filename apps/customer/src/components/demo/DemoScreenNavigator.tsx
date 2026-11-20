@@ -18,6 +18,77 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c27-es",
+    name: "C27 · Elige cuándo necesitas el servicio (Español)",
+    figmaNode: "Node 766:388",
+    route: "/choose-service-time",
+    locale: "es",
+    description:
+      "W04 Entrada a programación; selector entre servicio inmediato (ASAP) o franja programada",
+  },
+  {
+    id: "c27-en",
+    name: "C27 · Choose Your Service Time (English)",
+    figmaNode: "Node 763:2",
+    route: "/choose-service-time",
+    locale: "en",
+    description: "W04 Scheduling entry; choose between immediate ASAP service or scheduled window",
+  },
+  {
+    id: "c27a-es",
+    name: "C27-A · Solicitar servicio cuanto antes (Español)",
+    figmaNode: "Node 766:457",
+    route: "/request-service-asap",
+    locale: "es",
+    description:
+      "W04 Solicitud inmediata ASAP; criterios de conductor verificado sin horas garantizadas",
+  },
+  {
+    id: "c27a-en",
+    name: "C27-A · Request Service ASAP (English)",
+    figmaNode: "Node 763:71",
+    route: "/request-service-asap",
+    locale: "en",
+    description:
+      "W04 Immediate ASAP request; verified driver capacity criteria without guaranteed arrival times",
+  },
+  {
+    id: "c27s-es",
+    name: "C27-S · Elige un horario disponible (Español)",
+    figmaNode: "Node 766:519",
+    route: "/select-available-window",
+    locale: "es",
+    description:
+      "W04 Selector de fechas y franjas de 2 horas; aviso previo de 60 minutos para el mismo día",
+  },
+  {
+    id: "c27s-en",
+    name: "C27-S · Select Available Window (English)",
+    figmaNode: "Node 763:133",
+    route: "/select-available-window",
+    locale: "en",
+    description:
+      "W04 Date and 2-hour window chooser; 60-minute same-day minimum advance notice rule",
+  },
+  {
+    id: "c28-es",
+    name: "C28 · Revisa tu reserva (Español)",
+    figmaNode: "Node 766:782",
+    route: "/review-booking",
+    locale: "es",
+    description:
+      "W04 Revisión de reserva; cotización de $356, política de cancelación y casilla de consentimiento",
+  },
+  {
+    id: "c28-en",
+    name: "C28 · Review Your Booking (English)",
+    figmaNode: "Node 763:396",
+    route: "/review-booking",
+    locale: "en",
+    description:
+      "W04 Booking review; $356 illustrative quote, cancellation policy, and terms consent gate",
+  },
+  {
     id: "c25a-es",
     name: "C25-A · ¿Aceptar este alcance ilustrativo? (Español)",
     figmaNode: "Node 987:11278",

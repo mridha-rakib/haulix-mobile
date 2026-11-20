@@ -78,8 +78,11 @@ export default function ScopeAcceptedScreen() {
   }, [handleBack]);
 
   const handleContinueToW04 = useCallback(() => {
-    setNoticeMessage(t("c26aScopeAccepted.noticeW04Upcoming"));
-  }, [t]);
+    router.push({
+      pathname: "/choose-service-time",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleRevisitEstimate = useCallback(() => {
     router.push({

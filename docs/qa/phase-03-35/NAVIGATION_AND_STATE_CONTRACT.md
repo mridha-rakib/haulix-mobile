@@ -1,4 +1,5 @@
 # HAULIX Customer App — Phase 03.35
+
 ## W04 Navigation Topology & State Contract
 
 **Phase:** 03.35  
@@ -11,6 +12,7 @@
 ## 1. Upstream Navigation Entry
 
 The customer enters W04 from the verified Phase 03.34 endpoint:
+
 - **Source Route:** `apps/customer/app/(app)/scope-accepted.tsx` (C26-A)
 - **Source CTA:** `Continue to Schedule & Payment` / `Continuar a programación y pago`
 - **Destination:** C27 (`/choose-service-time`)
@@ -22,43 +24,47 @@ The customer enters W04 from the verified Phase 03.34 endpoint:
 The authoritative Figma prototype links between the 4 screens have been extracted directly from the Figma document:
 
 ### A. Screen C27 (763:2 / 766:388)
-| Trigger Element | Node ID (EN / ES) | Event | Target Screen | Node ID (EN / ES) | Action / Transition |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **"As soon as possible" Card** | `815:4572` / `818:4572` | `ON_CLICK` | **C27-A** | `763:71` / `766:457` | NAVIGATE / Dissolve (160ms) |
-| **"Request ASAP" Secondary CTA** | `763:65` / `766:431` | `ON_CLICK` | **C27-A** | `763:71` / `766:457` | NAVIGATE / Dissolve (160ms) |
-| **"Schedule for later" Card** | `815:4580` / `818:4580` | `ON_CLICK` | **C27-S** | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
-| **"Choose a scheduled time" Primary CTA** | `763:62` / `766:429` | `ON_CLICK` | **C27-S** | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
-| **"Preview unavailable slot" Link** | `763:68` / `766:433` | `ON_CLICK` | **C27-R** | `763:269` / `766:655` | NAVIGATE / Dissolve (160ms) |
+
+| Trigger Element                           | Node ID (EN / ES)       | Event      | Target Screen | Node ID (EN / ES)     | Action / Transition         |
+| :---------------------------------------- | :---------------------- | :--------- | :------------ | :-------------------- | :-------------------------- |
+| **"As soon as possible" Card**            | `815:4572` / `818:4572` | `ON_CLICK` | **C27-A**     | `763:71` / `766:457`  | NAVIGATE / Dissolve (160ms) |
+| **"Request ASAP" Secondary CTA**          | `763:65` / `766:431`    | `ON_CLICK` | **C27-A**     | `763:71` / `766:457`  | NAVIGATE / Dissolve (160ms) |
+| **"Schedule for later" Card**             | `815:4580` / `818:4580` | `ON_CLICK` | **C27-S**     | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
+| **"Choose a scheduled time" Primary CTA** | `763:62` / `766:429`    | `ON_CLICK` | **C27-S**     | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
+| **"Preview unavailable slot" Link**       | `763:68` / `766:433`    | `ON_CLICK` | **C27-R**     | `763:269` / `766:655` | NAVIGATE / Dissolve (160ms) |
 
 ### B. Screen C27-A (763:71 / 766:457)
-| Trigger Element | Node ID (EN / ES) | Event | Target Screen | Node ID (EN / ES) | Action / Transition |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **"Continue if available" Primary CTA** | `763:124` / `766:498` | `ON_CLICK` | **C28** | `763:396` / `766:782` | NAVIGATE / Dissolve (160ms) |
-| **"No driver available" Secondary CTA** | `763:127` / `766:500` | `ON_CLICK` | **C27-N** | `763:336` / `766:722` | NAVIGATE / Dissolve (160ms) |
-| **"Change timing" Tertiary Link** | `763:130` / `766:502` | `ON_CLICK` | **C27** | `763:2` / `766:388` | NAVIGATE / Dissolve (160ms) |
-| **"Schedule for later" Card** | `815:4597` / `818:4597` | `ON_CLICK` | **C27-S** | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
+
+| Trigger Element                         | Node ID (EN / ES)       | Event      | Target Screen | Node ID (EN / ES)     | Action / Transition         |
+| :-------------------------------------- | :---------------------- | :--------- | :------------ | :-------------------- | :-------------------------- |
+| **"Continue if available" Primary CTA** | `763:124` / `766:498`   | `ON_CLICK` | **C28**       | `763:396` / `766:782` | NAVIGATE / Dissolve (160ms) |
+| **"No driver available" Secondary CTA** | `763:127` / `766:500`   | `ON_CLICK` | **C27-N**     | `763:336` / `766:722` | NAVIGATE / Dissolve (160ms) |
+| **"Change timing" Tertiary Link**       | `763:130` / `766:502`   | `ON_CLICK` | **C27**       | `763:2` / `766:388`   | NAVIGATE / Dissolve (160ms) |
+| **"Schedule for later" Card**           | `815:4597` / `818:4597` | `ON_CLICK` | **C27-S**     | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
 
 ### C. Screen C27-S (763:133 / 766:519)
-| Trigger Element | Node ID (EN / ES) | Event | Target Screen | Node ID (EN / ES) | Action / Transition |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **"Continue to review" Primary CTA** | `763:193` / `766:560` | `ON_CLICK` | **C28** | `763:396` / `766:782` | NAVIGATE / Dissolve (160ms) |
-| **"Try invalid same-day time" CTA** | `763:196` / `766:562` | `ON_CLICK` | **C27-V** | `763:202` / `766:588` | NAVIGATE / Dissolve (160ms) |
-| **"Preview stale slot" Link** | `763:199` / `766:564` | `ON_CLICK` | **C27-R** | `763:269` / `766:655` | NAVIGATE / Dissolve (160ms) |
-| **"As soon as possible" Card** | `815:4606` / `818:4606` | `ON_CLICK` | **C27-A** | `763:71` / `766:457` | NAVIGATE / Dissolve (160ms) |
+
+| Trigger Element                      | Node ID (EN / ES)       | Event      | Target Screen | Node ID (EN / ES)     | Action / Transition         |
+| :----------------------------------- | :---------------------- | :--------- | :------------ | :-------------------- | :-------------------------- |
+| **"Continue to review" Primary CTA** | `763:193` / `766:560`   | `ON_CLICK` | **C28**       | `763:396` / `766:782` | NAVIGATE / Dissolve (160ms) |
+| **"Try invalid same-day time" CTA**  | `763:196` / `766:562`   | `ON_CLICK` | **C27-V**     | `763:202` / `766:588` | NAVIGATE / Dissolve (160ms) |
+| **"Preview stale slot" Link**        | `763:199` / `766:564`   | `ON_CLICK` | **C27-R**     | `763:269` / `766:655` | NAVIGATE / Dissolve (160ms) |
+| **"As soon as possible" Card**       | `815:4606` / `818:4606` | `ON_CLICK` | **C27-A**     | `763:71` / `766:457`  | NAVIGATE / Dissolve (160ms) |
 
 ### D. Screen C28 (763:396 / 766:782)
-| Trigger Element | Node ID (EN / ES) | Event | Target Screen | Node ID (EN / ES) | Action / Transition |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Consent Checkbox (Check Action)** | `768:774` / `768:783` | `ON_CLICK` | **C28-C** | `763:467` / `766:853` | NAVIGATE / Dissolve (160ms) |
-| **"Policy was updated" CTA** | `763:461` / `766:828` | `ON_CLICK` | **C28-U** | `763:536` / `766:922` | NAVIGATE / Dissolve (160ms) |
-| **"Edit service time" Link** | `763:464` / `766:830` | `ON_CLICK` | **C27-S** | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
+
+| Trigger Element                     | Node ID (EN / ES)     | Event      | Target Screen | Node ID (EN / ES)     | Action / Transition         |
+| :---------------------------------- | :-------------------- | :--------- | :------------ | :-------------------- | :-------------------------- |
+| **Consent Checkbox (Check Action)** | `768:774` / `768:783` | `ON_CLICK` | **C28-C**     | `763:467` / `766:853` | NAVIGATE / Dissolve (160ms) |
+| **"Policy was updated" CTA**        | `763:461` / `766:828` | `ON_CLICK` | **C28-U**     | `763:536` / `766:922` | NAVIGATE / Dissolve (160ms) |
+| **"Edit service time" Link**        | `763:464` / `766:830` | `ON_CLICK` | **C27-S**     | `763:133` / `766:519` | NAVIGATE / Dissolve (160ms) |
 
 ---
 
 ## 3. Data & State Contract
 
 ```typescript
-export type W04TimingMode = 'asap' | 'scheduled';
+export type W04TimingMode = "asap" | "scheduled";
 
 export interface W04ScheduleSelection {
   timingMode: W04TimingMode | null;

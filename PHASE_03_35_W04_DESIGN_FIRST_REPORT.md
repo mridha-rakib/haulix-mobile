@@ -1,5 +1,7 @@
 # HAULIX Customer Mobile App — Phase 03.35
+
 ## W04 Scheduling & Payment — Design-First Foundation Report
+
 ### Four Canonical Screens × English + Spanish = Eight Native Figma Frames
 
 **Project:** HAULIX Customer Mobile App  
@@ -14,12 +16,14 @@
 ## 1. Executive Summary
 
 Phase 03.35 establishes the implementation-ready design foundation for **W04 Scheduling & Payment**, covering the earliest four sequential screens of the documented customer journey:
+
 1. **C27:** Choose your service time / Elige cuándo necesitas el servicio
 2. **C27-A:** Request service ASAP / Solicitar servicio cuanto antes
 3. **C27-S:** Select an available window / Elige un horario disponible
 4. **C28:** Review your booking / Revisa tu reserva
 
 All 8 native editable frames (4 English + 4 Spanish) have been audited, inspected, and cross-referenced directly from the authoritative Figma master sections on Page `1:2`:
+
 - **English Master Section `758:2`:** `W04 — ENGLISH | Scheduling • Terms • Stripe Authorization • Recovery • Booking`
 - **Spanish Master Section `758:3`:** `W04 — ESPAÑOL | Programación • Términos • Autorización • Recuperación • Reserva`
 
@@ -29,12 +33,12 @@ High-resolution visual evidence has been captured and stored under `docs/qa/phas
 
 ## 2. Canonical Screen Manifest
 
-| Screen ID | Title (EN / ES) | Canonical Node ID (EN / ES) | Frame Dimensions | SRS Traceability |
-| :--- | :--- | :--- | :--- | :--- |
-| **C27** | Choose your service time /<br>Elige cuándo necesitas el servicio | `763:2` / `766:388` | 430 × 990 px /<br>430 × 1023 px | `SCH-01`, `SCH-02` |
-| **C27-A** | Request service ASAP /<br>Solicitar servicio cuanto antes | `763:71` / `766:457` | 430 × 905 px /<br>430 × 905 px | `SCH-01`, `SCH-03` |
-| **C27-S** | Select an available window /<br>Elige un horario disponible | `763:133` / `766:519` | 430 × 1198 px /<br>430 × 1215 px | `SCH-01`, `SCH-04` |
-| **C28** | Review your booking /<br>Revisa tu reserva | `763:396` / `766:782` | 430 × 1195 px /<br>430 × 1180 px | `BK-01`, `BK-02`, `BK-03` |
+| Screen ID | Title (EN / ES)                                                  | Canonical Node ID (EN / ES) | Frame Dimensions                 | SRS Traceability          |
+| :-------- | :--------------------------------------------------------------- | :-------------------------- | :------------------------------- | :------------------------ |
+| **C27**   | Choose your service time /<br>Elige cuándo necesitas el servicio | `763:2` / `766:388`         | 430 × 990 px /<br>430 × 1023 px  | `SCH-01`, `SCH-02`        |
+| **C27-A** | Request service ASAP /<br>Solicitar servicio cuanto antes        | `763:71` / `766:457`        | 430 × 905 px /<br>430 × 905 px   | `SCH-01`, `SCH-03`        |
+| **C27-S** | Select an available window /<br>Elige un horario disponible      | `763:133` / `766:519`       | 430 × 1198 px /<br>430 × 1215 px | `SCH-01`, `SCH-04`        |
+| **C28**   | Review your booking /<br>Revisa tu reserva                       | `763:396` / `766:782`       | 430 × 1195 px /<br>430 × 1180 px | `BK-01`, `BK-02`, `BK-03` |
 
 ---
 
@@ -57,7 +61,7 @@ High-resolution visual evidence has been captured and stored under `docs/qa/phas
 
 ## 4. Key Architectural & Safety Invariants
 
-1. **Clean Prototype Separation:** All scheduling screens carry explicit disclaimers (*"UI PROTOTYPE · Illustrative data and payments · Not a real booking"* / *"PROTOTIPO UI · Datos y pagos simulados · No es reserva real"*).
+1. **Clean Prototype Separation:** All scheduling screens carry explicit disclaimers (_"UI PROTOTYPE · Illustrative data and payments · Not a real booking"_ / _"PROTOTIPO UI · Datos y pagos simulados · No es reserva real"_).
 2. **Pricing Transparency:** Quote remains non-binding ($356.00 illustrative W03 subtotal).
 3. **Cancellation Terms Enforcement:** In C28, the primary action button is disabled until the customer explicitly checks the consent checkbox for booking and cancellation terms.
 4. **Strict Safety Guardrails:** No live Stripe API calls, no payment authorization, no automatic driver assignment, and no backend booking records created.
@@ -73,6 +77,7 @@ The design foundation for W04 screens C27, C27-A, C27-S, and C28 is **100% compl
 ## 6. Strict Hard Stop
 
 In strict compliance with Phase 03.35 instructions:
+
 - **Zero production application routes were added or modified.**
 - **No real Stripe or backend integrations were built.**
 - **Work terminates here pending explicit authorization.**
