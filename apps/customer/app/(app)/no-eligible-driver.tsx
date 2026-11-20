@@ -24,6 +24,7 @@ import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getEffectiveServiceType,
   getW04Draft,
+  recordFeeFreeCancellation,
   subscribeToW04Draft,
   updateW04Draft,
 } from "../../src/fixtures/c36Scheduling";
@@ -137,8 +138,12 @@ export default function NoEligibleDriverScreen() {
   }, [router, params.previewLocale]);
 
   const handleCancelWithoutFee = useCallback(() => {
-    setNoticeMessage(t("c27nNoEligibleDriver.futureNoticeCancelWithoutFee"));
-  }, [t]);
+    recordFeeFreeCancellation();
+    router.push({
+      pathname: "/no-driver-fee-free-cancellation",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>

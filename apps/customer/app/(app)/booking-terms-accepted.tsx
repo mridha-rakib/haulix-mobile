@@ -138,8 +138,11 @@ export default function BookingTermsAcceptedScreen() {
   }, [router, params.previewLocale]);
 
   const handleContinueToSecurePayment = useCallback(() => {
-    setNoticeMessage(t("c28cBookingTermsAccepted.futureNoticePaymentHandoff"));
-  }, [t]);
+    router.push({
+      pathname: "/choose-payment-method",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const selectedDate = SAMPLE_DATES.find((d) => d.id === draft.selectedDateId) ?? SAMPLE_DATES[0];
   const selectedWindow =

@@ -40,9 +40,9 @@ describe("C27-N No Eligible Driver Found — English (Node 763:336) & Spanish (N
     expect(es.c27nNoEligibleDriver.cancelCta).toBe("Cancelar sin cargo");
   });
 
-  it("verifies fee-free cancellation notice, no fake drivers, and honest boundary disclaimers", () => {
+  it("verifies fee-free cancellation routing, no fake drivers, and honest boundary disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
-    expect(routeContent).toContain("c27nNoEligibleDriver.futureNoticeCancelWithoutFee");
+    expect(routeContent).toContain('pathname: "/no-driver-fee-free-cancellation"');
     expect(routeContent).toContain("c27nNoEligibleDriver.uiNote");
     expect(routeContent).not.toContain("chargeCancellationFee");
     expect(routeContent).not.toContain("fakeDriverAssigned");

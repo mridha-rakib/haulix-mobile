@@ -52,7 +52,7 @@ describe("C28 Review Your Booking — English (Node 763:396) & Spanish (Node 766
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c28ReviewBooking.consentValidationError");
     expect(routeContent).toContain('pathname: "/booking-terms-accepted"');
-    expect(routeContent).toContain("c28ReviewBooking.futureNoticePolicyUpdated");
+    expect(routeContent).toContain('pathname: "/booking-terms-changed"');
     expect(routeContent).toContain("c28ReviewBooking.uiNote");
     expect(routeContent).not.toContain("chargeStripePayment");
     expect(routeContent).not.toContain("createLiveBooking");

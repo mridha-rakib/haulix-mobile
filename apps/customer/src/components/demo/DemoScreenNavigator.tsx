@@ -18,6 +18,78 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c28u-es",
+    name: "C28-U · Las condiciones de reserva han cambiado (Español)",
+    figmaNode: "Node 766:922",
+    route: "/booking-terms-changed",
+    locale: "es",
+    description:
+      "W04 Actualización de políticas durante la reserva; invalidación de consentimiento anterior",
+  },
+  {
+    id: "c28u-en",
+    name: "C28-U · Booking Terms Changed (English)",
+    figmaNode: "Node 763:536",
+    route: "/booking-terms-changed",
+    locale: "en",
+    description:
+      "W04 Policy update during booking; invalidates previous terms consent until re-reviewed",
+  },
+  {
+    id: "c27x-es",
+    name: "C27-X · Sin conductor · Cancelación sin cargo (Español)",
+    figmaNode: "Node 773:993",
+    route: "/no-driver-fee-free-cancellation",
+    locale: "es",
+    description:
+      "W04 Cierre sin cargo ($0.00) tras no encontrar conductores disponibles para solicitud inmediata",
+  },
+  {
+    id: "c27x-en",
+    name: "C27-X · No Driver Found · Cancel Without Fee (English)",
+    figmaNode: "Node 773:776",
+    route: "/no-driver-fee-free-cancellation",
+    locale: "en",
+    description:
+      "W04 Fee-free exit ($0.00 charge) when no eligible driver could be assigned to ASAP request",
+  },
+  {
+    id: "c29-es",
+    name: "C29 · Elige el método de pago (Español)",
+    figmaNode: "Node 766:991",
+    route: "/choose-payment-method",
+    locale: "es",
+    description:
+      "W04 Selección de método de pago tras consentimiento de términos; tarjeta o billetera digital",
+  },
+  {
+    id: "c29-en",
+    name: "C29 · Choose Payment Method (English)",
+    figmaNode: "Node 763:605",
+    route: "/choose-payment-method",
+    locale: "en",
+    description:
+      "W04 Payment method selection after terms consent; credit card or digital wallet authorization",
+  },
+  {
+    id: "c29m-es",
+    name: "C29-M · Configuración segura de tarjeta (Español)",
+    figmaNode: "Node 814:4604",
+    route: "/secure-card-setup",
+    locale: "es",
+    description:
+      "W04 Demostración no interactiva de pasarela segura con proveedor externo (Stripe)",
+  },
+  {
+    id: "c29m-en",
+    name: "C29-M · Secure Card Setup / Provider Handoff (English)",
+    figmaNode: "Node 814:4531",
+    route: "/secure-card-setup",
+    locale: "en",
+    description:
+      "W04 Non-interactive secure provider handoff demonstration; zero sensitive data collection",
+  },
+  {
     id: "c27v-es",
     name: "C27-V · Hora no válida para hoy (Español)",
     figmaNode: "Node 766:588",

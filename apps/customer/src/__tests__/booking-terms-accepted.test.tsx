@@ -48,9 +48,9 @@ describe("C28-C Terms Accepted for This Quote — English (Node 763:467) & Spani
     expect(es.c28cBookingTermsAccepted.secondaryCta).toBe("Revisar condiciones");
   });
 
-  it("verifies explicit terms consent state, payment handoff boundary, and non-fabrication disclaimers", () => {
+  it("verifies explicit terms consent state, payment handoff routing, and non-fabrication disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
-    expect(routeContent).toContain("c28cBookingTermsAccepted.futureNoticePaymentHandoff");
+    expect(routeContent).toContain('pathname: "/choose-payment-method"');
     expect(routeContent).toContain("c28cBookingTermsAccepted.uiNote");
     expect(routeContent).not.toContain("chargeStripePayment");
     expect(routeContent).not.toContain("createLiveBooking");

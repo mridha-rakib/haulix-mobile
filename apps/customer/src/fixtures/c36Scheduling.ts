@@ -23,6 +23,8 @@
 
 export type TimingMode = "asap" | "scheduled";
 
+export type PaymentMethodType = "card" | "wallet" | null;
+
 export type SchedulingRecoveryState =
   | "asap_request_demo"
   | "scheduled_window_demo"
@@ -33,6 +35,10 @@ export type SchedulingRecoveryState =
   | "review_ready_demo"
   | "local_terms_acknowledged"
   | "terms_acknowledgement_invalidated"
+  | "terms_changed"
+  | "no_driver_cancelled"
+  | "payment_method_selected"
+  | "secure_card_demo"
   | "backend_availability_unverified";
 
 export type InventorySourceMode = "active_w03_journey" | "w04_figma_demo";
@@ -100,6 +106,7 @@ export interface W04CustomerDraft {
   termsAcknowledgedQuote: string;
   recoveryState: SchedulingRecoveryState;
   inventorySource: InventorySourceMode;
+  selectedPaymentMethod: PaymentMethodType;
 }
 
 export const SAMPLE_DATES: readonly SchedulingDateOption[] = [
@@ -190,6 +197,7 @@ export const DEFAULT_W04_DRAFT: W04CustomerDraft = {
   termsAcknowledgedQuote: "$356.00",
   recoveryState: "backend_availability_unverified",
   inventorySource: "w04_figma_demo",
+  selectedPaymentMethod: "card",
 };
 
 // In-memory persistent draft store for active user session
@@ -236,10 +244,40 @@ export function acknowledgeTermsConsent(): W04CustomerDraft {
 /**
  * Invalidate terms consent if scope, quote or policy changes.
  */
-export function invalidateTermsConsent(): W04CustomerDraft {
+export function invalidateTermsConsent(reason = "policy_updated"): W04CustomerDraft {
   return updateW04Draft({
     termsConsentAccepted: false,
-    recoveryState: "terms_acknowledgement_invalidated",
+    termsVersion: "2026.11-v2",
+    recoveryState:
+      reason === "policy_updated" ? "terms_changed" : "terms_acknowledgement_invalidated",
+  });
+}
+
+/**
+ * Select a payment method for the active booking draft.
+ */
+export function selectPaymentMethod(method: PaymentMethodType): W04CustomerDraft {
+  return updateW04Draft({
+    selectedPaymentMethod: method,
+    recoveryState: "payment_method_selected",
+  });
+}
+
+/**
+ * Record fee-free cancellation when no driver could be found.
+ */
+export function recordFeeFreeCancellation(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "no_driver_cancelled",
+  });
+}
+
+/**
+ * Record secure card setup demonstration state.
+ */
+export function recordSecureCardSetupDemo(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "secure_card_demo",
   });
 }
 

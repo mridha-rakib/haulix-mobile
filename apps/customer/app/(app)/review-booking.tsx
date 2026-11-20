@@ -26,6 +26,7 @@ import {
   getEffectiveConfirmedItems,
   getEffectiveServiceType,
   getW04Draft,
+  invalidateTermsConsent,
   SAMPLE_DATES,
   SAMPLE_WINDOWS,
   subscribeToW04Draft,
@@ -175,8 +176,12 @@ export default function ReviewBookingScreen() {
   }, [draft.termsConsentAccepted, router, params.previewLocale, t]);
 
   const handlePolicyUpdated = useCallback(() => {
-    setNoticeMessage(t("c28ReviewBooking.futureNoticePolicyUpdated"));
-  }, [t]);
+    invalidateTermsConsent();
+    router.push({
+      pathname: "/booking-terms-changed",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleEditServiceTime = useCallback(() => {
     const editRoute = getFallbackRoute(draft.timingMode);
