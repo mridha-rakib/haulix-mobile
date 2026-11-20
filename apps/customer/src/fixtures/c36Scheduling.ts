@@ -1,21 +1,41 @@
 /**
- * HAULIX Customer Mobile App — Phase 03.36
- * Typed Contracts & Scheduling State Fixtures: W04 Scheduling & Booking Review
+ * HAULIX Customer Mobile App — Phase 03.36 / Phase 03.37
+ * Typed Contracts & Scheduling State Fixtures: W04 Scheduling, Recovery & Booking Review
  *
  * Authoritative Figma References:
  * - C27: Node 763:2 (EN) / Node 766:388 (ES) — Choose your service time (430 × 990 / 1023 px)
  * - C27-A: Node 763:71 (EN) / Node 766:457 (ES) — Request service ASAP (430 × 905 px)
  * - C27-S: Node 763:133 (EN) / Node 766:519 (ES) — Select an available window (430 × 1198 / 1215 px)
+ * - C27-V: Node 763:202 (EN) / Node 766:588 (ES) — Invalid same-day time (430 × 1044 px)
+ * - C27-R: Node 763:269 (EN) / Node 766:655 (ES) — Unavailable / Stale slot (430 × 1044 / 1079 px)
+ * - C27-N: Node 763:336 (EN) / Node 766:722 (ES) — No eligible driver found (430 × 805 px)
  * - C28: Node 763:396 (EN) / Node 766:782 (ES) — Review your booking (430 × 1195 / 1180 px)
+ * - C28-C: Node 763:467 (EN) / Node 766:853 (ES) — Terms accepted for this quote (430 × 1128 / 1178 px)
  *
  * CRITICAL ARCHITECTURAL CONSTRAINTS:
  * - Pure frontend prototype demonstration.
- * - Customer confirmed quantities (Queen mattresses = 2, total 4 pieces across 3 categories) are strictly preserved.
- * - Symmetrical illustrative subtotal is strictly $356.00 USD (not an approved Arizona tariff, not a guaranteed charge).
- * - Zero fabricated backend bookings, no real driver assignment, no live Stripe transactions.
+ * - Customer confirmed quantities from W03 (1 sofa, 2 queen mattresses, 1 dining table = 4 pieces across 3 categories)
+ *   are strictly preserved in the active customer journey.
+ * - Isolated Figma recreation fixture (1 sofa + 2 chairs) is available specifically for 1:1 Figma demo screen inspection.
+ * - Symmetrical illustrative subtotal is strictly $356.00 USD (non-binding demo subtotal).
+ * - Zero fabricated backend bookings, no real driver assignment, no live Stripe transactions, no fake cancellations.
  */
 
 export type TimingMode = "asap" | "scheduled";
+
+export type SchedulingRecoveryState =
+  | "asap_request_demo"
+  | "scheduled_window_demo"
+  | "invalid_same_day_example"
+  | "stale_window_example"
+  | "no_eligible_driver_example"
+  | "selected_window_requires_revalidation"
+  | "review_ready_demo"
+  | "local_terms_acknowledged"
+  | "terms_acknowledgement_invalidated"
+  | "backend_availability_unverified";
+
+export type InventorySourceMode = "active_w03_journey" | "w04_figma_demo";
 
 export interface SchedulingDateOption {
   id: string;
@@ -35,6 +55,33 @@ export interface ServiceWindowOption {
   shortEs: string;
 }
 
+export interface InventoryScopeDefinition {
+  piecesCount: number;
+  categoriesCount: number;
+  confirmedItemsEn: string;
+  confirmedItemsEs: string;
+  serviceTypeEn: string;
+  serviceTypeEs: string;
+}
+
+export const W03_CUSTOMER_CONFIRMED_INVENTORY: InventoryScopeDefinition = {
+  piecesCount: 4,
+  categoriesCount: 3,
+  confirmedItemsEn: "1 sofa, 2 queen mattresses, 1 dining table (4 pieces)",
+  confirmedItemsEs: "1 sofá, 2 colchones queen, 1 mesa de comedor (4 piezas)",
+  serviceTypeEn: "Junk Removal · 3 categories / 4 pieces",
+  serviceTypeEs: "Retiro de artículos · 3 categorías / 4 piezas",
+} as const;
+
+export const W04_FIGMA_DEMO_INVENTORY: InventoryScopeDefinition = {
+  piecesCount: 3,
+  categoriesCount: 2,
+  confirmedItemsEn: "1 sofa + 2 chairs",
+  confirmedItemsEs: "1 sofá + 2 sillas",
+  serviceTypeEn: "FURNITURE REMOVAL · 1 SOFA + 2 CHAIRS",
+  serviceTypeEs: "RETIRO DE MUEBLES · 1 SOFÁ + 2 SILLAS",
+} as const;
+
 export interface W04CustomerDraft {
   bookingId: string;
   customerName: string;
@@ -49,6 +96,10 @@ export interface W04CustomerDraft {
   selectedDateId: string;
   selectedWindowId: string;
   termsConsentAccepted: boolean;
+  termsVersion: string;
+  termsAcknowledgedQuote: string;
+  recoveryState: SchedulingRecoveryState;
+  inventorySource: InventorySourceMode;
 }
 
 export const SAMPLE_DATES: readonly SchedulingDateOption[] = [
@@ -135,6 +186,10 @@ export const DEFAULT_W04_DRAFT: W04CustomerDraft = {
   selectedDateId: "date-nov-03",
   selectedWindowId: "win-10-12",
   termsConsentAccepted: false,
+  termsVersion: "2026.11-v1",
+  termsAcknowledgedQuote: "$356.00",
+  recoveryState: "backend_availability_unverified",
+  inventorySource: "w04_figma_demo",
 };
 
 // In-memory persistent draft store for active user session
@@ -165,4 +220,49 @@ export function subscribeToW04Draft(listener: (draft: W04CustomerDraft) => void)
   return () => {
     listeners.delete(listener);
   };
+}
+
+/**
+ * Acknowledges terms locally for the active draft.
+ */
+export function acknowledgeTermsConsent(): W04CustomerDraft {
+  return updateW04Draft({
+    termsConsentAccepted: true,
+    recoveryState: "local_terms_acknowledged",
+    termsAcknowledgedQuote: currentDraft.illustrativeSubtotal,
+  });
+}
+
+/**
+ * Invalidate terms consent if scope, quote or policy changes.
+ */
+export function invalidateTermsConsent(): W04CustomerDraft {
+  return updateW04Draft({
+    termsConsentAccepted: false,
+    recoveryState: "terms_acknowledgement_invalidated",
+  });
+}
+
+/**
+ * Selects confirmed items text based on inventory source mode and language.
+ */
+export function getEffectiveConfirmedItems(draft: W04CustomerDraft, locale: string): string {
+  if (draft.inventorySource === "active_w03_journey") {
+    return locale === "es"
+      ? W03_CUSTOMER_CONFIRMED_INVENTORY.confirmedItemsEs
+      : W03_CUSTOMER_CONFIRMED_INVENTORY.confirmedItemsEn;
+  }
+  return locale === "es" ? draft.confirmedItemsEs : draft.confirmedItemsEn;
+}
+
+/**
+ * Selects service type title text based on inventory source mode and language.
+ */
+export function getEffectiveServiceType(draft: W04CustomerDraft, locale: string): string {
+  if (draft.inventorySource === "active_w03_journey") {
+    return locale === "es"
+      ? W03_CUSTOMER_CONFIRMED_INVENTORY.serviceTypeEs
+      : W03_CUSTOMER_CONFIRMED_INVENTORY.serviceTypeEn;
+  }
+  return draft.serviceType;
 }

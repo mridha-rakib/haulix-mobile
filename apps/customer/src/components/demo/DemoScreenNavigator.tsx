@@ -18,6 +18,73 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c27v-es",
+    name: "C27-V · Hora no válida para hoy (Español)",
+    figmaNode: "Node 766:588",
+    route: "/invalid-service-time",
+    locale: "es",
+    description: "W04 Aviso de hora del mismo día no disponible por margen mínimo de 60 minutos",
+  },
+  {
+    id: "c27v-en",
+    name: "C27-V · Invalid Same-Day Service Time (English)",
+    figmaNode: "Node 763:202",
+    route: "/invalid-service-time",
+    locale: "en",
+    description: "W04 Same-day slot blocked by 60-minute minimum advance notice rule",
+  },
+  {
+    id: "c27r-es",
+    name: "C27-R · Franja de servicio no disponible (Español)",
+    figmaNode: "Node 766:655",
+    route: "/service-window-unavailable",
+    locale: "es",
+    description: "W04 Franja seleccionada ocupada o caducada; selector de horarios actualizados",
+  },
+  {
+    id: "c27r-en",
+    name: "C27-R · Service Window Unavailable (English)",
+    figmaNode: "Node 763:269",
+    route: "/service-window-unavailable",
+    locale: "en",
+    description:
+      "W04 Selected window booked or stale; refreshed slots and immediate ASAP alternative",
+  },
+  {
+    id: "c27n-es",
+    name: "C27-N · No encontramos conductores disponibles (Español)",
+    figmaNode: "Node 766:722",
+    route: "/no-eligible-driver",
+    locale: "es",
+    description:
+      "W04 Sin conductores inmediatos con capacidad; programar después o cancelar sin cargo",
+  },
+  {
+    id: "c27n-en",
+    name: "C27-N · No Eligible Driver Found (English)",
+    figmaNode: "Node 763:336",
+    route: "/no-eligible-driver",
+    locale: "en",
+    description:
+      "W04 No verified drivers nearby with vehicle capacity; schedule later or cancel without fee",
+  },
+  {
+    id: "c28c-es",
+    name: "C28-C · Términos aceptados para esta cotización (Español)",
+    figmaNode: "Node 766:853",
+    route: "/booking-terms-accepted",
+    locale: "es",
+    description: "W04 Términos confirmados explícitamente; continuación a pago seguro demostrativo",
+  },
+  {
+    id: "c28c-en",
+    name: "C28-C · Terms Accepted for This Quote (English)",
+    figmaNode: "Node 763:467",
+    route: "/booking-terms-accepted",
+    locale: "en",
+    description: "W04 Terms consent explicitly acknowledged; continue to demo payment flow",
+  },
+  {
     id: "c27-es",
     name: "C27 · Elige cuándo necesitas el servicio (Español)",
     figmaNode: "Node 766:388",

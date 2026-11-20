@@ -19,6 +19,8 @@ describe("C27-S Select Available Window — English (Node 763:133) & Spanish (No
     expect(routeContent).toContain('pathname: "/review-booking"');
     expect(routeContent).toContain('pathname: "/request-service-asap"');
     expect(routeContent).toContain('pathname: "/choose-service-time"');
+    expect(routeContent).toContain('pathname: "/invalid-service-time"');
+    expect(routeContent).toContain('pathname: "/service-window-unavailable"');
   });
 
   it("verifies exact C27-S English and Spanish translation strings", () => {
@@ -47,8 +49,8 @@ describe("C27-S Select Available Window — English (Node 763:133) & Spanish (No
   it("verifies sample window selection, 60-minute notice policy disclosures, and disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c27sSelectAvailableWindow.availabilityDisclaimer");
-    expect(routeContent).toContain("c27sSelectAvailableWindow.futureNoticeInvalidTime");
-    expect(routeContent).toContain("c27sSelectAvailableWindow.futureNoticeStaleSlot");
+    expect(routeContent).toContain('pathname: "/invalid-service-time"');
+    expect(routeContent).toContain('pathname: "/service-window-unavailable"');
     expect(routeContent).toContain("c27sSelectAvailableWindow.uiNote");
     expect(routeContent).not.toContain("reserveSlotLive");
   });

@@ -19,6 +19,7 @@ describe("C27-A Request Service ASAP — English (Node 763:71) & Spanish (Node 7
     expect(routeContent).toContain('pathname: "/review-booking"');
     expect(routeContent).toContain('pathname: "/choose-service-time"');
     expect(routeContent).toContain('pathname: "/select-available-window"');
+    expect(routeContent).toContain('pathname: "/no-eligible-driver"');
   });
 
   it("verifies exact C27-A English and Spanish translation strings", () => {
@@ -43,7 +44,7 @@ describe("C27-A Request Service ASAP — English (Node 763:71) & Spanish (Node 7
   it("verifies ASAP eligibility notice, no-driver exception handling, and honest disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c27aRequestServiceAsap.asapEligibility");
-    expect(routeContent).toContain("c27aRequestServiceAsap.futureNoticeNoDriver");
+    expect(routeContent).toContain('pathname: "/no-eligible-driver"');
     expect(routeContent).toContain("c27aRequestServiceAsap.uiNote");
     expect(routeContent).not.toContain("dispatchDriver");
     expect(routeContent).not.toContain("guaranteedArrivalTime");

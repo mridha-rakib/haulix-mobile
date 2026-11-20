@@ -22,6 +22,7 @@ describe("C27 Choose Your Service Time — English (Node 763:2) & Spanish (Node 
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain('pathname: "/select-available-window"');
     expect(routeContent).toContain('pathname: "/request-service-asap"');
+    expect(routeContent).toContain('pathname: "/service-window-unavailable"');
     expect(routeContent).toContain('pathname: "/scope-accepted"');
   });
 
@@ -47,7 +48,7 @@ describe("C27 Choose Your Service Time — English (Node 763:2) & Spanish (Node 
   it("verifies honest availability checks, non-fabrication constraints, and footer disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c27ChooseServiceTime.uiNote");
-    expect(routeContent).toContain("c27ChooseServiceTime.futureNoticeUnavailable");
+    expect(routeContent).toContain('pathname: "/service-window-unavailable"');
     expect(routeContent).not.toContain("dispatchDriver");
     expect(routeContent).not.toContain("createBookingReceipt");
   });

@@ -21,7 +21,12 @@ import { useCallback, useEffect, useState } from "react";
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
-import { getW04Draft, subscribeToW04Draft, updateW04Draft } from "../../src/fixtures/c36Scheduling";
+import {
+  getEffectiveServiceType,
+  getW04Draft,
+  subscribeToW04Draft,
+  updateW04Draft,
+} from "../../src/fixtures/c36Scheduling";
 
 function TruckIcon() {
   return (
@@ -119,8 +124,12 @@ export default function RequestServiceAsapScreen() {
   }, [router, params.previewLocale]);
 
   const handleNoDriverAvailable = useCallback(() => {
-    setNoticeMessage(t("c27aRequestServiceAsap.futureNoticeNoDriver"));
-  }, [t]);
+    updateW04Draft({ recoveryState: "no_eligible_driver_example" });
+    router.push({
+      pathname: "/no-eligible-driver",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleChangeTiming = useCallback(() => {
     router.push({
@@ -200,7 +209,7 @@ export default function RequestServiceAsapScreen() {
             </View>
 
             <Text style={styles.serviceTitle} testID="c27a-service-title">
-              {draft.serviceType}
+              {getEffectiveServiceType(draft, currentLocale)}
             </Text>
             <Text style={styles.serviceNote}>{t("c27aRequestServiceAsap.serviceNote")}</Text>
 

@@ -22,6 +22,7 @@ import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "reac
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
+  getEffectiveServiceType,
   getW04Draft,
   subscribeToW04Draft,
   type TimingMode,
@@ -135,8 +136,12 @@ export default function ChooseServiceTimeScreen() {
   }, [router, params.previewLocale]);
 
   const handlePreviewUnavailable = useCallback(() => {
-    setNoticeMessage(t("c27ChooseServiceTime.futureNoticeUnavailable"));
-  }, [t]);
+    updateW04Draft({ recoveryState: "stale_window_example" });
+    router.push({
+      pathname: "/service-window-unavailable",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const selectedMode = draft.timingMode;
 
@@ -201,7 +206,7 @@ export default function ChooseServiceTimeScreen() {
             </View>
 
             <Text style={styles.serviceTitle} testID="c27-service-title">
-              {draft.serviceType}
+              {getEffectiveServiceType(draft, currentLocale)}
             </Text>
             <Text style={styles.serviceNote}>{t("c27ChooseServiceTime.serviceNote")}</Text>
 

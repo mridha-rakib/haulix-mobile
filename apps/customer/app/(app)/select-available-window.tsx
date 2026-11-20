@@ -22,6 +22,7 @@ import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "reac
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
+  getEffectiveServiceType,
   getW04Draft,
   SAMPLE_DATES,
   SAMPLE_WINDOWS,
@@ -141,12 +142,20 @@ export default function SelectAvailableWindowScreen() {
   }, [router, params.previewLocale]);
 
   const handleTryInvalidTime = useCallback(() => {
-    setNoticeMessage(t("c27sSelectAvailableWindow.futureNoticeInvalidTime"));
-  }, [t]);
+    updateW04Draft({ recoveryState: "invalid_same_day_example" });
+    router.push({
+      pathname: "/invalid-service-time",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handlePreviewStaleSlot = useCallback(() => {
-    setNoticeMessage(t("c27sSelectAvailableWindow.futureNoticeStaleSlot"));
-  }, [t]);
+    updateW04Draft({ recoveryState: "stale_window_example" });
+    router.push({
+      pathname: "/service-window-unavailable",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const selectedDate = SAMPLE_DATES.find((d) => d.id === draft.selectedDateId) ?? SAMPLE_DATES[0];
   const selectedWindow =
@@ -221,7 +230,7 @@ export default function SelectAvailableWindowScreen() {
             </View>
 
             <Text style={styles.serviceTitle} testID="c27s-service-title">
-              {draft.serviceType}
+              {getEffectiveServiceType(draft, currentLocale)}
             </Text>
             <Text style={styles.serviceNote}>{t("c27sSelectAvailableWindow.serviceNote")}</Text>
 

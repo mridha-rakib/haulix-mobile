@@ -29,6 +29,7 @@ import {
   C25A_DEFAULT_DRAFT,
   C26A_NEXT_REQUIRED_STEPS,
 } from "../../src/fixtures/c34ScopeAcceptance";
+import { updateW04Draft } from "../../src/fixtures/c36Scheduling";
 
 function useCustomerProfile(locale: "en" | "es") {
   const [profile, setProfile] = useState(() => getC10DemoProfile(locale));
@@ -78,6 +79,7 @@ export default function ScopeAcceptedScreen() {
   }, [handleBack]);
 
   const handleContinueToW04 = useCallback(() => {
+    updateW04Draft({ inventorySource: "active_w03_journey" });
     router.push({
       pathname: "/choose-service-time",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},

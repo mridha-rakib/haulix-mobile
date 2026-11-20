@@ -22,11 +22,13 @@ import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "reac
 import Svg, { Circle, Path } from "react-native-svg";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
+  acknowledgeTermsConsent,
+  getEffectiveConfirmedItems,
+  getEffectiveServiceType,
   getW04Draft,
   SAMPLE_DATES,
   SAMPLE_WINDOWS,
   subscribeToW04Draft,
-  updateW04Draft,
 } from "../../src/fixtures/c36Scheduling";
 
 function TruckIcon() {
@@ -153,20 +155,24 @@ export default function ReviewBookingScreen() {
   }, [handleBack]);
 
   const handleToggleConsent = useCallback(() => {
-    const nextConsent = !draft.termsConsentAccepted;
-    updateW04Draft({ termsConsentAccepted: nextConsent });
-    if (nextConsent) {
-      setValidationError(null);
-    }
-  }, [draft.termsConsentAccepted]);
+    acknowledgeTermsConsent();
+    setValidationError(null);
+    router.push({
+      pathname: "/booking-terms-accepted",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleContinueToPayment = useCallback(() => {
     if (!draft.termsConsentAccepted) {
       setValidationError(t("c28ReviewBooking.consentValidationError"));
       return;
     }
-    setNoticeMessage(t("c28ReviewBooking.futureNoticePaymentHandoff"));
-  }, [draft.termsConsentAccepted, t]);
+    router.push({
+      pathname: "/booking-terms-accepted",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [draft.termsConsentAccepted, router, params.previewLocale, t]);
 
   const handlePolicyUpdated = useCallback(() => {
     setNoticeMessage(t("c28ReviewBooking.futureNoticePolicyUpdated"));
@@ -192,7 +198,7 @@ export default function ReviewBookingScreen() {
   );
 
   const pickupArea = currentLocale === "es" ? draft.pickupAreaEs : draft.pickupAreaEn;
-  const confirmedItems = currentLocale === "es" ? draft.confirmedItemsEs : draft.confirmedItemsEn;
+  const confirmedItems = getEffectiveConfirmedItems(draft, currentLocale);
 
   return (
     <HaulixSafeArea>
@@ -255,7 +261,7 @@ export default function ReviewBookingScreen() {
             </View>
 
             <Text style={styles.serviceTitle} testID="c28-service-title">
-              {draft.serviceType}
+              {getEffectiveServiceType(draft, currentLocale)}
             </Text>
             <Text style={styles.serviceNote}>{t("c28ReviewBooking.serviceNote")}</Text>
 
