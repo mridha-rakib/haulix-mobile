@@ -11,22 +11,23 @@ In strict conformance with Section 20 and the Final Completion Standard:
 **OFFICIAL PHASE 03.44 CLASSIFICATION:**
 
 ### `IMPLEMENTATION REMEDIATED — FINAL VISUAL ACCEPTANCE BLOCKED`
-*(Physical hardware verification completed; final pixel differential certification remains blocked solely by Figma MCP API tool call rate limit on team Starter plan).*
+
+_(Physical hardware verification completed; final pixel differential certification remains blocked solely by Figma MCP API tool call rate limit on team Starter plan)._
 
 ---
 
 ### 2. Per-Screen Acceptance Status
 
-| Screen ID | Canonical Route | Code Remediation Status | Physical Device Status (Realme Note 60, Android 15) | Source Screenshot Status (Figma MCP) | Final Acceptance Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **C32-A (EN)** | `/searching-for-driver?previewLocale=en` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32a-en-searching-for-driver.png`](android/c32a-en-searching-for-driver.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-A (ES)** | `/searching-for-driver?previewLocale=es` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32a-es-buscando-conductor.png`](android/c32a-es-buscando-conductor.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-B (EN)** | `/driver-matched?previewLocale=en` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32b-en-driver-matched.png`](android/c32b-en-driver-matched.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-B (ES)** | `/driver-matched?previewLocale=es` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32b-es-conductor-asignado.png`](android/c32b-es-conductor-asignado.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-C (EN)** | `/crew-tracking?previewLocale=en` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32c-en-crew-tracking.png`](android/c32c-en-crew-tracking.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-C (ES)** | `/crew-tracking?previewLocale=es` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32c-es-seguimiento-equipo.png`](android/c32c-es-seguimiento-equipo.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-D (EN)** | `/cancellation-windows?previewLocale=en` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32d-en-cancellation-windows.png`](android/c32d-en-cancellation-windows.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
-| **C32-D (ES)** | `/cancellation-windows?previewLocale=es` | **REMEDIATED** | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32d-es-ventanas-cancelacion.png`](android/c32d-es-ventanas-cancelacion.png) | BLOCKED (Figma MCP limit) | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| Screen ID      | Canonical Route                          | Code Remediation Status | Physical Device Status (Realme Note 60, Android 15)                                                                              | Source Screenshot Status (Figma MCP) | Final Acceptance Status                        |
+| :------------- | :--------------------------------------- | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- | :--------------------------------------------- |
+| **C32-A (EN)** | `/searching-for-driver?previewLocale=en` | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32a-en-searching-for-driver.png`](android/c32a-en-searching-for-driver.png) | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-A (ES)** | `/searching-for-driver?previewLocale=es` | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32a-es-buscando-conductor.png`](android/c32a-es-buscando-conductor.png)     | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-B (EN)** | `/driver-matched?previewLocale=en`       | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32b-en-driver-matched.png`](android/c32b-en-driver-matched.png)             | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-B (ES)** | `/driver-matched?previewLocale=es`       | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32b-es-conductor-asignado.png`](android/c32b-es-conductor-asignado.png)     | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-C (EN)** | `/crew-tracking?previewLocale=en`        | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32c-en-crew-tracking.png`](android/c32c-en-crew-tracking.png)               | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-C (ES)** | `/crew-tracking?previewLocale=es`        | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32c-es-seguimiento-equipo.png`](android/c32c-es-seguimiento-equipo.png)     | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-D (EN)** | `/cancellation-windows?previewLocale=en` | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32d-en-cancellation-windows.png`](android/c32d-en-cancellation-windows.png) | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
+| **C32-D (ES)** | `/cancellation-windows?previewLocale=es` | **REMEDIATED**          | **VERIFIED (PASS)** — [`docs/qa/phase-03-44/android/c32d-es-ventanas-cancelacion.png`](android/c32d-es-ventanas-cancelacion.png) | BLOCKED (Figma MCP limit)            | **HARDWARE VERIFIED — SOURCE OVERLAY BLOCKED** |
 
 ---
 

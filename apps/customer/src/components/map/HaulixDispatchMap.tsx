@@ -103,45 +103,225 @@ export function HaulixDispatchMap({
         {/* ============================================================ */}
         {/* LAYER 1: BASE CANVAS & CITY BLOCKS                         */}
         {/* ============================================================ */}
-        <Rect x="0" y="0" width="380" height="300" fill="#080B0B" />
+        <Rect x="0" y="0" width="380" height="300" fill="#0B0F0E" />
 
         {/* Urban city blocks grid */}
-        <Rect x="15" y="15" width="45" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="70" y="15" width="55" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="135" y="15" width="60" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="205" y="15" width="70" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="285" y="15" width="80" height="40" rx="4" fill="#131917" stroke="#1C2421" />
+        <Rect
+          x="15"
+          y="15"
+          width="45"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="70"
+          y="15"
+          width="55"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="135"
+          y="15"
+          width="60"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="205"
+          y="15"
+          width="70"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="285"
+          y="15"
+          width="80"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
 
-        <Rect x="15" y="65" width="45" height="45" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="70" y="65" width="55" height="45" rx="4" fill="#131917" stroke="#1C2421" />
-        {/* Park / Urban Preserve area */}
-        <Rect x="135" y="65" width="60" height="45" rx="4" fill="#0F221B" stroke="#19382C" />
-        <Rect x="205" y="65" width="70" height="45" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="285" y="65" width="80" height="45" rx="4" fill="#131917" stroke="#1C2421" />
+        <Rect
+          x="15"
+          y="65"
+          width="45"
+          height="45"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="70"
+          y="65"
+          width="55"
+          height="45"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        {/* Park / Urban Preserve area (Sage green undertone) */}
+        <Rect
+          x="135"
+          y="65"
+          width="60"
+          height="45"
+          rx="4"
+          fill="#0F1D1A"
+          stroke="#183027"
+          strokeWidth="1"
+        />
+        <Rect
+          x="205"
+          y="65"
+          width="70"
+          height="45"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="285"
+          y="65"
+          width="80"
+          height="45"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
 
-        <Rect x="15" y="140" width="45" height="55" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="70" y="140" width="55" height="55" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="135" y="140" width="60" height="55" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="205" y="140" width="70" height="55" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="285" y="140" width="80" height="55" rx="4" fill="#131917" stroke="#1C2421" />
+        <Rect
+          x="15"
+          y="140"
+          width="45"
+          height="55"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="70"
+          y="140"
+          width="55"
+          height="55"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="135"
+          y="140"
+          width="60"
+          height="55"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="205"
+          y="140"
+          width="70"
+          height="55"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="285"
+          y="140"
+          width="80"
+          height="55"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
 
-        <Rect x="15" y="205" width="45" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="70" y="205" width="55" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="135" y="205" width="60" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="205" y="205" width="50" height="40" rx="4" fill="#131917" stroke="#1C2421" />
-        <Rect x="265" y="205" width="100" height="40" rx="4" fill="#131917" stroke="#1C2421" />
+        <Rect
+          x="15"
+          y="205"
+          width="45"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="70"
+          y="205"
+          width="55"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="135"
+          y="205"
+          width="60"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="205"
+          y="205"
+          width="50"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
+        <Rect
+          x="265"
+          y="205"
+          width="100"
+          height="40"
+          rx="4"
+          fill="#141C19"
+          stroke="#1C2421"
+          strokeWidth="1"
+        />
 
         {/* Water canal corridor (Salt River canal) */}
         <Path
           d="M0 270 Q90 262 180 274 T380 266"
-          stroke="#0A1815"
+          stroke="#091412"
           strokeWidth="18"
           fill="none"
           strokeLinecap="round"
         />
         <Path
           d="M0 270 Q90 262 180 274 T380 266"
-          stroke="#112923"
+          stroke="#112520"
           strokeWidth="10"
           fill="none"
           strokeLinecap="round"
@@ -151,27 +331,27 @@ export function HaulixDispatchMap({
         {/* LAYER 2: STREET NETWORK & HIGHWAY GEOMETRY                  */}
         {/* ============================================================ */}
         {/* Local grid streets */}
-        <Path d="M65 0v300 M130 0v300 M200 0v300 M280 0v300" stroke="#1C2622" strokeWidth="2.5" />
-        <Path d="M0 60h380 M0 115h380 M0 170h380 M0 225h380" stroke="#1C2622" strokeWidth="2.5" />
+        <Path d="M65 0v300 M130 0v300 M200 0v300 M280 0v300" stroke="#1C2622" strokeWidth="2" />
+        <Path d="M0 60h380 M0 115h380 M0 170h380 M0 225h380" stroke="#1C2622" strokeWidth="2" />
 
         {/* Primary Arterials (McDowell Rd, Thomas Rd, Central Ave, 7th St) */}
-        <Path d="M0 120h380" stroke="#2B3C35" strokeWidth="5" strokeLinecap="round" />
-        <Path d="M0 225h380" stroke="#2B3C35" strokeWidth="5" strokeLinecap="round" />
-        <Path d="M200 0v300" stroke="#2B3C35" strokeWidth="5" strokeLinecap="round" />
-        <Path d="M280 0v300" stroke="#2B3C35" strokeWidth="5" strokeLinecap="round" />
+        <Path d="M0 120h380" stroke="#2A3A34" strokeWidth="4.5" strokeLinecap="round" />
+        <Path d="M0 225h380" stroke="#2A3A34" strokeWidth="4.5" strokeLinecap="round" />
+        <Path d="M200 0v300" stroke="#2A3A34" strokeWidth="4.5" strokeLinecap="round" />
+        <Path d="M280 0v300" stroke="#2A3A34" strokeWidth="4.5" strokeLinecap="round" />
 
-        {/* Highway Corridor: I-10 Papago Freeway (diagonal curved expressway) */}
+        {/* Highway Corridor: I-10 Papago Freeway (diagonal curved expressway with double casing) */}
         <Path
           d="M0 45 C110 40, 220 50, 380 35"
-          stroke="#384D44"
+          stroke="#1F2D27"
           strokeWidth="8"
           fill="none"
           strokeLinecap="round"
         />
         <Path
           d="M0 45 C110 40, 220 50, 380 35"
-          stroke="#202D28"
-          strokeWidth="3.5"
+          stroke="#364A42"
+          strokeWidth="5"
           fill="none"
           strokeLinecap="round"
         />
@@ -263,7 +443,16 @@ export function HaulixDispatchMap({
         {/* ============================================================ */}
         {/* LAYER 5: MARKERS & VEHICLE POSITION                         */}
         {/* ============================================================ */}
-        {/* Pickup Pin Marker */}
+        {/* Pickup Pin Marker with outer ground pulse halo */}
+        <Circle
+          cx={pickupX}
+          cy={pickupY}
+          r={14}
+          fill="rgba(186, 255, 66, 0.2)"
+          stroke="#BAFF42"
+          strokeWidth={1}
+          strokeDasharray="3,2"
+        />
         <G transform={`translate(${pickupX - 12}, ${pickupY - 26})`} testID="map-pickup-marker">
           <C32LocationPinIcon size={24} color="#BAFF42" />
         </G>

@@ -17,9 +17,11 @@
 ### 2. ADB Authorization Root Cause & Corrective Action
 
 #### Diagnosis:
+
 Previous repeated `authorizing` / `unauthorized` statuses were caused by the host-side PowerShell process lifecycle. Standard non-daemon commands spawned `adb.exe` as a child process of a transient shell session. When each shell session exited, Windows process cleanup terminated `adb.exe`, dropping the TCP 5037 socket and terminating the USB transport connection. Every subsequent command restarted ADB, tearing down the in-flight authorization handshake and forcing the Android OS to generate a new RSA authorization request.
 
 #### Resolution:
+
 1. Initiated `adb server nodaemon` as a persistent background daemon (`IsDaemon: true`).
 2. The persistent daemon maintained TCP socket 5037 continuously.
 3. The device immediately validated the host RSA key fingerprint and permanently transitioned to authorized `device` state.
@@ -32,16 +34,16 @@ Previous repeated `authorizing` / `unauthorized` statuses were caused by the hos
 
 All eight canonical screens were navigated live on the Realme Note 60 running Android 15, and framebuffers were captured directly to disk via ADB:
 
-| Screen ID | Screen Name | Canonical Route | Locale | Viewport | Verified Image Path | Visual QA Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **C32-A (EN)** | Searching for Driver | `/searching-for-driver?previewLocale=en` | `en` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32a-en-searching-for-driver.png`](android/c32a-en-searching-for-driver.png) | **PASS** (Vector grid, animated radar, dark theme, zoom/recenter controls verified) |
-| **C32-A (ES)** | Buscando conductor | `/searching-for-driver?previewLocale=es` | `es` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32a-es-buscando-conductor.png`](android/c32a-es-buscando-conductor.png) | **PASS** (100% Spanish localization, badge `RADAR ACTIVO · BÚSQUEDA DE DESPACHO` verified) |
-| **C32-B (EN)** | Driver Matched | `/driver-matched?previewLocale=en` | `en` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32b-en-driver-matched.png`](android/c32b-en-driver-matched.png) | **PASS** (Driver card Marcus Vance, vehicle specs, rectilinear route polyline, truck marker) |
-| **C32-B (ES)** | Conductor asignado | `/driver-matched?previewLocale=es` | `es` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32b-es-conductor-asignado.png`](android/c32b-es-conductor-asignado.png) | **PASS** (Spanish badge `CONDUCTOR ASIGNADO · EN CAMINO PRONTO`, vehicle specs localized) |
-| **C32-C (EN)** | Crew Assigned & Tracking | `/crew-tracking?previewLocale=en` | `en` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32c-en-crew-tracking.png`](android/c32c-en-crew-tracking.png) | **PASS** (Live ETA `CREW EN ROUTE · 11 MIN`, active polyline, crew telemetry timeline) |
-| **C32-C (ES)** | Seguimiento de equipo asignado | `/crew-tracking?previewLocale=es` | `es` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32c-es-seguimiento-equipo.png`](android/c32c-es-seguimiento-equipo.png) | **PASS** (Spanish badge `EQUIPO EN CAMINO · 11 MIN (Phoenix, AZ)`, timeline localized) |
-| **C32-D (EN)** | Cancellation Windows | `/cancellation-windows?previewLocale=en` | `en` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32d-en-cancellation-windows.png`](android/c32d-en-cancellation-windows.png) | **PASS** (3-tier policy matrix, fee-free window, honest banking timeline disclosures) |
-| **C32-D (ES)** | Ventanas de cancelación | `/cancellation-windows?previewLocale=es` | `es` | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32d-es-ventanas-cancelacion.png`](android/c32d-es-ventanas-cancelacion.png) | **PASS** (Spanish 3-phase matrix, `100% Gratis · $0 Cargo`, honest banking disclaimer) |
+| Screen ID      | Screen Name                    | Canonical Route                          | Locale | Viewport      | Verified Image Path                                                                                        | Visual QA Status                                                                             |
+| :------------- | :----------------------------- | :--------------------------------------- | :----- | :------------ | :--------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| **C32-A (EN)** | Searching for Driver           | `/searching-for-driver?previewLocale=en` | `en`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32a-en-searching-for-driver.png`](android/c32a-en-searching-for-driver.png) | **PASS** (Vector grid, animated radar, dark theme, zoom/recenter controls verified)          |
+| **C32-A (ES)** | Buscando conductor             | `/searching-for-driver?previewLocale=es` | `es`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32a-es-buscando-conductor.png`](android/c32a-es-buscando-conductor.png)     | **PASS** (100% Spanish localization, badge `RADAR ACTIVO · BÚSQUEDA DE DESPACHO` verified)   |
+| **C32-B (EN)** | Driver Matched                 | `/driver-matched?previewLocale=en`       | `en`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32b-en-driver-matched.png`](android/c32b-en-driver-matched.png)             | **PASS** (Driver card Marcus Vance, vehicle specs, rectilinear route polyline, truck marker) |
+| **C32-B (ES)** | Conductor asignado             | `/driver-matched?previewLocale=es`       | `es`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32b-es-conductor-asignado.png`](android/c32b-es-conductor-asignado.png)     | **PASS** (Spanish badge `CONDUCTOR ASIGNADO · EN CAMINO PRONTO`, vehicle specs localized)    |
+| **C32-C (EN)** | Crew Assigned & Tracking       | `/crew-tracking?previewLocale=en`        | `en`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32c-en-crew-tracking.png`](android/c32c-en-crew-tracking.png)               | **PASS** (Live ETA `CREW EN ROUTE · 11 MIN`, active polyline, crew telemetry timeline)       |
+| **C32-C (ES)** | Seguimiento de equipo asignado | `/crew-tracking?previewLocale=es`        | `es`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32c-es-seguimiento-equipo.png`](android/c32c-es-seguimiento-equipo.png)     | **PASS** (Spanish badge `EQUIPO EN CAMINO · 11 MIN (Phoenix, AZ)`, timeline localized)       |
+| **C32-D (EN)** | Cancellation Windows           | `/cancellation-windows?previewLocale=en` | `en`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32d-en-cancellation-windows.png`](android/c32d-en-cancellation-windows.png) | **PASS** (3-tier policy matrix, fee-free window, honest banking timeline disclosures)        |
+| **C32-D (ES)** | Ventanas de cancelación        | `/cancellation-windows?previewLocale=es` | `es`   | 720 × 1600 px | [`docs/qa/phase-03-44/android/c32d-es-ventanas-cancelacion.png`](android/c32d-es-ventanas-cancelacion.png) | **PASS** (Spanish 3-phase matrix, `100% Gratis · $0 Cargo`, honest banking disclaimer)       |
 
 ---
 
