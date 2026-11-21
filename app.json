@@ -1,12 +1,14 @@
 {
-  "expo": {
-    "extra": {
-      "eas": {
-        "projectId": "a5c30ee5-ad94-425b-a0fb-fdd9628c4b26"
-      }
-    },
-    "android": {
-      "package": "com.rakib_androids.haulixmobile"
-    }
-  }
+	"expo": {
+		"name": "HAULIX",
+		"slug": "haulix-customer",
+		"extra": {
+			"eas": {
+				"projectId": "d414e6fe-00cc-40df-97e2-af4f3e2027c8"
+			}
+		},
+		"android": {
+			"package": "com.haulix.customer"
+		}
+	}
 }

@@ -28,6 +28,8 @@ ios/
 build/
 .turbo/
 coverage/
+*.apk
+HAULIX_Customer_Client_Demo/*.apk
 
 # Environment
 .env
