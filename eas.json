@@ -9,15 +9,27 @@
 			"distribution": "internal"
 		},
 		"preview": {
+			"node": "22.23.3",
+			"pnpm": "11.25.0",
+			"corepack": true,
 			"distribution": "internal",
 			"android": {
 				"buildType": "apk"
+			},
+			"env": {
+				"EXPO_PUBLIC_APP_ENV": "preview"
 			}
 		},
 		"client-demo": {
+			"node": "22.23.3",
+			"pnpm": "11.25.0",
+			"corepack": true,
 			"distribution": "internal",
 			"android": {
 				"buildType": "apk"
+			},
+			"env": {
+				"EXPO_PUBLIC_APP_ENV": "preview"
 			}
 		},
 		"production": {
