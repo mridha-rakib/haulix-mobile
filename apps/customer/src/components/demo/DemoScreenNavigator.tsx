@@ -18,6 +18,78 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c29_3d-es",
+    name: "C29-3D · Confirma la autenticación de tu tarjeta (Español)",
+    figmaNode: "Node 766:1062",
+    route: "/confirm-card-authentication",
+    locale: "es",
+    description:
+      "W04 Simulación de verificación 3D Secure 2.0 requerida por el banco emisor de la tarjeta",
+  },
+  {
+    id: "c29_3d-en",
+    name: "C29-3D · Confirm Card Authentication (English)",
+    figmaNode: "Node 763:676",
+    route: "/confirm-card-authentication",
+    locale: "en",
+    description:
+      "W04 3D Secure 2.0 issuer authentication flow simulation; zero customer credential storage",
+  },
+  {
+    id: "c29p-es",
+    name: "C29-P · Autorizando tu pago (Español)",
+    figmaNode: "Node 766:1131",
+    route: "/payment-authorization-pending",
+    locale: "es",
+    description:
+      "W04 Cola de procesamiento de retención temporal de autorización ($356.00 USD) para la reserva",
+  },
+  {
+    id: "c29p-en",
+    name: "C29-P · Payment Authorization Pending (English)",
+    figmaNode: "Node 763:745",
+    route: "/payment-authorization-pending",
+    locale: "en",
+    description:
+      "W04 Temporary payment hold authorization queue ($356.00 USD) with simulation options",
+  },
+  {
+    id: "c30d-es",
+    name: "C30-D · La autorización fue rechazada (Español)",
+    figmaNode: "Node 766:1200",
+    route: "/payment-authorization-declined",
+    locale: "es",
+    description:
+      "W04 Recuperación tras rechazo de autorización; garantía de sin cobro y cambio de método",
+  },
+  {
+    id: "c30d-en",
+    name: "C30-D · Authorization Was Declined (English)",
+    figmaNode: "Node 763:814",
+    route: "/payment-authorization-declined",
+    locale: "en",
+    description:
+      "W04 Payment authorization decline recovery; zero charges placed and payment retry",
+  },
+  {
+    id: "c30e-es",
+    name: "C30-E · La retención de tu tarjeta venció (Español)",
+    figmaNode: "Node 766:1269",
+    route: "/card-hold-expired",
+    locale: "es",
+    description:
+      "W04 Retención temporal vencida y liberada automáticamente ($0.00 cobrado); reautorización",
+  },
+  {
+    id: "c30e-en",
+    name: "C30-E · Your Card Hold Expired (English)",
+    figmaNode: "Node 763:883",
+    route: "/card-hold-expired",
+    locale: "en",
+    description:
+      "W04 Temporary card hold timed out and automatically released ($0.00 charged); re-authorization",
+  },
+  {
     id: "c28u-es",
     name: "C28-U · Las condiciones de reserva han cambiado (Español)",
     figmaNode: "Node 766:922",

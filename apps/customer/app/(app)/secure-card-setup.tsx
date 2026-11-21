@@ -100,8 +100,11 @@ export default function SecureCardSetupScreen() {
   }, [handleBack]);
 
   const handleSimulateAuthorization = useCallback(() => {
-    setNoticeMessage(t("c29mSecureCardSetup.futureNoticeHandoff"));
-  }, [t]);
+    router.push({
+      pathname: "/confirm-card-authentication",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleChangePaymentMethod = useCallback(() => {
     router.push({

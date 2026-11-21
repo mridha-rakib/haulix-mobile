@@ -14,8 +14,9 @@ describe("C29-M Secure Card Setup — English (Node 814:4531) & Spanish (Node 81
     expect(navContent).toContain('route: "/secure-card-setup"');
   });
 
-  it("verifies navigation transitions and provider handoff return to C29", () => {
+  it("verifies navigation transitions to C29-3D authentication and provider handoff return to C29", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
+    expect(routeContent).toContain('pathname: "/confirm-card-authentication"');
     expect(routeContent).toContain('pathname: "/choose-payment-method"');
     expect(routeContent).toContain("recordSecureCardSetupDemo");
   });
@@ -35,9 +36,8 @@ describe("C29-M Secure Card Setup — English (Node 814:4531) & Spanish (Node 81
     expect(es.c29mSecureCardSetup.secondaryCta).toBe("Cambiar método de pago");
   });
 
-  it("verifies non-interactive card representation, zero sensitive data storage, and honest future notices", () => {
+  it("verifies non-interactive card representation, zero sensitive data storage, and security disclaimers", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
-    expect(routeContent).toContain("c29mSecureCardSetup.futureNoticeHandoff");
     expect(routeContent).toContain("c29mSecureCardSetup.uiNote");
     expect(routeContent).not.toContain("TextInput");
     expect(routeContent).not.toContain("saveCardData");

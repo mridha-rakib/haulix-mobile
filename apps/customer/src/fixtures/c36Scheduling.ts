@@ -39,6 +39,10 @@ export type SchedulingRecoveryState =
   | "no_driver_cancelled"
   | "payment_method_selected"
   | "secure_card_demo"
+  | "card_authentication_required"
+  | "authorization_processing"
+  | "authorization_declined"
+  | "hold_expired"
   | "backend_availability_unverified";
 
 export type InventorySourceMode = "active_w03_journey" | "w04_figma_demo";
@@ -278,6 +282,42 @@ export function recordFeeFreeCancellation(): W04CustomerDraft {
 export function recordSecureCardSetupDemo(): W04CustomerDraft {
   return updateW04Draft({
     recoveryState: "secure_card_demo",
+  });
+}
+
+/**
+ * Record card authentication required demonstration state (C29-3D).
+ */
+export function recordCardAuthenticationRequired(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "card_authentication_required",
+  });
+}
+
+/**
+ * Record authorization processing demonstration state (C29-P).
+ */
+export function recordAuthorizationProcessing(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "authorization_processing",
+  });
+}
+
+/**
+ * Record authorization declined demonstration state (C30-D).
+ */
+export function recordAuthorizationDeclined(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "authorization_declined",
+  });
+}
+
+/**
+ * Record card hold expired demonstration state (C30-E).
+ */
+export function recordHoldExpired(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "hold_expired",
   });
 }
 
