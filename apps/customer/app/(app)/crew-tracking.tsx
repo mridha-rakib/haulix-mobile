@@ -101,7 +101,10 @@ export default function CrewTrackingScreen() {
   const handleCancellationOptions = useCallback(() => {
     router.push({
       pathname: "/cancellation-windows",
-      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      params: {
+        fromPhase: "en_route",
+        ...(params.previewLocale ? { previewLocale: params.previewLocale } : {}),
+      },
     });
   }, [router, params.previewLocale]);
 

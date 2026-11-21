@@ -25,6 +25,7 @@ import { C32ClockAlertIcon, C32ShieldCheckIcon } from "../../src/components/disp
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
+  isCancellationFeeFree,
   setDispatchPhase,
   simulateFeeFreeExit,
   subscribeToW05DispatchState,
@@ -33,13 +34,23 @@ import {
 export default function CancellationWindowsScreen() {
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  const params = useLocalSearchParams<{ previewLocale?: string }>();
+  const params = useLocalSearchParams<{ previewLocale?: string; fromPhase?: string }>();
   const [dispatchState, setDispatchState] = useState(getW05DispatchState);
   const [cancelFeedbackVisible, setCancelFeedbackVisible] = useState(false);
   const [waiverFeedbackVisible, setWaiverFeedbackVisible] = useState(false);
+  const [enRouteWarningVisible, setEnRouteWarningVisible] = useState(false);
 
   const currentLocale = (params.previewLocale ??
     (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
+
+  const effectiveOriginPhase = (params.fromPhase ??
+    dispatchState.previousPhase ??
+    (dispatchState.phase !== "cancellation_windows" ? dispatchState.phase : "en_route")) as
+    | "searching"
+    | "matched"
+    | "en_route";
+
+  const isFeeFree = isCancellationFeeFree(effectiveOriginPhase);
 
   useEffect(() => {
     if (params.previewLocale && params.previewLocale !== i18n?.language) {
@@ -48,20 +59,30 @@ export default function CancellationWindowsScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("cancellation_windows");
+    setDispatchPhase("cancellation_windows", true);
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
   const handleBack = useCallback(() => {
     if (router.canGoBack()) {
       router.back();
+    } else if (effectiveOriginPhase === "searching") {
+      router.push({
+        pathname: "/searching-for-driver",
+        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      });
+    } else if (effectiveOriginPhase === "matched") {
+      router.push({
+        pathname: "/driver-matched",
+        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      });
     } else {
       router.push({
         pathname: "/crew-tracking",
         params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
       });
     }
-  }, [router, params.previewLocale]);
+  }, [router, params.previewLocale, effectiveOriginPhase]);
 
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -72,33 +93,66 @@ export default function CancellationWindowsScreen() {
   }, [handleBack]);
 
   const handleKeepBooking = useCallback(() => {
-    router.push({
-      pathname: "/crew-tracking",
-      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-    });
-  }, [router, params.previewLocale]);
+    if (effectiveOriginPhase === "searching") {
+      router.push({
+        pathname: "/searching-for-driver",
+        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      });
+    } else if (effectiveOriginPhase === "matched") {
+      router.push({
+        pathname: "/driver-matched",
+        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      });
+    } else {
+      router.push({
+        pathname: "/crew-tracking",
+        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      });
+    }
+  }, [router, params.previewLocale, effectiveOriginPhase]);
 
-  const handleFeeFreeExit = useCallback(() => {
-    simulateFeeFreeExit("customer_requested_fee_free");
-    setCancelFeedbackVisible(true);
-    setTimeout(() => {
-      router.push("/");
-    }, 1500);
-  }, [router]);
+  const handleCancellationAction = useCallback(() => {
+    if (isFeeFree) {
+      simulateFeeFreeExit("customer_requested_fee_free");
+      setCancelFeedbackVisible(true);
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
+    } else {
+      setEnRouteWarningVisible(true);
+    }
+  }, [isFeeFree, router]);
 
   const handleWaiverRequest = useCallback(() => {
     setWaiverFeedbackVisible(true);
     setTimeout(() => setWaiverFeedbackVisible(false), 2500);
   }, []);
 
+  const statusBadgeText =
+    effectiveOriginPhase === "searching"
+      ? t("c32dCancellationWindows.statusBadgeSearching")
+      : effectiveOriginPhase === "matched"
+        ? t("c32dCancellationWindows.statusBadgeMatched")
+        : t("c32dCancellationWindows.statusBadgeEnRoute");
+
+  const backA11yText =
+    effectiveOriginPhase === "searching"
+      ? t("c32dCancellationWindows.returnToSearchA11y")
+      : effectiveOriginPhase === "matched"
+        ? t("c32dCancellationWindows.returnToMatchedA11y")
+        : t("c32dCancellationWindows.returnToTrackingA11y");
+
+  const cancellationButtonText =
+    effectiveOriginPhase === "searching"
+      ? t("c32dCancellationWindows.cancelSearchCta")
+      : effectiveOriginPhase === "matched"
+        ? t("c32dCancellationWindows.cancelGracePeriodCta")
+        : t("c32dCancellationWindows.cancelPostGraceCta");
+
   return (
     <HaulixSafeArea>
       <View style={styles.container} testID="c32d-screen">
-        <FlowHeaderBack
-          onBack={handleBack}
-          backA11y={t("c32dCancellationWindows.backA11y")}
-          testID="c32d-header-back"
-        />
+        <FlowHeaderBack onBack={handleBack} backA11y={backA11yText} testID="c32d-header-back" />
 
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -124,7 +178,7 @@ export default function CancellationWindowsScreen() {
           {/* Status Badge Capsule */}
           <View style={styles.statusBadgeCapsule} testID="c32d-status-badge">
             <C32ShieldCheckIcon size={16} color={colors.brand} />
-            <Text style={styles.statusBadgeText}>{t("c32dCancellationWindows.statusBadge")}</Text>
+            <Text style={styles.statusBadgeText}>{statusBadgeText}</Text>
           </View>
 
           {/* 3-TIER CANCELLATION MATRIX CARDS */}
@@ -212,6 +266,17 @@ export default function CancellationWindowsScreen() {
             <Text style={styles.disclaimerText}>{t("c32dCancellationWindows.disclaimer")}</Text>
           </View>
 
+          {/* Conditional En-Route Cancellation Notice */}
+          {enRouteWarningVisible && (
+            <View style={styles.enRouteWarningBox} testID="c32d-en-route-warning">
+              <Text style={styles.enRouteWarningText}>
+                {currentLocale === "es"
+                  ? "Atención: La cancelación mientras el equipo está en camino está sujeta a un cargo ilustrativo de $100.00 salvo que exista un retraso mayor a 15 min."
+                  : "Notice: Post-grace cancellation while en route is subject to an illustrative $100.00 fee unless driver arrival is delayed >15 min."}
+              </Text>
+            </View>
+          )}
+
           {/* Cancellation Feedback Toast */}
           {cancelFeedbackVisible && (
             <View style={styles.cancelToast} testID="c32d-cancel-toast">
@@ -243,15 +308,13 @@ export default function CancellationWindowsScreen() {
             </Pressable>
 
             <Pressable
-              onPress={handleFeeFreeExit}
+              onPress={handleCancellationAction}
               style={styles.secondaryDangerButton}
               accessibilityRole="button"
-              accessibilityLabel={t("c32dCancellationWindows.feeFreeExitCta")}
+              accessibilityLabel={cancellationButtonText}
               testID="c32d-fee-free-exit-btn"
             >
-              <Text style={styles.secondaryDangerButtonText}>
-                {t("c32dCancellationWindows.feeFreeExitCta")}
-              </Text>
+              <Text style={styles.secondaryDangerButtonText}>{cancellationButtonText}</Text>
             </Pressable>
 
             <Pressable
@@ -518,6 +581,21 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.brand,
     textAlign: "center",
+  },
+  enRouteWarningBox: {
+    backgroundColor: "#201A14",
+    borderColor: "rgba(245, 158, 11, 0.5)",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 16,
+  },
+  enRouteWarningText: {
+    fontFamily: fontFamily.medium,
+    fontSize: 12,
+    color: colors.warning,
+    textAlign: "center",
+    lineHeight: 17,
   },
   waiverToast: {
     backgroundColor: "#1C1E17",

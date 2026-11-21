@@ -70,6 +70,7 @@ export interface CancellationWindowInfo {
 
 export interface W05DispatchState {
   phase: DispatchSearchPhase;
+  previousPhase?: DispatchSearchPhase;
   bookingRef: string;
   pickupAddressEn: string;
   pickupAddressEs: string;
@@ -123,9 +124,9 @@ export const W05_CANCELLATION_WINDOWS: readonly CancellationWindowInfo[] = [
     badgeEs: "100% Gratis · Sin cargo",
     feeAmount: "$0.00",
     descriptionEn:
-      "While dispatch is actively searching for a driver, you may cancel at any moment with zero penalty. Your pre-authorization card hold is released immediately.",
+      "While dispatch is actively searching for a driver, you may cancel at any moment with zero penalty. In this prototype, simulated card hold is released with zero actual funds charged.",
     descriptionEs:
-      "Mientras el despacho busca un conductor, puedes cancelar en cualquier momento sin penalización. Tu retención de tarjeta se libera de inmediato.",
+      "Mientras el despacho busca un conductor, puedes cancelar en cualquier momento sin penalización. En este prototipo, la retención simulada se libera sin cobro de fondos reales.",
     isFeeFree: true,
   },
   {
@@ -136,7 +137,7 @@ export const W05_CANCELLATION_WINDOWS: readonly CancellationWindowInfo[] = [
     badgeEs: "Periodo de gracia · Sin cargo",
     feeAmount: "$0.00",
     descriptionEn:
-      "A 5-minute fee-free grace period begins immediately when a driver is matched. Review vehicle and crew details with full flexibility to exit.",
+      "A 5-minute fee-free grace period begins immediately when a driver is matched. Review vehicle and crew details with full flexibility to exit in this demo.",
     descriptionEs:
       "Comienza un periodo de gracia de 5 minutos sin cargo justo cuando se asigna un conductor. Revisa los datos del vehículo y equipo con total libertad.",
     isFeeFree: true,
@@ -149,18 +150,26 @@ export const W05_CANCELLATION_WINDOWS: readonly CancellationWindowInfo[] = [
     badgeEs: "Cargo condicional de $100",
     feeAmount: "$100.00",
     descriptionEn:
-      "If cancelled after 5 minutes while the crew is actively traveling to your pickup location, an illustrative $100.00 dispatch fee may apply to compensate driver transit time, unless an approved waiver applies.",
+      "If cancelled after 5 minutes while the crew is actively traveling to your pickup location, an illustrative $100.00 dispatch fee may apply to compensate driver transit time, unless an approved waiver applies (e.g. driver arrival delayed >15 min).",
     descriptionEs:
-      "Si cancelas después de 5 minutos mientras el equipo viaja activamente a tu recogida, podría aplicar un cargo ilustrativo de $100.00 por traslado del conductor, salvo excepciones aprobadas.",
+      "Si cancelas después de 5 minutos mientras el equipo viaja activamente a tu recogida, podría aplicar un cargo ilustrativo de $100.00 por traslado del conductor, salvo excepciones aprobadas (p. ej. retraso del conductor >15 min).",
     isFeeFree: false,
   },
 ] as const;
+
+/**
+ * Helper to determine whether a given phase is eligible for fee-free exit
+ */
+export function isCancellationFeeFree(phase: DispatchSearchPhase): boolean {
+  return phase === "searching" || phase === "matched";
+}
 
 /**
  * Initial canonical dispatch state preserving customer draft invariants
  */
 export const INITIAL_W05_DISPATCH_STATE: W05DispatchState = {
   phase: "searching",
+  previousPhase: undefined,
   bookingRef: "#HLX-7829-BK",
   pickupAddressEn: "1234 E Example Lane, Phoenix, AZ 85014",
   pickupAddressEs: "1234 E Example Lane, Phoenix, AZ 85014",
@@ -199,13 +208,22 @@ export function subscribeToW05DispatchState(
   };
 }
 
-export function setDispatchPhase(phase: DispatchSearchPhase): W05DispatchState {
-  return updateW05DispatchState({ phase });
+export function setDispatchPhase(
+  phase: DispatchSearchPhase,
+  preservePrevious = true
+): W05DispatchState {
+  const previousPhase = preservePrevious
+    ? currentDispatchState.phase !== "cancellation_windows"
+      ? currentDispatchState.phase
+      : currentDispatchState.previousPhase
+    : undefined;
+  return updateW05DispatchState({ phase, previousPhase });
 }
 
 export function simulateDriverMatched(): W05DispatchState {
   return updateW05DispatchState({
     phase: "matched",
+    previousPhase: "searching",
     crew: {
       ...W05_DEMO_CREW,
       estimatedArrivalMin: 14,
@@ -217,6 +235,7 @@ export function simulateDriverMatched(): W05DispatchState {
 export function simulateCrewEnRoute(): W05DispatchState {
   return updateW05DispatchState({
     phase: "en_route",
+    previousPhase: "matched",
     crew: {
       ...W05_DEMO_CREW,
       estimatedArrivalMin: 11,
@@ -226,10 +245,17 @@ export function simulateCrewEnRoute(): W05DispatchState {
 }
 
 export function simulateFeeFreeExit(reason = "customer_requested_fee_free"): W05DispatchState {
+  const effectivePhase =
+    currentDispatchState.phase === "cancellation_windows"
+      ? (currentDispatchState.previousPhase ?? "en_route")
+      : currentDispatchState.phase;
+
+  const isEligible = isCancellationFeeFree(effectivePhase);
+
   return updateW05DispatchState({
-    phase: "cancelled_fee_free",
-    isCancelled: true,
-    cancelReason: reason,
+    phase: isEligible ? "cancelled_fee_free" : currentDispatchState.phase,
+    isCancelled: isEligible,
+    cancelReason: isEligible ? reason : "requires_delay_waiver_review",
   });
 }
 

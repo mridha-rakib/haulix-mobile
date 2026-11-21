@@ -1872,8 +1872,15 @@ export const DemoScreenNavigator: React.FC = () => {
   const currentPath = usePathname();
   const insets = useSafeAreaInsets();
 
-  // Isolate QA-only navigator from production customer runtime
-  const isEnabled = __DEV__ || process.env.EXPO_PUBLIC_ENABLE_QA_NAVIGATOR === "true";
+  // Strict isolation of QA-only navigator: strictly disabled in production builds
+  const isProductionBuild =
+    process.env.NODE_ENV === "production" ||
+    process.env.EXPO_PUBLIC_APP_ENV === "production" ||
+    process.env.APP_ENV === "production";
+
+  const isEnabled =
+    !isProductionBuild && (__DEV__ || process.env.EXPO_PUBLIC_ENABLE_QA_NAVIGATOR === "true");
+
   if (!isEnabled) {
     return null;
   }

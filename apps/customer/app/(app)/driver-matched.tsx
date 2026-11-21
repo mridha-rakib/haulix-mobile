@@ -86,7 +86,10 @@ export default function DriverMatchedScreen() {
   const handleViewCancellationTerms = useCallback(() => {
     router.push({
       pathname: "/cancellation-windows",
-      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+      params: {
+        fromPhase: "matched",
+        ...(params.previewLocale ? { previewLocale: params.previewLocale } : {}),
+      },
     });
   }, [router, params.previewLocale]);
 

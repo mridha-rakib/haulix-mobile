@@ -1,4 +1,5 @@
 import { colors, fontFamily } from "@haulix/design-tokens";
+import { useTranslation } from "@haulix/i18n";
 import { useCallback, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Svg, {
@@ -34,10 +35,12 @@ export function HaulixDispatchMap({
   mode,
   height = 340,
   etaMinutes = 11,
-  pickupLabel = "Pickup · Phoenix, AZ",
+  pickupLabel,
   onRecenter,
   testID = "haulix-dispatch-map",
 }: HaulixDispatchMapProps) {
+  const { t } = useTranslation();
+  const effectivePickupLabel = pickupLabel ?? t("c32Map.pickupLabelDefault");
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [recenteredNotice, setRecenteredNotice] = useState<boolean>(false);
 
@@ -305,14 +308,14 @@ export function HaulixDispatchMap({
         {mode === "searching" && (
           <View style={styles.searchingBadge} testID="map-searching-badge">
             <View style={styles.pulsingGreenDot} />
-            <Text style={styles.searchingBadgeText}>RADAR ACTIVE · DISPATCH SEARCHING</Text>
+            <Text style={styles.searchingBadgeText}>{t("c32Map.searchingBadge")}</Text>
           </View>
         )}
 
         {mode === "matched" && (
           <View style={styles.matchedBadge} testID="map-matched-badge">
             <View style={styles.blueDot} />
-            <Text style={styles.matchedBadgeText}>DRIVER MATCHED · EN ROUTE SOON</Text>
+            <Text style={styles.matchedBadgeText}>{t("c32Map.matchedBadge")}</Text>
           </View>
         )}
 
@@ -320,7 +323,10 @@ export function HaulixDispatchMap({
           <View style={styles.etaBadge} testID="map-eta-badge">
             <View style={styles.limeDot} />
             <Text style={styles.etaBadgeText}>
-              CREW EN ROUTE · {etaMinutes} MIN ({pickupLabel})
+              {t("c32Map.crewEnRouteBadge", {
+                minutes: etaMinutes,
+                location: effectivePickupLabel,
+              })}
             </Text>
           </View>
         )}
@@ -329,7 +335,7 @@ export function HaulixDispatchMap({
       {/* Recentered Toast Notice */}
       {recenteredNotice && (
         <View style={styles.recenterToast} testID="map-recenter-toast">
-          <Text style={styles.recenterToastText}>Camera centered on route</Text>
+          <Text style={styles.recenterToastText}>{t("c32Map.recenterNotice")}</Text>
         </View>
       )}
 
@@ -341,7 +347,7 @@ export function HaulixDispatchMap({
             onPress={handleZoomIn}
             hitSlop={6}
             accessibilityRole="button"
-            accessibilityLabel="Zoom In"
+            accessibilityLabel={t("c32Map.zoomInA11y")}
             style={styles.zoomButton}
             testID="map-zoom-in-btn"
           >
@@ -352,7 +358,7 @@ export function HaulixDispatchMap({
             onPress={handleZoomOut}
             hitSlop={6}
             accessibilityRole="button"
-            accessibilityLabel="Zoom Out"
+            accessibilityLabel={t("c32Map.zoomOutA11y")}
             style={styles.zoomButton}
             testID="map-zoom-out-btn"
           >
@@ -365,7 +371,7 @@ export function HaulixDispatchMap({
           onPress={handleRecenter}
           hitSlop={8}
           accessibilityRole="button"
-          accessibilityLabel="Recenter Map Viewport"
+          accessibilityLabel={t("c32Map.recenterA11y")}
           style={styles.recenterButton}
           testID="map-recenter-btn"
         >

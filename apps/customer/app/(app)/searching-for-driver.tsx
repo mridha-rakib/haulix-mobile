@@ -27,7 +27,6 @@ import {
   getW05DispatchState,
   setDispatchPhase,
   simulateDriverMatched,
-  simulateFeeFreeExit,
   subscribeToW05DispatchState,
 } from "../../src/fixtures/c32Dispatch";
 
@@ -36,7 +35,6 @@ export default function SearchingForDriverScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ previewLocale?: string }>();
   const [dispatchState, setDispatchState] = useState(getW05DispatchState);
-  const [cancelToastVisible, setCancelToastVisible] = useState(false);
 
   const currentLocale = (params.previewLocale ??
     (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
@@ -80,12 +78,14 @@ export default function SearchingForDriverScreen() {
   }, [router, params.previewLocale]);
 
   const handleCancelSearch = useCallback(() => {
-    simulateFeeFreeExit("customer_cancelled_during_search");
-    setCancelToastVisible(true);
-    setTimeout(() => {
-      router.push("/");
-    }, 1200);
-  }, [router]);
+    router.push({
+      pathname: "/cancellation-windows",
+      params: {
+        fromPhase: "searching",
+        ...(params.previewLocale ? { previewLocale: params.previewLocale } : {}),
+      },
+    });
+  }, [router, params.previewLocale]);
 
   return (
     <HaulixSafeArea>
@@ -195,13 +195,6 @@ export default function SearchingForDriverScreen() {
           <View style={styles.disclosureBanner} testID="c32a-disclosure-banner">
             <Text style={styles.disclosureText}>{t("c32aSearchingDriver.disclosureNotice")}</Text>
           </View>
-
-          {/* Cancel Feedback Toast */}
-          {cancelToastVisible && (
-            <View style={styles.cancelToast} testID="c32a-cancel-toast">
-              <Text style={styles.cancelToastText}>{t("c32aSearchingDriver.cancelFeedback")}</Text>
-            </View>
-          )}
 
           {/* Action Buttons */}
           <View style={styles.actionsContainer}>

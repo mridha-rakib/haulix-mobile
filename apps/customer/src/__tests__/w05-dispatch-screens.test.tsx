@@ -4,8 +4,8 @@ import { enTranslations as en, esTranslations as es } from "@haulix/i18n";
 import {
   getW05DispatchState,
   INITIAL_W05_DISPATCH_STATE,
+  isCancellationFeeFree,
   resetDispatchDemo,
-  setDispatchPhase,
   simulateCrewEnRoute,
   simulateDriverMatched,
   simulateFeeFreeExit,
@@ -159,21 +159,38 @@ describe("HAULIX Phase 03.43 — W05 Dispatch & Assignment Frontend Implementati
       expect(W05_DEMO_CREW.vehicle.licensePlate).toBe("#AZ-HLX29");
     });
 
-    it("verifies state transitions between searching, matched, en_route, and fee-free exit", () => {
+    it("verifies state transitions between searching, matched, en_route, and conditional cancellation safety", () => {
       expect(getW05DispatchState().phase).toBe("searching");
+      expect(isCancellationFeeFree("searching")).toBe(true);
+      expect(isCancellationFeeFree("matched")).toBe(true);
+      expect(isCancellationFeeFree("en_route")).toBe(false);
 
-      simulateDriverMatched();
-      expect(getW05DispatchState().phase).toBe("matched");
-
-      simulateCrewEnRoute();
-      expect(getW05DispatchState().phase).toBe("en_route");
-
+      // Fee-free during search
       simulateFeeFreeExit();
       expect(getW05DispatchState().phase).toBe("cancelled_fee_free");
       expect(getW05DispatchState().isCancelled).toBe(true);
 
-      setDispatchPhase("searching");
-      expect(getW05DispatchState().phase).toBe("searching");
+      // Reset and transition to driver matched
+      resetDispatchDemo();
+      simulateDriverMatched();
+      expect(getW05DispatchState().phase).toBe("matched");
+      expect(getW05DispatchState().previousPhase).toBe("searching");
+
+      // Fee-free during match grace period
+      simulateFeeFreeExit();
+      expect(getW05DispatchState().phase).toBe("cancelled_fee_free");
+
+      // Reset and transition to en route
+      resetDispatchDemo();
+      simulateCrewEnRoute();
+      expect(getW05DispatchState().phase).toBe("en_route");
+      expect(getW05DispatchState().previousPhase).toBe("matched");
+
+      // Post-grace period while en-route is NOT fee-free without delay waiver!
+      simulateFeeFreeExit();
+      expect(getW05DispatchState().phase).toBe("en_route");
+      expect(getW05DispatchState().isCancelled).toBe(false);
+      expect(getW05DispatchState().cancelReason).toBe("requires_delay_waiver_review");
     });
   });
 
@@ -228,6 +245,41 @@ describe("HAULIX Phase 03.43 — W05 Dispatch & Assignment Frontend Implementati
       );
       expect(en.c32dCancellationWindows.feeFreeExitCta).toBe("Request fee-free cancellation");
       expect(es.c32dCancellationWindows.feeFreeExitCta).toBe("Solicitar cancelación sin cargo");
+      expect(en.c32dCancellationWindows.cancelSearchCta).toBe("Cancel search (Fee-Free · $0)");
+      expect(es.c32dCancellationWindows.cancelSearchCta).toBe("Cancelar búsqueda (Sin cargo · $0)");
+      expect(en.c32dCancellationWindows.cancelGracePeriodCta).toBe(
+        "Cancel match (5-Min Grace · $0)"
+      );
+      expect(es.c32dCancellationWindows.cancelGracePeriodCta).toBe(
+        "Cancelar coincidencia (Gracia 5 min · $0)"
+      );
+    });
+
+    it("verifies C32 Map Dedicated English and Spanish localization keys", () => {
+      expect(en.c32Map.searchingBadge).toBe("RADAR ACTIVE · DISPATCH SEARCHING");
+      expect(es.c32Map.searchingBadge).toBe("RADAR ACTIVO · BÚSQUEDA DE DESPACHO");
+      expect(en.c32Map.matchedBadge).toBe("DRIVER MATCHED · EN ROUTE SOON");
+      expect(es.c32Map.matchedBadge).toBe("CONDUCTOR ASIGNADO · EN CAMINO PRONTO");
+      expect(en.c32Map.crewEnRouteBadge).toContain("{{minutes}}");
+      expect(es.c32Map.crewEnRouteBadge).toContain("{{minutes}}");
+      expect(en.c32Map.recenterNotice).toBe("Camera centered on route");
+      expect(es.c32Map.recenterNotice).toBe("Cámara centrada en la ruta");
+      expect(en.c32Map.zoomInA11y).toBe("Zoom In");
+      expect(es.c32Map.zoomInA11y).toBe("Acercar mapa");
+      expect(en.c32Map.zoomOutA11y).toBe("Zoom Out");
+      expect(es.c32Map.zoomOutA11y).toBe("Alejar mapa");
+      expect(en.c32Map.recenterA11y).toBe("Recenter Map Viewport");
+      expect(es.c32Map.recenterA11y).toBe("Recentrar mapa");
+    });
+  });
+
+  describe("6. QA Navigator Production Security Isolation", () => {
+    it("verifies DemoScreenNavigator contains strict production environment guardrail", () => {
+      const navContent = fs.readFileSync(demoNavPath, "utf8");
+      expect(navContent).toContain("isProductionBuild");
+      expect(navContent).toContain('process.env.NODE_ENV === "production"');
+      expect(navContent).toContain('process.env.EXPO_PUBLIC_APP_ENV === "production"');
+      expect(navContent).toContain("return null");
     });
   });
 });
