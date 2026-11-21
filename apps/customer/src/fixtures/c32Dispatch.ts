@@ -26,7 +26,11 @@ export type DispatchSearchPhase =
   | "matched"
   | "en_route"
   | "cancellation_windows"
-  | "cancelled_fee_free";
+  | "cancelled_fee_free"
+  | "no_driver"
+  | "driver_late"
+  | "reassigned"
+  | "canceled";
 
 export interface DispatchDriver {
   id: string;
@@ -110,6 +114,54 @@ export const W05_DEMO_CREW: DispatchCrew = {
   },
   estimatedArrivalMin: 11,
   distanceMiles: 2.8,
+};
+
+export const W05_DRIVER_LATE_CREW: DispatchCrew = {
+  driver: {
+    id: "drv-883",
+    name: "Mike R.",
+    rating: 4.8,
+    completedJobs: 219,
+    phone: "(602) 555-0182",
+    isVerified: true,
+  },
+  helperCount: 0,
+  crewSummaryEn: "1 driver · helper pending",
+  crewSummaryEs: "1 conductor · ayudante pendiente",
+  vehicle: {
+    makeModel: "Cargo Van",
+    colorEn: "White",
+    colorEs: "Blanca",
+    licensePlate: "AZ 7HT-9234",
+    tierEn: "White cargo van · AZ 7HT-9234",
+    tierEs: "Furgoneta blanca · AZ 7HT-9234",
+  },
+  estimatedArrivalMin: 25,
+  distanceMiles: 4.5,
+};
+
+export const W05_REASSIGNED_CREW: DispatchCrew = {
+  driver: {
+    id: "drv-914",
+    name: "Sarah L.",
+    rating: 4.9,
+    completedJobs: 405,
+    phone: "(602) 555-0147",
+    isVerified: true,
+  },
+  helperCount: 1,
+  crewSummaryEn: "1 driver · helper confirmed",
+  crewSummaryEs: "1 conductor · ayudante confirmado",
+  vehicle: {
+    makeModel: "Pickup Truck",
+    colorEn: "Gray",
+    colorEs: "Gris",
+    licensePlate: "AZ 4ML-2308",
+    tierEn: "Gray pickup · AZ 4ML-2308",
+    tierEs: "Camioneta gris · AZ 4ML-2308",
+  },
+  estimatedArrivalMin: 18,
+  distanceMiles: 3.8,
 };
 
 /**

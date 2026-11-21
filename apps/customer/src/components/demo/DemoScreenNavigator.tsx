@@ -18,6 +18,72 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "w05-canceled-es",
+    name: "W05 · Solicitud cancelada sin cargo (Español)",
+    figmaNode: "Node 844:8404",
+    route: "/request-canceled",
+    locale: "es",
+    description: "W05 Solicitud cancelada sin cargo: opciones de reprogramación o nueva búsqueda",
+  },
+  {
+    id: "w05-canceled-en",
+    name: "W05 · Request Canceled Without Fee (English)",
+    figmaNode: "Node 844:6254",
+    route: "/request-canceled",
+    locale: "en",
+    description: "W05 Request canceled fee-free: rescheduling or new demo search options",
+  },
+  {
+    id: "w05-reassigned-es",
+    name: "W05 · Conductor reasignado (Español)",
+    figmaNode: "Node 844:7890",
+    route: "/driver-reassigned",
+    locale: "es",
+    description:
+      "W05 Asignación de conductor sustituto verificado (Sarah L.) tras cambio de despacho",
+  },
+  {
+    id: "w05-reassigned-en",
+    name: "W05 · Driver Reassigned (English)",
+    figmaNode: "Node 844:5740",
+    route: "/driver-reassigned",
+    locale: "en",
+    description: "W05 Replacement verified driver assignment (Sarah L.) following dispatch update",
+  },
+  {
+    id: "w05-driver-late-es",
+    name: "W05 · Actualización de llegada demorada (Español)",
+    figmaNode: "Node 844:8009",
+    route: "/driver-arrival-update",
+    locale: "es",
+    description: "W05 Notificación de demora de llegada del conductor con opciones de ausencia",
+  },
+  {
+    id: "w05-driver-late-en",
+    name: "W05 · Driver Arrival Update (English)",
+    figmaNode: "Node 844:5859",
+    route: "/driver-arrival-update",
+    locale: "en",
+    description: "W05 Driver arrival delay notice with no-show options and W06 handoff link",
+  },
+  {
+    id: "w05-no-driver-es",
+    name: "W05 · No hay conductor disponible (Español)",
+    figmaNode: "Node 844:8220",
+    route: "/no-driver-available",
+    locale: "es",
+    description:
+      "W05 Búsqueda de radio 50 mi sin conductor: reprogramación o cancelación sin cargo",
+  },
+  {
+    id: "w05-no-driver-en",
+    name: "W05 · No Driver Available (English)",
+    figmaNode: "Node 844:6070",
+    route: "/no-driver-available",
+    locale: "en",
+    description: "W05 Search expanded to 50 mi with no driver: reschedule or cancel fee-free",
+  },
+  {
     id: "c32d-es",
     name: "C32-D · Ventanas de cancelación (Español)",
     figmaNode: "Section 836:4572",

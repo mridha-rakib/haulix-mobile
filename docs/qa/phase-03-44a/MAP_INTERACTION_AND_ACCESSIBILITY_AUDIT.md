@@ -4,18 +4,18 @@
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.44A  
-**TARGET:** `HaulixDispatchMap.tsx` Interactive Controls & Screen-Reader Compatibility  
+**TARGET:** `HaulixDispatchMap.tsx` Interactive Controls & Screen-Reader Compatibility
 
 ---
 
 ### 1. Interactive Controls Audit
 
-| Control Element | Test ID | Touch Target Size | Accessibility Role | Accessibility Label (EN / ES) | Functional Result |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Zoom In Button** | `map-zoom-in-btn` | 38 × 36 px (hitSlop 6) | `button` | `t("c32Map.zoomInA11y")` ("Zoom in map" / "Acercar mapa") | Increments zoom level by +0.15 (clamped to 1.4x) |
-| **Zoom Out Button** | `map-zoom-out-btn` | 38 × 36 px (hitSlop 6) | `button` | `t("c32Map.zoomOutA11y")` ("Zoom out map" / "Alejar mapa") | Decrements zoom level by -0.15 (clamped to 0.75x) |
-| **Recenter Button** | `map-recenter-btn` | 38 × 38 px (hitSlop 8) | `button` | `t("c32Map.recenterA11y")` ("Recenter map on active location" / "Centrar mapa en la ubicación activa") | Resets zoom to 1.0x and displays floating confirmation toast |
-| **Recenter Toast** | `map-recenter-toast` | Floating banner | `none` | `t("c32Map.recenterNotice")` ("Map view recentered" / "Vista del mapa centrada") | Auto-dismisses after 1.2s |
+| Control Element     | Test ID              | Touch Target Size      | Accessibility Role | Accessibility Label (EN / ES)                                                                          | Functional Result                                            |
+| :------------------ | :------------------- | :--------------------- | :----------------- | :----------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| **Zoom In Button**  | `map-zoom-in-btn`    | 38 × 36 px (hitSlop 6) | `button`           | `t("c32Map.zoomInA11y")` ("Zoom in map" / "Acercar mapa")                                              | Increments zoom level by +0.15 (clamped to 1.4x)             |
+| **Zoom Out Button** | `map-zoom-out-btn`   | 38 × 36 px (hitSlop 6) | `button`           | `t("c32Map.zoomOutA11y")` ("Zoom out map" / "Alejar mapa")                                             | Decrements zoom level by -0.15 (clamped to 0.75x)            |
+| **Recenter Button** | `map-recenter-btn`   | 38 × 38 px (hitSlop 8) | `button`           | `t("c32Map.recenterA11y")` ("Recenter map on active location" / "Centrar mapa en la ubicación activa") | Resets zoom to 1.0x and displays floating confirmation toast |
+| **Recenter Toast**  | `map-recenter-toast` | Floating banner        | `none`             | `t("c32Map.recenterNotice")` ("Map view recentered" / "Vista del mapa centrada")                       | Auto-dismisses after 1.2s                                    |
 
 ---
 

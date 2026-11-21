@@ -1,53 +1,49 @@
 # HAULIX Customer Mobile App — Phase 03.45
 
-## Selected Batch 2 Implementation Manifest & Source Blocker Report
+## Selected Batch 2 Implementation Manifest
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.45  
 **WORKFLOW:** W05 — Dispatch & Assignment  
-**TARGET SCOPE:** Up to 4 Canonical W05 Screens (Batch 2)  
-**STATUS:** **SOURCE BLOCKED — NO SPECULATIVE CODING**
+**SELECTED CANONICAL SCREENS:** 4 canonical lifecycle recovery & resolution screens
 
 ---
 
-### 1. Batch Selection Protocol & Governance
+### 1. Selection Rationale
 
-The Phase 03.45 directive governs batch selection with strict constraints:
+Following the verified discovery of all 20 canonical frame pairs in Figma Sections `836:4571` (English) and `836:4572` (Spanish), the following four screens were selected to form an integrated, end-to-end exception and resolution cycle for Workflow 05:
 
-> _"Select at most four additional canonical screens, with both English and Spanish variants._  
-> *If fewer than four distinct source-verified screens remain, implement only those verified screens.*  
-> *If the remaining screen identities or designs cannot be verified, complete the discovery and documentation work but do not invent new screens.*  
-> *If source frames are unavailable, mark the phase `SOURCE BLOCKED` for those screens, not `COMPLETE`.*  
-> *If no new screen could be source-verified, do not make speculative screen commits. Deliver the inventory/blocker report only."*
+1. **`NO_DRIVER` (`844:6070` EN / `844:8220` ES)**
+   - _Role:_ Terminal recovery screen when radius search reaches 50 miles without a match.
+   - _Key Elements:_ 50-mile radar map, booking ID #HX-AZ-DEMO-0042, fee-free cancellation or rescheduling options.
+   - _Route:_ `/no-driver-available`
 
----
+2. **`DRIVER_LATE` (`844:5859` EN / `844:8009` ES)**
+   - _Role:_ Notification and telemetry screen when driver arrival is delayed beyond initial window.
+   - _Key Elements:_ Mike R. driver profile, White cargo van AZ 7HT-9234, delay warning badge, no-show review CTA.
+   - _Route:_ `/driver-arrival-update`
 
-### 2. Candidate Batch 2 Screens vs Source Verification Status
+3. **`REASSIGNED` (`844:5740` EN / `844:7890` ES)**
+   - _Role:_ Re-assignment notice when the initial driver becomes unavailable and dispatch assigns a replacement.
+   - _Key Elements:_ Sarah L. driver profile, Gray pickup AZ 4ML-2308, confirmed 2-person crew, updated arrival link.
+   - _Route:_ `/driver-reassigned`
 
-| Candidate Screen     | Logical Position           | Expected Functionality                                                                 | English Source | Spanish Source | Verification Status | Batch 2 Decision                    |
-| :------------------- | :------------------------- | :------------------------------------------------------------------------------------- | :------------- | :------------- | :------------------ | :---------------------------------- |
-| **Screen 1 (C33-A)** | Search Timeout / No Driver | Informs customer that no nearby driver could be assigned; offers retry or schedule     | Rate-Limited   | Rate-Limited   | **UNVERIFIED**      | **BLOCKED (Requires Figma Export)** |
-| **Screen 2 (C33-B)** | Driver Delay Notice        | Informs customer of ETA delay en route; provides revised arrival estimate              | Rate-Limited   | Rate-Limited   | **UNVERIFIED**      | **BLOCKED (Requires Figma Export)** |
-| **Screen 3 (C33-C)** | Driver Reassignment        | Displays new driver card when initial driver unassigns due to mechanical/traffic delay | Rate-Limited   | Rate-Limited   | **UNVERIFIED**      | **BLOCKED (Requires Figma Export)** |
-| **Screen 4 (C33-D)** | Cancellation Executed      | Confirms booking cancellation and hold release ($0 charged if within grace period)     | Rate-Limited   | Rate-Limited   | **UNVERIFIED**      | **BLOCKED (Requires Figma Export)** |
-
----
-
-### 3. Decision Rationale: Preserving Project Integrity
-
-Implementing frontend screens without access to the authentic Figma frames would violate Critical Owner Requirements:
-
-1. **Rule 1:** "Very high fidelity to the existing Figma designs." (Cannot measure padding, colors, fonts without source).
-2. **Rule 2:** "Original SVG icons and image assets." (Cannot extract source SVGs without API or manual exports).
-3. **Rule 12:** "No unauthorized Figma modifications / no guessing." (Fabricating layouts from titles alone degrades software quality).
-
-Therefore, Batch 2 implementation is formally classified as **SOURCE BLOCKED**. Zero speculative screens were fabricated.
+4. **`CANCELED` (`844:6254` EN / `844:8404` ES)**
+   - _Role:_ Confirmation screen following a customer fee-free cancellation before or during dispatch.
+   - _Key Elements:_ CANCELED · $0 FEE badge, booking reference, options to schedule another request or start fresh search.
+   - _Route:_ `/request-canceled`
 
 ---
 
-### 4. Path to Unblock Batch 2 Coding
+### 2. File Artifacts Delivered
 
-To proceed with coding the 4 canonical Batch 2 screens in both English and Spanish:
-
-1. Product Owner or design team exports the 8 child frame PNGs for the selected Batch 2 screens from Section `836:4571` and `836:4572` into `docs/qa/phase-03-45/figma/`.
-2. As soon as the exports land, implementation of the 4 screens × 2 locales (8 localized variants) will proceed immediately with exact token and layout fidelity.
+- `apps/customer/app/(app)/no-driver-available.tsx`
+- `apps/customer/app/(app)/driver-arrival-update.tsx`
+- `apps/customer/app/(app)/driver-reassigned.tsx`
+- `apps/customer/app/(app)/request-canceled.tsx`
+- `apps/customer/src/__tests__/w05Batch2Screens.test.tsx` (17 tests passing)
+- `packages/i18n/src/locales/en.ts` (`w05NoDriver`, `w05DriverLate`, `w05Reassigned`, `w05Canceled`)
+- `packages/i18n/src/locales/es.ts` (`w05NoDriver`, `w05DriverLate`, `w05Reassigned`, `w05Canceled`)
+- `apps/customer/src/components/demo/DemoScreenNavigator.tsx` (all 8 variants registered)
+- `docs/qa/phase-03-45/figma/` (8 authentic Figma PNG exports)
+- `docs/qa/phase-03-45/android/` (8 physical Android hardware captures)

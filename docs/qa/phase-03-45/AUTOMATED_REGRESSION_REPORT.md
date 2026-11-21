@@ -1,47 +1,34 @@
 # HAULIX Customer Mobile App — Phase 03.45
 
-## Automated Regression Test Report
+## Automated Regression Report & Test Verification
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.45  
-**TEST RUN DATE:** 2026-11-21
+**EXECUTION DATE:** November 21, 2026  
+**RESULT:** **100% GREEN (109/109 Test Suites Passing, 690/690 Tests Passing)**
 
 ---
 
-### 1. Monorepo Test Summary
-
-A fresh execution of all unit and integration test suites confirms 100% green status across all packages:
+### Test Suite Execution Summary
 
 ```
-Test Suites: 108 passed, 108 total
-Tests:       673 passed, 673 total
-Snapshots:   0 total
-Time:        9.482 s
+@haulix/customer:test: Test Suites: 109 passed, 109 total
+@haulix/customer:test: Tests:       690 passed, 690 total
+@haulix/customer:test: Snapshots:   0 total
+@haulix/customer:test: Time:        20.296 s
+
+@haulix/i18n:test: PASS src/i18n.test.ts (10.791 s)
+@haulix/logger:test: PASS src/logger.test.ts (7.363 s)
+@haulix/design-tokens:test: PASS src/preset.test.ts (6.871 s)
+@haulix/utils:test: PASS src/fsm.test.ts, PASS src/utils.test.ts (10.814 s)
 ```
 
-### 2. Package-by-Package Breakdown
+### Dedicated Batch 2 Test Suite: `w05Batch2Screens.test.tsx`
 
-| Package                 | Test Suites       | Passing Tests | TypeScript Check (`tsc --noEmit`) | Biome Lint / Format    |
-| :---------------------- | :---------------- | :------------ | :-------------------------------- | :--------------------- |
-| `@haulix/customer`      | 108 passed        | 673 passed    | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/design-tokens` | Static package    | N/A           | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/driver`        | 2 passed          | 7 passed      | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/i18n`          | Static strings    | N/A           | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/logger`        | 1 passed          | 8 passed      | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/ui`            | Static primitives | N/A           | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| `@haulix/utils`         | 2 passed          | 21 passed     | **PASS** (Zero errors)            | **PASS** (Zero errors) |
-| **TOTAL**               | **113 suites**    | **709 tests** | **100% PASS**                     | **100% PASS**          |
-
----
-
-### 3. W05 Specific Test Suites
-
-| Test Suite File                            | Tested Screen / Capability     | Passing Tests | Coverage Highlights                                            |
-| :----------------------------------------- | :----------------------------- | :------------ | :------------------------------------------------------------- |
-| `searching-for-driver.test.tsx`            | C32-A Searching for Driver     | 5 passed      | Radar sweep, pickup address chip, fee-free cancellation CTA    |
-| `driver-matched.test.tsx`                  | C32-B Driver Matched           | 5 passed      | Driver card, vehicle specs, call/chat actions, confirm CTA     |
-| `crew-tracking.test.tsx`                   | C32-C Crew Assigned & Tracking | 5 passed      | Live route, timeline steps, summary modal, contact triggers    |
-| `cancellation-windows.test.tsx`            | C32-D Cancellation Windows     | 5 passed      | Policy matrix, 5-min grace period, $100 fee rules, back action |
-| `no-driver-fee-free-cancellation.test.tsx` | W05 Fee-Free Exit Flow         | 5 passed      | Full cancellation flow with $0 charge confirmation             |
-
-Zero tests were disabled, modified to be less strict, or bypassed.
+| Test Category                                      | Tests        | Status   |
+| :------------------------------------------------- | :----------- | :------- |
+| **1. Route Architecture & File Presence**          | 5 tests      | **PASS** |
+| **2. Symmetrical EN/ES Localization Integrity**    | 8 tests      | **PASS** |
+| **3. Dispatch State & Crew Fixture Integrity**     | 3 tests      | **PASS** |
+| **4. Vector Icons & Visual Artifact Verification** | 1 test       | **PASS** |
+| **TOTAL**                                          | **17 tests** | **PASS** |
