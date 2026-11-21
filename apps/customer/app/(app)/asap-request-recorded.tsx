@@ -129,7 +129,11 @@ export default function AsapRequestRecordedScreen() {
 
   const handleCheckQueue = useCallback(() => {
     setQueueNoticeVisible(true);
-  }, []);
+    router.push({
+      pathname: "/searching-for-driver",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const handleCancelAsap = useCallback(() => {
     setCancelFeedbackVisible(true);

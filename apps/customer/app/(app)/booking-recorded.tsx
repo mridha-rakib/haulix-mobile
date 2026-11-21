@@ -116,7 +116,11 @@ export default function BookingRecordedScreen() {
 
   const handleViewOverview = useCallback(() => {
     setFutureNoticeVisible(true);
-  }, []);
+    router.push({
+      pathname: "/searching-for-driver",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const confirmedItems = getEffectiveConfirmedItems(draft, currentLocale);
 

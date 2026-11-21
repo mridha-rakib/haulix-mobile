@@ -18,6 +18,74 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c32d-es",
+    name: "C32-D · Ventanas de cancelación (Español)",
+    figmaNode: "Section 836:4572",
+    route: "/cancellation-windows",
+    locale: "es",
+    description:
+      "W05 Política y ventanas de cancelación sin tarifa y cálculo ilustrativo de rescisión",
+  },
+  {
+    id: "c32d-en",
+    name: "C32-D · Cancellation Windows (English)",
+    figmaNode: "Section 836:4571",
+    route: "/cancellation-windows",
+    locale: "en",
+    description:
+      "W05 Cancellation policies, fee-free window, and illustrative dispatch fee breakdown",
+  },
+  {
+    id: "c32c-es",
+    name: "C32-C · Seguimiento de equipo asignado (Español)",
+    figmaNode: "Section 836:4572",
+    route: "/crew-tracking",
+    locale: "es",
+    description:
+      "W05 Mapa vectorial de alta fidelidad, ruta activa, equipo de 2 personas y telemetría",
+  },
+  {
+    id: "c32c-en",
+    name: "C32-C · Crew Assigned & Tracking (English)",
+    figmaNode: "Section 836:4571",
+    route: "/crew-tracking",
+    locale: "en",
+    description:
+      "W05 High-fidelity vector dispatch map, route polyline, 2-person crew card, and live ETA",
+  },
+  {
+    id: "c32b-es",
+    name: "C32-B · Conductor asignado (Español)",
+    figmaNode: "Section 836:4572",
+    route: "/driver-matched",
+    locale: "es",
+    description: "W05 Notificación de asignación de conductor verificado con detalles del vehículo",
+  },
+  {
+    id: "c32b-en",
+    name: "C32-B · Driver Matched (English)",
+    figmaNode: "Section 836:4571",
+    route: "/driver-matched",
+    locale: "en",
+    description: "W05 Verified driver match confirmation card with vehicle specifications and ETA",
+  },
+  {
+    id: "c32a-es",
+    name: "C32-A · Buscando conductor (Español)",
+    figmaNode: "Section 836:4572",
+    route: "/searching-for-driver",
+    locale: "es",
+    description: "W05 Radar animado sobre mapa vectorial oscuro buscando conductores calificados",
+  },
+  {
+    id: "c32a-en",
+    name: "C32-A · Searching for Driver (English)",
+    figmaNode: "Section 836:4571",
+    route: "/searching-for-driver",
+    locale: "en",
+    description: "W05 Animated radar pulse over dark vector map querying verified driver network",
+  },
+  {
     id: "c31s-es",
     name: "C31-S · Tu reserva está registrada (Español)",
     figmaNode: "Node 766:1475",
