@@ -14,10 +14,11 @@ describe("C30-D Authorization Was Declined — English (Node 763:814) & Spanish 
     expect(navContent).toContain('route: "/payment-authorization-declined"');
   });
 
-  it("verifies recovery transitions to C29 and C29-M retry", () => {
+  it("verifies recovery transitions to C29, C29-M retry, and C30-R restoration", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain('pathname: "/choose-payment-method"');
     expect(routeContent).toContain('pathname: "/secure-card-setup"');
+    expect(routeContent).toContain('pathname: "/restore-secure-authorization"');
     expect(routeContent).toContain("recordAuthorizationDeclined");
   });
 

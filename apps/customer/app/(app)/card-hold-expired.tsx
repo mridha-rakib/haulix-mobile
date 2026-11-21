@@ -76,7 +76,6 @@ export default function CardHoldExpiredScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ previewLocale?: string }>();
   const [draft, setDraft] = useState(getW04Draft);
-  const [showAssistanceBanner, setShowAssistanceBanner] = useState(false);
 
   const currentLocale = (params.previewLocale ??
     (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
@@ -121,6 +120,13 @@ export default function CardHoldExpiredScreen() {
   const handleBackToScheduling = useCallback(() => {
     router.push({
       pathname: "/schedule-service-window",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
+  const handleReviewFreshHold = useCallback(() => {
+    router.push({
+      pathname: "/review-fresh-card-hold",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
@@ -183,25 +189,6 @@ export default function CardHoldExpiredScreen() {
             <ClockExpiryIcon />
             <Text style={styles.expiredBadgeText}>{t("c30eCardHoldExpired.expiredBadge")}</Text>
           </View>
-
-          {/* Future Assistance Notice Banner */}
-          {showAssistanceBanner && (
-            <View style={styles.bannerContainer} testID="c30e-assistance-banner">
-              <Text style={styles.bannerText}>
-                {t("c30eCardHoldExpired.futureAssistanceNotice")}
-              </Text>
-              <Pressable
-                onPress={() => setShowAssistanceBanner(false)}
-                style={styles.bannerDismiss}
-                accessibilityRole="button"
-                accessibilityLabel={t("c30eCardHoldExpired.dismissNotice")}
-              >
-                <Text style={styles.bannerDismissText}>
-                  {t("c30eCardHoldExpired.dismissNotice")}
-                </Text>
-              </Pressable>
-            </View>
-          )}
 
           {/* Release Details Card */}
           <View style={styles.cardContainer} testID="c30e-details-card">
@@ -296,22 +283,20 @@ export default function CardHoldExpiredScreen() {
             <Text style={styles.secondaryButtonText}>{t("c30eCardHoldExpired.secondaryCta")}</Text>
           </Pressable>
 
-          {/* Assistance Notice Trigger */}
-          {!showAssistanceBanner && (
-            <Pressable
-              onPress={() => setShowAssistanceBanner(true)}
-              style={styles.assistanceLink}
-              accessibilityRole="button"
-              accessibilityLabel="Hold renewal assistance"
-              testID="c30e-assistance-trigger"
-            >
-              <Text style={styles.assistanceLinkText}>
-                {currentLocale === "es"
-                  ? "¿Necesitas ayuda para renovar la retención? Asistencia ›"
-                  : "Need help renewing your hold? Assistance ›"}
-              </Text>
-            </Pressable>
-          )}
+          {/* Fresh Hold Review Trigger -> C30-C */}
+          <Pressable
+            onPress={handleReviewFreshHold}
+            style={styles.assistanceLink}
+            accessibilityRole="button"
+            accessibilityLabel="Review fresh hold"
+            testID="c30e-assistance-trigger"
+          >
+            <Text style={styles.assistanceLinkText}>
+              {currentLocale === "es"
+                ? "¿Deseas renovar la retención? Revisar nueva retención ›"
+                : "Need to renew your hold? Review fresh hold ›"}
+            </Text>
+          </Pressable>
 
           {/* Prototype Disclaimer */}
           <View style={styles.footerNoteContainer}>

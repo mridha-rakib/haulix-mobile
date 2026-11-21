@@ -76,7 +76,6 @@ export default function PaymentAuthorizationDeclinedScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ previewLocale?: string }>();
   const [draft, setDraft] = useState(getW04Draft);
-  const [showSupportBanner, setShowSupportBanner] = useState(false);
 
   const currentLocale = (params.previewLocale ??
     (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
@@ -121,6 +120,13 @@ export default function PaymentAuthorizationDeclinedScreen() {
   const handleRetrySameCard = useCallback(() => {
     router.push({
       pathname: "/secure-card-setup",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
+  const handleRestoreAuthorization = useCallback(() => {
+    router.push({
+      pathname: "/restore-secure-authorization",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
@@ -185,25 +191,6 @@ export default function PaymentAuthorizationDeclinedScreen() {
               {t("c30dAuthorizationDeclined.declinedBadge")}
             </Text>
           </View>
-
-          {/* Future Support Notice Banner */}
-          {showSupportBanner && (
-            <View style={styles.bannerContainer} testID="c30d-support-banner">
-              <Text style={styles.bannerText}>
-                {t("c30dAuthorizationDeclined.futureSupportNotice")}
-              </Text>
-              <Pressable
-                onPress={() => setShowSupportBanner(false)}
-                style={styles.bannerDismiss}
-                accessibilityRole="button"
-                accessibilityLabel={t("c30dAuthorizationDeclined.dismissNotice")}
-              >
-                <Text style={styles.bannerDismissText}>
-                  {t("c30dAuthorizationDeclined.dismissNotice")}
-                </Text>
-              </Pressable>
-            </View>
-          )}
 
           {/* Decline Details Card */}
           <View style={styles.cardContainer} testID="c30d-details-card">
@@ -302,22 +289,20 @@ export default function PaymentAuthorizationDeclinedScreen() {
             </Text>
           </Pressable>
 
-          {/* Support Notice Trigger */}
-          {!showSupportBanner && (
-            <Pressable
-              onPress={() => setShowSupportBanner(true)}
-              style={styles.supportLink}
-              accessibilityRole="button"
-              accessibilityLabel="Payment dispute assistance"
-              testID="c30d-support-trigger"
-            >
-              <Text style={styles.supportLinkText}>
-                {currentLocale === "es"
-                  ? "¿Tienes dudas sobre el rechazo? Asistencia de pago ›"
-                  : "Questions about this decline? Payment support ›"}
-              </Text>
-            </Pressable>
-          )}
+          {/* Support Notice Trigger -> C30-R */}
+          <Pressable
+            onPress={handleRestoreAuthorization}
+            style={styles.supportLink}
+            accessibilityRole="button"
+            accessibilityLabel="Restore authorization"
+            testID="c30d-support-trigger"
+          >
+            <Text style={styles.supportLinkText}>
+              {currentLocale === "es"
+                ? "¿Necesitas restaurar la autorización? Restaurar sesión ›"
+                : "Need to restore authorization? Restore session ›"}
+            </Text>
+          </Pressable>
 
           {/* Prototype Disclaimer */}
           <View style={styles.footerNoteContainer}>

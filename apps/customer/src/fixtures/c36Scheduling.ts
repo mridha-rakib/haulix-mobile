@@ -43,6 +43,10 @@ export type SchedulingRecoveryState =
   | "authorization_processing"
   | "authorization_declined"
   | "hold_expired"
+  | "authorization_restoration_demo"
+  | "fresh_hold_review_demo"
+  | "fresh_hold_consent_acknowledged_demo"
+  | "booking_status_checking_demo"
   | "backend_availability_unverified";
 
 export type InventorySourceMode = "active_w03_journey" | "w04_figma_demo";
@@ -111,6 +115,7 @@ export interface W04CustomerDraft {
   recoveryState: SchedulingRecoveryState;
   inventorySource: InventorySourceMode;
   selectedPaymentMethod: PaymentMethodType;
+  freshHoldConsentAccepted: boolean;
 }
 
 export const SAMPLE_DATES: readonly SchedulingDateOption[] = [
@@ -202,6 +207,7 @@ export const DEFAULT_W04_DRAFT: W04CustomerDraft = {
   recoveryState: "backend_availability_unverified",
   inventorySource: "w04_figma_demo",
   selectedPaymentMethod: "card",
+  freshHoldConsentAccepted: false,
 };
 
 // In-memory persistent draft store for active user session
@@ -318,6 +324,45 @@ export function recordAuthorizationDeclined(): W04CustomerDraft {
 export function recordHoldExpired(): W04CustomerDraft {
   return updateW04Draft({
     recoveryState: "hold_expired",
+  });
+}
+
+/**
+ * Record authorization restoration demonstration state (C30-R).
+ */
+export function recordAuthorizationRestoration(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "authorization_restoration_demo",
+  });
+}
+
+/**
+ * Record fresh card hold review demonstration state (C30-C).
+ */
+export function recordFreshHoldReview(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "fresh_hold_review_demo",
+    freshHoldConsentAccepted: false,
+  });
+}
+
+/**
+ * Explicitly acknowledges fresh hold consent (C30-CA).
+ */
+export function acknowledgeFreshHoldConsent(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "fresh_hold_consent_acknowledged_demo",
+    freshHoldConsentAccepted: true,
+    termsVersion: "2026.11-v2",
+  });
+}
+
+/**
+ * Record booking status checking demonstration state (C31-P).
+ */
+export function recordBookingStatusChecking(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "booking_status_checking_demo",
   });
 }
 

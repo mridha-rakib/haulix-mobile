@@ -14,10 +14,11 @@ describe("C29-P Payment Authorization Pending — English (Node 763:745) & Spani
     expect(navContent).toContain('route: "/payment-authorization-pending"');
   });
 
-  it("verifies demonstration simulation transitions to C30-D and C30-E", () => {
+  it("verifies demonstration simulation transitions to C30-D, C30-E, and C31-P", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain('pathname: "/payment-authorization-declined"');
     expect(routeContent).toContain('pathname: "/card-hold-expired"');
+    expect(routeContent).toContain('pathname: "/checking-booking-status"');
     expect(routeContent).toContain("recordAuthorizationProcessing");
   });
 
@@ -45,7 +46,6 @@ describe("C29-P Payment Authorization Pending — English (Node 763:745) & Spani
   it("verifies no real transaction execution and proper UI prototype notices", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain("c29pPaymentAuthorization.uiNote");
-    expect(routeContent).toContain("c29pPaymentAuthorization.futureNoticeSuccess");
     expect(routeContent).not.toContain("stripe.confirmPayment");
     expect(routeContent).not.toContain("stripe.createPaymentMethod");
   });

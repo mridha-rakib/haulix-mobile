@@ -84,7 +84,6 @@ export default function PaymentAuthorizationPendingScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ previewLocale?: string }>();
   const [draft, setDraft] = useState(getW04Draft);
-  const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
 
   const currentLocale = (params.previewLocale ??
     (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
@@ -134,8 +133,11 @@ export default function PaymentAuthorizationPendingScreen() {
   }, [router, params.previewLocale]);
 
   const handleSimulateSuccess = useCallback(() => {
-    setNoticeMessage(t("c29pPaymentAuthorization.futureNoticeSuccess"));
-  }, [t]);
+    router.push({
+      pathname: "/checking-booking-status",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
 
   const confirmedItems = getEffectiveConfirmedItems(draft, currentLocale);
 
@@ -194,23 +196,6 @@ export default function PaymentAuthorizationPendingScreen() {
             <ActivityIndicator size="small" color={colors.brand} />
             <Text style={styles.statusBadgeText}>{t("c29pPaymentAuthorization.statusBadge")}</Text>
           </View>
-
-          {/* Future Notice Notification */}
-          {noticeMessage && (
-            <View style={styles.bannerContainer} testID="c29p-success-banner">
-              <Text style={styles.bannerText}>{noticeMessage}</Text>
-              <Pressable
-                onPress={() => setNoticeMessage(null)}
-                style={styles.bannerDismiss}
-                accessibilityRole="button"
-                accessibilityLabel={t("c29pPaymentAuthorization.dismissNotice")}
-              >
-                <Text style={styles.bannerDismissText}>
-                  {t("c29pPaymentAuthorization.dismissNotice")}
-                </Text>
-              </Pressable>
-            </View>
-          )}
 
           {/* Temporary Hold Details Card */}
           <View style={styles.detailsCard} testID="c29p-hold-card">

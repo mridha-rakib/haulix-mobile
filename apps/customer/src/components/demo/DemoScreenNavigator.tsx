@@ -18,6 +18,75 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c30r-es",
+    name: "C30-R · Restaurar autorización segura (Español)",
+    figmaNode: "Node 766:1338",
+    route: "/restore-secure-authorization",
+    locale: "es",
+    description: "W04 Recuperación de sesión de pago para autorizaciones interrumpidas o vencidas",
+  },
+  {
+    id: "c30r-en",
+    name: "C30-R · Restore Secure Authorization (English)",
+    figmaNode: "Node 763:952",
+    route: "/restore-secure-authorization",
+    locale: "en",
+    description: "W04 Payment authorization recovery interface for interrupted or expired holds",
+  },
+  {
+    id: "c30c-es",
+    name: "C30-C · Revisar una nueva retención de tarjeta (Español)",
+    figmaNode: "Node 773:1053",
+    route: "/review-fresh-card-hold",
+    locale: "es",
+    description:
+      "W04 Punto de consentimiento comercial previo a una nueva solicitud de retención temporal",
+  },
+  {
+    id: "c30c-en",
+    name: "C30-C · Review a Fresh Card Hold (English)",
+    figmaNode: "Node 773:836",
+    route: "/review-fresh-card-hold",
+    locale: "en",
+    description:
+      "W04 Commercial consent checkpoint requiring explicit agreement before fresh authorization",
+  },
+  {
+    id: "c30ca-es",
+    name: "C30-CA · Nuevo consentimiento de autorización registrado (Español)",
+    figmaNode: "Node 773:1122",
+    route: "/new-authorization-consent",
+    locale: "es",
+    description: "W04 Conformidad registrada bajo versión v2 para nueva retención de demostración",
+  },
+  {
+    id: "c30ca-en",
+    name: "C30-CA · New Authorization Consent Recorded (English)",
+    figmaNode: "Node 773:905",
+    route: "/new-authorization-consent",
+    locale: "en",
+    description:
+      "W04 Local demonstration acknowledgement under v2 terms recorded for fresh authorization",
+  },
+  {
+    id: "c31p-es",
+    name: "C31-P · Verificando estado de la reserva (Español)",
+    figmaNode: "Node 766:1407",
+    route: "/checking-booking-status",
+    locale: "es",
+    description:
+      "W04 Cola de verificación de solicitud de servicio y estado de reserva sin mutación de servidor",
+  },
+  {
+    id: "c31p-en",
+    name: "C31-P · Checking Booking Status (English)",
+    figmaNode: "Node 763:1021",
+    route: "/checking-booking-status",
+    locale: "en",
+    description:
+      "W04 Service request verification queue demonstration; zero fabricated backend mutations",
+  },
+  {
     id: "c29_3d-es",
     name: "C29-3D · Confirma la autenticación de tu tarjeta (Español)",
     figmaNode: "Node 766:1062",
