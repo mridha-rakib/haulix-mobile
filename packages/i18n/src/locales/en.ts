@@ -3087,6 +3087,8 @@ const en = {
     primaryCta: "Reschedule booking",
     secondaryCta: "Cancel with no fee",
     alternativeLink: "Contact support",
+    supportToast:
+      "Support contact is available in the live service. This is an interactive demo preview.",
     prototypeDisclaimer: "UI PROTOTYPE · Illustrative map and data · Not a live booking.",
     backA11y: "Back to searching driver",
   },
@@ -3120,6 +3122,8 @@ const en = {
     primaryCta: "Check no-show options",
     secondaryCta: "View W06 handoff",
     alternativeLink: "Contact support",
+    supportToast:
+      "Support contact is available in the live service. This is an interactive demo preview.",
     prototypeDisclaimer: "UI PROTOTYPE · Illustrative map and data · Not a live booking.",
     backA11y: "Back to crew tracking",
   },
@@ -3153,6 +3157,8 @@ const en = {
     primaryCta: "Continue to arrival status",
     secondaryCta: "Review driver details",
     alternativeLink: "Delay options",
+    supportToast:
+      "Support contact is available in the live service. This is an interactive demo preview.",
     prototypeDisclaimer: "UI PROTOTYPE · Illustrative map and data · Not a live booking.",
     backA11y: "Back to crew tracking",
   },
@@ -3179,6 +3185,8 @@ const en = {
     primaryCta: "Schedule another request",
     secondaryCta: "Start new demo search",
     alternativeLink: "Help / support",
+    supportToast:
+      "Support contact is available in the live service. This is an interactive demo preview.",
     prototypeDisclaimer: "UI PROTOTYPE · Illustrative map and data · Not a live booking.",
     backA11y: "Back to cancellation options",
   },

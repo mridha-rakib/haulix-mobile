@@ -20,7 +20,7 @@ import { changeLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { BackHandler, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
   C32BellIcon,
   C32BoxIcon,
@@ -36,7 +36,6 @@ import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
-  setDispatchPhase,
   subscribeToW05DispatchState,
   W05_DRIVER_LATE_CREW,
 } from "../../src/fixtures/c32Dispatch";
@@ -58,7 +57,6 @@ export default function DriverArrivalUpdateScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("driver_late", true);
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -113,14 +111,6 @@ export default function DriverArrivalUpdateScreen() {
         showsVerticalScrollIndicator={false}
         testID="w05-driver-late-scroll"
       >
-        {/* Brand Wordmark */}
-        <View style={styles.brandRow}>
-          <Text style={styles.brandWordmark}>
-            HAUL<Text style={styles.brandLime}>IX</Text>
-          </Text>
-          <Text style={styles.brandTagline}>WE HAUL IT ALL.</Text>
-        </View>
-
         {/* Progress Track */}
         <View style={styles.progressTrackContainer} testID="w05-progress-track">
           <View style={styles.progressLinkingTrack} />
@@ -170,7 +160,7 @@ export default function DriverArrivalUpdateScreen() {
         {/* Map Viewport Component */}
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
-            mode="en_route"
+            mode="driver_late"
             height={235}
             etaMinutes={W05_DRIVER_LATE_CREW.estimatedArrivalMin}
             pickupLabel="Phoenix, AZ · Arrival delayed"
@@ -194,7 +184,11 @@ export default function DriverArrivalUpdateScreen() {
           {/* Driver Profile Row */}
           <View style={styles.driverProfileRow}>
             <View style={styles.avatarWrap}>
-              <Text style={styles.avatarText}>MR</Text>
+              <Image
+                source={require("../../assets/images/driver-mike.png")}
+                style={styles.avatarImage}
+                resizeMode="cover"
+              />
             </View>
             <View style={styles.driverInfoCol}>
               <Text style={styles.driverName}>{t("w05DriverLate.driverName")}</Text>
@@ -287,11 +281,7 @@ export default function DriverArrivalUpdateScreen() {
 
         {supportToastVisible && (
           <View style={styles.supportToast} testID="w05-support-toast">
-            <Text style={styles.supportToastText}>
-              {currentLocale === "es"
-                ? "Soporte contactado. Se revisará la demora de llegada para tu servicio."
-                : "Support contacted. Driver arrival delay recorded for your booking."}
-            </Text>
+            <Text style={styles.supportToastText}>{t("w05DriverLate.supportToast")}</Text>
           </View>
         )}
 
@@ -517,6 +507,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1.5,
     borderColor: colors.brand,
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
   },
   avatarText: {
     fontFamily: fontFamily.medium,

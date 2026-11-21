@@ -21,6 +21,8 @@
 
 import { W03_CUSTOMER_CONFIRMED_INVENTORY } from "./c36Scheduling";
 
+export { W03_CUSTOMER_CONFIRMED_INVENTORY };
+
 export type DispatchSearchPhase =
   | "searching"
   | "matched"

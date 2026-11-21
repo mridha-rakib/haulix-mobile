@@ -3125,6 +3125,8 @@ const es: En = {
     primaryCta: "Reprogramar reserva",
     secondaryCta: "Cancelar sin cargo",
     alternativeLink: "Contactar soporte",
+    supportToast:
+      "El contacto de soporte está disponible en el servicio en vivo. Esta es una vista previa de demostración.",
     prototypeDisclaimer: "PROTOTIPO UI · Mapa y datos ilustrativos · No es una reserva real.",
     backA11y: "Volver a búsqueda de conductor",
   },
@@ -3158,6 +3160,8 @@ const es: En = {
     primaryCta: "Revisar ausencia",
     secondaryCta: "Ver siguiente etapa W06",
     alternativeLink: "Contactar soporte",
+    supportToast:
+      "El contacto de soporte está disponible en el servicio en vivo. Esta es una vista previa de demostración.",
     prototypeDisclaimer: "PROTOTIPO UI · Mapa y datos ilustrativos · No es una reserva real.",
     backA11y: "Volver al seguimiento del equipo",
   },
@@ -3191,6 +3195,8 @@ const es: En = {
     primaryCta: "Continuar a llegada",
     secondaryCta: "Detalles del conductor",
     alternativeLink: "Opciones de demora",
+    supportToast:
+      "El contacto de soporte está disponible en el servicio en vivo. Esta es una vista previa de demostración.",
     prototypeDisclaimer: "PROTOTIPO UI · Mapa y datos ilustrativos · No es una reserva real.",
     backA11y: "Volver al seguimiento del equipo",
   },
@@ -3217,6 +3223,8 @@ const es: En = {
     primaryCta: "Programar otro servicio",
     secondaryCta: "Nueva búsqueda demo",
     alternativeLink: "Ayuda / soporte",
+    supportToast:
+      "El contacto de soporte está disponible en el servicio en vivo. Esta es una vista previa de demostración.",
     prototypeDisclaimer: "PROTOTIPO UI · Mapa y datos ilustrativos · No es una reserva real.",
     backA11y: "Volver a opciones de cancelación",
   },

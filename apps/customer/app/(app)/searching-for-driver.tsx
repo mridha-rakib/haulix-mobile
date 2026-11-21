@@ -25,7 +25,6 @@ import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
-  setDispatchPhase,
   simulateDriverMatched,
   subscribeToW05DispatchState,
 } from "../../src/fixtures/c32Dispatch";
@@ -46,7 +45,6 @@ export default function SearchingForDriverScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("searching");
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -101,9 +99,8 @@ export default function SearchingForDriverScreen() {
           showsVerticalScrollIndicator={false}
           testID="c32a-scroll-view"
         >
-          {/* Brand Row */}
+          {/* Progress Label */}
           <View style={styles.brandRow}>
-            <Text style={styles.brandText}>HAULIX</Text>
             <Text style={styles.progressText}>{t("c32aSearchingDriver.progressLabel")}</Text>
           </View>
 
@@ -127,7 +124,7 @@ export default function SearchingForDriverScreen() {
           <View style={styles.mapCardWrap} testID="c32a-map-container">
             <HaulixDispatchMap
               mode="searching"
-              height={300}
+              height={235}
               pickupLabel="Phoenix, AZ"
               testID="c32a-dispatch-map"
             />

@@ -20,7 +20,7 @@ import { changeLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { BackHandler, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
   C32BellIcon,
   C32BoxIcon,
@@ -36,7 +36,6 @@ import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
-  setDispatchPhase,
   subscribeToW05DispatchState,
   W05_REASSIGNED_CREW,
 } from "../../src/fixtures/c32Dispatch";
@@ -57,7 +56,6 @@ export default function DriverReassignedScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("reassigned", true);
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -114,14 +112,6 @@ export default function DriverReassignedScreen() {
         showsVerticalScrollIndicator={false}
         testID="w05-reassigned-scroll"
       >
-        {/* Brand Wordmark */}
-        <View style={styles.brandRow}>
-          <Text style={styles.brandWordmark}>
-            HAUL<Text style={styles.brandLime}>IX</Text>
-          </Text>
-          <Text style={styles.brandTagline}>WE HAUL IT ALL.</Text>
-        </View>
-
         {/* Progress Track */}
         <View style={styles.progressTrackContainer} testID="w05-progress-track">
           <View style={styles.progressLinkingTrack} />
@@ -171,7 +161,7 @@ export default function DriverReassignedScreen() {
         {/* Map Viewport Component */}
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
-            mode="matched"
+            mode="driver_reassigned"
             height={235}
             etaMinutes={W05_REASSIGNED_CREW.estimatedArrivalMin}
             pickupLabel="Phoenix, AZ · Replacement assigned"
@@ -195,7 +185,11 @@ export default function DriverReassignedScreen() {
           {/* Driver Profile Row */}
           <View style={styles.driverProfileRow}>
             <View style={styles.avatarWrap}>
-              <Text style={styles.avatarText}>SL</Text>
+              <Image
+                source={require("../../assets/images/driver-sarah.png")}
+                style={styles.avatarImage}
+                resizeMode="cover"
+              />
             </View>
             <View style={styles.driverInfoCol}>
               <Text style={styles.driverName}>{t("w05Reassigned.driverName")}</Text>
@@ -508,6 +502,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1.5,
     borderColor: colors.brand,
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
   },
   avatarText: {
     fontFamily: fontFamily.medium,

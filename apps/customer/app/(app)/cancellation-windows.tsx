@@ -22,14 +22,52 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { C32ClockAlertIcon, C32ShieldCheckIcon } from "../../src/components/dispatch/C32Icons";
+import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
   isCancellationFeeFree,
-  setDispatchPhase,
   simulateFeeFreeExit,
   subscribeToW05DispatchState,
 } from "../../src/fixtures/c32Dispatch";
+
+type OriginPhase = "searching" | "matched" | "en_route";
+
+function getFallbackRouteForPhase(
+  phase: OriginPhase
+): "/searching-for-driver" | "/driver-matched" | "/crew-tracking" {
+  switch (phase) {
+    case "searching":
+      return "/searching-for-driver";
+    case "matched":
+      return "/driver-matched";
+    default:
+      return "/crew-tracking";
+  }
+}
+
+function getCancellationTexts(t: (key: string) => string, phase: OriginPhase) {
+  switch (phase) {
+    case "searching":
+      return {
+        statusBadgeText: t("c32dCancellationWindows.statusBadgeSearching"),
+        backA11yText: t("c32dCancellationWindows.returnToSearchA11y"),
+        cancellationButtonText: t("c32dCancellationWindows.cancelSearchCta"),
+      };
+    case "matched":
+      return {
+        statusBadgeText: t("c32dCancellationWindows.statusBadgeMatched"),
+        backA11yText: t("c32dCancellationWindows.returnToMatchedA11y"),
+        cancellationButtonText: t("c32dCancellationWindows.cancelGracePeriodCta"),
+      };
+    default:
+      return {
+        statusBadgeText: t("c32dCancellationWindows.statusBadgeEnRoute"),
+        backA11yText: t("c32dCancellationWindows.returnToTrackingA11y"),
+        cancellationButtonText: t("c32dCancellationWindows.cancelPostGraceCta"),
+      };
+  }
+}
 
 export default function CancellationWindowsScreen() {
   const { t, i18n } = useTranslation();
@@ -45,10 +83,9 @@ export default function CancellationWindowsScreen() {
 
   const effectiveOriginPhase = (params.fromPhase ??
     dispatchState.previousPhase ??
-    (dispatchState.phase !== "cancellation_windows" ? dispatchState.phase : "en_route")) as
-    | "searching"
-    | "matched"
-    | "en_route";
+    (dispatchState.phase !== "cancellation_windows"
+      ? dispatchState.phase
+      : "en_route")) as OriginPhase;
 
   const isFeeFree = isCancellationFeeFree(effectiveOriginPhase);
 
@@ -59,30 +96,24 @@ export default function CancellationWindowsScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("cancellation_windows", true);
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
+
+  const navigateToOrigin = useCallback(() => {
+    const route = getFallbackRouteForPhase(effectiveOriginPhase);
+    router.push({
+      pathname: route,
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale, effectiveOriginPhase]);
 
   const handleBack = useCallback(() => {
     if (router.canGoBack()) {
       router.back();
-    } else if (effectiveOriginPhase === "searching") {
-      router.push({
-        pathname: "/searching-for-driver",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
-    } else if (effectiveOriginPhase === "matched") {
-      router.push({
-        pathname: "/driver-matched",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
     } else {
-      router.push({
-        pathname: "/crew-tracking",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
+      navigateToOrigin();
     }
-  }, [router, params.previewLocale, effectiveOriginPhase]);
+  }, [router, navigateToOrigin]);
 
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -93,23 +124,8 @@ export default function CancellationWindowsScreen() {
   }, [handleBack]);
 
   const handleKeepBooking = useCallback(() => {
-    if (effectiveOriginPhase === "searching") {
-      router.push({
-        pathname: "/searching-for-driver",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
-    } else if (effectiveOriginPhase === "matched") {
-      router.push({
-        pathname: "/driver-matched",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
-    } else {
-      router.push({
-        pathname: "/crew-tracking",
-        params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
-      });
-    }
-  }, [router, params.previewLocale, effectiveOriginPhase]);
+    navigateToOrigin();
+  }, [navigateToOrigin]);
 
   const handleCancellationAction = useCallback(() => {
     if (isFeeFree) {
@@ -128,26 +144,10 @@ export default function CancellationWindowsScreen() {
     setTimeout(() => setWaiverFeedbackVisible(false), 2500);
   }, []);
 
-  const statusBadgeText =
-    effectiveOriginPhase === "searching"
-      ? t("c32dCancellationWindows.statusBadgeSearching")
-      : effectiveOriginPhase === "matched"
-        ? t("c32dCancellationWindows.statusBadgeMatched")
-        : t("c32dCancellationWindows.statusBadgeEnRoute");
-
-  const backA11yText =
-    effectiveOriginPhase === "searching"
-      ? t("c32dCancellationWindows.returnToSearchA11y")
-      : effectiveOriginPhase === "matched"
-        ? t("c32dCancellationWindows.returnToMatchedA11y")
-        : t("c32dCancellationWindows.returnToTrackingA11y");
-
-  const cancellationButtonText =
-    effectiveOriginPhase === "searching"
-      ? t("c32dCancellationWindows.cancelSearchCta")
-      : effectiveOriginPhase === "matched"
-        ? t("c32dCancellationWindows.cancelGracePeriodCta")
-        : t("c32dCancellationWindows.cancelPostGraceCta");
+  const { statusBadgeText, backA11yText, cancellationButtonText } = getCancellationTexts(
+    t,
+    effectiveOriginPhase
+  );
 
   return (
     <HaulixSafeArea>
@@ -159,9 +159,8 @@ export default function CancellationWindowsScreen() {
           showsVerticalScrollIndicator={false}
           testID="c32d-scroll-view"
         >
-          {/* Brand Row */}
+          {/* Progress Label */}
           <View style={styles.brandRow}>
-            <Text style={styles.brandText}>HAULIX</Text>
             <Text style={styles.progressText}>{t("c32dCancellationWindows.progressLabel")}</Text>
           </View>
 
@@ -179,6 +178,16 @@ export default function CancellationWindowsScreen() {
           <View style={styles.statusBadgeCapsule} testID="c32d-status-badge">
             <C32ShieldCheckIcon size={16} color={colors.brand} />
             <Text style={styles.statusBadgeText}>{statusBadgeText}</Text>
+          </View>
+
+          {/* MAP VIEWPORT COMPONENT (Authentic Figma Frame 844:6162) */}
+          <View style={styles.mapCardWrap} testID="c32d-map-container">
+            <HaulixDispatchMap
+              mode="cancellation_windows"
+              height={235}
+              pickupLabel="Phoenix, AZ"
+              testID="c32d-dispatch-map"
+            />
           </View>
 
           {/* 3-TIER CANCELLATION MATRIX CARDS */}
@@ -429,6 +438,11 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.brand,
     letterSpacing: 0.5,
+  },
+  mapCardWrap: {
+    marginBottom: 16,
+    borderRadius: 16,
+    overflow: "hidden",
   },
   matrixContainer: {
     marginBottom: 16,

@@ -32,11 +32,7 @@ import {
 } from "../../src/components/dispatch/C32Icons";
 import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
-import {
-  getW05DispatchState,
-  setDispatchPhase,
-  subscribeToW05DispatchState,
-} from "../../src/fixtures/c32Dispatch";
+import { getW05DispatchState, subscribeToW05DispatchState } from "../../src/fixtures/c32Dispatch";
 
 export default function NoDriverAvailableScreen() {
   const { t, i18n } = useTranslation();
@@ -55,7 +51,6 @@ export default function NoDriverAvailableScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("no_driver", true);
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -110,14 +105,6 @@ export default function NoDriverAvailableScreen() {
         showsVerticalScrollIndicator={false}
         testID="w05-no-driver-scroll"
       >
-        {/* Brand Wordmark & Progress Node Bar */}
-        <View style={styles.brandRow}>
-          <Text style={styles.brandWordmark}>
-            HAUL<Text style={styles.brandLime}>IX</Text>
-          </Text>
-          <Text style={styles.brandTagline}>WE HAUL IT ALL.</Text>
-        </View>
-
         {/* Dispatch Progress Track */}
         <View style={styles.progressTrackContainer} testID="w05-progress-track">
           <View style={styles.progressLinkingTrack} />
@@ -167,7 +154,7 @@ export default function NoDriverAvailableScreen() {
         {/* Map Viewport Component */}
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
-            mode="searching"
+            mode="no_driver"
             height={235}
             pickupLabel="Phoenix, AZ · 50 mi search"
             testID="w05-no-driver-map"
@@ -252,11 +239,7 @@ export default function NoDriverAvailableScreen() {
 
         {supportToastVisible && (
           <View style={styles.supportToast} testID="w05-support-toast">
-            <Text style={styles.supportToastText}>
-              {currentLocale === "es"
-                ? "Soporte de despacho contactado. Se registrará asistencia para tu reserva."
-                : "Dispatch support contacted. Assistance recorded for your booking."}
-            </Text>
+            <Text style={styles.supportToastText}>{t("w05NoDriver.supportToast")}</Text>
           </View>
         )}
 

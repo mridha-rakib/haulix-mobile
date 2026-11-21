@@ -19,7 +19,7 @@ import { changeLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { BackHandler, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
   C32CallIcon,
   C32ChatIcon,
@@ -30,7 +30,6 @@ import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
   getW05DispatchState,
-  setDispatchPhase,
   simulateCrewEnRoute,
   subscribeToW05DispatchState,
 } from "../../src/fixtures/c32Dispatch";
@@ -52,7 +51,6 @@ export default function DriverMatchedScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("matched");
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -114,9 +112,8 @@ export default function DriverMatchedScreen() {
           showsVerticalScrollIndicator={false}
           testID="c32b-scroll-view"
         >
-          {/* Brand Row */}
+          {/* Progress Label */}
           <View style={styles.brandRow}>
-            <Text style={styles.brandText}>HAULIX</Text>
             <Text style={styles.progressText}>{t("c32bDriverMatched.progressLabel")}</Text>
           </View>
 
@@ -140,7 +137,7 @@ export default function DriverMatchedScreen() {
           <View style={styles.mapCardWrap} testID="c32b-map-container">
             <HaulixDispatchMap
               mode="matched"
-              height={290}
+              height={235}
               etaMinutes={crew.estimatedArrivalMin}
               pickupLabel="Phoenix, AZ"
               testID="c32b-dispatch-map"
@@ -151,7 +148,11 @@ export default function DriverMatchedScreen() {
           <View style={styles.driverCard} testID="c32b-driver-card">
             <View style={styles.driverHeaderRow}>
               <View style={styles.avatarWrap} testID="c32b-driver-avatar">
-                <Text style={styles.avatarText}>MV</Text>
+                <Image
+                  source={require("../../assets/images/driver-mike.png")}
+                  style={styles.avatarImage}
+                  resizeMode="cover"
+                />
               </View>
 
               <View style={styles.driverInfoCol}>
@@ -390,6 +391,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: 12,
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
   },
   avatarText: {
     fontFamily: fontFamily.bold,

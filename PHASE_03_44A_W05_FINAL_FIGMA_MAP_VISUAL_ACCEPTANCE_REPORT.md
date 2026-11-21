@@ -9,7 +9,7 @@
 **WORK TYPE:** Figma Source Verification, React Native Visual Remediation, Physical Android QA  
 **NEW SCREENS IMPLEMENTED:** 0 (Refined existing canonical screens `C32-A`, `C32-B`, `C32-C`, `C32-D`)  
 **STATUS:** **IMPLEMENTATION COMPLETE — FIGMA ACCEPTANCE BLOCKED**  
-*(Physical Android hardware QA 100% verified on Realme Note 60 across all 8 variants; final visual overlay certification blocked solely by Figma Starter-plan tool call rate limit).*  
+_(Physical Android hardware QA 100% verified on Realme Note 60 across all 8 variants; final visual overlay certification blocked solely by Figma Starter-plan tool call rate limit)._  
 **BASELINE COMMIT:** `16354b5492e205c5cb28c82b58ac37d86868a9ff`  
 **FIGMA FILE KEY:** `Q946h4YBGgyLsjnPtdyQNe`  
 **TARGET HARDWARE:** Realme Note 60 (`RMX3930`, Serial: `0B04731X200003BB`, Android 15)  
@@ -48,16 +48,16 @@ In [`apps/customer/src/components/map/HaulixDispatchMap.tsx`](apps/customer/src/
 
 All 8 variants were freshly loaded from the local Metro bundler (port 8085 via persistent ADB reverse) and framebuffers captured into `docs/qa/phase-03-44a/android/`:
 
-| Screen ID | Canonical Route | Locale | Hardware Resolution | Verified Evidence File | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **C32-A (EN)** | `/searching-for-driver?previewLocale=en` | English | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32a-en-searching-for-driver.png`](docs/qa/phase-03-44a/android/c32a-en-searching-for-driver.png) | **PASS** |
-| **C32-A (ES)** | `/searching-for-driver?previewLocale=es` | Spanish | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32a-es-buscando-conductor.png`](docs/qa/phase-03-44a/android/c32a-es-buscando-conductor.png) | **PASS** |
-| **C32-B (EN)** | `/driver-matched?previewLocale=en` | English | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32b-en-driver-matched.png`](docs/qa/phase-03-44a/android/c32b-en-driver-matched.png) | **PASS** |
-| **C32-B (ES)** | `/driver-matched?previewLocale=es` | Spanish | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32b-es-conductor-asignado.png`](docs/qa/phase-03-44a/android/c32b-es-conductor-asignado.png) | **PASS** |
-| **C32-C (EN)** | `/crew-tracking?previewLocale=en` | English | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32c-en-crew-tracking.png`](docs/qa/phase-03-44a/android/c32c-en-crew-tracking.png) | **PASS** |
-| **C32-C (ES)** | `/crew-tracking?previewLocale=es` | Spanish | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32c-es-seguimiento-equipo.png`](docs/qa/phase-03-44a/android/c32c-es-seguimiento-equipo.png) | **PASS** |
-| **C32-D (EN)** | `/cancellation-windows?previewLocale=en` | English | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32d-en-cancellation-windows.png`](docs/qa/phase-03-44a/android/c32d-en-cancellation-windows.png) | **PASS** |
-| **C32-D (ES)** | `/cancellation-windows?previewLocale=es` | Spanish | 720 × 1600 px | [`docs/qa/phase-03-44a/android/c32d-es-ventanas-cancelacion.png`](docs/qa/phase-03-44a/android/c32d-es-ventanas-cancelacion.png) | **PASS** |
+| Screen ID      | Canonical Route                          | Locale  | Hardware Resolution | Verified Evidence File                                                                                                           | Status   |
+| :------------- | :--------------------------------------- | :------ | :------------------ | :------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| **C32-A (EN)** | `/searching-for-driver?previewLocale=en` | English | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32a-en-searching-for-driver.png`](docs/qa/phase-03-44a/android/c32a-en-searching-for-driver.png) | **PASS** |
+| **C32-A (ES)** | `/searching-for-driver?previewLocale=es` | Spanish | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32a-es-buscando-conductor.png`](docs/qa/phase-03-44a/android/c32a-es-buscando-conductor.png)     | **PASS** |
+| **C32-B (EN)** | `/driver-matched?previewLocale=en`       | English | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32b-en-driver-matched.png`](docs/qa/phase-03-44a/android/c32b-en-driver-matched.png)             | **PASS** |
+| **C32-B (ES)** | `/driver-matched?previewLocale=es`       | Spanish | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32b-es-conductor-asignado.png`](docs/qa/phase-03-44a/android/c32b-es-conductor-asignado.png)     | **PASS** |
+| **C32-C (EN)** | `/crew-tracking?previewLocale=en`        | English | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32c-en-crew-tracking.png`](docs/qa/phase-03-44a/android/c32c-en-crew-tracking.png)               | **PASS** |
+| **C32-C (ES)** | `/crew-tracking?previewLocale=es`        | Spanish | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32c-es-seguimiento-equipo.png`](docs/qa/phase-03-44a/android/c32c-es-seguimiento-equipo.png)     | **PASS** |
+| **C32-D (EN)** | `/cancellation-windows?previewLocale=en` | English | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32d-en-cancellation-windows.png`](docs/qa/phase-03-44a/android/c32d-en-cancellation-windows.png) | **PASS** |
+| **C32-D (ES)** | `/cancellation-windows?previewLocale=es` | Spanish | 720 × 1600 px       | [`docs/qa/phase-03-44a/android/c32d-es-ventanas-cancelacion.png`](docs/qa/phase-03-44a/android/c32d-es-ventanas-cancelacion.png) | **PASS** |
 
 ---
 

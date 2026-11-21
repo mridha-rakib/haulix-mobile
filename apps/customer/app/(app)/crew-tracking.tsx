@@ -21,7 +21,7 @@ import { changeLocale, useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { BackHandler, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
   C32CallIcon,
   C32ChatIcon,
@@ -31,11 +31,7 @@ import {
 } from "../../src/components/dispatch/C32Icons";
 import { HaulixDispatchMap } from "../../src/components/map/HaulixDispatchMap";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
-import {
-  getW05DispatchState,
-  setDispatchPhase,
-  subscribeToW05DispatchState,
-} from "../../src/fixtures/c32Dispatch";
+import { getW05DispatchState, subscribeToW05DispatchState } from "../../src/fixtures/c32Dispatch";
 
 function StepCheckIcon() {
   return (
@@ -75,7 +71,6 @@ export default function CrewTrackingScreen() {
   }, [params.previewLocale, i18n]);
 
   useEffect(() => {
-    setDispatchPhase("en_route");
     return subscribeToW05DispatchState((updated) => setDispatchState({ ...updated }));
   }, []);
 
@@ -134,9 +129,8 @@ export default function CrewTrackingScreen() {
           showsVerticalScrollIndicator={false}
           testID="c32c-scroll-view"
         >
-          {/* Brand Row */}
+          {/* Progress Label */}
           <View style={styles.brandRow}>
-            <Text style={styles.brandText}>HAULIX</Text>
             <Text style={styles.progressText}>{t("c32cCrewTracking.progressLabel")}</Text>
           </View>
 
@@ -160,7 +154,7 @@ export default function CrewTrackingScreen() {
           <View style={styles.mapCardWrap} testID="c32c-map-container">
             <HaulixDispatchMap
               mode="en_route"
-              height={340}
+              height={235}
               etaMinutes={crew.estimatedArrivalMin}
               pickupLabel="Phoenix, AZ"
               testID="c32c-dispatch-map"
@@ -225,7 +219,11 @@ export default function CrewTrackingScreen() {
           <View style={styles.driverQuickCard} testID="c32c-driver-card">
             <View style={styles.driverHeaderRow}>
               <View style={styles.avatarWrap} testID="c32c-driver-avatar">
-                <Text style={styles.avatarText}>MV</Text>
+                <Image
+                  source={require("../../assets/images/driver-mike.png")}
+                  style={styles.avatarImage}
+                  resizeMode="cover"
+                />
               </View>
 
               <View style={styles.driverInfoCol}>
@@ -608,6 +606,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
   },
   avatarText: {
     fontFamily: fontFamily.bold,
