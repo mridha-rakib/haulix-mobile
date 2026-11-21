@@ -315,10 +315,7 @@ export default function CrewTrackingScreen() {
 
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>{t("c32cCrewTracking.itemsLabel")}</Text>
-              <Text
-                style={[styles.detailTextValue, { maxWidth: "60%", textAlign: "right" }]}
-                testID="c32c-confirmed-items"
-              >
+              <Text style={styles.detailTextValue} testID="c32c-confirmed-items">
                 {currentLocale === "es"
                   ? dispatchState.confirmedItemsEs
                   : dispatchState.confirmedItemsEn}
@@ -619,10 +616,12 @@ const styles = StyleSheet.create({
   },
   driverInfoCol: {
     flex: 1,
+    marginRight: 8,
   },
   nameRow: {
     flexDirection: "row",
     alignItems: "center",
+    flexWrap: "wrap",
     gap: 6,
     marginBottom: 2,
   },
@@ -685,29 +684,38 @@ const styles = StyleSheet.create({
   detailRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
+    gap: 12,
     paddingVertical: 5,
   },
   detailLabel: {
     fontFamily: fontFamily.medium,
     fontSize: 13,
     color: colors.secondaryText,
+    flexShrink: 0,
+    maxWidth: "48%",
   },
   detailTextValue: {
     fontFamily: fontFamily.medium,
     fontSize: 13,
     color: colors.primaryText,
+    flex: 1,
+    textAlign: "right",
   },
   detailCodeValue: {
     fontFamily: fontFamily.bold,
     fontSize: 13,
     color: colors.brand,
     letterSpacing: 0.5,
+    flex: 1,
+    textAlign: "right",
   },
   detailAmountValue: {
     fontFamily: fontFamily.bold,
     fontSize: 13,
     color: colors.brand,
+    flex: 1,
+    textAlign: "right",
   },
   divider: {
     height: 1,

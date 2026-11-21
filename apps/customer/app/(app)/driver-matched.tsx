@@ -205,31 +205,34 @@ export default function DriverMatchedScreen() {
             {/* Vehicle & Arrival Specifications */}
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>{t("c32bDriverMatched.vehicleLabel")}</Text>
-              <Text
-                style={[styles.detailTextValue, { maxWidth: "60%", textAlign: "right" }]}
-                testID="c32b-vehicle-details"
-              >
-                {crew.vehicle.makeModel} ·{" "}
-                {currentLocale === "es" ? crew.vehicle.colorEs : crew.vehicle.colorEn} (
-                {crew.vehicle.licensePlate})
-              </Text>
+              <View style={styles.detailValueContainer}>
+                <Text style={styles.detailTextValue} testID="c32b-vehicle-details">
+                  {crew.vehicle.makeModel} ·{" "}
+                  {currentLocale === "es" ? crew.vehicle.colorEs : crew.vehicle.colorEn} (
+                  {crew.vehicle.licensePlate})
+                </Text>
+              </View>
             </View>
 
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>{t("c32bDriverMatched.crewConfigLabel")}</Text>
-              <Text style={styles.detailTextValue} testID="c32b-crew-config">
-                {t("c32bDriverMatched.crewConfigValue")}
-              </Text>
+              <View style={styles.detailValueContainer}>
+                <Text style={styles.detailTextValue} testID="c32b-crew-config">
+                  {t("c32bDriverMatched.crewConfigValue")}
+                </Text>
+              </View>
             </View>
 
             <View style={styles.divider} />
 
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>{t("c32bDriverMatched.etaLabel")}</Text>
-              <Text style={styles.detailActiveValue} testID="c32b-arrival-eta">
-                {crew.estimatedArrivalMin} {currentLocale === "es" ? "Minutos" : "Minutes"} (
-                {crew.distanceMiles} {currentLocale === "es" ? "millas" : "miles away"})
-              </Text>
+              <View style={styles.detailValueContainer}>
+                <Text style={styles.detailActiveValue} testID="c32b-arrival-eta">
+                  {crew.estimatedArrivalMin} {currentLocale === "es" ? "Minutos" : "Minutes"} (
+                  {crew.distanceMiles} {currentLocale === "es" ? "millas" : "miles away"})
+                </Text>
+              </View>
             </View>
           </View>
 
@@ -395,10 +398,13 @@ const styles = StyleSheet.create({
   },
   driverInfoCol: {
     flex: 1,
+    flexShrink: 1,
+    marginRight: 8,
   },
   nameRow: {
     flexDirection: "row",
     alignItems: "center",
+    flexWrap: "wrap",
     gap: 8,
     marginBottom: 3,
   },
@@ -461,23 +467,34 @@ const styles = StyleSheet.create({
   detailRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
+    width: "100%",
+    gap: 12,
     paddingVertical: 5,
   },
   detailLabel: {
     fontFamily: fontFamily.medium,
     fontSize: 13,
     color: colors.secondaryText,
+    flexShrink: 0,
+    maxWidth: "48%",
+  },
+  detailValueContainer: {
+    flex: 1,
+    flexShrink: 1,
+    alignItems: "flex-end",
   },
   detailTextValue: {
     fontFamily: fontFamily.medium,
     fontSize: 13,
     color: colors.primaryText,
+    textAlign: "right",
   },
   detailActiveValue: {
     fontFamily: fontFamily.bold,
     fontSize: 13,
     color: colors.brand,
+    textAlign: "right",
   },
   divider: {
     height: 1,
