@@ -137,6 +137,7 @@ export default function DriverMatchedScreen() {
           <View style={styles.mapCardWrap} testID="c32b-map-container">
             <HaulixDispatchMap
               mode="matched"
+              locale={currentLocale}
               height={235}
               etaMinutes={crew.estimatedArrivalMin}
               pickupLabel="Phoenix, AZ"

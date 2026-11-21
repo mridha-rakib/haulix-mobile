@@ -184,6 +184,7 @@ export default function CancellationWindowsScreen() {
           <View style={styles.mapCardWrap} testID="c32d-map-container">
             <HaulixDispatchMap
               mode="cancellation_windows"
+              locale={currentLocale}
               height={235}
               pickupLabel="Phoenix, AZ"
               testID="c32d-dispatch-map"

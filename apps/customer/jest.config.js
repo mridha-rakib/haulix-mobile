@@ -19,6 +19,7 @@ const config = {
   },
   testMatch: ["<rootDir>/src/**/__tests__/**/*.{ts,tsx}", "<rootDir>/src/**/*.test.{ts,tsx}"],
   moduleNameMapper: {
+    "\\.(png|jpg|jpeg|gif|webp)$": "<rootDir>/src/__tests__/__mocks__/fileMock.js",
     "^react-native$": "react-native-web",
     "^react-native-safe-area-context$": "<rootDir>/../../packages/ui/jest/mock-safe-area.js",
     "^@haulix/design-tokens$": "<rootDir>/../../packages/design-tokens/src/index.ts",

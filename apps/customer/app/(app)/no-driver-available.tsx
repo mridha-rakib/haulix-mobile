@@ -155,6 +155,7 @@ export default function NoDriverAvailableScreen() {
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
             mode="no_driver"
+            locale={currentLocale}
             height={235}
             pickupLabel="Phoenix, AZ · 50 mi search"
             testID="w05-no-driver-map"

@@ -161,6 +161,7 @@ export default function DriverArrivalUpdateScreen() {
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
             mode="driver_late"
+            locale={currentLocale}
             height={235}
             etaMinutes={W05_DRIVER_LATE_CREW.estimatedArrivalMin}
             pickupLabel="Phoenix, AZ · Arrival delayed"

@@ -162,6 +162,7 @@ export default function DriverReassignedScreen() {
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
             mode="driver_reassigned"
+            locale={currentLocale}
             height={235}
             etaMinutes={W05_REASSIGNED_CREW.estimatedArrivalMin}
             pickupLabel="Phoenix, AZ · Replacement assigned"

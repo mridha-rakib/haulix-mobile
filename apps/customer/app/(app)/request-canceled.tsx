@@ -154,6 +154,7 @@ export default function RequestCanceledScreen() {
         <View style={styles.mapCardWrap} testID="w05-map-wrap">
           <HaulixDispatchMap
             mode="request_canceled"
+            locale={currentLocale}
             height={235}
             pickupLabel="Phoenix, AZ · Request canceled"
             testID="w05-canceled-map"

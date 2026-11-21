@@ -24,6 +24,10 @@ export type MapMode =
   | "driver_reassigned"
   | "request_canceled"
   | "s10"
+  | "s20"
+  | "s30"
+  | "s40"
+  | "s50"
   | "assigned"
   | "crew_tracking"
   | "reassigned"
@@ -32,6 +36,7 @@ export type MapMode =
 
 interface HaulixDispatchMapProps {
   mode: MapMode;
+  locale?: "en" | "es";
   height?: number;
   etaMinutes?: number;
   pickupLabel?: string;
@@ -39,9 +44,13 @@ interface HaulixDispatchMapProps {
   testID?: string;
 }
 
-const MAP_SOURCES: Record<string, ImageSourcePropType> = {
+export const MAP_SOURCES_EN: Record<string, ImageSourcePropType> = {
   searching: require("../../../assets/maps/map-s10-searching.png"),
   s10: require("../../../assets/maps/map-s10-searching.png"),
+  s20: require("../../../assets/maps/map-s20-searching.png"),
+  s30: require("../../../assets/maps/map-s30-searching.png"),
+  s40: require("../../../assets/maps/map-s40-searching.png"),
+  s50: require("../../../assets/maps/map-s50-searching.png"),
   matched: require("../../../assets/maps/map-driver-matched.png"),
   assigned: require("../../../assets/maps/map-driver-matched.png"),
   en_route: require("../../../assets/maps/map-crew-tracking.png"),
@@ -56,15 +65,43 @@ const MAP_SOURCES: Record<string, ImageSourcePropType> = {
   canceled: require("../../../assets/maps/map-request-canceled.png"),
 };
 
+export const MAP_SOURCES_ES: Record<string, ImageSourcePropType> = {
+  searching: require("../../../assets/maps/map-s10-searching-es.png"),
+  s10: require("../../../assets/maps/map-s10-searching-es.png"),
+  s20: require("../../../assets/maps/map-s20-searching-es.png"),
+  s30: require("../../../assets/maps/map-s30-searching-es.png"),
+  s40: require("../../../assets/maps/map-s40-searching-es.png"),
+  s50: require("../../../assets/maps/map-s50-searching-es.png"),
+  matched: require("../../../assets/maps/map-driver-matched-es.png"),
+  assigned: require("../../../assets/maps/map-driver-matched-es.png"),
+  en_route: require("../../../assets/maps/map-crew-tracking-es.png"),
+  crew_tracking: require("../../../assets/maps/map-crew-tracking-es.png"),
+  driver_late: require("../../../assets/maps/map-driver-late-es.png"),
+  driver_reassigned: require("../../../assets/maps/map-driver-reassigned-es.png"),
+  reassigned: require("../../../assets/maps/map-driver-reassigned-es.png"),
+  no_driver: require("../../../assets/maps/map-no-driver-es.png"),
+  cancellation_windows: require("../../../assets/maps/map-cancellation-windows-es.png"),
+  cancel_review: require("../../../assets/maps/map-cancellation-windows-es.png"),
+  request_canceled: require("../../../assets/maps/map-request-canceled-es.png"),
+  canceled: require("../../../assets/maps/map-request-canceled-es.png"),
+};
+
+export function resolveW05MapAsset(mode: MapMode, locale: "en" | "es" = "en"): ImageSourcePropType {
+  const dictionary = locale === "es" ? MAP_SOURCES_ES : MAP_SOURCES_EN;
+  return dictionary[mode] || dictionary.searching || MAP_SOURCES_EN.searching;
+}
+
 export function HaulixDispatchMap({
   mode,
+  locale,
   height = 235,
   etaMinutes: _etaMinutes = 11,
   pickupLabel,
   onRecenter,
   testID = "haulix-dispatch-map",
 }: HaulixDispatchMapProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const activeLocale = locale ?? ((i18n?.language?.startsWith("es") ? "es" : "en") as "en" | "es");
   const _effectivePickupLabel = pickupLabel ?? t("c32Map.pickupLabelDefault");
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [recenteredNotice, setRecenteredNotice] = useState<boolean>(false);
@@ -84,7 +121,7 @@ export function HaulixDispatchMap({
     onRecenter?.();
   }, [onRecenter]);
 
-  const mapSource = MAP_SOURCES[mode] || MAP_SOURCES.searching;
+  const mapSource = resolveW05MapAsset(mode, activeLocale);
 
   return (
     <View style={[styles.container, { height }]} testID={testID}>

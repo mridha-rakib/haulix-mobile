@@ -67,6 +67,13 @@ export default function SearchingForDriverScreen() {
     return () => sub.remove();
   }, [handleBack]);
 
+  const handleAdvanceTo20Mi = useCallback(() => {
+    router.push({
+      pathname: "/search-expanded-20mi",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
   const handleSimulateMatch = useCallback(() => {
     simulateDriverMatched();
     router.push({
@@ -124,6 +131,7 @@ export default function SearchingForDriverScreen() {
           <View style={styles.mapCardWrap} testID="c32a-map-container">
             <HaulixDispatchMap
               mode="searching"
+              locale={currentLocale}
               height={235}
               pickupLabel="Phoenix, AZ"
               testID="c32a-dispatch-map"
@@ -196,27 +204,43 @@ export default function SearchingForDriverScreen() {
           {/* Action Buttons */}
           <View style={styles.actionsContainer}>
             <Pressable
-              onPress={handleSimulateMatch}
+              onPress={handleAdvanceTo20Mi}
               style={styles.primaryLimeButton}
+              accessibilityRole="button"
+              accessibilityLabel={
+                currentLocale === "es"
+                  ? "Continuar a búsqueda de 20 millas"
+                  : "Continue to 20-mile search"
+              }
+              testID="c32a-advance-20mi-btn"
+            >
+              <Text style={styles.primaryLimeButtonText}>
+                {currentLocale === "es"
+                  ? "Continuar a búsqueda de 20 mi ›"
+                  : "Continue to 20-mile search ›"}
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={handleSimulateMatch}
+              style={styles.secondaryDarkButton}
               accessibilityRole="button"
               accessibilityLabel={t("c32aSearchingDriver.simulateMatchCta")}
               testID="c32a-simulate-match-btn"
             >
-              <Text style={styles.primaryLimeButtonText}>
+              <Text style={styles.secondaryDarkButtonText}>
                 {t("c32aSearchingDriver.simulateMatchCta")}
               </Text>
             </Pressable>
 
             <Pressable
               onPress={handleCancelSearch}
-              style={styles.secondaryDarkButton}
+              style={styles.linkButton}
               accessibilityRole="button"
               accessibilityLabel={t("c32aSearchingDriver.cancelSearchCta")}
               testID="c32a-cancel-search-btn"
             >
-              <Text style={styles.secondaryDarkButtonText}>
-                {t("c32aSearchingDriver.cancelSearchCta")}
-              </Text>
+              <Text style={styles.linkButtonText}>{t("c32aSearchingDriver.cancelSearchCta")}</Text>
             </Pressable>
           </View>
 
@@ -431,6 +455,17 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.semiBold,
     fontSize: 14,
     color: "#ADB7B1",
+  },
+  linkButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 8,
+  },
+  linkButtonText: {
+    fontFamily: fontFamily.medium,
+    fontSize: 13,
+    color: colors.brand,
+    textDecorationLine: "underline",
   },
   footerContainer: {
     alignItems: "center",

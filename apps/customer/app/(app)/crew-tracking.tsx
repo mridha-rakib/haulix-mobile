@@ -154,6 +154,7 @@ export default function CrewTrackingScreen() {
           <View style={styles.mapCardWrap} testID="c32c-map-container">
             <HaulixDispatchMap
               mode="en_route"
+              locale={currentLocale}
               height={235}
               etaMinutes={crew.estimatedArrivalMin}
               pickupLabel="Phoenix, AZ"
