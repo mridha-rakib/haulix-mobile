@@ -2912,7 +2912,7 @@ const es: En = {
     holdAmountLabel: "MONTO DE RETENCIÓN",
     holdAmountValue: "$356.00 USD",
     holdClarification:
-      "La retención en tu tarjeta ($356.00) es temporal hasta que el servicio sea realizado.",
+      "Retención de demostración ($356.00). No se capturan fondos reales durante la evaluación del prototipo.",
     nextStepsHeading: "QUÉ SUCEDE AHORA",
     step1Title: "1. Asignación de conductor verificado",
     step1Desc: "El sistema de despacho asignará un conductor y equipo verificados para tu horario.",
@@ -2949,8 +2949,7 @@ const es: En = {
     secondaryCta: "Cancelar solicitud inmediata",
     uiNote: "PROTOTIPO UI · Solicitud inmediata registrada · Sin despacho real en servidor",
     backA11y: "Volver a la cola de estado",
-    cancelNotice:
-      "Solicitud inmediata cancelada sin cargo. Tu retención de preautorización fue liberada.",
+    cancelNotice: "Solicitud ASAP cancelada sin cargo. Retención de prueba liberada sin cobros.",
     futureNoticeQueue: "El seguimiento en vivo de la cola de despacho corresponde a la fase W05.",
   },
   c31fBookingNotConfirmed: {
@@ -2964,7 +2963,7 @@ const es: En = {
     statusLabel: "ESTADO",
     statusValue: "Confirmación de conductor pendiente",
     holdStatusLabel: "ESTADO DE RETENCIÓN",
-    holdStatusValue: "Retención activa ($356.00) · No cobrado",
+    holdStatusValue: "Retención simulada ($356.00) · $0.00 cobrado",
     windowLabel: "FRANJA SOLICITADA",
     defaultWindow: "Mar., 3 nov. · 10:00 AM – 12:00 PM",
     guidanceHeading: "OPCIONES DISPONIBLES",

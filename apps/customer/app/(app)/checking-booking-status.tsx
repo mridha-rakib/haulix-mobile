@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
   demoWarningButtonText: {
     fontSize: 13,
     fontFamily: fontFamily.semiBold,
-    color: colors.amber,
+    color: colors.warning,
   },
   primaryButton: {
     height: 52,

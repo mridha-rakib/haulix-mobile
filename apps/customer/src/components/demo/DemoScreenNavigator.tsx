@@ -1804,6 +1804,12 @@ export const DemoScreenNavigator: React.FC = () => {
   const currentPath = usePathname();
   const insets = useSafeAreaInsets();
 
+  // Isolate QA-only navigator from production customer runtime
+  const isEnabled = __DEV__ || process.env.EXPO_PUBLIC_ENABLE_QA_NAVIGATOR === "true";
+  if (!isEnabled) {
+    return null;
+  }
+
   const handleSelectScreen = async (screen: ScreenItem) => {
     if (getCurrentLocale() !== screen.locale) {
       await changeLocale(screen.locale);

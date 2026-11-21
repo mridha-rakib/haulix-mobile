@@ -2874,7 +2874,7 @@ const en = {
     holdAmountLabel: "HOLD AMOUNT",
     holdAmountValue: "$356.00 USD",
     holdClarification:
-      "Your card hold ($356.00) remains temporary until your service is completed.",
+      "Demonstration card hold ($356.00). No real funds captured during prototype evaluation.",
     nextStepsHeading: "WHAT HAPPENS NEXT",
     step1Title: "1. Verified driver matching",
     step1Desc: "Our dispatch system will match a verified driver and crew for your slot.",
@@ -2911,7 +2911,8 @@ const en = {
     secondaryCta: "Cancel ASAP request",
     uiNote: "UI PROTOTYPE · Immediate request recorded · No real dispatch triggered",
     backA11y: "Back to status queue",
-    cancelNotice: "ASAP request cancelled fee-free. Your pre-authorization hold was released.",
+    cancelNotice:
+      "ASAP request cancelled fee-free. Demo pre-authorization hold released with zero charges.",
     futureNoticeQueue: "Live dispatch queue tracking belongs to subsequent phase W05.",
   },
   c31fBookingNotConfirmed: {
@@ -2925,7 +2926,7 @@ const en = {
     statusLabel: "STATUS",
     statusValue: "Pending Driver Confirmation",
     holdStatusLabel: "HOLD STATUS",
-    holdStatusValue: "Active Hold ($356.00) · Not Charged",
+    holdStatusValue: "Simulated Hold ($356.00) · $0.00 Charged",
     windowLabel: "REQUESTED WINDOW",
     defaultWindow: "Tue, Nov 03 · 10:00 AM – 12:00 PM",
     guidanceHeading: "AVAILABLE OPTIONS",

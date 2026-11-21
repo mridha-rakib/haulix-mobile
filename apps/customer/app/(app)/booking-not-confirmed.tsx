@@ -42,10 +42,10 @@ function PendingClockHeroIcon() {
         cy={24}
         r={22}
         fill="rgba(245, 158, 11, 0.12)"
-        stroke={colors.amber}
+        stroke={colors.warning}
         strokeWidth={2}
       />
-      <Path d="M24 14v11l7 4" stroke={colors.amber} strokeWidth={2.5} strokeLinecap="round" />
+      <Path d="M24 14v11l7 4" stroke={colors.warning} strokeWidth={2.5} strokeLinecap="round" />
     </Svg>
   );
 }
@@ -55,7 +55,7 @@ function HourglassSmallIcon() {
     <Svg width={14} height={14} viewBox="0 0 24 24" fill="none">
       <Path
         d="M5 22h14M5 2h14M17 22v-4.172a2 2 0 00-.586-1.414L12 12l-4.414 4.414A2 2 0 007 17.828V22M7 2v4.172a2 2 0 00.586 1.414L12 12l4.414-4.414A2 2 0 0017 6.172V2"
-        stroke={colors.amber}
+        stroke={colors.warning}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   },
   brandText: {
     fontSize: 16,
-    fontFamily: fontFamily.black,
+    fontFamily: fontFamily.bold,
     color: colors.brand,
     letterSpacing: 2,
   },
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 24,
     fontFamily: fontFamily.bold,
-    color: colors.text,
+    color: colors.primaryText,
     textAlign: "center",
     marginBottom: 6,
     letterSpacing: -0.3,
@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: colors.amber,
+    backgroundColor: colors.warning,
   },
   locationText: {
     fontSize: 11,
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
   statusBadgeText: {
     fontSize: 11,
     fontFamily: fontFamily.bold,
-    color: colors.amber,
+    color: colors.warning,
     letterSpacing: 0.8,
   },
   cardContainer: {
@@ -409,12 +409,12 @@ const styles = StyleSheet.create({
   detailAmberValue: {
     fontSize: 13,
     fontFamily: fontFamily.semiBold,
-    color: colors.amber,
+    color: colors.warning,
   },
   detailTextValue: {
     fontSize: 13,
     fontFamily: fontFamily.medium,
-    color: colors.text,
+    color: colors.primaryText,
   },
   divider: {
     height: 1,
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: colors.amber,
+    backgroundColor: colors.warning,
     marginTop: 6,
   },
   optionTextContainer: {
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
   optionTitle: {
     fontSize: 13,
     fontFamily: fontFamily.semiBold,
-    color: colors.text,
+    color: colors.primaryText,
     marginBottom: 3,
   },
   optionDesc: {
@@ -497,7 +497,7 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     fontSize: 14,
     fontFamily: fontFamily.semiBold,
-    color: colors.text,
+    color: colors.primaryText,
   },
   footerNoteContainer: {
     alignItems: "center",
