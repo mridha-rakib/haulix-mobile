@@ -41,6 +41,7 @@ interface HaulixDispatchMapProps {
   etaMinutes?: number;
   pickupLabel?: string;
   onRecenter?: () => void;
+  showControls?: boolean;
   testID?: string;
 }
 
@@ -98,6 +99,7 @@ export function HaulixDispatchMap({
   etaMinutes: _etaMinutes = 11,
   pickupLabel,
   onRecenter,
+  showControls = true,
   testID = "haulix-dispatch-map",
 }: HaulixDispatchMapProps) {
   const { t, i18n } = useTranslation();
@@ -175,42 +177,44 @@ export function HaulixDispatchMap({
       )}
 
       {/* Floating Zoom & Recenter Controls */}
-      <View style={styles.controlsContainer}>
-        <View style={styles.zoomPill}>
+      {showControls && (
+        <View style={styles.controlsContainer}>
+          <View style={styles.zoomPill}>
+            <Pressable
+              onPress={handleZoomIn}
+              style={styles.zoomButton}
+              accessibilityRole="button"
+              accessibilityLabel={t("c32Map.zoomInA11y")}
+              hitSlop={{ top: 8, bottom: 4, left: 8, right: 8 }}
+              testID="map-zoom-in"
+            >
+              <C32ZoomInIcon size={18} color="#F6F8F6" />
+            </Pressable>
+            <View style={styles.zoomDivider} />
+            <Pressable
+              onPress={handleZoomOut}
+              style={styles.zoomButton}
+              accessibilityRole="button"
+              accessibilityLabel={t("c32Map.zoomOutA11y")}
+              hitSlop={{ top: 4, bottom: 8, left: 8, right: 8 }}
+              testID="map-zoom-out"
+            >
+              <C32ZoomOutIcon size={18} color="#F6F8F6" />
+            </Pressable>
+          </View>
+
           <Pressable
-            onPress={handleZoomIn}
-            style={styles.zoomButton}
+            onPress={handleRecenter}
+            style={styles.recenterButton}
             accessibilityRole="button"
-            accessibilityLabel={t("c32Map.zoomInA11y")}
-            hitSlop={{ top: 8, bottom: 4, left: 8, right: 8 }}
-            testID="map-zoom-in"
+            accessibilityLabel={t("c32Map.recenterA11y")}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            testID="map-recenter"
           >
-            <C32ZoomInIcon size={18} color="#F6F8F6" />
-          </Pressable>
-          <View style={styles.zoomDivider} />
-          <Pressable
-            onPress={handleZoomOut}
-            style={styles.zoomButton}
-            accessibilityRole="button"
-            accessibilityLabel={t("c32Map.zoomOutA11y")}
-            hitSlop={{ top: 4, bottom: 8, left: 8, right: 8 }}
-            testID="map-zoom-out"
-          >
-            <C32ZoomOutIcon size={18} color="#F6F8F6" />
+            <C32CrosshairTargetIcon size={18} color="#BAFF42" />
           </Pressable>
         </View>
-
-        <Pressable
-          onPress={handleRecenter}
-          style={styles.recenterButton}
-          accessibilityRole="button"
-          accessibilityLabel={t("c32Map.recenterA11y")}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          testID="map-recenter"
-        >
-          <C32CrosshairTargetIcon size={18} color="#BAFF42" />
-        </Pressable>
-      </View>
+      )}
     </View>
   );
 }

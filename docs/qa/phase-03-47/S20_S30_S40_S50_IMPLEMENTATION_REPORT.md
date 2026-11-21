@@ -1,11 +1,12 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # S20, S30, S40, S50 Search Progression Implementation Report
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.47  
 **DOCUMENT:** `docs/qa/phase-03-47/S20_S30_S40_S50_IMPLEMENTATION_REPORT.md`  
 **COMPONENTS:** `W05SearchStageScreen.tsx` + 4 App Routes  
-**STATUS:** COMPLETE & VERIFIED  
+**STATUS:** COMPLETE & VERIFIED
 
 ---
 
@@ -27,6 +28,7 @@ This pattern prevents code bloat, simplifies maintenance, and ensures 100% layou
 ## 2. Stage Breakdown & Fidelity Comparison
 
 ### Stage S20: Search Expanded to 20 Miles
+
 - **Figma Reference:** `844:4670` (EN) / `844:6820` (ES)
 - **Map Mode:** `mode="s20"` (`map-s20-searching.png` / `map-s20-searching-es.png`)
 - **Badge Capsule:** `EXPANDED · 20 MI` / `AMPLIADO · 20 MI`
@@ -40,6 +42,7 @@ This pattern prevents code bloat, simplifies maintenance, and ensures 100% layou
 - **Alternative Link:** "Cancellation options" → Navigates to `/cancellation-windows`.
 
 ### Stage S30: Search Radius Expanding (30 Miles)
+
 - **Figma Reference:** `844:4769` (EN) / `844:6919` (ES)
 - **Map Mode:** `mode="s30"` (`map-s30-searching.png` / `map-s30-searching-es.png`)
 - **Badge Capsule:** `EXPANDING · 30 MI` / `AMPLIANDO · 30 MI`
@@ -53,6 +56,7 @@ This pattern prevents code bloat, simplifies maintenance, and ensures 100% layou
 - **Alternative Link:** "Cancellation options" → Navigates to `/cancellation-windows`.
 
 ### Stage S40: Search Expanded to 40 Miles
+
 - **Figma Reference:** `844:4868` (EN) / `844:7018` (ES)
 - **Map Mode:** `mode="s40"` (`map-s40-searching.png` / `map-s40-searching-es.png`)
 - **Badge Capsule:** `EXPANDED · 40 MI` / `AMPLIADO · 40 MI`
@@ -66,6 +70,7 @@ This pattern prevents code bloat, simplifies maintenance, and ensures 100% layou
 - **Alternative Link:** "Cancellation options" → Navigates to `/cancellation-windows`.
 
 ### Stage S50: Searching Up to 50 Miles (Maximum Perimeter)
+
 - **Figma Reference:** `844:4967` (EN) / `844:7117` (ES)
 - **Map Mode:** `mode="s50"` (`map-s50-searching.png` / `map-s50-searching-es.png`)
 - **Badge Capsule:** `MAX RADIUS · 50 MI` / `RADIO MÁXIMO · 50 MI`

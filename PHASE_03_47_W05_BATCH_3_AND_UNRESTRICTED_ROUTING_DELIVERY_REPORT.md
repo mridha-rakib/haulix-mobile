@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # W05 Dispatch Progression (Batch 3) & Unrestricted Frontend Routing Delivery Report
 
 **PROJECT:** HAULIX Customer Mobile App  
@@ -8,7 +9,7 @@
 **BRANCH:** `main`  
 **BASELINE COMMIT:** `e3f4ea7`  
 **TEST DEVICE:** Realme Note 60 (RMX3930, Android 15, 720 × 1600 px)  
-**FIGMA SOURCE:** Student Team Authorized Copy `meiXxwUNJaDo0a3mhcHBXv`  
+**FIGMA SOURCE:** Student Team Authorized Copy `meiXxwUNJaDo0a3mhcHBXv`
 
 ---
 
@@ -34,29 +35,30 @@ Phase 03.47 successfully implemented the third batch of Workflow 05 (W05: Dispat
 
 ## 2. Deliverables Summary Table
 
-| Category | Artifact / File | Description |
-|---|---|---|
-| **Components** | `apps/customer/src/components/dispatch/W05SearchStageScreen.tsx` | Typed, reusable search stage screen |
-| **Routes** | `apps/customer/app/(app)/search-expanded-20mi.tsx` | Route `/search-expanded-20mi` (S20) |
-| **Routes** | `apps/customer/app/(app)/search-expanding-30mi.tsx` | Route `/search-expanding-30mi` (S30) |
-| **Routes** | `apps/customer/app/(app)/search-expanded-40mi.tsx` | Route `/search-expanded-40mi` (S40) |
-| **Routes** | `apps/customer/app/(app)/search-expanded-50mi.tsx` | Route `/search-expanded-50mi` (S50) |
-| **Screen Updates** | `apps/customer/app/(app)/searching-for-driver.tsx` | Forward transition to S20 + simulate match |
-| **Map Engine** | `apps/customer/src/components/map/HaulixDispatchMap.tsx` | `resolveW05MapAsset(mode, locale)` resolver |
-| **Map Assets** | `apps/customer/assets/maps/map-*-es.png` (12 files) | Authentic Spanish localized map rasters |
-| **Map Assets** | `apps/customer/assets/maps/map-s*-searching.png` (4 files) | Authentic English search progression rasters |
-| **Dev Tools** | `apps/customer/src/components/demo/DemoScreenNavigator.tsx` | Registered 8 new bilingual screen entries |
-| **Localization** | `packages/i18n/src/locales/en.ts` & `es.ts` | Complete string sets for `w05S20`–`w05S50` |
-| **Tests** | `apps/customer/src/__tests__/w05-phase-03-47.test.tsx` | 10 dedicated automated tests |
-| **Physical QA** | `docs/qa/phase-03-47/android/*.png` (11 files) | Realme Note 60 physical device captures |
-| **Comparisons** | `docs/qa/phase-03-47/comparisons/*.png` (9 files) | Side-by-side Figma vs Android comparisons |
-| **Reports** | `docs/qa/phase-03-47/*.md` (16 documents) | Full technical QA documentation suite |
+| Category           | Artifact / File                                                  | Description                                  |
+| ------------------ | ---------------------------------------------------------------- | -------------------------------------------- |
+| **Components**     | `apps/customer/src/components/dispatch/W05SearchStageScreen.tsx` | Typed, reusable search stage screen          |
+| **Routes**         | `apps/customer/app/(app)/search-expanded-20mi.tsx`               | Route `/search-expanded-20mi` (S20)          |
+| **Routes**         | `apps/customer/app/(app)/search-expanding-30mi.tsx`              | Route `/search-expanding-30mi` (S30)         |
+| **Routes**         | `apps/customer/app/(app)/search-expanded-40mi.tsx`               | Route `/search-expanded-40mi` (S40)          |
+| **Routes**         | `apps/customer/app/(app)/search-expanded-50mi.tsx`               | Route `/search-expanded-50mi` (S50)          |
+| **Screen Updates** | `apps/customer/app/(app)/searching-for-driver.tsx`               | Forward transition to S20 + simulate match   |
+| **Map Engine**     | `apps/customer/src/components/map/HaulixDispatchMap.tsx`         | `resolveW05MapAsset(mode, locale)` resolver  |
+| **Map Assets**     | `apps/customer/assets/maps/map-*-es.png` (12 files)              | Authentic Spanish localized map rasters      |
+| **Map Assets**     | `apps/customer/assets/maps/map-s*-searching.png` (4 files)       | Authentic English search progression rasters |
+| **Dev Tools**      | `apps/customer/src/components/demo/DemoScreenNavigator.tsx`      | Registered 8 new bilingual screen entries    |
+| **Localization**   | `packages/i18n/src/locales/en.ts` & `es.ts`                      | Complete string sets for `w05S20`–`w05S50`   |
+| **Tests**          | `apps/customer/src/__tests__/w05-phase-03-47.test.tsx`           | 10 dedicated automated tests                 |
+| **Physical QA**    | `docs/qa/phase-03-47/android/*.png` (11 files)                   | Realme Note 60 physical device captures      |
+| **Comparisons**    | `docs/qa/phase-03-47/comparisons/*.png` (9 files)                | Side-by-side Figma vs Android comparisons    |
+| **Reports**        | `docs/qa/phase-03-47/*.md` (16 documents)                        | Full technical QA documentation suite        |
 
 ---
 
 ## 3. Physical Device Verification Summary (Realme Note 60)
 
 All 11 physical device captures were verified on the Realme Note 60 (`0B04731X200003BB`, Android 15, `720 × 1600` px):
+
 - S20 English (`w05-en-s20-android.png`, 103,233 bytes)
 - S20 Spanish (`w05-es-s20-android.png`, 103,607 bytes)
 - S30 English (`w05-en-s30-android.png`, 103,941 bytes)

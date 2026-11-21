@@ -1,11 +1,12 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # Spanish Map Asset Localization Audit & P0 Remediation
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.47  
 **DOCUMENT:** `docs/qa/phase-03-47/SPANISH_MAP_ASSET_LOCALIZATION_AUDIT.md`  
 **DEFECT REMEDIATION:** P0 — Eliminated English Raster Labels on Spanish Screens  
-**STATUS:** RESOLVED & VERIFIED ON PHYSICAL ANDROID  
+**STATUS:** RESOLVED & VERIFIED ON PHYSICAL ANDROID
 
 ---
 
@@ -13,6 +14,7 @@
 
 Independent inspection of Phase 03.46 physical Android screenshots revealed a critical localization flaw:
 On Spanish dispatch screens (e.g., `/no-driver-available?previewLocale=es`), the map displayed hardcoded English raster text:
+
 - `Searched up to 50 mi`
 - `Pickup`
 
@@ -45,6 +47,7 @@ Although the surrounding React Native text was localized into Spanish, the map i
    - `map-request-canceled-es.png`
 
 2. **Typed Asset Resolver:** Built `resolveW05MapAsset(mode: MapMode, locale?: "en" | "es")`:
+
    ```tsx
    export function resolveW05MapAsset(
      mode: MapMode,

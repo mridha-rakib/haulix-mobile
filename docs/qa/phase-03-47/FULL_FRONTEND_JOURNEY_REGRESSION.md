@@ -1,11 +1,12 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # Full Frontend Customer Journey Regression Report
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.47  
 **DOCUMENT:** `docs/qa/phase-03-47/FULL_FRONTEND_JOURNEY_REGRESSION.md`  
 **SCOPE:** End-to-End Simulation of All Customer Workflows (W01 to W05)  
-**STATUS:** VERIFIED — 100% REGRESSION PASS  
+**STATUS:** VERIFIED — 100% REGRESSION PASS
 
 ---
 
@@ -34,26 +35,31 @@ flowchart LR
 ## 2. Journey Stages Regression Results
 
 ### Workflow 01: Auth & Profile
+
 - **Routes:** `/login`, `/create-account`, `/profile`, `/edit-profile`
 - **Verification:** Form controls accept input, validation rules function, profile displays correct demo state.
 - **Result:** PASS (0 regressions).
 
 ### Workflow 02: Service Discovery & Inventory Intake
+
 - **Routes:** `/`, `/item-inventory`, `/add-pickup-address`, `/moving-destination`, `/moving-intake`
 - **Verification:** Service category selection intact; customer confirmed inventory baseline (1 sofa, 2 mattresses, 1 table = 4 pieces) remains intact.
 - **Result:** PASS (0 regressions).
 
 ### Workflow 03: Service Scheduling
+
 - **Routes:** `/choose-service-time`, `/select-available-window`
 - **Verification:** Calendar and time slots render deterministically; date selection links forward to booking review.
 - **Result:** PASS (0 regressions).
 
 ### Workflow 04: Booking Review & Payment Setup
+
 - **Routes:** `/review-booking`, `/choose-payment-method`, `/secure-card-setup`, `/asap-request-recorded`, `/booking-recorded`
 - **Verification:** Symmetrical non-binding quote `$356.00 USD` preserved; simulated card hold operates without real API calls; outcome buttons link seamlessly to `/searching-for-driver`.
 - **Result:** PASS (0 regressions).
 
 ### Workflow 05: Dispatch & Assignment (Phases 03.43–03.47)
+
 - **Routes (12 Canonical States):**
   - S10: `/searching-for-driver`
   - S20: `/search-expanded-20mi`

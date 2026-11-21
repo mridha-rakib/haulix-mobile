@@ -1,11 +1,12 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # Frontend-Only No-Guard Routing Policy & Architecture
 
 **PROJECT:** HAULIX Customer Mobile App  
 **PHASE:** 03.47  
 **DOCUMENT:** `docs/qa/phase-03-47/FRONTEND_ONLY_NO_GUARD_ROUTING_POLICY.md`  
 **AUTHORITY:** Absolute Project Owner Instruction  
-**STATUS:** ACTIVE & ENFORCED  
+**STATUS:** ACTIVE & ENFORCED
 
 ---
 
@@ -40,20 +41,21 @@ To ensure full APK flow testability, developer agility, and unrestricted manual/
 
 ## 3. Frontend Architecture Boundary vs Backend Reality
 
-| Concern | Frontend Demo Architecture | Production Backend (Future Phases) |
-|---|---|---|
-| **Route Entry** | Direct, unrestricted, deep-linkable | Authenticated session + ACL check |
-| **State Resolution** | Deterministic local fixtures (`c32Dispatch.ts`) | REST / GraphQL / WebSocket API |
-| **Card Hold** | Simulated $356.00 USD authorization | Stripe PaymentIntent pre-authorization |
-| **Driver Matching** | Local progression: S10 → S20 → S30 → S40 → S50 | Redis Geospatial + Celery matching engine |
-| **Cancellation** | Deterministic fee-free / $100 waiver logic | Stripe capture/refund + Ledger entry |
-| **Screen Discovery** | QA Screen Navigator (floating drawer) | Normal user-driven product flow |
+| Concern              | Frontend Demo Architecture                      | Production Backend (Future Phases)        |
+| -------------------- | ----------------------------------------------- | ----------------------------------------- |
+| **Route Entry**      | Direct, unrestricted, deep-linkable             | Authenticated session + ACL check         |
+| **State Resolution** | Deterministic local fixtures (`c32Dispatch.ts`) | REST / GraphQL / WebSocket API            |
+| **Card Hold**        | Simulated $356.00 USD authorization             | Stripe PaymentIntent pre-authorization    |
+| **Driver Matching**  | Local progression: S10 → S20 → S30 → S40 → S50  | Redis Geospatial + Celery matching engine |
+| **Cancellation**     | Deterministic fee-free / $100 waiver logic      | Stripe capture/refund + Ledger entry      |
+| **Screen Discovery** | QA Screen Navigator (floating drawer)           | Normal user-driven product flow           |
 
 ---
 
 ## 4. Verification & Audit Results
 
 An audit of the entire customer route tree confirmed:
+
 - `app/_layout.tsx`: Root layout provides QueryClient, SafeAreaProvider, and stack routing with zero authentication redirects.
 - `app/(app)/_layout.tsx`: Protected layout group renders child screens directly without route-guard interception.
 - `apps/customer/src/hooks/useAppBootstrap.ts`: Initializes fonts and i18n without blocking screen access.

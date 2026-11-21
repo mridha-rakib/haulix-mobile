@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # QA Screen Navigator Direct Entry Tests
 
 **PROJECT:** HAULIX Customer Mobile App  
@@ -6,7 +7,7 @@
 **DOCUMENT:** `docs/qa/phase-03-47/QA_NAVIGATOR_DIRECT_ENTRY_TESTS.md`  
 **COMPONENT:** `apps/customer/src/components/demo/DemoScreenNavigator.tsx`  
 **TEST DEVICE:** Realme Note 60 (Android 15)  
-**STATUS:** 100% PASS  
+**STATUS:** 100% PASS
 
 ---
 
@@ -91,22 +92,23 @@ All 8 new screen variants were registered at the top of `IMPLEMENTED_SCREENS`:
 
 ## 3. Direct Entry Execution Matrix
 
-| Test Case | Selected Entry | Route Rendered | Modal Dismissed? | Language Set? | Back Return | Result |
-|---|---|---|---|---|---|---|
-| **TC-NAV-01** | `w05-s20-en` | `/search-expanded-20mi` | YES | `en` | Returns cleanly | PASS |
-| **TC-NAV-02** | `w05-s20-es` | `/search-expanded-20mi` | YES | `es` | Returns cleanly | PASS |
-| **TC-NAV-03** | `w05-s30-en` | `/search-expanding-30mi`| YES | `en` | Returns cleanly | PASS |
-| **TC-NAV-04** | `w05-s30-es` | `/search-expanding-30mi`| YES | `es` | Returns cleanly | PASS |
-| **TC-NAV-05** | `w05-s40-en` | `/search-expanded-40mi` | YES | `en` | Returns cleanly | PASS |
-| **TC-NAV-06** | `w05-s40-es` | `/search-expanded-40mi` | YES | `es` | Returns cleanly | PASS |
-| **TC-NAV-07** | `w05-s50-en` | `/search-expanded-50mi` | YES | `en` | Returns cleanly | PASS |
-| **TC-NAV-08** | `w05-s50-es` | `/search-expanded-50mi` | YES | `es` | Returns cleanly | PASS |
+| Test Case     | Selected Entry | Route Rendered           | Modal Dismissed? | Language Set? | Back Return     | Result |
+| ------------- | -------------- | ------------------------ | ---------------- | ------------- | --------------- | ------ |
+| **TC-NAV-01** | `w05-s20-en`   | `/search-expanded-20mi`  | YES              | `en`          | Returns cleanly | PASS   |
+| **TC-NAV-02** | `w05-s20-es`   | `/search-expanded-20mi`  | YES              | `es`          | Returns cleanly | PASS   |
+| **TC-NAV-03** | `w05-s30-en`   | `/search-expanding-30mi` | YES              | `en`          | Returns cleanly | PASS   |
+| **TC-NAV-04** | `w05-s30-es`   | `/search-expanding-30mi` | YES              | `es`          | Returns cleanly | PASS   |
+| **TC-NAV-05** | `w05-s40-en`   | `/search-expanded-40mi`  | YES              | `en`          | Returns cleanly | PASS   |
+| **TC-NAV-06** | `w05-s40-es`   | `/search-expanded-40mi`  | YES              | `es`          | Returns cleanly | PASS   |
+| **TC-NAV-07** | `w05-s50-en`   | `/search-expanded-50mi`  | YES              | `en`          | Returns cleanly | PASS   |
+| **TC-NAV-08** | `w05-s50-es`   | `/search-expanded-50mi`  | YES              | `es`          | Returns cleanly | PASS   |
 
 ---
 
 ## 4. Production Security
 
 Verified:
+
 ```tsx
 if (process.env.NODE_ENV === "production" && !__DEV__) {
   return null;

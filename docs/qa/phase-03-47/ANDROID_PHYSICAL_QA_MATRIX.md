@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47
+
 # Physical Android Device QA Matrix
 
 **PROJECT:** HAULIX Customer Mobile App  
@@ -10,7 +11,7 @@
 **OS:** Android 15 (Build `AP3A.240905.015.A2`)  
 **RESOLUTION:** 720 × 1600 px  
 **METRO RUNTIME:** Port 8085 (ADB reverse socket forwarding)  
-**STATUS:** 100% DEVICE QA PASS  
+**STATUS:** 100% DEVICE QA PASS
 
 ---
 
@@ -18,19 +19,19 @@
 
 All 11 physical device captures were saved directly to `docs/qa/phase-03-47/android/`:
 
-| # | Screen ID | Route / Locale | Local File Name | File Size (Bytes) | Device Resolution | Visual Pass? |
-|---|---|---|---|---|---|---|
-| **01** | S20-EN | `/search-expanded-20mi?previewLocale=en` | `w05-en-s20-android.png` | 103,233 | 720 × 1600 | **YES** |
-| **02** | S20-ES | `/search-expanded-20mi?previewLocale=es` | `w05-es-s20-android.png` | 103,607 | 720 × 1600 | **YES** |
-| **03** | S30-EN | `/search-expanding-30mi?previewLocale=en`| `w05-en-s30-android.png` | 103,941 | 720 × 1600 | **YES** |
-| **04** | S30-ES | `/search-expanding-30mi?previewLocale=es`| `w05-es-s30-android.png` | 104,321 | 720 × 1600 | **YES** |
-| **05** | S40-EN | `/search-expanded-40mi?previewLocale=en` | `w05-en-s40-android.png` | 103,062 | 720 × 1600 | **YES** |
-| **06** | S40-ES | `/search-expanded-40mi?previewLocale=es` | `w05-es-s40-android.png` | 103,429 | 720 × 1600 | **YES** |
-| **07** | S50-EN | `/search-expanded-50mi?previewLocale=en` | `w05-en-s50-android.png` | 103,283 | 720 × 1600 | **YES** |
-| **08** | S50-ES | `/search-expanded-50mi?previewLocale=es` | `w05-es-s50-android.png` | 103,622 | 720 × 1600 | **YES** |
-| **09** | ND-ES (Remediated) | `/no-driver-available?previewLocale=es` | `w05-es-no-driver-remediated-android.png` | 102,806 | 720 × 1600 | **YES** |
-| **10** | CN-ES (Remediated) | `/request-canceled?previewLocale=es` | `w05-es-canceled-remediated-android.png` | 102,528 | 720 × 1600 | **YES** |
-| **11** | CW-ES (Remediated) | `/cancellation-windows?previewLocale=es`| `w05-es-cancellation-windows-remediated-android.png` | 102,868 | 720 × 1600 | **YES** |
+| #      | Screen ID          | Route / Locale                            | Local File Name                                      | File Size (Bytes) | Device Resolution | Visual Pass? |
+| ------ | ------------------ | ----------------------------------------- | ---------------------------------------------------- | ----------------- | ----------------- | ------------ |
+| **01** | S20-EN             | `/search-expanded-20mi?previewLocale=en`  | `w05-en-s20-android.png`                             | 103,233           | 720 × 1600        | **YES**      |
+| **02** | S20-ES             | `/search-expanded-20mi?previewLocale=es`  | `w05-es-s20-android.png`                             | 103,607           | 720 × 1600        | **YES**      |
+| **03** | S30-EN             | `/search-expanding-30mi?previewLocale=en` | `w05-en-s30-android.png`                             | 103,941           | 720 × 1600        | **YES**      |
+| **04** | S30-ES             | `/search-expanding-30mi?previewLocale=es` | `w05-es-s30-android.png`                             | 104,321           | 720 × 1600        | **YES**      |
+| **05** | S40-EN             | `/search-expanded-40mi?previewLocale=en`  | `w05-en-s40-android.png`                             | 103,062           | 720 × 1600        | **YES**      |
+| **06** | S40-ES             | `/search-expanded-40mi?previewLocale=es`  | `w05-es-s40-android.png`                             | 103,429           | 720 × 1600        | **YES**      |
+| **07** | S50-EN             | `/search-expanded-50mi?previewLocale=en`  | `w05-en-s50-android.png`                             | 103,283           | 720 × 1600        | **YES**      |
+| **08** | S50-ES             | `/search-expanded-50mi?previewLocale=es`  | `w05-es-s50-android.png`                             | 103,622           | 720 × 1600        | **YES**      |
+| **09** | ND-ES (Remediated) | `/no-driver-available?previewLocale=es`   | `w05-es-no-driver-remediated-android.png`            | 102,806           | 720 × 1600        | **YES**      |
+| **10** | CN-ES (Remediated) | `/request-canceled?previewLocale=es`      | `w05-es-canceled-remediated-android.png`             | 102,528           | 720 × 1600        | **YES**      |
+| **11** | CW-ES (Remediated) | `/cancellation-windows?previewLocale=es`  | `w05-es-cancellation-windows-remediated-android.png` | 102,868           | 720 × 1600        | **YES**      |
 
 ---
 
