@@ -47,6 +47,9 @@ export type SchedulingRecoveryState =
   | "fresh_hold_review_demo"
   | "fresh_hold_consent_acknowledged_demo"
   | "booking_status_checking_demo"
+  | "booking_recorded_demo"
+  | "asap_request_recorded_demo"
+  | "booking_not_confirmed_demo"
   | "backend_availability_unverified";
 
 export type InventorySourceMode = "active_w03_journey" | "w04_figma_demo";
@@ -363,6 +366,34 @@ export function acknowledgeFreshHoldConsent(): W04CustomerDraft {
 export function recordBookingStatusChecking(): W04CustomerDraft {
   return updateW04Draft({
     recoveryState: "booking_status_checking_demo",
+  });
+}
+
+/**
+ * Record scheduled booking recorded state (C31-S).
+ */
+export function recordBookingRecorded(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "booking_recorded_demo",
+  });
+}
+
+/**
+ * Record ASAP request recorded state (C31-A).
+ */
+export function recordAsapRequestRecorded(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "asap_request_recorded_demo",
+    timingMode: "asap",
+  });
+}
+
+/**
+ * Record booking not yet confirmed state (C31-F).
+ */
+export function recordBookingNotConfirmed(): W04CustomerDraft {
+  return updateW04Draft({
+    recoveryState: "booking_not_confirmed_demo",
   });
 }
 

@@ -17,6 +17,9 @@ describe("C31-P Checking Booking Status — English (Node 763:1021) & Spanish (N
   it("verifies navigation return to home and record booking checking state", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain('router.push("/")');
+    expect(routeContent).toContain('pathname: "/booking-recorded"');
+    expect(routeContent).toContain('pathname: "/asap-request-recorded"');
+    expect(routeContent).toContain('pathname: "/booking-not-confirmed"');
     expect(routeContent).toContain("recordBookingStatusChecking");
   });
 

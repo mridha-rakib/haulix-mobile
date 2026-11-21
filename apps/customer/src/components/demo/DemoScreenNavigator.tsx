@@ -18,6 +18,60 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
   {
+    id: "c31s-es",
+    name: "C31-S · Tu reserva está registrada (Español)",
+    figmaNode: "Node 766:1475",
+    route: "/booking-recorded",
+    locale: "es",
+    description:
+      "W04 Demostración de resultado: reserva programada registrada en espera de despacho",
+  },
+  {
+    id: "c31s-en",
+    name: "C31-S · Your Booking Is Recorded (English)",
+    figmaNode: "Node 763:1089",
+    route: "/booking-recorded",
+    locale: "en",
+    description:
+      "W04 Outcome demonstration: scheduled booking recorded awaiting verified driver dispatch",
+  },
+  {
+    id: "c31a-es",
+    name: "C31-A · Tu solicitud inmediata está registrada (Español)",
+    figmaNode: "Node 766:1541",
+    route: "/asap-request-recorded",
+    locale: "es",
+    description:
+      "W04 Demostración de resultado: solicitud inmediata (cuanto antes) en búsqueda de conductor",
+  },
+  {
+    id: "c31a-en",
+    name: "C31-A · Your ASAP Request Is Recorded (English)",
+    figmaNode: "Node 763:1155",
+    route: "/asap-request-recorded",
+    locale: "en",
+    description:
+      "W04 Outcome demonstration: immediate ASAP request recorded searching live driver network",
+  },
+  {
+    id: "c31f-es",
+    name: "C31-F · La reserva aún no está confirmada (Español)",
+    figmaNode: "Node 766:1607",
+    route: "/booking-not-confirmed",
+    locale: "es",
+    description:
+      "W04 Demostración de resultado: reserva aún no confirmada con opciones de espera o reprogramación",
+  },
+  {
+    id: "c31f-en",
+    name: "C31-F · Booking Not Yet Confirmed (English)",
+    figmaNode: "Node 763:1221",
+    route: "/booking-not-confirmed",
+    locale: "en",
+    description:
+      "W04 Outcome demonstration: unconfirmed status with recovery options for slot selection or queued wait",
+  },
+  {
     id: "c30r-es",
     name: "C30-R · Restaurar autorización segura (Español)",
     figmaNode: "Node 766:1338",

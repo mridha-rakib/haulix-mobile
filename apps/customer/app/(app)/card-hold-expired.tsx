@@ -17,7 +17,7 @@
  * - Customer inventory scope and non-binding quote ($356.00) remain strictly preserved.
  * - Outgoing routing:
  *   - "Re-authorize payment" -> /choose-payment-method (C29).
- *   - "Back to scheduling" -> /schedule-service-window (C27).
+ *   - "Back to scheduling" -> /choose-service-time (C27).
  */
 
 import { colors, fontFamily } from "@haulix/design-tokens";
@@ -119,7 +119,7 @@ export default function CardHoldExpiredScreen() {
 
   const handleBackToScheduling = useCallback(() => {
     router.push({
-      pathname: "/schedule-service-window",
+      pathname: "/choose-service-time",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

@@ -17,7 +17,7 @@ describe("C30-E Your Card Hold Expired — English (Node 763:883) & Spanish (Nod
   it("verifies recovery transitions to C29 re-authorization, C27 scheduling return, and C30-C hold review", () => {
     const routeContent = fs.readFileSync(routePath, "utf8");
     expect(routeContent).toContain('pathname: "/choose-payment-method"');
-    expect(routeContent).toContain('pathname: "/schedule-service-window"');
+    expect(routeContent).toContain('pathname: "/choose-service-time"');
     expect(routeContent).toContain('pathname: "/review-fresh-card-hold"');
     expect(routeContent).toContain("recordHoldExpired");
   });

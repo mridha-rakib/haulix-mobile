@@ -121,6 +121,27 @@ export default function CheckingBookingStatusScreen() {
     router.push("/");
   }, [router]);
 
+  const handleViewBookingRecorded = useCallback(() => {
+    router.push({
+      pathname: "/booking-recorded",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
+  const handleViewAsapRequestRecorded = useCallback(() => {
+    router.push({
+      pathname: "/asap-request-recorded",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
+  const handleViewBookingNotConfirmed = useCallback(() => {
+    router.push({
+      pathname: "/booking-not-confirmed",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
   const confirmedItems = getEffectiveConfirmedItems(draft, currentLocale);
 
   return (
@@ -276,6 +297,63 @@ export default function CheckingBookingStatusScreen() {
             <Text style={styles.roadmapBody}>
               {t("c31pCheckingBookingStatus.roadmapNoticeBody")}
             </Text>
+          </View>
+
+          {/* Demonstration Outcome Simulation Triggers */}
+          <View style={styles.demoSection} testID="c31p-demo-outcomes-section">
+            <Text style={styles.demoSectionHeading}>
+              {currentLocale === "es"
+                ? "SIMULACIÓN DE RESULTADOS (DEMO)"
+                : "OUTCOME DEMONSTRATIONS (QA)"}
+            </Text>
+
+            <Pressable
+              style={({ pressed }) => [
+                styles.demoActionButton,
+                styles.demoSuccessButton,
+                pressed && styles.demoButtonPressed,
+              ]}
+              onPress={handleViewBookingRecorded}
+              accessibilityRole="button"
+              accessibilityLabel={t("c31pCheckingBookingStatus.simulateBookingRecorded")}
+              testID="c31p-simulate-scheduled-btn"
+            >
+              <Text style={styles.demoSuccessButtonText}>
+                {t("c31pCheckingBookingStatus.simulateBookingRecorded")}
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={({ pressed }) => [
+                styles.demoActionButton,
+                styles.demoAsapButton,
+                pressed && styles.demoButtonPressed,
+              ]}
+              onPress={handleViewAsapRequestRecorded}
+              accessibilityRole="button"
+              accessibilityLabel={t("c31pCheckingBookingStatus.simulateAsapRecorded")}
+              testID="c31p-simulate-asap-btn"
+            >
+              <Text style={styles.demoAsapButtonText}>
+                {t("c31pCheckingBookingStatus.simulateAsapRecorded")}
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={({ pressed }) => [
+                styles.demoActionButton,
+                styles.demoWarningButton,
+                pressed && styles.demoButtonPressed,
+              ]}
+              onPress={handleViewBookingNotConfirmed}
+              accessibilityRole="button"
+              accessibilityLabel={t("c31pCheckingBookingStatus.simulateNotConfirmed")}
+              testID="c31p-simulate-not-confirmed-btn"
+            >
+              <Text style={styles.demoWarningButtonText}>
+                {t("c31pCheckingBookingStatus.simulateNotConfirmed")}
+              </Text>
+            </Pressable>
           </View>
 
           {/* Primary Action Button */}
@@ -519,6 +597,62 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.regular,
     color: colors.secondaryText,
     lineHeight: 18,
+  },
+  demoSection: {
+    backgroundColor: "#111615",
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#1E2724",
+    padding: 16,
+    marginBottom: 20,
+    gap: 10,
+  },
+  demoSectionHeading: {
+    fontSize: 11,
+    fontFamily: fontFamily.bold,
+    color: colors.secondaryText,
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  demoActionButton: {
+    height: 44,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 12,
+  },
+  demoButtonPressed: {
+    opacity: 0.85,
+  },
+  demoSuccessButton: {
+    backgroundColor: "rgba(186, 255, 66, 0.12)",
+    borderWidth: 1,
+    borderColor: "rgba(186, 255, 66, 0.4)",
+  },
+  demoSuccessButtonText: {
+    fontSize: 13,
+    fontFamily: fontFamily.semiBold,
+    color: colors.brand,
+  },
+  demoAsapButton: {
+    backgroundColor: "rgba(56, 189, 248, 0.12)",
+    borderWidth: 1,
+    borderColor: "rgba(56, 189, 248, 0.4)",
+  },
+  demoAsapButtonText: {
+    fontSize: 13,
+    fontFamily: fontFamily.semiBold,
+    color: "#38BDF8",
+  },
+  demoWarningButton: {
+    backgroundColor: "rgba(245, 158, 11, 0.12)",
+    borderWidth: 1,
+    borderColor: "rgba(245, 158, 11, 0.4)",
+  },
+  demoWarningButtonText: {
+    fontSize: 13,
+    fontFamily: fontFamily.semiBold,
+    color: colors.amber,
   },
   primaryButton: {
     height: 52,
