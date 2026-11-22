@@ -41,10 +41,10 @@ Automated testing in `@haulix/i18n` executes a bidirectional key symmetry valida
 
 ```ts
 it("verifies en and es keys mirror each other symmetrically", () => {
-  const enKeys = Object.keys(enTranslations).sort();
-  const esKeys = Object.keys(esTranslations).sort();
-  expect(enKeys).toEqual(esKeys);
-  // Recursively inspects every nested namespace and object key
+	const enKeys = Object.keys(enTranslations).sort();
+	const esKeys = Object.keys(esTranslations).sort();
+	expect(enKeys).toEqual(esKeys);
+	// Recursively inspects every nested namespace and object key
 });
 ```
 

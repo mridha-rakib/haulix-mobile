@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## No-Guard Unrestricted Routing Verification Report
 
 **Document ID:** `HAULIX-QA-P03.47B-006`  
@@ -10,6 +11,7 @@
 ### 1. Absolute Project Owner Mandate
 
 The project owner explicitly instructed:
+
 > "We are currently developing the frontend only. All screens in the Android APK must remain accessible and the full frontend flow must work without authentication, booking, payment, dispatch, or driver acceptance blocks.
 > Never introduce route guards, redirects to sign-in, fake blocking states, or navigation prerequisites that break direct access to any screen."
 

@@ -8,26 +8,26 @@ import { StyleSheet, View } from "react-native";
  * based on server-authoritative role data in Phase 02.
  */
 export default function DriverHomeScreen() {
-  return (
-    <HaulixSafeArea>
-      <View style={styles.container}>
-        <HaulixText variant="brand" size="lg" weight="semiBold">
-          Driver Dashboard
-        </HaulixText>
-        <HaulixText variant="secondary" size="sm" style={styles.note}>
-          Protected area — role-based UI from server in Phase 02
-        </HaulixText>
-      </View>
-    </HaulixSafeArea>
-  );
+	return (
+		<HaulixSafeArea>
+			<View style={styles.container}>
+				<HaulixText variant="brand" size="lg" weight="semiBold">
+					Driver Dashboard
+				</HaulixText>
+				<HaulixText variant="secondary" size="sm" style={styles.note}>
+					Protected area — role-based UI from server in Phase 02
+				</HaulixText>
+			</View>
+		</HaulixSafeArea>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: spacing[6],
-  },
-  note: {
-    marginTop: spacing[2],
-  },
+	container: {
+		flex: 1,
+		padding: spacing[6],
+	},
+	note: {
+		marginTop: spacing[2],
+	},
 });

@@ -5,5 +5,5 @@ import { Redirect } from "expo-router";
  * Authentication state is determined server-side; this is a routing stub only.
  */
 export default function RootIndex() {
-  return <Redirect href="/(auth)/sign-in" />;
+	return <Redirect href="/(auth)/sign-in" />;
 }

@@ -30,14 +30,19 @@ To permanently resolve this without compromise, Phase 03.37 introduced a typed i
 
 ```typescript
 export const W03_CUSTOMER_CONFIRMED_INVENTORY = [
-  { id: "item-sofa", name: "Sofa", quantity: 1, category: "Living Room" },
-  { id: "item-mattress", name: "Queen mattress", quantity: 2, category: "Bedroom" },
-  { id: "item-table", name: "Dining table", quantity: 1, category: "Dining" },
+	{ id: "item-sofa", name: "Sofa", quantity: 1, category: "Living Room" },
+	{
+		id: "item-mattress",
+		name: "Queen mattress",
+		quantity: 2,
+		category: "Bedroom",
+	},
+	{ id: "item-table", name: "Dining table", quantity: 1, category: "Dining" },
 ];
 
 export const W04_FIGMA_DEMO_INVENTORY = [
-  { id: "demo-sofa", name: "Sofa", quantity: 1, category: "Living Room" },
-  { id: "demo-chair", name: "Chair", quantity: 2, category: "Living Room" },
+	{ id: "demo-sofa", name: "Sofa", quantity: 1, category: "Living Room" },
+	{ id: "demo-chair", name: "Chair", quantity: 2, category: "Living Room" },
 ];
 ```
 

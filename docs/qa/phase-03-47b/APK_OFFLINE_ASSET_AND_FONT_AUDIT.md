@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## Standalone APK Offline Asset & Font Audit
 
 **Document ID:** `HAULIX-QA-P03.47B-014`  
@@ -12,6 +13,7 @@
 In standalone mode, all assets are bundled directly inside the APK package file. No remote asset requests or Metro HTTP streaming occurs.
 
 #### Embedded Fonts:
+
 - `PlusJakartaSans-Bold.ttf`
 - `PlusJakartaSans-SemiBold.ttf`
 - `PlusJakartaSans-Medium.ttf`
@@ -19,6 +21,7 @@ In standalone mode, all assets are bundled directly inside the APK package file.
 - `SpaceMono-Regular.ttf`
 
 #### Embedded Dispatch Map Assets:
+
 - `map-s10-searching.png` ($386 \times 235$ px)
 - `map-s20-searching.png` ($386 \times 235$ px)
 - `map-s30-searching.png` ($386 \times 235$ px)
@@ -26,6 +29,7 @@ In standalone mode, all assets are bundled directly inside the APK package file.
 - `map-s50-searching.png` ($386 \times 235$ px)
 
 #### Vehicle & UI Graphics:
+
 - Pickup truck illustration (`pickup-truck.png`)
 - Cargo van illustration (`cargo-van.png`)
 - Box truck illustration (`box-truck.png`)

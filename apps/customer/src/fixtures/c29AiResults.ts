@@ -14,79 +14,79 @@
  */
 
 export interface AiSuggestedItem {
-  id: string;
-  nameKey: "sofa" | "mattress" | "diningTable";
-  imageKey: "sofa" | "mattresses" | "table";
-  suggestedQty: number;
-  customerQty: number;
-  hasMismatch: boolean;
-  needsConfirmation: boolean;
+	id: string;
+	nameKey: "sofa" | "mattress" | "diningTable";
+	imageKey: "sofa" | "mattresses" | "table";
+	suggestedQty: number;
+	customerQty: number;
+	hasMismatch: boolean;
+	needsConfirmation: boolean;
 }
 
 export interface AiFailureDraftLedger {
-  bookingId: string;
-  attachmentCount: number;
-  hasPublishedQuote: boolean;
-  hasActiveBooking: boolean;
+	bookingId: string;
+	attachmentCount: number;
+	hasPublishedQuote: boolean;
+	hasActiveBooking: boolean;
 }
 
 export interface AiOfflineDraftLedger {
-  bookingId: string;
-  isSimulatedOfflinePreview: boolean;
-  draftPreserved: boolean;
+	bookingId: string;
+	isSimulatedOfflinePreview: boolean;
+	draftPreserved: boolean;
 }
 
 export interface AiMissingPhotosDraftLedger {
-  bookingId: string;
-  validPhotoCount: number;
-  allowVisualMeasurements: boolean;
+	bookingId: string;
+	validPhotoCount: number;
+	allowVisualMeasurements: boolean;
 }
 
 export const C22D_SUGGESTED_ITEMS: readonly AiSuggestedItem[] = [
-  {
-    id: "item-sofa-01",
-    nameKey: "sofa",
-    imageKey: "sofa",
-    suggestedQty: 1,
-    customerQty: 1,
-    hasMismatch: false,
-    needsConfirmation: true,
-  },
-  {
-    id: "item-mattress-02",
-    nameKey: "mattress",
-    imageKey: "mattresses",
-    suggestedQty: 1,
-    customerQty: 2, // Customer quantity 2 is preserved!
-    hasMismatch: true,
-    needsConfirmation: true,
-  },
-  {
-    id: "item-table-03",
-    nameKey: "diningTable",
-    imageKey: "table",
-    suggestedQty: 1,
-    customerQty: 1,
-    hasMismatch: false,
-    needsConfirmation: true,
-  },
+	{
+		id: "item-sofa-01",
+		nameKey: "sofa",
+		imageKey: "sofa",
+		suggestedQty: 1,
+		customerQty: 1,
+		hasMismatch: false,
+		needsConfirmation: true,
+	},
+	{
+		id: "item-mattress-02",
+		nameKey: "mattress",
+		imageKey: "mattresses",
+		suggestedQty: 1,
+		customerQty: 2, // Customer quantity 2 is preserved!
+		hasMismatch: true,
+		needsConfirmation: true,
+	},
+	{
+		id: "item-table-03",
+		nameKey: "diningTable",
+		imageKey: "table",
+		suggestedQty: 1,
+		customerQty: 1,
+		hasMismatch: false,
+		needsConfirmation: true,
+	},
 ] as const;
 
 export const C22F_DEFAULT_LEDGER: AiFailureDraftLedger = {
-  bookingId: "HX-DEMO-1027",
-  attachmentCount: 4,
-  hasPublishedQuote: false,
-  hasActiveBooking: false,
+	bookingId: "HX-DEMO-1027",
+	attachmentCount: 4,
+	hasPublishedQuote: false,
+	hasActiveBooking: false,
 };
 
 export const C22O_DEFAULT_LEDGER: AiOfflineDraftLedger = {
-  bookingId: "HX-DEMO-1027",
-  isSimulatedOfflinePreview: true,
-  draftPreserved: true,
+	bookingId: "HX-DEMO-1027",
+	isSimulatedOfflinePreview: true,
+	draftPreserved: true,
 };
 
 export const C22E_DEFAULT_LEDGER: AiMissingPhotosDraftLedger = {
-  bookingId: "HX-DEMO-1027",
-  validPhotoCount: 0,
-  allowVisualMeasurements: false,
+	bookingId: "HX-DEMO-1027",
+	validPhotoCount: 0,
+	allowVisualMeasurements: false,
 };

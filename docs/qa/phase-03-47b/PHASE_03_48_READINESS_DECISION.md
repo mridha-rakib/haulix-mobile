@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## Phase 03.48 Scope & Readiness Recommendation
 
 **Document ID:** `HAULIX-QA-P03.47B-018`  
@@ -26,9 +27,10 @@
 The frontend foundation for W01 through W05 is now robust, verified on physical Android hardware, and source-aligned with the approved Figma design (`meiXxwUNJaDo0a3mhcHBXv`).
 
 #### Recommended Scope for Phase 03.48:
-1. **Workflow 06 (W06) Discovery & Delivery:**  
+
+1. **Workflow 06 (W06) Discovery & Delivery:**
    - Begin discovery and screen implementation for Workflow 06 (In-Transit Tracking, Real-time Driver ETA, and Arrival Confirmation).
-2. **Interactive Map Enhancements:**  
+2. **Interactive Map Enhancements:**
    - For live tracking routes in W06, investigate optional animated vehicle pin movement along Phoenix arterial corridors.
-3. **Driver Communication UI:**  
+3. **Driver Communication UI:**
    - Implement customer-to-driver in-app messaging modal and masked VoIP call initiation screen according to Figma specifications.

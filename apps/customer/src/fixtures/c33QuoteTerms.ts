@@ -16,71 +16,71 @@
  */
 
 export interface ItemizedChargeRow {
-  id: string;
-  labelKey: string;
-  amount: string;
+	id: string;
+	labelKey: string;
+	amount: string;
 }
 
 export interface QuoteReferenceDetails {
-  bookingId: string;
-  customerName: string;
-  serviceTypeKey: string;
-  locationKey: string;
-  crewKey: string;
+	bookingId: string;
+	customerName: string;
+	serviceTypeKey: string;
+	locationKey: string;
+	crewKey: string;
 }
 
 export interface CustomerCorrectionItem {
-  id: string;
-  textKey: string;
+	id: string;
+	textKey: string;
 }
 
 export const C25_ITEMIZED_CHARGES: readonly ItemizedChargeRow[] = [
-  {
-    id: "charge-labor",
-    labelKey: "chargeLabor",
-    amount: "$160",
-  },
-  {
-    id: "charge-vehicle",
-    labelKey: "chargeVehicle",
-    amount: "$75",
-  },
-  {
-    id: "charge-distance",
-    labelKey: "chargeDistance",
-    amount: "$36",
-  },
-  {
-    id: "charge-disposal",
-    labelKey: "chargeDisposal",
-    amount: "$60",
-  },
-  {
-    id: "charge-access",
-    labelKey: "chargeAccess",
-    amount: "$25",
-  },
-  {
-    id: "charge-optional",
-    labelKey: "chargeOptional",
-    amount: "$0",
-  },
+	{
+		id: "charge-labor",
+		labelKey: "chargeLabor",
+		amount: "$160",
+	},
+	{
+		id: "charge-vehicle",
+		labelKey: "chargeVehicle",
+		amount: "$75",
+	},
+	{
+		id: "charge-distance",
+		labelKey: "chargeDistance",
+		amount: "$36",
+	},
+	{
+		id: "charge-disposal",
+		labelKey: "chargeDisposal",
+		amount: "$60",
+	},
+	{
+		id: "charge-access",
+		labelKey: "chargeAccess",
+		amount: "$25",
+	},
+	{
+		id: "charge-optional",
+		labelKey: "chargeOptional",
+		amount: "$0",
+	},
 ] as const;
 
 export const C25_ILLUSTRATIVE_TOTAL = "$356";
 export const C25_ILLUSTRATIVE_FORMULA = "160 + 75 + 36 + 60 + 25 = 356";
 
 export const C24REV_CORRECTION_ITEMS: readonly CustomerCorrectionItem[] = [
-  {
-    id: "corr-mattress",
-    textKey: "correctionMattress",
-  },
-  {
-    id: "corr-verified",
-    textKey: "correctionVerified",
-  },
-  {
-    id: "corr-recalc",
-    textKey: "correctionRecalc",
-  },
+	{
+		id: "corr-mattress",
+		textKey: "correctionMattress",
+	},
+	{
+		id: "corr-verified",
+		textKey: "correctionVerified",
+	},
+	{
+		id: "corr-recalc",
+		textKey: "correctionRecalc",
+	},
 ] as const;

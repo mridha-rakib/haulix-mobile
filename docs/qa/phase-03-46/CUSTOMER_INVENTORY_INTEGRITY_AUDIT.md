@@ -52,10 +52,12 @@ The automated test suite `apps/customer/src/__tests__/w05-phase-03-46.test.tsx` 
 
 ```ts
 test("preserves W03 confirmed customer inventory (4 pieces / 3 categories)", () => {
-  expect(W03_CUSTOMER_CONFIRMED_INVENTORY).toBeDefined();
-  expect(W03_CUSTOMER_CONFIRMED_INVENTORY.items.length).toBe(4);
-  const categories = new Set(W03_CUSTOMER_CONFIRMED_INVENTORY.items.map((i) => i.category));
-  expect(categories.size).toBe(3);
+	expect(W03_CUSTOMER_CONFIRMED_INVENTORY).toBeDefined();
+	expect(W03_CUSTOMER_CONFIRMED_INVENTORY.items.length).toBe(4);
+	const categories = new Set(
+		W03_CUSTOMER_CONFIRMED_INVENTORY.items.map((i) => i.category),
+	);
+	expect(categories.size).toBe(3);
 });
 ```
 

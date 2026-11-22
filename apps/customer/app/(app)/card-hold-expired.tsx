@@ -507,11 +507,17 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		marginBottom: 10,
+		gap: 12,
+		minHeight: 26,
 	},
 	detailLabel: {
 		fontSize: 12,
 		fontFamily: fontFamily.medium,
 		color: colors.secondaryText,
+		flex: 1,
+		flexShrink: 1,
+		minWidth: 0,
+		lineHeight: 16,
 	},
 	detailTextValue: {
 		fontSize: 13,
@@ -523,11 +529,15 @@ const styles = StyleSheet.create({
 		fontFamily: fontFamily.semiBold,
 		color: colors.secondaryText,
 		textDecorationLine: "line-through",
+		flexShrink: 0,
+		textAlign: "right",
 	},
 	detailCurrentCharge: {
 		fontSize: 16,
 		fontFamily: fontFamily.bold,
 		color: colors.brand,
+		flexShrink: 0,
+		textAlign: "right",
 	},
 	divider: {
 		height: 1,

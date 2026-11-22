@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## W01 to W05 Sequential Customer Journey QA Audit
 
 **Document ID:** `HAULIX-QA-P03.47B-008`  

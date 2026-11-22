@@ -18,8 +18,8 @@ export type SupportedLocale = "en" | "es";
 export const localeSchema = z.enum(["en", "es"]);
 
 export const resources = {
-  en: { translation: en },
-  es: { translation: es },
+	en: { translation: en },
+	es: { translation: es },
 } as const;
 
 export type TranslationKeys = typeof en;
@@ -30,31 +30,31 @@ let initialized = false;
  * Initialize i18n. Call once per app at startup.
  */
 export async function initI18n(locale: SupportedLocale = "en"): Promise<void> {
-  if (initialized) return;
-  initialized = true;
-  await i18next.use(initReactI18next).init({
-    lng: locale,
-    fallbackLng: "en",
-    resources,
-    interpolation: {
-      escapeValue: false,
-    },
-    compatibilityJSON: "v4",
-  });
+	if (initialized) return;
+	initialized = true;
+	await i18next.use(initReactI18next).init({
+		lng: locale,
+		fallbackLng: "en",
+		resources,
+		interpolation: {
+			escapeValue: false,
+		},
+		compatibilityJSON: "v4",
+	});
 }
 
 /**
  * Switch the active locale dynamically at runtime.
  */
 export async function changeLocale(locale: SupportedLocale): Promise<void> {
-  await i18next.changeLanguage(locale);
+	await i18next.changeLanguage(locale);
 }
 
 /**
  * Get the current active locale.
  */
 export function getCurrentLocale(): SupportedLocale {
-  return i18next.language?.startsWith("es") ? "es" : "en";
+	return i18next.language?.startsWith("es") ? "es" : "en";
 }
 
 export { useTranslation } from "react-i18next";

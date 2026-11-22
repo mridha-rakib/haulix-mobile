@@ -6,11 +6,11 @@
  */
 
 export interface C19PEEmptyConfig {
-  hasPhotos: boolean;
-  totalPhotosAttached: number;
+	hasPhotos: boolean;
+	totalPhotosAttached: number;
 }
 
 export const C19PE_EMPTY_CONFIG: C19PEEmptyConfig = {
-  hasPhotos: false,
-  totalPhotosAttached: 0,
+	hasPhotos: false,
+	totalPhotosAttached: 0,
 };

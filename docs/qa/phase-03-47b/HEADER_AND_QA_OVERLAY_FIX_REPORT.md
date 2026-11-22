@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## Header, QA Overlay & Clean Screenshot Mode Report
 
 **Document ID:** `HAULIX-QA-P03.47B-012`  
@@ -10,6 +11,7 @@
 ### 1. Defect Identification & User Requirements
 
 #### User Directives:
+
 1. **Defect A:** The floating `[ QA Screens ]` button overlapped the screen title and brand header on physical Android displays, obstructing visual QA review.
 2. **Defect C:** The header vertical spacing was excessive, pushing critical bottom-sheet information below the fold on standard $720 \times 1600$ px screens.
 3. **Clean Visual Capture Mode Requirement:** Reviewers require capturing authentic, pristine screenshots identical to the Figma source without any QA helper overlays, while maintaining a non-intrusive mechanism to restore the navigator at will.
@@ -19,7 +21,9 @@
 ### 2. Engineering Remediation Applied
 
 #### A. Dual-Mode DemoScreenNavigator
+
 In `DemoScreenNavigator.tsx`:
+
 1. Introduced `isCleanMode` boolean state (default `false`).
 2. When `isCleanMode === false`:
    - The floating pill `[ • QA Screens ]` renders at the top-right (`testID="demo-screen-navigator-trigger"`).
@@ -32,7 +36,9 @@ In `DemoScreenNavigator.tsx`:
    - Touching the top-right corner instantly sets `isCleanMode = false`, restoring the QA pill.
 
 #### B. Header & Vertical Rhythm Optimization
+
 In `W05SearchStageScreen.tsx`:
+
 - Reduced `screenTitle` font size from 28 to 24 dp, line height from 34 to 30 dp.
 - Reduced `screenSubtitle` font size to 13 dp, line height to 18 dp.
 - Reduced `brandRow` bottom margin from 12 to 8 dp.

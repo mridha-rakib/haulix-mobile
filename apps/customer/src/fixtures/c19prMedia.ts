@@ -6,17 +6,17 @@
  */
 
 export interface C19PRSelectedItem {
-  id: string;
-  titleKey: "photoTitle";
-  subtitleKey: "photoSub";
-  imageKey: "sofa";
-  testID: string;
+	id: string;
+	titleKey: "photoTitle";
+	subtitleKey: "photoSub";
+	imageKey: "sofa";
+	testID: string;
 }
 
 export const C19PR_SELECTED_ITEM: C19PRSelectedItem = {
-  id: "sofa-existing",
-  titleKey: "photoTitle",
-  subtitleKey: "photoSub",
-  imageKey: "sofa",
-  testID: "c19pr-photo-sofa-existing",
+	id: "sofa-existing",
+	titleKey: "photoTitle",
+	subtitleKey: "photoSub",
+	imageKey: "sofa",
+	testID: "c19pr-photo-sofa-existing",
 };

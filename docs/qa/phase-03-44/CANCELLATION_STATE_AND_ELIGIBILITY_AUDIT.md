@@ -29,7 +29,7 @@ In Phase 03.43:
 
 ```ts
 export function isCancellationFeeFree(phase: DispatchSearchPhase): boolean {
-  return phase === "searching" || phase === "matched";
+	return phase === "searching" || phase === "matched";
 }
 ```
 

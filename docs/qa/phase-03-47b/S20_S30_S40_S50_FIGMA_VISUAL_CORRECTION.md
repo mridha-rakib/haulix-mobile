@@ -1,10 +1,12 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## S20–S50 Figma Visual Correction & Fidelity Verification
 
 **Document ID:** `HAULIX-QA-P03.47B-010`  
 **Phase:** 03.47B  
 **Target:** W05 Search Stage Screens (`/search-expanded-20mi`, `/search-expanding-30mi`, `/search-expanded-40mi`, `/search-expanded-50mi`)  
 **Figma Source Nodes:**
+
 - S20: `844:4670` (EN), `844:6820` (ES)
 - S30: `844:4769` (EN), `844:6919` (ES)
 - S40: `844:4868` (EN), `844:7018` (ES)
@@ -14,13 +16,13 @@
 
 ### 1. Defect Remediation Register
 
-| Defect Item | Description | Root Cause | Engineering Fix Applied | Verification Status |
-|---|---|---|---|---|
-| **Defect A** | QA floating control overlaps title | Fixed top-right floating pill collided with screen title | Implemented `isCleanMode` toggle in sheet to hide pill; invisible restore target in top-right | **RESOLVED & VERIFIED** |
-| **Defect B** | Map status text clipped near left edge | Fixed container height $235\text{ dp}$ forced horizontal cropping on $320\text{ dp}$ width | Replaced fixed height with responsive `aspectRatio: 386 / 235`, eliminating horizontal crop | **RESOLVED & VERIFIED** |
-| **Defect C** | Header vertical spacing pushes content below fold | Excess top/bottom margins on title, location chip, and badge | Reduced font sizes ($28\to 24\text{ dp}$) and tightened margins ($16\to 10\text{ dp}$) | **RESOLVED & VERIFIED** |
-| **Defect D** | Floating zoom controls obscuring map | Default `showControls={true}` rendered unwanted `[+]` and `[-]` buttons | Set `showControls={false}` across all search stage maps to match Figma source | **RESOLVED & VERIFIED** |
-| **Defect E** | EN/ES layout symmetry and wrapping | Spanish text expansion caused potential badge collisions | Applied `flexShrink: 1` and responsive line height ($30\text{ dp}$) for clean multi-line wrap | **RESOLVED & VERIFIED** |
+| Defect Item  | Description                                       | Root Cause                                                                                 | Engineering Fix Applied                                                                       | Verification Status     |
+| ------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ----------------------- |
+| **Defect A** | QA floating control overlaps title                | Fixed top-right floating pill collided with screen title                                   | Implemented `isCleanMode` toggle in sheet to hide pill; invisible restore target in top-right | **RESOLVED & VERIFIED** |
+| **Defect B** | Map status text clipped near left edge            | Fixed container height $235\text{ dp}$ forced horizontal cropping on $320\text{ dp}$ width | Replaced fixed height with responsive `aspectRatio: 386 / 235`, eliminating horizontal crop   | **RESOLVED & VERIFIED** |
+| **Defect C** | Header vertical spacing pushes content below fold | Excess top/bottom margins on title, location chip, and badge                               | Reduced font sizes ($28\to 24\text{ dp}$) and tightened margins ($16\to 10\text{ dp}$)        | **RESOLVED & VERIFIED** |
+| **Defect D** | Floating zoom controls obscuring map              | Default `showControls={true}` rendered unwanted `[+]` and `[-]` buttons                    | Set `showControls={false}` across all search stage maps to match Figma source                 | **RESOLVED & VERIFIED** |
+| **Defect E** | EN/ES layout symmetry and wrapping                | Spanish text expansion caused potential badge collisions                                   | Applied `flexShrink: 1` and responsive line height ($30\text{ dp}$) for clean multi-line wrap | **RESOLVED & VERIFIED** |
 
 ---
 

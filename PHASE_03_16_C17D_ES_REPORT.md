@@ -83,16 +83,16 @@ The screen is implemented in a single canonical route file:
 ```tsx
 // Localized destination details resolution
 const destinationType =
-  params.destinationType ??
-  (t("c17d.destinationTypeValue") ||
-    t("c17d.destTypeValue") ||
-    C17D_DEFAULT_DESTINATION.destinationType);
+	params.destinationType ??
+	(t("c17d.destinationTypeValue") ||
+		t("c17d.destTypeValue") ||
+		C17D_DEFAULT_DESTINATION.destinationType);
 
 const elevatorAccess =
-  params.elevatorAccess ??
-  (t("c17d.elevatorValue") ||
-    t("c17d.destElevatorValue") ||
-    C17D_DEFAULT_DESTINATION.elevatorAccess);
+	params.elevatorAccess ??
+	(t("c17d.elevatorValue") ||
+		t("c17d.destElevatorValue") ||
+		C17D_DEFAULT_DESTINATION.elevatorAccess);
 ```
 
 ### 3.2 Dynamic Customer Profile Resolution

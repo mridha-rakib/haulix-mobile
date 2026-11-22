@@ -1,5 +1,7 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## Standalone Android APK Build, Unrestricted Frontend Routing & Final Visual QA Report
+
 ### NO EXPO GO DEPENDENCY · NO METRO DEPENDENCY · NO ROUTE GUARDS · PHYSICAL ANDROID ACCEPTANCE
 
 **Document ID:** `HAULIX-ROOT-P03.47B-FINAL`  
@@ -20,13 +22,14 @@
 Phase 03.47B marks the complete transition of the HAULIX Customer Mobile App into a **standalone, installable Android APK** that executes independently on physical hardware without relying on the Expo Go development sandbox or an active Metro development bundler server.
 
 ### Absolute Owner Mandate Compliance:
+
 1. **0 Auth / Booking / Payment Guards:**  
    Every screen across W01–W05 remains completely unrestricted and testable directly via the internal QA navigator or direct ADB deep link (`haulix-customer://<route>`).
 2. **0 Metro Server Dependency:**  
    The application runs with Metro bundler terminated and Expo Go force-stopped. JS bytecode is bundled into the APK via the Hermes compiler.
 3. **0 Role Guards:**  
    The Customer app is isolated from Driver/Helper roles, which are governed strictly by server-side data models.
-4. **Authentic Figma Visual Fidelity (S20–S50):**  
+4. **Authentic Figma Visual Fidelity (S20–S50):**
    - **Defect A (QA Pill Overlap):** Clean Screenshot Mode implemented to hide the floating pill on demand with an invisible restore area.
    - **Defect B (Map Clipping):** Fixed map aspect ratio to $386 / 235$, completely eliminating horizontal cropping and restoring full visibility to the left status text.
    - **Defect C (Header Spacing):** Optimized typography and vertical margins so map and progress components fit above the fold.
@@ -37,15 +40,15 @@ Phase 03.47B marks the complete transition of the HAULIX Customer Mobile App int
 
 ## 2. Standalone APK Build & Native Architecture
 
-| Parameter | Specification |
-|---|---|
-| **EAS Build ID** | `d84b1c39-871c-4c22-9aab-4b76b75d1d0b` |
-| **Package Identifier** | `com.haulix.customer` |
-| **Version Code** | `1` (Version `1.0.0`) |
-| **Native Toolchain** | Expo SDK `58.0.0` / React Native `0.79.x` / Android Gradle Plugin 8.8 / JDK 17 |
-| **Distribution Profile** | `client-demo` (`buildType: "apk"`) |
-| **Active Environment** | `EXPO_PUBLIC_APP_ENV="demo"`, `EXPO_PUBLIC_ENABLE_QA_NAVIGATOR="true"` |
-| **Asset Packaging** | 100% offline static assets, native vector map PNGs, and PlusJakartaSans font family |
+| Parameter                | Specification                                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------- |
+| **EAS Build ID**         | `d84b1c39-871c-4c22-9aab-4b76b75d1d0b`                                              |
+| **Package Identifier**   | `com.haulix.customer`                                                               |
+| **Version Code**         | `1` (Version `1.0.0`)                                                               |
+| **Native Toolchain**     | Expo SDK `58.0.0` / React Native `0.79.x` / Android Gradle Plugin 8.8 / JDK 17      |
+| **Distribution Profile** | `client-demo` (`buildType: "apk"`)                                                  |
+| **Active Environment**   | `EXPO_PUBLIC_APP_ENV="demo"`, `EXPO_PUBLIC_ENABLE_QA_NAVIGATOR="true"`              |
+| **Asset Packaging**      | 100% offline static assets, native vector map PNGs, and PlusJakartaSans font family |
 
 ---
 

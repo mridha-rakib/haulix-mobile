@@ -15,13 +15,13 @@ Minimal illustration (adapt to actual repo conventions):
 
 ```ts
 export type C15ServiceId =
-  | "junk-removal"
-  | "moving"
-  | "furniture-pickup"
-  | "appliance-removal"
-  | "mattress-removal"
-  | "garage-cleanout"
-  | "store-pickup";
+	| "junk-removal"
+	| "moving"
+	| "furniture-pickup"
+	| "appliance-removal"
+	| "mattress-removal"
+	| "garage-cleanout"
+	| "store-pickup";
 
 // Default Figma fixture is 'junk-removal'.
 // Do NOT include assembly-add-on.

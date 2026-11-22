@@ -107,16 +107,56 @@ The Flow Header was rendered inside the `ScrollView`'s `contentContainerStyle`. 
 All 10 icons were created in `apps/customer/src/components/discovery/C16Icons.tsx` utilizing `react-native-svg`:
 
 ```typescript
-export function C16LocationPinIcon({ size = 24, color = colors.brand, ...props }: C16IconProps);
-export function C16HomeIcon({ size = 24, color = "#F6F8F6", ...props }: C16IconProps);
-export function C16BuildingsIcon({ size = 24, color = "#F6F8F6", ...props }: C16IconProps);
-export function C16MapFoldIcon({ size = 24, color = "#F6F8F6", ...props }: C16IconProps);
-export function C16PostalEnvelopeIcon({ size = 24, color = "#F6F8F6", ...props }: C16IconProps);
-export function C16ShieldCheckIcon({ size = 24, color = colors.brand, ...props }: C16IconProps);
-export function C16DemoCheckIcon({ size = 20, color = colors.brand, ...props }: C16IconProps);
-export function C16SwapArrowsIcon({ size = 24, color = colors.brand, ...props }: C16IconProps);
-export function C16CrosshairIcon({ size = 24, color = colors.brand, ...props }: C16IconProps);
-export function C16InfoCircleIcon({ size = 24, color = colors.brand, ...props }: C16IconProps);
+export function C16LocationPinIcon({
+	size = 24,
+	color = colors.brand,
+	...props
+}: C16IconProps);
+export function C16HomeIcon({
+	size = 24,
+	color = "#F6F8F6",
+	...props
+}: C16IconProps);
+export function C16BuildingsIcon({
+	size = 24,
+	color = "#F6F8F6",
+	...props
+}: C16IconProps);
+export function C16MapFoldIcon({
+	size = 24,
+	color = "#F6F8F6",
+	...props
+}: C16IconProps);
+export function C16PostalEnvelopeIcon({
+	size = 24,
+	color = "#F6F8F6",
+	...props
+}: C16IconProps);
+export function C16ShieldCheckIcon({
+	size = 24,
+	color = colors.brand,
+	...props
+}: C16IconProps);
+export function C16DemoCheckIcon({
+	size = 20,
+	color = colors.brand,
+	...props
+}: C16IconProps);
+export function C16SwapArrowsIcon({
+	size = 24,
+	color = colors.brand,
+	...props
+}: C16IconProps);
+export function C16CrosshairIcon({
+	size = 24,
+	color = colors.brand,
+	...props
+}: C16IconProps);
+export function C16InfoCircleIcon({
+	size = 24,
+	color = colors.brand,
+	...props
+}: C16IconProps);
 ```
 
 Each address row embeds a `1px` vertical divider (`#222B27`, height 24px) separating the `26px` icon container from the text details column, creating a high-contrast visual hierarchy.

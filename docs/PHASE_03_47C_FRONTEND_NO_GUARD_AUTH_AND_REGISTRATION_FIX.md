@@ -146,6 +146,7 @@ Test file: `apps/customer/src/__tests__/phase-03-47c-navigation-guards-removal.t
 - **System Deps Status:** Installed successfully without Corepack collisions
 
 ### Client-Sharing Instructions
+
 1. Download the standalone preview `.apk` from the EAS build artifacts link upon completion.
 2. Transfer to an Android device (e.g. via USB, Google Drive, or Slack).
 3. If prompted by Android, allow "Install unknown apps" for the file manager or browser.

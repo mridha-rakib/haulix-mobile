@@ -9,32 +9,32 @@
  */
 
 export const colors = {
-  /** brand/neon-lime — Primary brand accent */
-  brand: "#BAFF42",
+	/** brand/neon-lime — Primary brand accent */
+	brand: "#BAFF42",
 
-  /** bg/base — Deepest background */
-  background: "#080B0B",
+	/** bg/base — Deepest background */
+	background: "#080B0B",
 
-  /** bg/surface — Card and modal surface */
-  surface: "#151A19",
+	/** bg/surface — Card and modal surface */
+	surface: "#151A19",
 
-  /** bg/elevated — Elevated UI elements */
-  elevated: "#222827",
+	/** bg/elevated — Elevated UI elements */
+	elevated: "#222827",
 
-  /** text/primary — Primary content text */
-  primaryText: "#F6F8F6",
+	/** text/primary — Primary content text */
+	primaryText: "#F6F8F6",
 
-  /** text/secondary — Secondary / muted text */
-  secondaryText: "#ADB7B1",
+	/** text/secondary — Secondary / muted text */
+	secondaryText: "#ADB7B1",
 
-  // Status / Semantic — pending Figma confirmation
-  success: "#22C55E",
-  warning: "#F59E0B",
-  error: "#EF4444",
-  info: "#3B82F6",
+	// Status / Semantic — pending Figma confirmation
+	success: "#22C55E",
+	warning: "#F59E0B",
+	error: "#EF4444",
+	info: "#3B82F6",
 
-  // Transparent utility
-  transparent: "transparent",
+	// Transparent utility
+	transparent: "transparent",
 } as const;
 
 export type ColorKey = keyof typeof colors;

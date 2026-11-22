@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## Installed Package & Offline Device Verification Report
 
 **Document ID:** `HAULIX-QA-P03.47B-004`  
@@ -27,11 +28,13 @@ Step 6: Execute deep link navigation tests across all routes
 ### 2. Physical Android Package Dumpsys Verification
 
 Executing package inspection:
+
 ```bash
 adb -s 0B04731X200003BB shell dumpsys package com.haulix.customer | grep -E "versionCode|firstInstallTime|lastUpdateTime|dataDir"
 ```
 
 #### Results:
+
 - **Package Name:** `com.haulix.customer`
 - **Application Class:** `com.haulix.customer.MainApplication`
 - **Main Activity:** `com.haulix.customer.MainActivity`
@@ -44,11 +47,13 @@ adb -s 0B04731X200003BB shell dumpsys package com.haulix.customer | grep -E "ver
 ### 3. Window Focus & Process Isolation Proof
 
 Executing active window inspection while the app is in the foreground:
+
 ```bash
 adb -s 0B04731X200003BB shell "dumpsys window | grep -E 'mCurrentFocus|mFocusedApp'"
 ```
 
 #### Confirmed Output:
+
 ```
 mCurrentFocus=Window{... u0 com.haulix.customer/com.haulix.customer.MainActivity}
 mFocusedApp=ActivityRecord{... u0 com.haulix.customer/.MainActivity}

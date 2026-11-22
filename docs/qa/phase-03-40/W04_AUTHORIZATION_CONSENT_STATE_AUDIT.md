@@ -13,16 +13,16 @@ In `apps/customer/src/fixtures/c36Scheduling.ts`, the scheduling and payment dra
 
 ```typescript
 export interface C36SchedulingDraft {
-  // ... existing fields ...
-  freshHoldConsentAccepted?: boolean;
-  authorizationStatus?:
-    | "pending_initial"
-    | "declined"
-    | "expired"
-    | "restoration_ready"
-    | "fresh_hold_reviewed"
-    | "consent_recorded_v2"
-    | "booking_status_checking";
+	// ... existing fields ...
+	freshHoldConsentAccepted?: boolean;
+	authorizationStatus?:
+		| "pending_initial"
+		| "declined"
+		| "expired"
+		| "restoration_ready"
+		| "fresh_hold_reviewed"
+		| "consent_recorded_v2"
+		| "booking_status_checking";
 }
 ```
 

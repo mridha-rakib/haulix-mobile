@@ -70,7 +70,11 @@ import { colors, spacing } from "@haulix/design-tokens";
 import { HaulixText, HaulixButton, HaulixSafeArea } from "@haulix/ui";
 
 export default function MyScreen() {
-  return <HaulixSafeArea>{/* Use design tokens, not hardcoded values */}</HaulixSafeArea>;
+	return (
+		<HaulixSafeArea>
+			{/* Use design tokens, not hardcoded values */}
+		</HaulixSafeArea>
+	);
 }
 ```
 

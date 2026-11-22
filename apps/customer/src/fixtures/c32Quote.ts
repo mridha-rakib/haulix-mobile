@@ -17,123 +17,123 @@
  */
 
 export interface QuoteCalculationStep {
-  id: string;
-  stepKey: "inventory" | "crew" | "route" | "rules";
-  labelKey: string;
-  valueKey: string;
+	id: string;
+	stepKey: "inventory" | "crew" | "route" | "rules";
+	labelKey: string;
+	valueKey: string;
 }
 
 export interface AdminResolvedScope {
-  itemsSummary: string;
-  pickupLocation: string;
-  disclaimer: string;
+	itemsSummary: string;
+	pickupLocation: string;
+	disclaimer: string;
 }
 
 export interface QuotePriceRow {
-  id: string;
-  labelKey: string;
-  amount: string;
+	id: string;
+	labelKey: string;
+	amount: string;
 }
 
 export interface QuoteIncludedItem {
-  id: string;
-  itemKey: "sofa" | "mattresses" | "table";
-  imageKey: "sofa" | "mattresses" | "table";
-  titleKey: string;
-  qtyKey: string;
-  weightKey: string;
+	id: string;
+	itemKey: "sofa" | "mattresses" | "table";
+	imageKey: "sofa" | "mattresses" | "table";
+	titleKey: string;
+	qtyKey: string;
+	weightKey: string;
 }
 
 export interface IllustrativeQuoteSummary {
-  subtotalAmount: string;
-  includedItemsCount: number;
-  priceRows: readonly QuotePriceRow[];
-  disclaimerKeys: {
-    subtotalOnly: string;
-    noAdditionalWork: string;
-  };
+	subtotalAmount: string;
+	includedItemsCount: number;
+	priceRows: readonly QuotePriceRow[];
+	disclaimerKeys: {
+		subtotalOnly: string;
+		noAdditionalWork: string;
+	};
 }
 
 export const C24P_CALCULATION_STEPS: readonly QuoteCalculationStep[] = [
-  {
-    id: "step-inventory",
-    stepKey: "inventory",
-    labelKey: "eventInventoryLabel",
-    valueKey: "eventInventoryValue",
-  },
-  {
-    id: "step-crew",
-    stepKey: "crew",
-    labelKey: "eventEligibilityLabel",
-    valueKey: "eventEligibilityValue",
-  },
-  {
-    id: "step-route",
-    stepKey: "route",
-    labelKey: "eventRouteLabel",
-    valueKey: "eventRouteValue",
-  },
-  {
-    id: "step-rules",
-    stepKey: "rules",
-    labelKey: "eventRulesLabel",
-    valueKey: "eventRulesValue",
-  },
+	{
+		id: "step-inventory",
+		stepKey: "inventory",
+		labelKey: "eventInventoryLabel",
+		valueKey: "eventInventoryValue",
+	},
+	{
+		id: "step-crew",
+		stepKey: "crew",
+		labelKey: "eventEligibilityLabel",
+		valueKey: "eventEligibilityValue",
+	},
+	{
+		id: "step-route",
+		stepKey: "route",
+		labelKey: "eventRouteLabel",
+		valueKey: "eventRouteValue",
+	},
+	{
+		id: "step-rules",
+		stepKey: "rules",
+		labelKey: "eventRulesLabel",
+		valueKey: "eventRulesValue",
+	},
 ] as const;
 
 export const C24Q_INCLUDED_ITEMS: readonly QuoteIncludedItem[] = [
-  {
-    id: "item-sofa",
-    itemKey: "sofa",
-    imageKey: "sofa",
-    titleKey: "itemSofaTitle",
-    qtyKey: "itemSofaQty",
-    weightKey: "itemSofaWeight",
-  },
-  {
-    id: "item-mattresses",
-    itemKey: "mattresses",
-    imageKey: "mattresses",
-    titleKey: "itemMattressesTitle",
-    qtyKey: "itemMattressesQty",
-    weightKey: "itemMattressesWeight",
-  },
-  {
-    id: "item-table",
-    itemKey: "table",
-    imageKey: "table",
-    titleKey: "itemTableTitle",
-    qtyKey: "itemTableQty",
-    weightKey: "itemTableWeight",
-  },
+	{
+		id: "item-sofa",
+		itemKey: "sofa",
+		imageKey: "sofa",
+		titleKey: "itemSofaTitle",
+		qtyKey: "itemSofaQty",
+		weightKey: "itemSofaWeight",
+	},
+	{
+		id: "item-mattresses",
+		itemKey: "mattresses",
+		imageKey: "mattresses",
+		titleKey: "itemMattressesTitle",
+		qtyKey: "itemMattressesQty",
+		weightKey: "itemMattressesWeight",
+	},
+	{
+		id: "item-table",
+		itemKey: "table",
+		imageKey: "table",
+		titleKey: "itemTableTitle",
+		qtyKey: "itemTableQty",
+		weightKey: "itemTableWeight",
+	},
 ] as const;
 
 export const C24Q_PRICE_ROWS: readonly QuotePriceRow[] = [
-  {
-    id: "price-labor",
-    labelKey: "priceLaborLabel",
-    amount: "$160",
-  },
-  {
-    id: "price-vehicle",
-    labelKey: "priceVehicleLabel",
-    amount: "$75",
-  },
-  {
-    id: "price-distance",
-    labelKey: "priceDistanceLabel",
-    amount: "$36",
-  },
-  {
-    id: "price-disposal",
-    labelKey: "priceDisposalLabel",
-    amount: "$60",
-  },
-  {
-    id: "price-access",
-    labelKey: "priceAccessLabel",
-    amount: "$25",
-  },
+	{
+		id: "price-labor",
+		labelKey: "priceLaborLabel",
+		amount: "$160",
+	},
+	{
+		id: "price-vehicle",
+		labelKey: "priceVehicleLabel",
+		amount: "$75",
+	},
+	{
+		id: "price-distance",
+		labelKey: "priceDistanceLabel",
+		amount: "$36",
+	},
+	{
+		id: "price-disposal",
+		labelKey: "priceDisposalLabel",
+		amount: "$60",
+	},
+	{
+		id: "price-access",
+		labelKey: "priceAccessLabel",
+		amount: "$25",
+	},
 ] as const;
 
 export const C24Q_ILLUSTRATIVE_TOTAL = "$356";

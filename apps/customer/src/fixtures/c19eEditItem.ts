@@ -6,53 +6,53 @@
  */
 
 export interface C19EDetailRow {
-  key: string;
-  labelKey:
-    | "labelItemType"
-    | "labelQuantity"
-    | "labelDimensions"
-    | "labelWeight"
-    | "labelRemovalDifficulty";
-  valueKey:
-    | "valueItemType"
-    | "valueQuantity"
-    | "valueDimensions"
-    | "valueWeight"
-    | "valueRemovalDifficulty";
+	key: string;
+	labelKey:
+		| "labelItemType"
+		| "labelQuantity"
+		| "labelDimensions"
+		| "labelWeight"
+		| "labelRemovalDifficulty";
+	valueKey:
+		| "valueItemType"
+		| "valueQuantity"
+		| "valueDimensions"
+		| "valueWeight"
+		| "valueRemovalDifficulty";
 }
 
 export interface C19EItemData {
-  itemSectionTitleKey: "itemSectionTitle";
-  details: C19EDetailRow[];
+	itemSectionTitleKey: "itemSectionTitle";
+	details: C19EDetailRow[];
 }
 
 export const C19E_DEFAULT_ITEM: C19EItemData = {
-  itemSectionTitleKey: "itemSectionTitle",
-  details: [
-    {
-      key: "itemType",
-      labelKey: "labelItemType",
-      valueKey: "valueItemType",
-    },
-    {
-      key: "quantity",
-      labelKey: "labelQuantity",
-      valueKey: "valueQuantity",
-    },
-    {
-      key: "dimensions",
-      labelKey: "labelDimensions",
-      valueKey: "valueDimensions",
-    },
-    {
-      key: "weight",
-      labelKey: "labelWeight",
-      valueKey: "valueWeight",
-    },
-    {
-      key: "removalDifficulty",
-      labelKey: "labelRemovalDifficulty",
-      valueKey: "valueRemovalDifficulty",
-    },
-  ],
+	itemSectionTitleKey: "itemSectionTitle",
+	details: [
+		{
+			key: "itemType",
+			labelKey: "labelItemType",
+			valueKey: "valueItemType",
+		},
+		{
+			key: "quantity",
+			labelKey: "labelQuantity",
+			valueKey: "valueQuantity",
+		},
+		{
+			key: "dimensions",
+			labelKey: "labelDimensions",
+			valueKey: "valueDimensions",
+		},
+		{
+			key: "weight",
+			labelKey: "labelWeight",
+			valueKey: "valueWeight",
+		},
+		{
+			key: "removalDifficulty",
+			labelKey: "labelRemovalDifficulty",
+			valueKey: "valueRemovalDifficulty",
+		},
+	],
 };

@@ -67,19 +67,19 @@ The authoritative Figma prototype links between the 4 screens have been extracte
 export type W04TimingMode = "asap" | "scheduled";
 
 export interface W04ScheduleSelection {
-  timingMode: W04TimingMode | null;
-  selectedDate: string; // e.g. "2026-11-03"
-  selectedWindow: string; // e.g. "10:00 AM – 12:00 PM MST"
-  advanceNoticeMinutes: number; // minimum 60 for same-day
-  isServerVerified: boolean;
+	timingMode: W04TimingMode | null;
+	selectedDate: string; // e.g. "2026-11-03"
+	selectedWindow: string; // e.g. "10:00 AM – 12:00 PM MST"
+	advanceNoticeMinutes: number; // minimum 60 for same-day
+	isServerVerified: boolean;
 }
 
 export interface W04BookingTermsState {
-  cancellationPolicyAccepted: boolean;
-  conditionalPostAssignmentFee: number; // $100.00 USD
-  illustrativeSubtotal: number; // $356.00 USD
-  pickupAreaDisplay: string; // "Phoenix, AZ 85004 · demo"
-  confirmedItemsSummary: string; // "1 sofa + 2 chairs" or preserved inventory
+	cancellationPolicyAccepted: boolean;
+	conditionalPostAssignmentFee: number; // $100.00 USD
+	illustrativeSubtotal: number; // $356.00 USD
+	pickupAreaDisplay: string; // "Phoenix, AZ 85004 · demo"
+	confirmedItemsSummary: string; // "1 sofa + 2 chairs" or preserved inventory
 }
 ```
 

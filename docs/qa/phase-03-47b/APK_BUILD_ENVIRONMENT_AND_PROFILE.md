@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.47B
+
 ## APK Build Environment & Profile Specification
 
 **Document ID:** `HAULIX-QA-P03.47B-001`  
@@ -19,24 +20,25 @@ The client demonstration build profile is configured in `apps/customer/eas.json`
 
 ```json
 {
-  "build": {
-    "client-demo": {
-      "developmentClient": false,
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
-      },
-      "env": {
-        "EXPO_PUBLIC_APP_ENV": "demo",
-        "EXPO_PUBLIC_ENABLE_QA_NAVIGATOR": "true"
-      }
-    }
-  }
+	"build": {
+		"client-demo": {
+			"developmentClient": false,
+			"distribution": "internal",
+			"android": {
+				"buildType": "apk",
+				"gradleCommand": ":app:assembleRelease"
+			},
+			"env": {
+				"EXPO_PUBLIC_APP_ENV": "demo",
+				"EXPO_PUBLIC_ENABLE_QA_NAVIGATOR": "true"
+			}
+		}
+	}
 }
 ```
 
 #### Key Profile Directives:
+
 - `developmentClient: false`: Compiles standalone production-mode Hermes bundle with offline assets; does not include Expo dev launcher or Metro client.
 - `android.buildType: "apk"`: Instructs EAS cloud builder to output a standalone `.apk` package instead of an Android App Bundle (`.aab`) suitable for direct sideloading and ADB physical device testing.
 - `EXPO_PUBLIC_APP_ENV: "demo"`: Informs app code of client demonstration mode without triggering public production security guardrails.
@@ -46,23 +48,24 @@ The client demonstration build profile is configured in `apps/customer/eas.json`
 
 ### 2. Native Toolchain & Credentials
 
-| Component | Specification |
-|---|---|
-| **Expo SDK** | `58.0.0` |
-| **React Native** | `0.79.x` (Hermes Engine Enabled) |
-| **Android Min SDK** | `24` (Android 7.0+) |
-| **Android Target SDK** | `34` (Android 14/15) |
-| **Android Keystore** | Expo Cloud Remote Keystore (`hNKsh88etw`) |
-| **Package ID** | `com.haulix.customer` |
-| **Version Code** | `1` |
-| **Version Name** | `1.0.0` |
-| **Custom URL Scheme** | `haulix-customer://` |
+| Component              | Specification                             |
+| ---------------------- | ----------------------------------------- |
+| **Expo SDK**           | `58.0.0`                                  |
+| **React Native**       | `0.79.x` (Hermes Engine Enabled)          |
+| **Android Min SDK**    | `24` (Android 7.0+)                       |
+| **Android Target SDK** | `34` (Android 14/15)                      |
+| **Android Keystore**   | Expo Cloud Remote Keystore (`hNKsh88etw`) |
+| **Package ID**         | `com.haulix.customer`                     |
+| **Version Code**       | `1`                                       |
+| **Version Name**       | `1.0.0`                                   |
+| **Custom URL Scheme**  | `haulix-customer://`                      |
 
 ---
 
 ### 3. Hermes Compilation & Asset Embedding
 
 In standalone APK builds, Metro is completely detached:
+
 1. All TypeScript and TSX components are compiled and bundled into bytecode via Hermes compiler (`index.android.bundle`).
 2. All static images, vector assets, and map graphics (including `map-s10-searching.png` through `map-s50-searching.png`) are bundled into `assets/` and `res/drawable*` directories inside the APK.
 3. Font files (`PlusJakartaSans`, `SpaceMono`) are packaged in `assets/fonts/` and registered with the Android FontManager.

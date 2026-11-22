@@ -492,12 +492,18 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingVertical: 6,
+		gap: 12,
+		minHeight: 26,
 	},
 	detailLabel: {
 		fontSize: 12,
 		fontFamily: fontFamily.medium,
 		color: colors.secondaryText,
 		letterSpacing: 0.4,
+		flex: 1,
+		flexShrink: 1,
+		minWidth: 0,
+		lineHeight: 16,
 	},
 	detailCodeValue: {
 		fontSize: 13,
@@ -519,6 +525,8 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontFamily: fontFamily.bold,
 		color: colors.brand,
+		flexShrink: 0,
+		textAlign: "right",
 	},
 	divider: {
 		height: 1,
