@@ -319,18 +319,6 @@ export default function ChoosePaymentMethodScreen() {
 					showsVerticalScrollIndicator={false}
 					testID="c29-scroll-view"
 				>
-					{/* Brand Row */}
-					<View style={styles.brandRow}>
-						<Text style={styles.brandHaul}>
-							HAUL<Text style={styles.brandIx}>IX</Text>
-						</Text>
-						<Text style={styles.tagline}>
-							{currentLocale === "es"
-								? "LO RECOGEMOS TODO."
-								: "WE HAUL IT ALL."}
-						</Text>
-					</View>
-
 					{/* 4-Step Progress Indicator */}
 					<View style={styles.progressContainer}>
 						<Text style={styles.progressLabel} testID="c29-progress-label">
