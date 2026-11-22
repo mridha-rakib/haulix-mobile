@@ -131,8 +131,13 @@ Test file: `apps/customer/src/__tests__/phase-03-47c-navigation-guards-removal.t
 
 ## 7. EAS Preview Build & Client-Sharing Manifest
 
+- **EAS Build Status:** `FINISHED` (Build duration: 14m 4s)
 - **EAS Build ID:** `c56c1a4a-9089-41e1-9f41-95e5c5b9fd9c`
 - **Dashboard URL:** `https://expo.dev/accounts/rakib_androids/projects/haulix-customer/builds/c56c1a4a-9089-41e1-9f41-95e5c5b9fd9c`
+- **Direct APK Download URL:** `https://expo.dev/artifacts/eas/irfV0-lf0VmJZtvNYFIpZfQJtPDvlMr3EeU7bnwznb4.apk`
+- **Local Artifact Path:** `HAULIX_Customer_Client_Demo/HAULIX_Customer_Preview.apk`
+- **File Size:** `105,683,672 bytes` (~100.79 MB)
+- **SHA-256 Checksum:** `CC6B77C684DF2A8F5ED44EE67A6F259C0BB9ED9AB3C2D13B96D0C3262BD5C6C2`
 - **Build Profile:** `preview` (standalone Android APK)
 - **Git Commit:** `c68f6011adfbb035f00985fc1f46ca775461334b`
 - **Node Version:** `22.23.3` (Pinned LTS)
