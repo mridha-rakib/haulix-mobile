@@ -29,6 +29,75 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
 	{
+		id: "w05-accept-pending-es",
+		name: "W05 · Esperando aceptación válida (Español)",
+		figmaNode: "Node 844:7216",
+		route: "/driver-offer-pending",
+		locale: "es",
+		description:
+			"W05 Esperando aceptación de conductor verificado para la reserva",
+	},
+	{
+		id: "w05-accept-pending-en",
+		name: "W05 · Awaiting valid driver acceptance (English)",
+		figmaNode: "Node 844:5066",
+		route: "/driver-offer-pending",
+		locale: "en",
+		description: "W05 Awaiting valid verified driver acceptance for booking",
+	},
+	{
+		id: "w05-driver-details-es",
+		name: "W05 · Tu conductor verificado (Español)",
+		figmaNode: "Node 844:7434",
+		route: "/driver-profile-details",
+		locale: "es",
+		description:
+			"W05 Datos del conductor asignado y equipo con furgoneta blanca",
+	},
+	{
+		id: "w05-driver-details-en",
+		name: "W05 · Your verified driver (English)",
+		figmaNode: "Node 844:5284",
+		route: "/driver-profile-details",
+		locale: "en",
+		description: "W05 Verified driver profile details and crew readiness",
+	},
+	{
+		id: "w05-helper-matching-es",
+		name: "W05 · Esperando confirmación del ayudante (Español)",
+		figmaNode: "Node 844:7553",
+		route: "/helper-matching",
+		locale: "es",
+		description:
+			"W05 Esperando confirmación individual del ayudante en cuenta verificada",
+	},
+	{
+		id: "w05-helper-matching-en",
+		name: "W05 · Waiting for helper confirmation (English)",
+		figmaNode: "Node 844:5403",
+		route: "/helper-matching",
+		locale: "en",
+		description:
+			"W05 Waiting for individual helper confirmation in verified account",
+	},
+	{
+		id: "w05-dispatch-retry-es",
+		name: "W05 · Buscando conductor sustituto (Español)",
+		figmaNode: "Node 844:7791",
+		route: "/dispatch-retry",
+		locale: "es",
+		description: "W05 Reasignando y buscando conductor sustituto verificado",
+	},
+	{
+		id: "w05-dispatch-retry-en",
+		name: "W05 · Finding a replacement driver (English)",
+		figmaNode: "Node 844:5641",
+		route: "/dispatch-retry",
+		locale: "en",
+		description:
+			"W05 Searching eligible verified replacement drivers for booking",
+	},
+	{
 		id: "w05-s50-es",
 		name: "W05 · Búsqueda hasta 50 millas (Español)",
 		figmaNode: "Node 844:7117",

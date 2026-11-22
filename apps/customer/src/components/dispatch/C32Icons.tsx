@@ -311,3 +311,31 @@ export function C32BellIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
 		</Svg>
 	);
 }
+
+export function C32SearchIcon({ size = 18, color = "#BAFF42" }: IconProps) {
+	return (
+		<Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+			<Circle cx={11} cy={11} r={7.5} stroke={color} strokeWidth={1.8} />
+			<Path
+				d="m21 21-4.35-4.35"
+				stroke={color}
+				strokeWidth={1.8}
+				strokeLinecap="round"
+			/>
+		</Svg>
+	);
+}
+
+export function C32ClockIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+	return (
+		<Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+			<Circle cx={12} cy={12} r={9.5} stroke={color} strokeWidth={1.8} />
+			<Path
+				d="M12 6v6l4 2"
+				stroke={color}
+				strokeWidth={1.8}
+				strokeLinecap="round"
+			/>
+		</Svg>
+	);
+}

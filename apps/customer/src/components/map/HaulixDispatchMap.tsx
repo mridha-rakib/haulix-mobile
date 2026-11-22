@@ -51,6 +51,7 @@ interface HaulixDispatchMapProps {
 	height?: number;
 	etaMinutes?: number;
 	pickupLabel?: string;
+	mapBadgeLabel?: string;
 	onRecenter?: () => void;
 	showControls?: boolean;
 	testID?: string;
@@ -112,6 +113,7 @@ export function HaulixDispatchMap({
 	height,
 	etaMinutes: _etaMinutes = 11,
 	pickupLabel,
+	mapBadgeLabel,
 	onRecenter,
 	showControls = false,
 	testID = "haulix-dispatch-map",
@@ -189,6 +191,15 @@ export function HaulixDispatchMap({
 					<Rect x="0" y="0" width="10" height="10" fill="transparent" />
 				</G>
 			</Svg>
+
+			{/* Native Map Badge from Figma */}
+			{mapBadgeLabel ? (
+				<View style={styles.nativeMapBadge} pointerEvents="none">
+					<Text style={styles.nativeMapBadgeText} numberOfLines={1}>
+						{mapBadgeLabel}
+					</Text>
+				</View>
+			) : null}
 
 			{/* Recentered Toast Notification */}
 			{recenteredNotice && (
@@ -322,5 +333,24 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	nativeMapBadge: {
+		position: "absolute",
+		top: 9,
+		left: 10,
+		backgroundColor: "rgba(6, 11, 10, 0.92)",
+		paddingHorizontal: 12,
+		paddingVertical: 8,
+		borderRadius: 14,
+		borderWidth: 1,
+		borderColor: "rgba(199, 255, 82, 0.2)",
+		zIndex: 15,
+		maxWidth: "75%",
+	},
+	nativeMapBadgeText: {
+		fontFamily: fontFamily.semiBold,
+		fontSize: 12,
+		color: "#C7FF52",
+		lineHeight: 16,
 	},
 });
