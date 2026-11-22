@@ -9,6 +9,7 @@
 ## 1. Zero Route Guard Guarantee
 
 In strict accordance with the project directives, all 4 newly implemented W05 Batch 4 routes are completely unrestricted:
+
 - **Zero authentication barriers:** No login tokens, sessions, or credentials required.
 - **Zero registration guards:** No required profile completion or onboarding checks.
 - **Zero payment guards:** No credit card, Stripe, or authorization locks.
@@ -22,16 +23,16 @@ Every screen renders immediately upon direct navigation or deep link with authen
 
 All 8 language variants have been added to the standalone developer drawer in `apps/customer/src/components/demo/DemoScreenNavigator.tsx`:
 
-| Navigator Key | Label | Route |
-|---|---|---|
-| `w05-accept-pending-es` | `[W05] Awaiting Driver Acceptance (ES)` | `/driver-offer-pending?previewLocale=es` |
-| `w05-accept-pending-en` | `[W05] Awaiting Driver Acceptance (EN)` | `/driver-offer-pending?previewLocale=en` |
-| `w05-driver-details-es` | `[W05] Driver Profile Details (ES)` | `/driver-profile-details?previewLocale=es` |
-| `w05-driver-details-en` | `[W05] Driver Profile Details (EN)` | `/driver-profile-details?previewLocale=en` |
-| `w05-helper-matching-es` | `[W05] Helper Matching Progress (ES)` | `/helper-matching?previewLocale=es` |
-| `w05-helper-matching-en` | `[W05] Helper Matching Progress (EN)` | `/helper-matching?previewLocale=en` |
-| `w05-dispatch-retry-es` | `[W05] Dispatch Retry & Reassign (ES)` | `/dispatch-retry?previewLocale=es` |
-| `w05-dispatch-retry-en` | `[W05] Dispatch Retry & Reassign (EN)` | `/dispatch-retry?previewLocale=en` |
+| Navigator Key            | Label                                   | Route                                      |
+| ------------------------ | --------------------------------------- | ------------------------------------------ |
+| `w05-accept-pending-es`  | `[W05] Awaiting Driver Acceptance (ES)` | `/driver-offer-pending?previewLocale=es`   |
+| `w05-accept-pending-en`  | `[W05] Awaiting Driver Acceptance (EN)` | `/driver-offer-pending?previewLocale=en`   |
+| `w05-driver-details-es`  | `[W05] Driver Profile Details (ES)`     | `/driver-profile-details?previewLocale=es` |
+| `w05-driver-details-en`  | `[W05] Driver Profile Details (EN)`     | `/driver-profile-details?previewLocale=en` |
+| `w05-helper-matching-es` | `[W05] Helper Matching Progress (ES)`   | `/helper-matching?previewLocale=es`        |
+| `w05-helper-matching-en` | `[W05] Helper Matching Progress (EN)`   | `/helper-matching?previewLocale=en`        |
+| `w05-dispatch-retry-es`  | `[W05] Dispatch Retry & Reassign (ES)`  | `/dispatch-retry?previewLocale=es`         |
+| `w05-dispatch-retry-en`  | `[W05] Dispatch Retry & Reassign (EN)`  | `/dispatch-retry?previewLocale=en`         |
 
 ---
 

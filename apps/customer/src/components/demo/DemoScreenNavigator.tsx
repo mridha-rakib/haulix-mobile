@@ -29,6 +29,78 @@ interface ScreenItem {
 
 const IMPLEMENTED_SCREENS: ScreenItem[] = [
 	{
+		id: "w05-no-show-es",
+		name: "W05 · El conductor aún no llega (Español)",
+		figmaNode: "Node 844:8128",
+		route: "/driver-no-show",
+		locale: "es",
+		description:
+			"W05 El conductor no ha llegado; opciones de cancelación sin cargo o reprogramación bajo SRS",
+	},
+	{
+		id: "w05-no-show-en",
+		name: "W05 · Driver has not arrived (English)",
+		figmaNode: "Node 844:5978",
+		route: "/driver-no-show",
+		locale: "en",
+		description:
+			"W05 Driver has not arrived; fee-free cancellation or reschedule options under SRS",
+	},
+	{
+		id: "w05-reschedule-es",
+		name: "W05 · Elige otra ventana de servicio (Español)",
+		figmaNode: "Node 844:8496",
+		route: "/dispatch-reschedule",
+		locale: "es",
+		description:
+			"W05 Opciones de reprogramación de ventana de servicio para búsqueda de conductor",
+	},
+	{
+		id: "w05-reschedule-en",
+		name: "W05 · Choose another service window (English)",
+		figmaNode: "Node 844:6346",
+		route: "/dispatch-reschedule",
+		locale: "en",
+		description:
+			"W05 Reschedule options for service window search following dispatch review",
+	},
+	{
+		id: "w05-support-es",
+		name: "W05 · Obtener ayuda con el despacho (Español)",
+		figmaNode: "Node 844:8595",
+		route: "/dispatch-support",
+		locale: "es",
+		description:
+			"W05 Soporte de despacho asistido para opciones de conductor demorado o ausente",
+	},
+	{
+		id: "w05-support-en",
+		name: "W05 · Get dispatch support (English)",
+		figmaNode: "Node 844:6445",
+		route: "/dispatch-support",
+		locale: "en",
+		description:
+			"W05 Assisted dispatch support for delayed driver or no-driver resolution",
+	},
+	{
+		id: "w05-w06-bridge-es",
+		name: "W05 · Siguiente: llegada y servicio (Español)",
+		figmaNode: "Node 844:8687",
+		route: "/job-active-bridge",
+		locale: "es",
+		description:
+			"W05 Transferencia a W06 de llegada y servicio activo tras asignación completa de equipo",
+	},
+	{
+		id: "w05-w06-bridge-en",
+		name: "W05 · Next: arrival and service (English)",
+		figmaNode: "Node 844:6537",
+		route: "/job-active-bridge",
+		locale: "en",
+		description:
+			"W05 Bridge handoff to W06 active service execution following crew assignment",
+	},
+	{
 		id: "w05-accept-pending-es",
 		name: "W05 · Esperando aceptación válida (Español)",
 		figmaNode: "Node 844:7216",

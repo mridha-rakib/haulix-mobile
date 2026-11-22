@@ -11,12 +11,12 @@
 
 All pre-build quality gates and automated verification tests passed with zero errors or warnings:
 
-| Quality Gate | Tool / Command | Result | Details |
-|---|---|---|---|
-| **Linter & Formatter** | `pnpm check` (Biome v1.9.4) | **PASS** | 742 files verified, 0 errors, 0 warnings |
-| **Type Check** | `pnpm typecheck` (TypeScript v5.8.2) | **PASS** | 7/7 workspace packages compiled cleanly |
-| **Unit & Screen Tests** | `pnpm test` (Jest v29.7.0) | **PASS** | 113 suites passed, 753 tests passed |
-| **Batch 4 Dedicated Test** | `w05-phase-03-48.test.tsx` | **PASS** | 8/8 assertions passed across all 4 canonical states |
+| Quality Gate               | Tool / Command                       | Result   | Details                                             |
+| -------------------------- | ------------------------------------ | -------- | --------------------------------------------------- |
+| **Linter & Formatter**     | `pnpm check` (Biome v1.9.4)          | **PASS** | 742 files verified, 0 errors, 0 warnings            |
+| **Type Check**             | `pnpm typecheck` (TypeScript v5.8.2) | **PASS** | 7/7 workspace packages compiled cleanly             |
+| **Unit & Screen Tests**    | `pnpm test` (Jest v29.7.0)           | **PASS** | 113 suites passed, 753 tests passed                 |
+| **Batch 4 Dedicated Test** | `w05-phase-03-48.test.tsx`           | **PASS** | 8/8 assertions passed across all 4 canonical states |
 
 ---
 

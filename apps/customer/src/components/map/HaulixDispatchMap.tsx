@@ -43,7 +43,11 @@ export type MapMode =
 	| "crew_tracking"
 	| "reassigned"
 	| "cancel_review"
-	| "canceled";
+	| "canceled"
+	| "no_show"
+	| "reschedule"
+	| "support"
+	| "w06_bridge";
 
 interface HaulixDispatchMapProps {
 	mode: MapMode;
@@ -76,6 +80,10 @@ export const MAP_SOURCES_EN: Record<string, ImageSourcePropType> = {
 	cancel_review: require("../../../assets/maps/map-cancellation-windows.png"),
 	request_canceled: require("../../../assets/maps/map-request-canceled.png"),
 	canceled: require("../../../assets/maps/map-request-canceled.png"),
+	no_show: require("../../../assets/maps/map-no-driver.png"),
+	reschedule: require("../../../assets/maps/map-s10-searching.png"),
+	support: require("../../../assets/maps/map-no-driver.png"),
+	w06_bridge: require("../../../assets/maps/map-driver-matched.png"),
 };
 
 export const MAP_SOURCES_ES: Record<string, ImageSourcePropType> = {
@@ -97,6 +105,10 @@ export const MAP_SOURCES_ES: Record<string, ImageSourcePropType> = {
 	cancel_review: require("../../../assets/maps/map-cancellation-windows-es.png"),
 	request_canceled: require("../../../assets/maps/map-request-canceled-es.png"),
 	canceled: require("../../../assets/maps/map-request-canceled-es.png"),
+	no_show: require("../../../assets/maps/map-no-driver-es.png"),
+	reschedule: require("../../../assets/maps/map-s10-searching-es.png"),
+	support: require("../../../assets/maps/map-no-driver-es.png"),
+	w06_bridge: require("../../../assets/maps/map-driver-matched-es.png"),
 };
 
 export function resolveW05MapAsset(

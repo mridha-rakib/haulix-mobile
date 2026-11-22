@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.48 Delivery & Acceptance Report
+
 ## Workflow 05: Dispatch & Assignment — Batch 4 (16 of 20 States Completed)
 
 **Project:** HAULIX Customer Mobile App  
@@ -15,7 +16,7 @@
 
 ## 1. Executive Summary
 
-Phase 03.48 successfully implements exactly **four new canonical W05 states** across **eight localized bilingual variants** (English & Spanish), strictly derived from the authoritative Figma frames in file `meiXxwUNJaDo0a3mhcHBXv`. 
+Phase 03.48 successfully implements exactly **four new canonical W05 states** across **eight localized bilingual variants** (English & Spanish), strictly derived from the authoritative Figma frames in file `meiXxwUNJaDo0a3mhcHBXv`.
 
 The screens were compiled, built via Expo Application Services (EAS Build), and verified directly on physical Android 15 hardware (`Realme Note 60`) within the standalone `@haulix/customer` APK.
 
@@ -25,12 +26,12 @@ All quality gates, linter rules, TypeScript checks, and test suites passed with 
 
 ## 2. Implemented W05 Batch 4 Canonical States
 
-| State Key | Screen Title (EN / ES) | Route | Figma EN | Figma ES | Status |
-|---|---|---|---|---|---|
-| `ACCEPT_PENDING` | Awaiting Valid Driver Acceptance / Esperando Aceptación Válida | `/driver-offer-pending` | `844:5066` | `844:7216` | **VERIFIED ON DEVICE** |
-| `DRIVER_DETAILS` | Your Verified Driver / Tu Conductor Verificado | `/driver-profile-details` | `844:5284` | `844:7434` | **VERIFIED ON DEVICE** |
-| `HELPER_PENDING` | Waiting for Helper Confirmation / Esperando Confirmación del Ayudante | `/helper-matching` | `844:5403` | `844:7553` | **VERIFIED ON DEVICE** |
-| `RESTART` | Finding a Replacement Driver / Buscando Conductor Sustituto | `/dispatch-retry` | `844:5641` | `844:7791` | **VERIFIED ON DEVICE** |
+| State Key        | Screen Title (EN / ES)                                                | Route                     | Figma EN   | Figma ES   | Status                 |
+| ---------------- | --------------------------------------------------------------------- | ------------------------- | ---------- | ---------- | ---------------------- |
+| `ACCEPT_PENDING` | Awaiting Valid Driver Acceptance / Esperando Aceptación Válida        | `/driver-offer-pending`   | `844:5066` | `844:7216` | **VERIFIED ON DEVICE** |
+| `DRIVER_DETAILS` | Your Verified Driver / Tu Conductor Verificado                        | `/driver-profile-details` | `844:5284` | `844:7434` | **VERIFIED ON DEVICE** |
+| `HELPER_PENDING` | Waiting for Helper Confirmation / Esperando Confirmación del Ayudante | `/helper-matching`        | `844:5403` | `844:7553` | **VERIFIED ON DEVICE** |
+| `RESTART`        | Finding a Replacement Driver / Buscando Conductor Sustituto           | `/dispatch-retry`         | `844:5641` | `844:7791` | **VERIFIED ON DEVICE** |
 
 ---
 
@@ -54,18 +55,19 @@ The application was built into a standalone Android APK using the official EAS C
 
 Captured on the USB-connected **Realme Note 60** (Android 15, `720 × 1600` px):
 
-| State & Language | Screen File | Scrolled / CTA View | Visual & Layout Verification |
-|---|---|---|---|
-| `ACCEPT_PENDING` (EN) | `docs/qa/phase-03-48/android/accept-pending-en.png` | `accept-pending-en-scrolled.png` | 5-node tracker active on Node 2; map badge "Awaiting acceptance"; \$356.00 quote intact. |
-| `ACCEPT_PENDING` (ES) | `docs/qa/phase-03-48/android/accept-pending-es.png` | `accept-pending-es-scrolled.png` | Spanish translation "Esperando aceptación válida"; header tagline "Lo Recogemos Todo." |
-| `DRIVER_DETAILS` (EN) | `docs/qa/phase-03-48/android/driver-details-en.png` | `driver-details-en-scrolled.png` | Node 3 "Driver" active; verified driver Mike R. card; White cargo van • AZ 7HT-9234. |
+| State & Language      | Screen File                                         | Scrolled / CTA View              | Visual & Layout Verification                                                                  |
+| --------------------- | --------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ACCEPT_PENDING` (EN) | `docs/qa/phase-03-48/android/accept-pending-en.png` | `accept-pending-en-scrolled.png` | 5-node tracker active on Node 2; map badge "Awaiting acceptance"; \$356.00 quote intact.      |
+| `ACCEPT_PENDING` (ES) | `docs/qa/phase-03-48/android/accept-pending-es.png` | `accept-pending-es-scrolled.png` | Spanish translation "Esperando aceptación válida"; header tagline "Lo Recogemos Todo."        |
+| `DRIVER_DETAILS` (EN) | `docs/qa/phase-03-48/android/driver-details-en.png` | `driver-details-en-scrolled.png` | Node 3 "Driver" active; verified driver Mike R. card; White cargo van • AZ 7HT-9234.          |
 | `DRIVER_DETAILS` (ES) | `docs/qa/phase-03-48/android/driver-details-es.png` | `driver-details-es-scrolled.png` | Spanish profile copy "Tu conductor verificado"; "Furgoneta blanca"; CTA to team confirmation. |
-| `HELPER_PENDING` (EN) | `docs/qa/phase-03-48/android/helper-pending-en.png` | `helper-pending-en-scrolled.png` | Node 3 active; Helper pending map overlay; crew status badge "HELPER PENDING". |
-| `HELPER_PENDING` (ES) | `docs/qa/phase-03-48/android/helper-pending-es.png` | `helper-pending-es-scrolled.png` | "Esperando confirmación del ayudante"; map overlay "Ayudante pendiente"; equipo pendiente. |
-| `RESTART` (EN) | `docs/qa/phase-03-48/android/dispatch-retry-en.png` | `dispatch-retry-en-scrolled.png` | Node 2 "Dispatch" active; map replacement route marker; auto-reassignment status. |
-| `RESTART` (ES) | `docs/qa/phase-03-48/android/dispatch-retry-es.png` | `dispatch-retry-es-scrolled.png` | "Buscando conductor sustituto"; marker "Sarah L. • a 11 min"; badge "REASIGNANDO". |
+| `HELPER_PENDING` (EN) | `docs/qa/phase-03-48/android/helper-pending-en.png` | `helper-pending-en-scrolled.png` | Node 3 active; Helper pending map overlay; crew status badge "HELPER PENDING".                |
+| `HELPER_PENDING` (ES) | `docs/qa/phase-03-48/android/helper-pending-es.png` | `helper-pending-es-scrolled.png` | "Esperando confirmación del ayudante"; map overlay "Ayudante pendiente"; equipo pendiente.    |
+| `RESTART` (EN)        | `docs/qa/phase-03-48/android/dispatch-retry-en.png` | `dispatch-retry-en-scrolled.png` | Node 2 "Dispatch" active; map replacement route marker; auto-reassignment status.             |
+| `RESTART` (ES)        | `docs/qa/phase-03-48/android/dispatch-retry-es.png` | `dispatch-retry-es-scrolled.png` | "Buscando conductor sustituto"; marker "Sarah L. • a 11 min"; badge "REASIGNANDO".            |
 
 ### Device Resilience Highlights:
+
 1. **360dp Logical Width:** All text headers, detail rows, and status badges use `flexShrink: 1, minWidth: 0` to prevent clipping or boundary collision.
 2. **Font Scale 1.30x:** Verified via `adb shell settings put system font_scale 1.30` (`docs/qa/phase-03-48/android/font130-accept-pending-es.png`). Texts wrap cleanly across cards without truncation.
 3. **Hardware Back Button:** Fully supported with `BackHandler` on Android; safely navigates back without crashing.
@@ -75,13 +77,13 @@ Captured on the USB-connected **Realme Note 60** (Android 15, `720 × 1600` px):
 
 ## 5. Automated Quality Gate Audit
 
-| Verification Check | Tool / Environment | Command Executed | Result |
-|---|---|---|---|
-| **Linter & Code Format** | Biome v1.9.4 | `pnpm check` | **PASS** (746 files checked, 0 errors) |
-| **Type Checking** | TypeScript v5.8.2 | `pnpm typecheck` | **PASS** (7/7 workspace packages compiled) |
-| **Test Suites** | Jest v29.7.0 | `pnpm test` | **PASS** (113 suites passed, 753 tests passed) |
-| **Batch 4 Screen Tests** | Dedicated Unit Suite | `w05-phase-03-48.test.tsx` | **PASS** (8/8 assertions passed) |
-| **Package Health** | pnpm Doctor | `pnpm doctor` | **PASS** (Node.js 26.0.0, pnpm 11.25.0, all checks passed) |
+| Verification Check       | Tool / Environment   | Command Executed           | Result                                                     |
+| ------------------------ | -------------------- | -------------------------- | ---------------------------------------------------------- |
+| **Linter & Code Format** | Biome v1.9.4         | `pnpm check`               | **PASS** (746 files checked, 0 errors)                     |
+| **Type Checking**        | TypeScript v5.8.2    | `pnpm typecheck`           | **PASS** (7/7 workspace packages compiled)                 |
+| **Test Suites**          | Jest v29.7.0         | `pnpm test`                | **PASS** (113 suites passed, 753 tests passed)             |
+| **Batch 4 Screen Tests** | Dedicated Unit Suite | `w05-phase-03-48.test.tsx` | **PASS** (8/8 assertions passed)                           |
+| **Package Health**       | pnpm Doctor          | `pnpm doctor`              | **PASS** (Node.js 26.0.0, pnpm 11.25.0, all checks passed) |
 
 ---
 
