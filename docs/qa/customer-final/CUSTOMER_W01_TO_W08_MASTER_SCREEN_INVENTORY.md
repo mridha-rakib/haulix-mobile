@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20 States) · W06 Batch 1 Complete (6/6 Canonical States, 12 Bilingual Variants)  
+**Status:** W05 Complete (20/20 States) · W06 Complete (12 Canonical States, 24 Bilingual Variants)  
 **Date:** November 22, 2026
 
 ---
@@ -87,32 +87,35 @@ Figma Parent Sections: `836:4571` (English) and `836:4572` (Spanish).
 
 ---
 
-## 4. Workflow 06: Active Service (Batch 1: 6 Canonical States — Complete)
+## 4. Workflow 06: Active Service (12 Canonical States — Complete)
 
 Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
-| #   | Canonical State | Route Path                            | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                     |
-| --- | --------------- | ------------------------------------- | ---------- | ---------- | ----------- | ----------------------------------------------- |
-| 01  | `PRE`           | `/active-service-awaiting-departure`  | `882:5131` | `883:5495` | ✅ Complete | Privacy banner (location hidden), Marcus Vance  |
-| 02  | `ENROUTE`       | `/active-service-en-route`            | `882:5245` | `883:5609` | ✅ Complete | Illustrative map, top-left overlay badge, 4 pcs |
-| 03  | `ETA_PENDING`   | `/active-service-eta-pending`         | `882:5356` | `883:5720` | ✅ Complete | Route provider sync card, privacy badge         |
-| 04  | `GPS_OFFLINE`   | `/active-service-gps-offline`         | `882:5470` | `883:5834` | ✅ Complete | Offline coordinates badge, direct driver action |
-| 05  | `GPS_DENIED`    | `/active-service-gps-denied`          | `882:5584` | `883:5948` | ✅ Complete | Permission restricted badge, driver support     |
-| 06  | `ARRIVED`       | `/active-service-driver-arrived`      | `882:5698` | `883:6062` | ✅ Complete | Destination map, arrival badge, PIN 8492        |
+| #   | Canonical State | Route Path                           | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                     |
+| --- | --------------- | ------------------------------------ | ---------- | ---------- | ----------- | ----------------------------------------------- |
+| 01  | `PRE`           | `/active-service-awaiting-departure` | `882:5131` | `883:5495` | ✅ Complete | Privacy banner (location hidden), Marcus Vance  |
+| 02  | `ENROUTE`       | `/active-service-en-route`           | `882:5245` | `883:5609` | ✅ Complete | Illustrative map, top-left overlay badge, 4 pcs |
+| 03  | `ETA_PENDING`   | `/active-service-eta-pending`        | `882:5356` | `883:5720` | ✅ Complete | Route provider sync card, privacy badge         |
+| 04  | `GPS_OFFLINE`   | `/active-service-gps-offline`        | `882:5470` | `883:5834` | ✅ Complete | Offline coordinates badge, direct driver action |
+| 05  | `GPS_DENIED`    | `/active-service-gps-denied`         | `882:5584` | `883:5948` | ✅ Complete | Permission restricted badge, driver support     |
+| 06  | `ARRIVED`       | `/active-service-driver-arrived`     | `882:5698` | `883:6062` | ✅ Complete | Destination map, arrival badge, PIN 8492        |
+| 07  | `WORKING`       | `/active-service-working`            | `882:5809` | `883:6173` | ✅ Complete | Active work in progress, confirmed scope card   |
+| 08  | `CHAT`          | `/active-service-chat`               | `882:5916` | `883:6280` | ✅ Complete | Job-only chat with driver bubbles and composer  |
+| 09  | `CHAT_EMPTY`    | `/active-service-chat-empty`         | `882:6021` | `883:6385` | ✅ Complete | Empty conversation with communication notes     |
+| 10  | `CHAT_FAILED`   | `/active-service-chat-failed`        | `882:6126` | `883:6490` | ✅ Complete | Delivery error alert and preserved message draft|
+| 11  | `CHAT_SENT`     | `/active-service-chat-sent`          | `882:6231` | `883:6595` | ✅ Complete | Sent message confirmation and delivery receipt  |
+| 12  | `MEDIA`         | `/active-service-media`              | `882:6336` | `883:6700` | ✅ Complete | Evidence composer for photos and voice notes    |
 
 ---
 
-## 5. Upcoming Workflow 06 Batch 2 & W07/W08 Roadmap
+## 5. Upcoming Workflow 07 & W08 Roadmap
 
-Workflow 06 Batch 2 covers the active loading, transport, and unloading lifecycle:
+Workflow 07 & W08 complete the customer journey:
 
-1. Pre-Trip Inspection & Condition Photos
-2. Loading in Progress
-3. Transit & Live Route Progress
-4. Arrival at Destination
-5. Unloading & Placement
-6. Job Completion, Sign-off & Tip (W07)
-7. Customer Support & Incident Reporting (W08)
+1. Delivery Completion & Sign-off (W07)
+2. Rating & Tipping Flow (W07)
+3. Receipt & Order History (W07)
+4. Customer Support, Claims & Cancellation (W08)
 
 ---
 
