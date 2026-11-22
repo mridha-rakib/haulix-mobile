@@ -1,103 +1,98 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.6.7/schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"ignoreUnknown": true,
-		"includes": [
-			"**",
-			"!**/node_modules",
-			"!**/dist",
-			"!**/.expo",
-			"!**/android",
-			"!**/ios",
-			"!**/.turbo",
-			"!**/coverage",
-			"!**/.next",
-			"!**/build",
-			"!**/pnpm-lock.yaml",
-			"!**/*.generated.*",
-			"!**/expo-env.d.ts",
-			"!**/assets/**/*.svg"
-		]
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "space",
-		"indentWidth": 2,
-		"lineWidth": 100,
-		"lineEnding": "lf"
-	},
-	"assist": { "actions": { "source": { "organizeImports": "on" } } },
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"preset": "recommended",
-			"complexity": {
-				"noExcessiveCognitiveComplexity": "warn",
-				"noForEach": "off"
-			},
-			"correctness": {
-				"useExhaustiveDependencies": "warn",
-				"noUnusedVariables": "warn",
-				"noUnusedImports": "warn",
-				"noReactNativeRawText": {
-					"level": "error",
-					"options": {
-						"skip": ["HaulixText"]
-					}
-				}
-			},
-			"style": {
-				"noNonNullAssertion": "warn",
-				"useImportType": "error"
-			},
-			"suspicious": {
-				"noExplicitAny": "warn",
-				"noConsole": "off"
-			},
-			"nursery": {
-				"useTailwindSortedClasses": "off"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double",
-			"trailingCommas": "es5",
-			"semicolons": "always",
-			"arrowParentheses": "always"
-		},
-		"globals": ["__DEV__", "process"]
-	},
-	"overrides": [
-		{
-			"includes": [
-				"**/*.test.ts",
-				"**/*.test.tsx",
-				"**/*.spec.ts",
-				"**/*.spec.tsx"
-			],
-			"linter": {
-				"rules": {
-					"suspicious": {
-						"noExplicitAny": "off"
-					}
-				}
-			}
-		},
-		{
-			"includes": ["**/*.css"],
-			"linter": {
-				"rules": {
-					"suspicious": {
-						"noUnknownAtRules": "off"
-					}
-				}
-			}
-		}
-	]
+  "$schema": "https://biomejs.dev/schemas/2.6.7/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.expo",
+      "!**/android",
+      "!**/ios",
+      "!**/.turbo",
+      "!**/coverage",
+      "!**/.next",
+      "!**/build",
+      "!**/pnpm-lock.yaml",
+      "!**/*.generated.*",
+      "!**/expo-env.d.ts",
+      "!**/assets/**/*.svg"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn",
+        "noForEach": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "warn",
+        "noReactNativeRawText": {
+          "level": "error",
+          "options": {
+            "skip": ["HaulixText"]
+          }
+        }
+      },
+      "style": {
+        "noNonNullAssertion": "warn",
+        "useImportType": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": "off"
+      },
+      "nursery": {
+        "useTailwindSortedClasses": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "trailingCommas": "es5",
+      "semicolons": "always",
+      "arrowParentheses": "always"
+    },
+    "globals": ["__DEV__", "process"]
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.css"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUnknownAtRules": "off"
+          }
+        }
+      }
+    }
+  ]
 }

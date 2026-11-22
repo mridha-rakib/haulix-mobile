@@ -23,17 +23,17 @@ export type LogLevel = "debug" | "info" | "warn" | "error";
 export type AppContext = "CUSTOMER" | "DRIVER" | "SHARED";
 
 export interface LogEntry {
-	timestamp: string;
-	context: AppContext;
-	level: LogLevel;
-	message: string;
-	meta?: unknown;
+  timestamp: string;
+  context: AppContext;
+  level: LogLevel;
+  message: string;
+  meta?: unknown;
 }
 
 /** Optional crash reporter integration contract */
 export interface CrashReporter {
-	captureException(error: Error, context?: Record<string, unknown>): void;
-	captureMessage(message: string, level: LogLevel): void;
+  captureException(error: Error, context?: Record<string, unknown>): void;
+  captureMessage(message: string, level: LogLevel): void;
 }
 
 let crashReporter: CrashReporter | null = null;
@@ -43,77 +43,75 @@ let crashReporter: CrashReporter | null = null;
  * Call once at app startup before any logging.
  */
 export function registerCrashReporter(reporter: CrashReporter): void {
-	crashReporter = reporter;
+  crashReporter = reporter;
 }
 
 /** Fields that must never appear in logs */
 const REDACTED_KEYS = new Set([
-	"password",
-	"token",
-	"accessToken",
-	"refreshToken",
-	"secret",
-	"apiKey",
-	"creditCard",
-	"cardNumber",
-	"cvv",
-	"ssn",
-	"dob",
-	"email",
-	"phone",
-	"stripe",
-	"paymentMethod",
+  "password",
+  "token",
+  "accessToken",
+  "refreshToken",
+  "secret",
+  "apiKey",
+  "creditCard",
+  "cardNumber",
+  "cvv",
+  "ssn",
+  "dob",
+  "email",
+  "phone",
+  "stripe",
+  "paymentMethod",
 ]);
 
 function redact(obj: unknown, depth = 0): unknown {
-	if (depth > 4 || obj === null || obj === undefined) return obj;
-	if (typeof obj !== "object") return obj;
-	if (Array.isArray(obj)) return obj.map((item) => redact(item, depth + 1));
+  if (depth > 4 || obj === null || obj === undefined) return obj;
+  if (typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) return obj.map((item) => redact(item, depth + 1));
 
-	const result: Record<string, unknown> = {};
-	for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
-		result[key] = REDACTED_KEYS.has(key.toLowerCase())
-			? "[REDACTED]"
-			: redact(value, depth + 1);
-	}
-	return result;
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
+    result[key] = REDACTED_KEYS.has(key.toLowerCase()) ? "[REDACTED]" : redact(value, depth + 1);
+  }
+  return result;
 }
 
 function formatTimestamp(): string {
-	return new Date().toISOString().replace("T", " ").slice(0, 23);
+  return new Date().toISOString().replace("T", " ").slice(0, 23);
 }
 
 function formatMeta(meta: unknown): string {
-	if (meta === undefined || meta === null) return "";
-	const redacted = redact(meta);
-	try {
-		return ` | ${JSON.stringify(redacted)}`;
-	} catch {
-		return ` | [unserializable]`;
-	}
+  if (meta === undefined || meta === null) return "";
+  const redacted = redact(meta);
+  try {
+    return ` | ${JSON.stringify(redacted)}`;
+  } catch {
+    return ` | [unserializable]`;
+  }
 }
 
 function formatError(error: Error): string {
-	const lines = [`${error.name}: ${error.message}`];
-	if (error.stack) {
-		const stackLines = error.stack.split("\n").slice(1, 5);
-		lines.push(...stackLines);
-	}
-	return lines.join("\n  ");
+  const lines = [`${error.name}: ${error.message}`];
+  if (error.stack) {
+    const stackLines = error.stack.split("\n").slice(1, 5);
+    lines.push(...stackLines);
+  }
+  return lines.join("\n  ");
 }
 
 declare const __DEV__: boolean | undefined;
 
 function isDev(): boolean {
-	if (typeof __DEV__ !== "undefined") return Boolean(__DEV__);
-	return process.env.NODE_ENV !== "production";
+  if (typeof __DEV__ !== "undefined") return Boolean(__DEV__);
+  return process.env.NODE_ENV !== "production";
 }
 
 export interface Logger {
-	debug(message: string, meta?: unknown): void;
-	info(message: string, meta?: unknown): void;
-	warn(message: string, meta?: unknown): void;
-	error(message: string, errorOrMeta?: Error | unknown): void;
+  debug(message: string, meta?: unknown): void;
+  info(message: string, meta?: unknown): void;
+  warn(message: string, meta?: unknown): void;
+  error(message: string, errorOrMeta?: Error | unknown): void;
 }
 
 /**
@@ -122,37 +120,37 @@ export interface Logger {
  * @param context - "CUSTOMER" | "DRIVER" | "SHARED"
  */
 export function createLogger(context: AppContext): Logger {
-	const prefix = `[${context}]`;
+  const prefix = `[${context}]`;
 
-	return {
-		debug(message: string, meta?: unknown): void {
-			if (!isDev()) return; // debug is silent in production
-			const line = `${formatTimestamp()} ${prefix}[DEBUG] ${message}${formatMeta(meta)}`;
-			console.debug(line); // eslint-disable-line no-console
-		},
+  return {
+    debug(message: string, meta?: unknown): void {
+      if (!isDev()) return; // debug is silent in production
+      const line = `${formatTimestamp()} ${prefix}[DEBUG] ${message}${formatMeta(meta)}`;
+      console.debug(line); // eslint-disable-line no-console
+    },
 
-		info(message: string, meta?: unknown): void {
-			const line = `${formatTimestamp()} ${prefix}[INFO]  ${message}${formatMeta(meta)}`;
-			console.info(line); // eslint-disable-line no-console
-		},
+    info(message: string, meta?: unknown): void {
+      const line = `${formatTimestamp()} ${prefix}[INFO]  ${message}${formatMeta(meta)}`;
+      console.info(line); // eslint-disable-line no-console
+    },
 
-		warn(message: string, meta?: unknown): void {
-			const line = `${formatTimestamp()} ${prefix}[WARN]  ${message}${formatMeta(meta)}`;
-			console.warn(line); // eslint-disable-line no-console
-		},
+    warn(message: string, meta?: unknown): void {
+      const line = `${formatTimestamp()} ${prefix}[WARN]  ${message}${formatMeta(meta)}`;
+      console.warn(line); // eslint-disable-line no-console
+    },
 
-		error(message: string, errorOrMeta?: Error | unknown): void {
-			const isError = errorOrMeta instanceof Error;
-			const metaStr = isError ? "" : formatMeta(errorOrMeta);
-			const errorStr = isError ? `\n  ${formatError(errorOrMeta)}` : "";
-			const line = `${formatTimestamp()} ${prefix}[ERROR] ${message}${metaStr}${errorStr}`;
-			console.error(line); // eslint-disable-line no-console
+    error(message: string, errorOrMeta?: Error | unknown): void {
+      const isError = errorOrMeta instanceof Error;
+      const metaStr = isError ? "" : formatMeta(errorOrMeta);
+      const errorStr = isError ? `\n  ${formatError(errorOrMeta)}` : "";
+      const line = `${formatTimestamp()} ${prefix}[ERROR] ${message}${metaStr}${errorStr}`;
+      console.error(line); // eslint-disable-line no-console
 
-			if (isError && crashReporter) {
-				crashReporter.captureException(errorOrMeta, { context, message });
-			}
-		},
-	};
+      if (isError && crashReporter) {
+        crashReporter.captureException(errorOrMeta, { context, message });
+      }
+    },
+  };
 }
 
 /** Pre-built loggers for each application context */

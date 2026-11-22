@@ -16,7 +16,7 @@ In previous iterations, screens in W05 contained dangerous side effects executed
 ```tsx
 // ❌ ANTI-PATTERN PREVIOUSLY PRESENT IN ALL SCREENS:
 useEffect(() => {
-	setDispatchPhase(targetPhase, true);
+  setDispatchPhase(targetPhase, true);
 }, [setDispatchPhase]);
 ```
 

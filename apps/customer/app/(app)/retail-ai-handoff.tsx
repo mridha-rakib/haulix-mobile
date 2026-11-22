@@ -3,417 +3,387 @@ import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import {
-	BackHandler,
-	Pressable,
-	ScrollView,
-	StyleSheet,
-	Text,
-	View,
-} from "react-native";
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { C18CheckIcon } from "../../src/components/discovery/C18BatchIcons";
 import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 import {
-	getC10DemoProfile,
-	loadProfileEdits,
-	subscribeToProfileEdits,
+  getC10DemoProfile,
+  loadProfileEdits,
+  subscribeToProfileEdits,
 } from "../../src/fixtures/c10DemoProfile";
 import { W03_R_DEFAULT_DATA } from "../../src/fixtures/c28AiHandoffs";
 
 function useCustomerProfile(locale: "en" | "es") {
-	const [profile, setProfile] = useState(() => getC10DemoProfile(locale));
-	useEffect(() => {
-		loadProfileEdits().then(() => setProfile(getC10DemoProfile(locale)));
-		return subscribeToProfileEdits(() => setProfile(getC10DemoProfile(locale)));
-	}, [locale]);
-	return profile;
+  const [profile, setProfile] = useState(() => getC10DemoProfile(locale));
+  useEffect(() => {
+    loadProfileEdits().then(() => setProfile(getC10DemoProfile(locale)));
+    return subscribeToProfileEdits(() => setProfile(getC10DemoProfile(locale)));
+  }, [locale]);
+  return profile;
 }
 
 export default function RetailAIHandoffScreen() {
-	const { t, i18n } = useTranslation();
-	const router = useRouter();
-	const params = useLocalSearchParams<{ previewLocale?: string }>();
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const params = useLocalSearchParams<{ previewLocale?: string }>();
 
-	const currentLocale = (params.previewLocale ??
-		(i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
-	const _profile = useCustomerProfile(currentLocale);
+  const currentLocale = (params.previewLocale ??
+    (i18n?.language?.startsWith("es") ? "es" : "en")) as "en" | "es";
+  const _profile = useCustomerProfile(currentLocale);
 
-	// In Retail, Figma authoritative persona is EMILY PARKER
-	const customerName = W03_R_DEFAULT_DATA.defaultCustomerEn;
-	const bookingId = W03_R_DEFAULT_DATA.bookingId;
+  // In Retail, Figma authoritative persona is EMILY PARKER
+  const customerName = W03_R_DEFAULT_DATA.defaultCustomerEn;
+  const bookingId = W03_R_DEFAULT_DATA.bookingId;
 
-	const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
+  const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
 
-	const handleBack = useCallback(() => {
-		if (router.canGoBack()) {
-			router.back();
-		} else {
-			router.push("/retail-intake-review");
-		}
-	}, [router]);
+  const handleBack = useCallback(() => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.push("/retail-intake-review");
+    }
+  }, [router]);
 
-	useEffect(() => {
-		const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-			handleBack();
-			return true;
-		});
-		return () => sub.remove();
-	}, [handleBack]);
+  useEffect(() => {
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+      handleBack();
+      return true;
+    });
+    return () => sub.remove();
+  }, [handleBack]);
 
-	const handleStartReview = useCallback(() => {
-		setNoticeMessage(t("w03rHandoff.noticeUpcomingC22"));
-	}, [t]);
+  const handleStartReview = useCallback(() => {
+    setNoticeMessage(t("w03rHandoff.noticeUpcomingC22"));
+  }, [t]);
 
-	const handleEditItems = useCallback(() => {
-		router.push("/retail-collection-readiness");
-	}, [router]);
+  const handleEditItems = useCallback(() => {
+    router.push("/retail-collection-readiness");
+  }, [router]);
 
-	return (
-		<HaulixSafeArea>
-			<View style={styles.container}>
-				<FlowHeaderBack
-					onBack={handleBack}
-					backA11y={t("w03rHandoff.backA11y")}
-					testID="w03r-header-back"
-				/>
+  return (
+    <HaulixSafeArea>
+      <View style={styles.container}>
+        <FlowHeaderBack
+          onBack={handleBack}
+          backA11y={t("w03rHandoff.backA11y")}
+          testID="w03r-header-back"
+        />
 
-				<ScrollView
-					style={styles.scrollView}
-					contentContainerStyle={styles.scrollContent}
-					showsVerticalScrollIndicator={false}
-					testID="w03r-scroll-container"
-				>
-					{/* Upcoming Notice Banner */}
-					{noticeMessage && (
-						<View style={styles.noticeBanner} testID="w03r-notice-banner">
-							<Text style={styles.noticeText}>{noticeMessage}</Text>
-							<Pressable
-								onPress={() => setNoticeMessage(null)}
-								style={styles.noticeDismissButton}
-								testID="w03r-notice-dismiss"
-								accessibilityRole="button"
-								accessibilityLabel={t("w03rHandoff.noticeDismiss")}
-							>
-								<Text style={styles.noticeDismissText}>
-									{t("w03rHandoff.noticeDismiss")}
-								</Text>
-							</Pressable>
-						</View>
-					)}
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          testID="w03r-scroll-container"
+        >
+          {/* Upcoming Notice Banner */}
+          {noticeMessage && (
+            <View style={styles.noticeBanner} testID="w03r-notice-banner">
+              <Text style={styles.noticeText}>{noticeMessage}</Text>
+              <Pressable
+                onPress={() => setNoticeMessage(null)}
+                style={styles.noticeDismissButton}
+                testID="w03r-notice-dismiss"
+                accessibilityRole="button"
+                accessibilityLabel={t("w03rHandoff.noticeDismiss")}
+              >
+                <Text style={styles.noticeDismissText}>{t("w03rHandoff.noticeDismiss")}</Text>
+              </Pressable>
+            </View>
+          )}
 
-					{/* Flow Step Marker */}
-					<View style={styles.flowMarkerCard} testID="w03r-flow-marker">
-						<Text style={styles.flowMarkerActive}>
-							{t("w03rHandoff.stepIndicator")}
-						</Text>
-						<Text style={styles.flowMarkerSub}>{t("w03rHandoff.stepSub")}</Text>
-					</View>
+          {/* Flow Step Marker */}
+          <View style={styles.flowMarkerCard} testID="w03r-flow-marker">
+            <Text style={styles.flowMarkerActive}>{t("w03rHandoff.stepIndicator")}</Text>
+            <Text style={styles.flowMarkerSub}>{t("w03rHandoff.stepSub")}</Text>
+          </View>
 
-					{/* Screen Heading */}
-					<View style={styles.headingSection}>
-						<Text style={styles.screenTitle} testID="w03r-title">
-							{t("w03rHandoff.title")}
-						</Text>
-						<Text style={styles.screenSubtitle} testID="w03r-subtitle">
-							{t("w03rHandoff.subtitle")}
-						</Text>
-					</View>
+          {/* Screen Heading */}
+          <View style={styles.headingSection}>
+            <Text style={styles.screenTitle} testID="w03r-title">
+              {t("w03rHandoff.title")}
+            </Text>
+            <Text style={styles.screenSubtitle} testID="w03r-subtitle">
+              {t("w03rHandoff.subtitle")}
+            </Text>
+          </View>
 
-					{/* Customer Context Badge */}
-					<View style={styles.contextBadge} testID="w03r-context-badge">
-						<View style={styles.contextBadgeIcon}>
-							<C18CheckIcon width={17} height={17} color={colors.brand} />
-						</View>
-						<Text style={styles.contextBadgeText}>
-							{`${customerName.toUpperCase()} · ${bookingId}`}
-						</Text>
-					</View>
+          {/* Customer Context Badge */}
+          <View style={styles.contextBadge} testID="w03r-context-badge">
+            <View style={styles.contextBadgeIcon}>
+              <C18CheckIcon width={17} height={17} color={colors.brand} />
+            </View>
+            <Text style={styles.contextBadgeText}>
+              {`${customerName.toUpperCase()} · ${bookingId}`}
+            </Text>
+          </View>
 
-					{/* Section: Payload for W03 */}
-					<View style={styles.card} testID="w03r-payload-card">
-						<Text style={styles.cardHeading}>
-							{t("w03rHandoff.sectionPayloadTitle")}
-						</Text>
-						<Text style={styles.payloadText}>
-							{`${bookingId} · ${customerName} · Store Pickup`}
-						</Text>
-						<Text style={styles.payloadText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.payloadLine2Es
-								: W03_R_DEFAULT_DATA.payloadLine2En}
-						</Text>
-						<Text style={styles.payloadText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.payloadLine3Es
-								: W03_R_DEFAULT_DATA.payloadLine3En}
-						</Text>
-						<Text style={styles.payloadText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.payloadLine4Es
-								: W03_R_DEFAULT_DATA.payloadLine4En}
-						</Text>
-					</View>
+          {/* Section: Payload for W03 */}
+          <View style={styles.card} testID="w03r-payload-card">
+            <Text style={styles.cardHeading}>{t("w03rHandoff.sectionPayloadTitle")}</Text>
+            <Text style={styles.payloadText}>
+              {`${bookingId} · ${customerName} · Store Pickup`}
+            </Text>
+            <Text style={styles.payloadText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.payloadLine2Es
+                : W03_R_DEFAULT_DATA.payloadLine2En}
+            </Text>
+            <Text style={styles.payloadText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.payloadLine3Es
+                : W03_R_DEFAULT_DATA.payloadLine3En}
+            </Text>
+            <Text style={styles.payloadText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.payloadLine4Es
+                : W03_R_DEFAULT_DATA.payloadLine4En}
+            </Text>
+          </View>
 
-					{/* Section: Unresolved quote conditions */}
-					<View style={styles.card} testID="w03r-anchor-card">
-						<Text style={styles.cardHeading}>
-							{t("w03rHandoff.sectionAnchorTitle")}
-						</Text>
-						<View
-							style={styles.reviewBadgeContainer}
-							testID="w03r-review-badge"
-						>
-							<C18CheckIcon
-								width={16}
-								height={16}
-								color={colors.secondaryText}
-							/>
-							<Text style={styles.reviewBadgeText}>
-								{t("w03rHandoff.reviewBadge")}
-							</Text>
-						</View>
-						<Text style={styles.anchorText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.guidanceLine1Es
-								: W03_R_DEFAULT_DATA.guidanceLine1En}
-						</Text>
-						<Text style={styles.anchorText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.guidanceLine2Es
-								: W03_R_DEFAULT_DATA.guidanceLine2En}
-						</Text>
-						<Text style={styles.anchorText}>
-							{currentLocale === "es"
-								? W03_R_DEFAULT_DATA.guidanceLine3Es
-								: W03_R_DEFAULT_DATA.guidanceLine3En}
-						</Text>
-					</View>
+          {/* Section: Unresolved quote conditions */}
+          <View style={styles.card} testID="w03r-anchor-card">
+            <Text style={styles.cardHeading}>{t("w03rHandoff.sectionAnchorTitle")}</Text>
+            <View style={styles.reviewBadgeContainer} testID="w03r-review-badge">
+              <C18CheckIcon width={16} height={16} color={colors.secondaryText} />
+              <Text style={styles.reviewBadgeText}>{t("w03rHandoff.reviewBadge")}</Text>
+            </View>
+            <Text style={styles.anchorText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.guidanceLine1Es
+                : W03_R_DEFAULT_DATA.guidanceLine1En}
+            </Text>
+            <Text style={styles.anchorText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.guidanceLine2Es
+                : W03_R_DEFAULT_DATA.guidanceLine2En}
+            </Text>
+            <Text style={styles.anchorText}>
+              {currentLocale === "es"
+                ? W03_R_DEFAULT_DATA.guidanceLine3Es
+                : W03_R_DEFAULT_DATA.guidanceLine3En}
+            </Text>
+          </View>
 
-					{/* Action CTAs */}
-					<View style={styles.actionGroup}>
-						<Pressable
-							onPress={handleStartReview}
-							style={styles.primaryButton}
-							testID="w03r-primary-cta"
-							accessibilityRole="button"
-							accessibilityLabel={t("w03rHandoff.primaryCta")}
-						>
-							<Text style={styles.primaryButtonText}>
-								{t("w03rHandoff.primaryCta")}
-							</Text>
-						</Pressable>
+          {/* Action CTAs */}
+          <View style={styles.actionGroup}>
+            <Pressable
+              onPress={handleStartReview}
+              style={styles.primaryButton}
+              testID="w03r-primary-cta"
+              accessibilityRole="button"
+              accessibilityLabel={t("w03rHandoff.primaryCta")}
+            >
+              <Text style={styles.primaryButtonText}>{t("w03rHandoff.primaryCta")}</Text>
+            </Pressable>
 
-						<Pressable
-							onPress={handleEditItems}
-							style={styles.secondaryButton}
-							testID="w03r-secondary-cta"
-							accessibilityRole="button"
-							accessibilityLabel={t("w03rHandoff.secondaryCta")}
-						>
-							<Text style={styles.secondaryButtonText}>
-								{t("w03rHandoff.secondaryCta")}
-							</Text>
-						</Pressable>
-					</View>
+            <Pressable
+              onPress={handleEditItems}
+              style={styles.secondaryButton}
+              testID="w03r-secondary-cta"
+              accessibilityRole="button"
+              accessibilityLabel={t("w03rHandoff.secondaryCta")}
+            >
+              <Text style={styles.secondaryButtonText}>{t("w03rHandoff.secondaryCta")}</Text>
+            </Pressable>
+          </View>
 
-					{/* Footer Demo Info */}
-					<View style={styles.footerSection} testID="w03r-footer">
-						<Text style={styles.footerText}>{t("w03rHandoff.footerDemo")}</Text>
-						<Text style={styles.footerSubText}>
-							{t("w03rHandoff.footerSrs")}
-						</Text>
-					</View>
-				</ScrollView>
-			</View>
-		</HaulixSafeArea>
-	);
+          {/* Footer Demo Info */}
+          <View style={styles.footerSection} testID="w03r-footer">
+            <Text style={styles.footerText}>{t("w03rHandoff.footerDemo")}</Text>
+            <Text style={styles.footerSubText}>{t("w03rHandoff.footerSrs")}</Text>
+          </View>
+        </ScrollView>
+      </View>
+    </HaulixSafeArea>
+  );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: colors.background,
-	},
-	scrollView: {
-		flex: 1,
-	},
-	scrollContent: {
-		paddingHorizontal: 22,
-		paddingTop: 16,
-		paddingBottom: 40,
-	},
-	noticeBanner: {
-		backgroundColor: colors.surface,
-		borderColor: colors.brand,
-		borderWidth: 1,
-		borderRadius: 12,
-		padding: 14,
-		marginBottom: 16,
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-	},
-	noticeText: {
-		flex: 1,
-		fontFamily: fontFamily.medium,
-		fontSize: 13,
-		color: colors.primaryText,
-		lineHeight: 18,
-		marginRight: 10,
-	},
-	noticeDismissButton: {
-		paddingHorizontal: 12,
-		paddingVertical: 6,
-		backgroundColor: colors.brand,
-		borderRadius: 8,
-	},
-	noticeDismissText: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 12,
-		color: colors.background,
-	},
-	flowMarkerCard: {
-		backgroundColor: colors.surface,
-		height: 34,
-		borderRadius: 9,
-		flexDirection: "row",
-		alignItems: "center",
-		paddingHorizontal: 12,
-		marginBottom: 16,
-	},
-	flowMarkerActive: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 10,
-		color: colors.brand,
-	},
-	flowMarkerSub: {
-		fontFamily: fontFamily.regular,
-		fontSize: 10,
-		color: "#788580",
-	},
-	headingSection: {
-		marginBottom: 16,
-	},
-	screenTitle: {
-		fontFamily: fontFamily.bold,
-		fontSize: 25,
-		color: colors.primaryText,
-		lineHeight: 30,
-		marginBottom: 6,
-	},
-	screenSubtitle: {
-		fontFamily: fontFamily.regular,
-		fontSize: 12,
-		color: colors.secondaryText,
-		lineHeight: 17,
-	},
-	contextBadge: {
-		backgroundColor: "#1A2510",
-		borderRadius: 9,
-		paddingHorizontal: 12,
-		paddingVertical: 9,
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	contextBadgeIcon: {
-		marginRight: 7,
-	},
-	contextBadgeText: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 11,
-		color: colors.brand,
-		letterSpacing: 0.3,
-	},
-	card: {
-		backgroundColor: colors.surface,
-		borderRadius: 17,
-		padding: 16,
-		marginBottom: 16,
-		borderWidth: 1,
-		borderColor: "#35403B",
-	},
-	cardHeading: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 16,
-		color: colors.primaryText,
-		marginBottom: 12,
-	},
-	payloadText: {
-		fontFamily: fontFamily.regular,
-		fontSize: 12,
-		color: colors.secondaryText,
-		lineHeight: 18,
-		marginBottom: 8,
-	},
-	reviewBadgeContainer: {
-		backgroundColor: colors.elevated,
-		borderRadius: 8,
-		paddingHorizontal: 10,
-		paddingVertical: 6,
-		flexDirection: "row",
-		alignItems: "center",
-		alignSelf: "flex-start",
-		marginBottom: 12,
-	},
-	reviewBadgeText: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 11,
-		color: colors.secondaryText,
-		marginLeft: 6,
-	},
-	anchorText: {
-		fontFamily: fontFamily.regular,
-		fontSize: 12,
-		color: colors.secondaryText,
-		lineHeight: 18,
-		marginBottom: 8,
-	},
-	actionGroup: {
-		gap: 11,
-		marginTop: 8,
-		marginBottom: 20,
-	},
-	primaryButton: {
-		backgroundColor: colors.brand,
-		height: 52,
-		borderRadius: 12,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingHorizontal: 20,
-	},
-	primaryButtonText: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 14,
-		color: colors.background,
-	},
-	secondaryButton: {
-		backgroundColor: colors.surface,
-		borderColor: "#35403B",
-		borderWidth: 1,
-		height: 52,
-		borderRadius: 12,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingHorizontal: 20,
-	},
-	secondaryButtonText: {
-		fontFamily: fontFamily.semiBold,
-		fontSize: 13,
-		color: colors.brand,
-	},
-	footerSection: {
-		alignItems: "flex-start",
-		gap: 4,
-	},
-	footerText: {
-		fontFamily: fontFamily.regular,
-		fontSize: 10,
-		color: "#788580",
-	},
-	footerSubText: {
-		fontFamily: fontFamily.regular,
-		fontSize: 10,
-		color: "#788580",
-	},
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingHorizontal: 22,
+    paddingTop: 16,
+    paddingBottom: 40,
+  },
+  noticeBanner: {
+    backgroundColor: colors.surface,
+    borderColor: colors.brand,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  noticeText: {
+    flex: 1,
+    fontFamily: fontFamily.medium,
+    fontSize: 13,
+    color: colors.primaryText,
+    lineHeight: 18,
+    marginRight: 10,
+  },
+  noticeDismissButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: colors.brand,
+    borderRadius: 8,
+  },
+  noticeDismissText: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 12,
+    color: colors.background,
+  },
+  flowMarkerCard: {
+    backgroundColor: colors.surface,
+    height: 34,
+    borderRadius: 9,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    marginBottom: 16,
+  },
+  flowMarkerActive: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 10,
+    color: colors.brand,
+  },
+  flowMarkerSub: {
+    fontFamily: fontFamily.regular,
+    fontSize: 10,
+    color: "#788580",
+  },
+  headingSection: {
+    marginBottom: 16,
+  },
+  screenTitle: {
+    fontFamily: fontFamily.bold,
+    fontSize: 25,
+    color: colors.primaryText,
+    lineHeight: 30,
+    marginBottom: 6,
+  },
+  screenSubtitle: {
+    fontFamily: fontFamily.regular,
+    fontSize: 12,
+    color: colors.secondaryText,
+    lineHeight: 17,
+  },
+  contextBadge: {
+    backgroundColor: "#1A2510",
+    borderRadius: 9,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  contextBadgeIcon: {
+    marginRight: 7,
+  },
+  contextBadgeText: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 11,
+    color: colors.brand,
+    letterSpacing: 0.3,
+  },
+  card: {
+    backgroundColor: colors.surface,
+    borderRadius: 17,
+    padding: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: "#35403B",
+  },
+  cardHeading: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 16,
+    color: colors.primaryText,
+    marginBottom: 12,
+  },
+  payloadText: {
+    fontFamily: fontFamily.regular,
+    fontSize: 12,
+    color: colors.secondaryText,
+    lineHeight: 18,
+    marginBottom: 8,
+  },
+  reviewBadgeContainer: {
+    backgroundColor: colors.elevated,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    marginBottom: 12,
+  },
+  reviewBadgeText: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 11,
+    color: colors.secondaryText,
+    marginLeft: 6,
+  },
+  anchorText: {
+    fontFamily: fontFamily.regular,
+    fontSize: 12,
+    color: colors.secondaryText,
+    lineHeight: 18,
+    marginBottom: 8,
+  },
+  actionGroup: {
+    gap: 11,
+    marginTop: 8,
+    marginBottom: 20,
+  },
+  primaryButton: {
+    backgroundColor: colors.brand,
+    height: 52,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+  },
+  primaryButtonText: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 14,
+    color: colors.background,
+  },
+  secondaryButton: {
+    backgroundColor: colors.surface,
+    borderColor: "#35403B",
+    borderWidth: 1,
+    height: 52,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+  },
+  secondaryButtonText: {
+    fontFamily: fontFamily.semiBold,
+    fontSize: 13,
+    color: colors.brand,
+  },
+  footerSection: {
+    alignItems: "flex-start",
+    gap: 4,
+  },
+  footerText: {
+    fontFamily: fontFamily.regular,
+    fontSize: 10,
+    color: "#788580",
+  },
+  footerSubText: {
+    fontFamily: fontFamily.regular,
+    fontSize: 10,
+    color: "#788580",
+  },
 });

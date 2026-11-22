@@ -20,20 +20,20 @@ The client demonstration build profile is configured in `apps/customer/eas.json`
 
 ```json
 {
-	"build": {
-		"client-demo": {
-			"developmentClient": false,
-			"distribution": "internal",
-			"android": {
-				"buildType": "apk",
-				"gradleCommand": ":app:assembleRelease"
-			},
-			"env": {
-				"EXPO_PUBLIC_APP_ENV": "demo",
-				"EXPO_PUBLIC_ENABLE_QA_NAVIGATOR": "true"
-			}
-		}
-	}
+  "build": {
+    "client-demo": {
+      "developmentClient": false,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "demo",
+        "EXPO_PUBLIC_ENABLE_QA_NAVIGATOR": "true"
+      }
+    }
+  }
 }
 ```
 

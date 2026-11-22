@@ -6,12 +6,12 @@ import { Stack } from "expo-router";
  * accessible without mock tokens or backend blockers.
  */
 export default function AppLayout() {
-	return (
-		<Stack
-			screenOptions={{
-				headerShown: false,
-				animation: "fade",
-			}}
-		/>
-	);
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: "fade",
+      }}
+    />
+  );
 }

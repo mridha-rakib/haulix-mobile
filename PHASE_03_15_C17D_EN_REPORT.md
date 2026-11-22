@@ -77,11 +77,11 @@ Created [c17dMovingDestination.ts](file:///c:/Users/rakib_bro/sta-projects/hauli
 
 ```ts
 export const C17D_DEFAULT_DESTINATION: C17DDestinationAddress = {
-	id: "demo-dropoff",
-	addressLine1: "5678 N Demo Avenue",
-	cityStateZip: "Phoenix, AZ 85012",
-	destinationType: "Residential · 2nd floor",
-	elevatorAccess: "No · Stairs need review",
+  id: "demo-dropoff",
+  addressLine1: "5678 N Demo Avenue",
+  cityStateZip: "Phoenix, AZ 85012",
+  destinationType: "Residential · 2nd floor",
+  elevatorAccess: "No · Stairs need review",
 };
 ```
 

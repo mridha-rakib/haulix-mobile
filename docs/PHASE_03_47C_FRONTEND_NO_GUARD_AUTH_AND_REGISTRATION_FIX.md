@@ -79,19 +79,19 @@ Both root `eas.json` and `apps/customer/eas.json` are configured with exact vers
 
 ```json
 {
-	"cli": {
-		"packageManager": "pnpm"
-	},
-	"build": {
-		"preview": {
-			"distribution": "internal",
-			"android": {
-				"buildType": "apk"
-			},
-			"node": "22.23.3",
-			"pnpm": "11.25.0"
-		}
-	}
+  "cli": {
+    "packageManager": "pnpm"
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "node": "22.23.3",
+      "pnpm": "11.25.0"
+    }
+  }
 }
 ```
 

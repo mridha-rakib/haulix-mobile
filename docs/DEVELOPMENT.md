@@ -41,43 +41,30 @@ The monorepo uses **NativeWind v4** backed by Tailwind CSS v3 and synchronized `
 ### Recommended Patterns:
 
 ```tsx
-import {
-	HaulixSafeArea,
-	HaulixText,
-	HaulixButton,
-	HaulixView,
-} from "@haulix/ui";
+import { HaulixSafeArea, HaulixText, HaulixButton, HaulixView } from "@haulix/ui";
 import { View } from "react-native";
 
 export default function MyScreen() {
-	return (
-		<HaulixSafeArea>
-			{/* Container with background and responsive constraints */}
-			<View className="flex-1 px-4 py-6 w-full max-w-md self-center">
-				<HaulixText variant="brand" size="2xl" weight="bold" className="mb-2">
-					Title
-				</HaulixText>
+  return (
+    <HaulixSafeArea>
+      {/* Container with background and responsive constraints */}
+      <View className="flex-1 px-4 py-6 w-full max-w-md self-center">
+        <HaulixText variant="brand" size="2xl" weight="bold" className="mb-2">
+          Title
+        </HaulixText>
 
-				{/* Surface card */}
-				<HaulixView
-					surface="surface"
-					className="p-4 rounded-xl border border-elevated mb-4"
-				>
-					<HaulixText variant="secondary" size="sm">
-						Content on surface card
-					</HaulixText>
-				</HaulixView>
+        {/* Surface card */}
+        <HaulixView surface="surface" className="p-4 rounded-xl border border-elevated mb-4">
+          <HaulixText variant="secondary" size="sm">
+            Content on surface card
+          </HaulixText>
+        </HaulixView>
 
-				{/* Buttons */}
-				<HaulixButton
-					label="Continue"
-					variant="primary"
-					fullWidth
-					className="mt-auto"
-				/>
-			</View>
-		</HaulixSafeArea>
-	);
+        {/* Buttons */}
+        <HaulixButton label="Continue" variant="primary" fullWidth className="mt-auto" />
+      </View>
+    </HaulixSafeArea>
+  );
 }
 ```
 

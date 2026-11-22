@@ -14,14 +14,14 @@
 import { W05SearchStageScreen } from "../../src/components/dispatch/W05SearchStageScreen";
 
 export default function SearchExpanding30MiScreen() {
-	return (
-		<W05SearchStageScreen
-			stage="s30"
-			backRoute="/search-expanded-20mi"
-			nextRoute="/search-expanded-40mi"
-			previewMatchRoute="/driver-matched"
-			cancelRoute="/cancellation-windows"
-			testIDPrefix="w05-s30"
-		/>
-	);
+  return (
+    <W05SearchStageScreen
+      stage="s30"
+      backRoute="/search-expanded-20mi"
+      nextRoute="/search-expanded-40mi"
+      previewMatchRoute="/driver-matched"
+      cancelRoute="/cancellation-windows"
+      testIDPrefix="w05-s30"
+    />
+  );
 }

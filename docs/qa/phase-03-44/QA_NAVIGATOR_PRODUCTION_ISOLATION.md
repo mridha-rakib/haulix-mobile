@@ -15,8 +15,7 @@ Section 15 specifies:
 Previous implementation:
 
 ```ts
-const isEnabled =
-	__DEV__ || process.env.EXPO_PUBLIC_ENABLE_QA_NAVIGATOR === "true";
+const isEnabled = __DEV__ || process.env.EXPO_PUBLIC_ENABLE_QA_NAVIGATOR === "true";
 ```
 _Vulnerability:_ If a production build had `EXPO_PUBLIC_ENABLE_QA_NAVIGATOR="true"` bundled into its public environment, the QA navigator could appear in production.
 

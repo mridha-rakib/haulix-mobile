@@ -11,58 +11,58 @@
  */
 
 export interface C20XFlaggedItem {
-	id: string;
-	description: string;
-	descriptionEs: string;
-	material: string;
-	materialEs: string;
-	photo: string;
-	photoEs: string;
-	service: string;
-	serviceEs: string;
+  id: string;
+  description: string;
+  descriptionEs: string;
+  material: string;
+  materialEs: string;
+  photo: string;
+  photoEs: string;
+  service: string;
+  serviceEs: string;
 }
 
 export const C20X_DEFAULT_FLAGGED_ITEM: C20XFlaggedItem = {
-	id: "flagged-containers-garage",
-	description: "Unlabeled containers in garage",
-	descriptionEs: "Recipientes sin etiqueta en el garaje",
-	material: "Unknown · Customer clarification required",
-	materialEs: "Desconocido · Se requiere aclaración del cliente",
-	photo: "Not yet supplied",
-	photoEs: "Aún no proporcionado",
-	service: "Garage Cleanout",
-	serviceEs: "Limpieza de garaje",
+  id: "flagged-containers-garage",
+  description: "Unlabeled containers in garage",
+  descriptionEs: "Recipientes sin etiqueta en el garaje",
+  material: "Unknown · Customer clarification required",
+  materialEs: "Desconocido · Se requiere aclaración del cliente",
+  photo: "Not yet supplied",
+  photoEs: "Aún no proporcionado",
+  service: "Garage Cleanout",
+  serviceEs: "Limpieza de garaje",
 };
 
 let currentFlaggedItem: C20XFlaggedItem | null = {
-	...C20X_DEFAULT_FLAGGED_ITEM,
+  ...C20X_DEFAULT_FLAGGED_ITEM,
 };
 type FlaggedListener = (item: C20XFlaggedItem | null) => void;
 const listeners = new Set<FlaggedListener>();
 
 export function getFlaggedItem(): C20XFlaggedItem | null {
-	return currentFlaggedItem;
+  return currentFlaggedItem;
 }
 
 export function removeFlaggedItemFromDraft(): void {
-	currentFlaggedItem = null;
-	notifyListeners();
+  currentFlaggedItem = null;
+  notifyListeners();
 }
 
 export function resetFlaggedItem(): void {
-	currentFlaggedItem = { ...C20X_DEFAULT_FLAGGED_ITEM };
-	notifyListeners();
+  currentFlaggedItem = { ...C20X_DEFAULT_FLAGGED_ITEM };
+  notifyListeners();
 }
 
 export function subscribeToFlaggedItem(listener: FlaggedListener): () => void {
-	listeners.add(listener);
-	return () => {
-		listeners.delete(listener);
-	};
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
 }
 
 function notifyListeners(): void {
-	for (const listener of listeners) {
-		listener(currentFlaggedItem);
-	}
+  for (const listener of listeners) {
+    listener(currentFlaggedItem);
+  }
 }

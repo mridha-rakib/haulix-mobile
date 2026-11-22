@@ -16,43 +16,43 @@
  */
 
 export interface BookingDraftSummary {
-	bookingId: string;
-	customerName: string;
-	serviceType: string;
-	itemSummary: string;
-	pickupAddress: string;
+  bookingId: string;
+  customerName: string;
+  serviceType: string;
+  itemSummary: string;
+  pickupAddress: string;
 }
 
 export interface NextRequiredStepItem {
-	id: string;
-	number: number;
-	textKey: string;
+  id: string;
+  number: number;
+  textKey: string;
 }
 
 export const C25A_DEFAULT_DRAFT: BookingDraftSummary = {
-	bookingId: "HX-DEMO-1027",
-	customerName: "Sarah Mitchell",
-	serviceType: "Junk Removal",
-	itemSummary: "3 item types / 4 individual pieces",
-	pickupAddress: "1234 E Example Lane, Phoenix, AZ 85014",
+  bookingId: "HX-DEMO-1027",
+  customerName: "Sarah Mitchell",
+  serviceType: "Junk Removal",
+  itemSummary: "3 item types / 4 individual pieces",
+  pickupAddress: "1234 E Example Lane, Phoenix, AZ 85014",
 } as const;
 
 export const C25A_ILLUSTRATIVE_SUBTOTAL = "$356";
 
 export const C26A_NEXT_REQUIRED_STEPS: readonly NextRequiredStepItem[] = [
-	{
-		id: "step-schedule",
-		number: 1,
-		textKey: "step1Schedule",
-	},
-	{
-		id: "step-terms",
-		number: 2,
-		textKey: "step2Terms",
-	},
-	{
-		id: "step-payment",
-		number: 3,
-		textKey: "step3Payment",
-	},
+  {
+    id: "step-schedule",
+    number: 1,
+    textKey: "step1Schedule",
+  },
+  {
+    id: "step-terms",
+    number: 2,
+    textKey: "step2Terms",
+  },
+  {
+    id: "step-payment",
+    number: 3,
+    textKey: "step3Payment",
+  },
 ] as const;

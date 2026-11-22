@@ -39,9 +39,7 @@ Floating zoom controls (`[ + ]` and `[ - ]` buttons) were rendered on top of the
 In `HaulixDispatchMap.tsx`:
 
 ```tsx
-const containerAspectStyle: ViewStyle = height
-	? { height }
-	: { aspectRatio: 386 / 235 };
+const containerAspectStyle: ViewStyle = height ? { height } : { aspectRatio: 386 / 235 };
 ```
 
 - When `height` is omitted, the container dynamically computes its height based on the available width:

@@ -1,14 +1,14 @@
 {
-	"expo": {
-		"name": "HAULIX",
-		"slug": "haulix-customer",
-		"extra": {
-			"eas": {
-				"projectId": "d414e6fe-00cc-40df-97e2-af4f3e2027c8"
-			}
-		},
-		"android": {
-			"package": "com.haulix.customer"
-		}
-	}
+  "expo": {
+    "name": "HAULIX",
+    "slug": "haulix-customer",
+    "extra": {
+      "eas": {
+        "projectId": "d414e6fe-00cc-40df-97e2-af4f3e2027c8"
+      }
+    },
+    "android": {
+      "package": "com.haulix.customer"
+    }
+  }
 }

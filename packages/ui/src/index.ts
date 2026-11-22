@@ -6,16 +6,16 @@
  */
 
 export {
-	HaulixButton,
-	type HaulixButtonProps,
+  HaulixButton,
+  type HaulixButtonProps,
 } from "./components/HaulixButton";
 export {
-	HaulixSafeArea,
-	type HaulixSafeAreaProps,
+  HaulixSafeArea,
+  type HaulixSafeAreaProps,
 } from "./components/HaulixSafeArea";
 export { HaulixText, type HaulixTextProps } from "./components/HaulixText";
 export {
-	HaulixTextField,
-	type HaulixTextFieldProps,
+  HaulixTextField,
+  type HaulixTextFieldProps,
 } from "./components/HaulixTextField";
 export { HaulixView, type HaulixViewProps } from "./components/HaulixView";

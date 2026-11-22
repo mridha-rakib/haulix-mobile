@@ -11,41 +11,41 @@
  */
 
 export interface C20VMissingRow {
-	id: string;
-	label: string;
-	labelEs: string;
-	value: string;
-	valueEs: string;
+  id: string;
+  label: string;
+  labelEs: string;
+  value: string;
+  valueEs: string;
 }
 
 export interface C20VMissingData {
-	rows: C20VMissingRow[];
-	actionRequired: boolean;
+  rows: C20VMissingRow[];
+  actionRequired: boolean;
 }
 
 export const C20V_DEFAULT_DATA: C20VMissingData = {
-	rows: [
-		{
-			id: "stairs",
-			label: "Stairs",
-			labelEs: "Escaleras",
-			value: "Not confirmed",
-			valueEs: "Sin confirmar",
-		},
-		{
-			id: "parking",
-			label: "Parking",
-			labelEs: "Estacionamiento",
-			value: "Unknown",
-			valueEs: "Desconocido",
-		},
-		{
-			id: "heavy-item",
-			label: "Heavy-item access",
-			labelEs: "Acceso para objetos pesados",
-			value: "Door and hallway clearance unknown",
-			valueEs: "Ancho libre de puertas y pasillos desconocido",
-		},
-	],
-	actionRequired: true,
+  rows: [
+    {
+      id: "stairs",
+      label: "Stairs",
+      labelEs: "Escaleras",
+      value: "Not confirmed",
+      valueEs: "Sin confirmar",
+    },
+    {
+      id: "parking",
+      label: "Parking",
+      labelEs: "Estacionamiento",
+      value: "Unknown",
+      valueEs: "Desconocido",
+    },
+    {
+      id: "heavy-item",
+      label: "Heavy-item access",
+      labelEs: "Acceso para objetos pesados",
+      value: "Door and hallway clearance unknown",
+      valueEs: "Ancho libre de puertas y pasillos desconocido",
+    },
+  ],
+  actionRequired: true,
 };

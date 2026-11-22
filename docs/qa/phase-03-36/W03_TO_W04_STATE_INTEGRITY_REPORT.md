@@ -42,30 +42,30 @@ The scheduling state is managed through typed frontend fixtures in `apps/custome
 export type TimingMode = "asap" | "scheduled";
 
 export interface SchedulingDateOption {
-	id: string;
-	dayOfWeek: string;
-	monthDay: string;
-	isoDate: string;
+  id: string;
+  dayOfWeek: string;
+  monthDay: string;
+  isoDate: string;
 }
 
 export interface ServiceWindowOption {
-	id: string;
-	timeRange: string;
-	isAvailable: boolean;
-	isSameDayDisallowed?: boolean;
+  id: string;
+  timeRange: string;
+  isAvailable: boolean;
+  isSameDayDisallowed?: boolean;
 }
 
 export interface W04CustomerDraft {
-	serviceId: string;
-	customerName: string;
-	serviceCategory: string;
-	confirmedItemsSummary: string;
-	pickupArea: string;
-	quoteSubtotal: string;
-	timingMode: TimingMode;
-	selectedDateId: string;
-	selectedWindowId: string;
-	termsConsentAccepted: boolean;
+  serviceId: string;
+  customerName: string;
+  serviceCategory: string;
+  confirmedItemsSummary: string;
+  pickupArea: string;
+  quoteSubtotal: string;
+  timingMode: TimingMode;
+  selectedDateId: string;
+  selectedWindowId: string;
+  termsConsentAccepted: boolean;
 }
 ```
 

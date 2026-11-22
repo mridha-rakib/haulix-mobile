@@ -15,40 +15,37 @@ import { useAppBootstrap } from "../src/hooks/useAppBootstrap";
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: 2,
-			staleTime: 1000 * 60,
-		},
-	},
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 1000 * 60,
+    },
+  },
 });
 
 export default function RootLayout() {
-	const { isReady, onLayoutRootView } = useAppBootstrap();
+  const { isReady, onLayoutRootView } = useAppBootstrap();
 
-	if (!isReady) {
-		return null;
-	}
+  if (!isReady) {
+    return null;
+  }
 
-	return (
-		<ErrorBoundary>
-			<QueryClientProvider client={queryClient}>
-				<SafeAreaProvider>
-					<View
-						style={{ flex: 1, backgroundColor: colors.background }}
-						onLayout={onLayoutRootView}
-					>
-						<StatusBar style="light" />
-						<Stack
-							screenOptions={{
-								headerShown: false,
-								contentStyle: { backgroundColor: colors.background },
-								animation: "fade",
-							}}
-						/>
-					</View>
-				</SafeAreaProvider>
-			</QueryClientProvider>
-		</ErrorBoundary>
-	);
+  return (
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaProvider>
+          <View style={{ flex: 1, backgroundColor: colors.background }} onLayout={onLayoutRootView}>
+            <StatusBar style="light" />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: colors.background },
+                animation: "fade",
+              }}
+            />
+          </View>
+        </SafeAreaProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
 }

@@ -33,8 +33,8 @@ A live query was executed against Figma file `Q946h4YBGgyLsjnPtdyQNe` using genu
 
 ```json
 {
-	"fileKey": "Q946h4YBGgyLsjnPtdyQNe",
-	"description": "READ-ONLY environment and MCP capability audit for C16 Spanish (Node 974:9079)"
+  "fileKey": "Q946h4YBGgyLsjnPtdyQNe",
+  "description": "READ-ONLY environment and MCP capability audit for C16 Spanish (Node 974:9079)"
 }
 ```
 **Result:** Session established successfully with ID `c0d82f74-f0d5-46d4-99f0-7135ea24c193`.
@@ -43,9 +43,9 @@ A live query was executed against Figma file `Q946h4YBGgyLsjnPtdyQNe` using genu
 
 ```json
 {
-	"fileKey": "Q946h4YBGgyLsjnPtdyQNe",
-	"nodeId": "974:9079",
-	"sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
+  "fileKey": "Q946h4YBGgyLsjnPtdyQNe",
+  "nodeId": "974:9079",
+  "sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
 }
 ```
 **Metadata Excerpt:**
@@ -89,9 +89,9 @@ A live query was executed against Figma file `Q946h4YBGgyLsjnPtdyQNe` using genu
 
 ```json
 {
-	"fileKey": "Q946h4YBGgyLsjnPtdyQNe",
-	"nodeId": "974:9079",
-	"sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
+  "fileKey": "Q946h4YBGgyLsjnPtdyQNe",
+  "nodeId": "974:9079",
+  "sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
 }
 ```
 **Result:** Generated live PNG screenshot URL:  
@@ -103,9 +103,9 @@ A live query was executed against Figma file `Q946h4YBGgyLsjnPtdyQNe` using genu
 
 ```json
 {
-	"fileKey": "Q946h4YBGgyLsjnPtdyQNe",
-	"nodeId": "974:9079",
-	"sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
+  "fileKey": "Q946h4YBGgyLsjnPtdyQNe",
+  "nodeId": "974:9079",
+  "sessionId": "c0d82f74-f0d5-46d4-99f0-7135ea24c193"
 }
 ```
 **Result:** Returned:

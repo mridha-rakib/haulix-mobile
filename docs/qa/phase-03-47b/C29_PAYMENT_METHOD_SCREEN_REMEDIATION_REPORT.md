@@ -48,30 +48,23 @@ To eliminate the NativeWind function-stripping defect on Android, all interactiv
 ```tsx
 // ✅ Bulletproof React Native Android pattern (immune to css-interop style-stripping)
 <Pressable
-	onPress={() => handleSelectMethod("card")}
-	accessibilityRole="radio"
-	accessibilityState={{ selected: selectedMethod === "card" }}
-	testID="c29-method-card"
+  onPress={() => handleSelectMethod("card")}
+  accessibilityRole="radio"
+  accessibilityState={{ selected: selectedMethod === "card" }}
+  testID="c29-method-card"
 >
-	<View
-		style={[
-			styles.methodOptionCard,
-			selectedMethod === "card" && styles.methodOptionCardSelected,
-		]}
-	>
-		<View style={styles.methodIconContainer}>
-			<CreditCardIcon selected={selectedMethod === "card"} />
-		</View>
-		<View style={styles.methodInfo}>
-			<Text style={styles.methodTitle}>
-				{t("c29ChoosePaymentMethod.testCardTitle")}
-			</Text>
-			<Text style={styles.methodSubtitle}>
-				{t("c29ChoosePaymentMethod.testCardSubtitle")}
-			</Text>
-		</View>
-		<RadioIcon selected={selectedMethod === "card"} />
-	</View>
+  <View
+    style={[styles.methodOptionCard, selectedMethod === "card" && styles.methodOptionCardSelected]}
+  >
+    <View style={styles.methodIconContainer}>
+      <CreditCardIcon selected={selectedMethod === "card"} />
+    </View>
+    <View style={styles.methodInfo}>
+      <Text style={styles.methodTitle}>{t("c29ChoosePaymentMethod.testCardTitle")}</Text>
+      <Text style={styles.methodSubtitle}>{t("c29ChoosePaymentMethod.testCardSubtitle")}</Text>
+    </View>
+    <RadioIcon selected={selectedMethod === "card"} />
+  </View>
 </Pressable>;
 ```
 

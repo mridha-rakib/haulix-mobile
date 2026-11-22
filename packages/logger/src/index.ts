@@ -3,16 +3,16 @@
  */
 
 export type {
-	AppContext,
-	CrashReporter,
-	LogEntry,
-	Logger,
-	LogLevel,
+  AppContext,
+  CrashReporter,
+  LogEntry,
+  Logger,
+  LogLevel,
 } from "./logger";
 export {
-	createLogger,
-	customerLogger,
-	driverLogger,
-	registerCrashReporter,
-	sharedLogger,
+  createLogger,
+  customerLogger,
+  driverLogger,
+  registerCrashReporter,
+  sharedLogger,
 } from "./logger";

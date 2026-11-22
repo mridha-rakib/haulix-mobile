@@ -5,12 +5,12 @@ import { Stack } from "expo-router";
  * No bottom navigation shown here — authentication screens are full-screen only.
  */
 export default function AuthLayout() {
-	return (
-		<Stack
-			screenOptions={{
-				headerShown: false,
-				animation: "slide_from_right",
-			}}
-		/>
-	);
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: "slide_from_right",
+      }}
+    />
+  );
 }

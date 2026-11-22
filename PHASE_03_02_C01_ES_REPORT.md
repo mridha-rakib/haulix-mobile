@@ -78,10 +78,10 @@ Spanish keywords often contain accented vowels (`é`, `á`, etc.). The matching 
 
 ```typescript
 const normalizeSearch = (str: string) =>
-	str
-		.normalize("NFD")
-		.replace(/[\u0300-\u036f]/g, "")
-		.toLowerCase();
+  str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 ```
 
 - Typing `"electrodomesticos"` (unaccented) correctly matches `"Retiro de electrodomésticos"`.

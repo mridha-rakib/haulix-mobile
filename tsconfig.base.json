@@ -1,26 +1,26 @@
 {
-	"compilerOptions": {
-		"strict": true,
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "bundler",
-		"moduleDetection": "force",
-		"verbatimModuleSyntax": true,
-		"resolveJsonModule": true,
-		"allowJs": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"noEmit": true,
-		"baseUrl": "."
-	},
-	"exclude": [
-		"node_modules",
-		"**/node_modules",
-		"**/dist",
-		"**/.expo",
-		"**/android",
-		"**/ios",
-		"**/coverage",
-		"**/.turbo"
-	]
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules",
+    "**/dist",
+    "**/.expo",
+    "**/android",
+    "**/ios",
+    "**/coverage",
+    "**/.turbo"
+  ]
 }

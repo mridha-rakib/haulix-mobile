@@ -14,24 +14,24 @@ The active booking draft and scheduling recovery states are managed in-memory vi
 
 ```ts
 export type SchedulingRecoveryState =
-	| "asap_request_demo"
-	| "scheduled_window_demo"
-	| "invalid_same_day_example"
-	| "stale_window_example"
-	| "no_eligible_driver_example"
-	| "selected_window_requires_revalidation"
-	| "review_ready_demo"
-	| "local_terms_acknowledged"
-	| "terms_acknowledgement_invalidated"
-	| "terms_changed"
-	| "no_driver_cancelled"
-	| "payment_method_selected"
-	| "secure_card_demo"
-	| "card_authentication_required"
-	| "authorization_processing"
-	| "authorization_declined"
-	| "hold_expired"
-	| "backend_availability_unverified";
+  | "asap_request_demo"
+  | "scheduled_window_demo"
+  | "invalid_same_day_example"
+  | "stale_window_example"
+  | "no_eligible_driver_example"
+  | "selected_window_requires_revalidation"
+  | "review_ready_demo"
+  | "local_terms_acknowledged"
+  | "terms_acknowledgement_invalidated"
+  | "terms_changed"
+  | "no_driver_cancelled"
+  | "payment_method_selected"
+  | "secure_card_demo"
+  | "card_authentication_required"
+  | "authorization_processing"
+  | "authorization_declined"
+  | "hold_expired"
+  | "backend_availability_unverified";
 ```
 
 ---

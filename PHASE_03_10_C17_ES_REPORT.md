@@ -127,8 +127,8 @@ Updated `handleUseLocation` so both English and Spanish flows navigate cleanly t
 
 ```typescript
 router.push({
-	pathname: "/pickup-address",
-	params: { service: selectedServiceId },
+  pathname: "/pickup-address",
+  params: { service: selectedServiceId },
 });
 ```
 
