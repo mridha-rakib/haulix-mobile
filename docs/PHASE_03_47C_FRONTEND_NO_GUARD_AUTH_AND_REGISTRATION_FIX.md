@@ -126,3 +126,25 @@ Test file: `apps/customer/src/__tests__/phase-03-47c-navigation-guards-removal.t
 - **Figma Design Tokens Foundation (AGENTS.md Rule 1):** Colors, typography, spacing, and borders continue using `@haulix/design-tokens`.
 - **Bilingual i18n:** English (`en`) and Spanish (`es`) translations remain complete and synchronized.
 - **QA Navigator:** Floating pill allows immediate access to all canonical screens across W01–W05.
+
+---
+
+## 7. EAS Preview Build & Client-Sharing Manifest
+
+- **EAS Build ID:** `c56c1a4a-9089-41e1-9f41-95e5c5b9fd9c`
+- **Dashboard URL:** `https://expo.dev/accounts/rakib_androids/projects/haulix-customer/builds/c56c1a4a-9089-41e1-9f41-95e5c5b9fd9c`
+- **Build Profile:** `preview` (standalone Android APK)
+- **Git Commit:** `c68f6011adfbb035f00985fc1f46ca775461334b`
+- **Node Version:** `22.23.3` (Pinned LTS)
+- **pnpm Version:** `11.25.0`
+- **Engine Compliance:** Passed (`pnpm >= 9.0.0`, `Node >= 20.0.0`)
+- **System Deps Status:** Installed successfully without Corepack collisions
+
+### Client-Sharing Instructions
+1. Download the standalone preview `.apk` from the EAS build artifacts link upon completion.
+2. Transfer to an Android device (e.g. via USB, Google Drive, or Slack).
+3. If prompted by Android, allow "Install unknown apps" for the file manager or browser.
+4. Open HAULIX Customer App.
+5. Tap **Sign In** on C06 to immediately enter Customer Home (C01).
+6. Tap **Create Account** on C06 to test the registration journey through C08 Phone Verification and C10 Account Overview.
+7. Use the floating **QA Navigator** pill to jump to any of the canonical W01–W05 screens or switch between English and Spanish.
