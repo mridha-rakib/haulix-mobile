@@ -671,6 +671,113 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "W07 Reschedule pending status showing existing booking remains unchanged until Admin approval",
   },
   {
+    id: "w07-resched-confirmed-es",
+    name: "W07 · Nuevo horario confirmado (Español)",
+    figmaNode: "Node 893:7258",
+    route: "/job-reschedule-confirmed",
+    locale: "es",
+    description:
+      "W07 Confirmación ilustrativa de nuevo horario con fecha y franja horaria actualizada",
+  },
+  {
+    id: "w07-resched-confirmed-en",
+    name: "W07 · New Schedule Confirmed (English)",
+    figmaNode: "Node 892:6852",
+    route: "/job-reschedule-confirmed",
+    locale: "en",
+    description: "W07 Illustrative schedule confirmation showing updated date and window selection",
+  },
+  {
+    id: "w07-resched-failed-es",
+    name: "W07 · Cambio no aprobado (Español)",
+    figmaNode: "Node 893:7336",
+    route: "/job-reschedule-failed",
+    locale: "es",
+    description:
+      "W07 Solicitud de cambio no aprobada manteniendo vigente el horario original de la reserva",
+  },
+  {
+    id: "w07-resched-failed-en",
+    name: "W07 · Reschedule Not Approved (English)",
+    figmaNode: "Node 892:6930",
+    route: "/job-reschedule-failed",
+    locale: "en",
+    description:
+      "W07 Unapproved reschedule outcome with original booking schedule strictly preserved",
+  },
+  {
+    id: "w07-cancel-fee-es",
+    name: "W07 · Cancelar reserva (Español)",
+    figmaNode: "Node 893:7414",
+    route: "/job-cancel-fee",
+    locale: "es",
+    description:
+      "W07 Política de cancelación con cargo condicional de $100 según estado oficial del servidor",
+  },
+  {
+    id: "w07-cancel-fee-en",
+    name: "W07 · Cancel Booking (English)",
+    figmaNode: "Node 892:7008",
+    route: "/job-cancel-fee",
+    locale: "en",
+    description:
+      "W07 Cancellation policy review with conditional $100 fee depending on authoritative booking state",
+  },
+  {
+    id: "w07-cancel-free-es",
+    name: "W07 · Cancelación sin cargo (Español)",
+    figmaNode: "Node 893:7501",
+    route: "/job-cancel-free",
+    locale: "es",
+    description:
+      "W07 Cancelación elegible sin cargo por falta de asignación o ausencia verificada del conductor",
+  },
+  {
+    id: "w07-cancel-free-en",
+    name: "W07 · Fee-Free Cancellation (English)",
+    figmaNode: "Node 892:7095",
+    route: "/job-cancel-free",
+    locale: "en",
+    description:
+      "W07 Qualifying fee-free cancellation state for unassigned moves or verified driver no-show",
+  },
+  {
+    id: "w07-cancel-check-es",
+    name: "W07 · Revisión del cargo (Español)",
+    figmaNode: "Node 893:7588",
+    route: "/job-cancel-check",
+    locale: "es",
+    description:
+      "W07 Revisión del cargo potencial de $100 sujeto a confirmación de asignación por el servidor",
+  },
+  {
+    id: "w07-cancel-check-en",
+    name: "W07 · Cancellation Fee Review (English)",
+    figmaNode: "Node 892:7182",
+    route: "/job-cancel-check",
+    locale: "en",
+    description:
+      "W07 Fee review step before cancellation submission, noting server-verified determination",
+  },
+  {
+    id: "w07-cancel-done-es",
+    name: "W07 · Resultado de cancelación (Español)",
+    figmaNode: "Node 893:7675",
+    route: "/job-cancel-done",
+    locale: "es",
+    description:
+      "W07 Resultado confirmado de cancelación demo con acceso a detalles o retorno a Mis servicios",
+  },
+  {
+    id: "w07-cancel-done-en",
+    name: "W07 · Cancellation Outcome (English)",
+    figmaNode: "Node 892:7269",
+    route: "/job-cancel-done",
+    locale: "en",
+    description:
+      "W07 Confirmed cancellation demo outcome with links to cancellation details or My Jobs",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",

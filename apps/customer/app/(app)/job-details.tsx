@@ -30,7 +30,6 @@ import {
   C32CreditCardIcon,
   C32TruckIcon,
 } from "../../src/components/dispatch/C32Icons";
-import { FlowHeaderBack } from "../../src/components/navigation/FlowHeaderBack";
 
 export default function JobDetailsScreen() {
   const { t, i18n } = useTranslation();
@@ -71,7 +70,7 @@ export default function JobDetailsScreen() {
 
   const handleReviewCancellation = useCallback(() => {
     router.push({
-      pathname: "/no-driver-fee-free-cancellation",
+      pathname: "/job-cancel-fee",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

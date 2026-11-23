@@ -180,7 +180,7 @@ describe("Phase 03.55 — W07 Batch 1 Tests", () => {
     // 6. Details screen routes to reschedule, cancel, support, and back to my-jobs
     const detailsSource = fs.readFileSync(path.join(customerAppDir, "job-details.tsx"), "utf-8");
     expect(detailsSource).toContain('pathname: "/job-reschedule"');
-    expect(detailsSource).toContain('pathname: "/no-driver-fee-free-cancellation"');
+    expect(detailsSource).toContain('pathname: "/job-cancel-fee"');
     expect(detailsSource).toContain('pathname: "/active-service-support"');
     expect(detailsSource).toContain('pathname: "/my-jobs"');
   });

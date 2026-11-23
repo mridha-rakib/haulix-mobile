@@ -122,24 +122,30 @@ Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
 ---
 
-## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 12/34 Complete)
+## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 18/34 Complete)
 
 Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
-| #   | Canonical State     | Route Path                | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                              |
-| --- | ------------------- | ------------------------- | ---------- | ---------- | ----------- | -------------------------------------------------------- |
-| 01  | `HOME`              | `/my-jobs`                | `892:5859` | `893:6265` | ✅ Complete | My Jobs dashboard, active booking card, bottom nav       |
-| 02  | `HOME_EMPTY`        | `/my-jobs-empty`          | `892:5946` | `893:6352` | ✅ Complete | Empty booking state, support CTA, bottom nav             |
-| 03  | `HOME_HISTORY`      | `/my-jobs-history`        | `892:6033` | `893:6439` | ✅ Complete | Archive list of completed & cancelled moves              |
-| 04  | `HOME_LOADING`      | `/my-jobs-loading`        | `892:6120` | `893:6526` | ✅ Complete | Skeleton loading state, retry action, bottom nav         |
-| 05  | `HOME_ACCESS`       | `/my-jobs-access`         | `892:6207` | `893:6613` | ✅ Complete | Booking unavailable / authorization required state       |
-| 06  | `DETAILS`           | `/job-details`            | `892:6294` | `893:6700` | ✅ Complete | 3-step booking timeline, $356 quote, reschedule CTA      |
-| 07  | `DETAILS_HISTORY`   | `/job-details-history`    | `892:6376` | `893:6782` | ✅ Complete | Archived service details, timeline, refund review CTA    |
-| 08  | `DETAILS_CANCELLED` | `/job-details-cancelled`  | `892:6458` | `893:6864` | ✅ Complete | Cancelled booking details, server fee status, support    |
-| 09  | `RESCHEDULE`        | `/job-reschedule`         | `892:6540` | `893:6946` | ✅ Complete | Date/time selection, policy notice, free vs admin review |
-| 10  | `RESCHED_FREE`      | `/job-reschedule-free`    | `892:6618` | `893:7024` | ✅ Complete | Eligible free reschedule confirmation (>=24h rule)       |
-| 11  | `RESCHED_ADMIN`     | `/job-reschedule-admin`   | `892:6696` | `893:7102` | ✅ Complete | Reschedule needs Admin review (<24h / driver assigned)   |
-| 12  | `RESCHED_PENDING`   | `/job-reschedule-pending` | `892:6774` | `893:7180` | ✅ Complete | Reschedule under review, existing booking unchanged      |
+| #   | Canonical State     | Route Path                  | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                              |
+| --- | ------------------- | --------------------------- | ---------- | ---------- | ----------- | -------------------------------------------------------- |
+| 01  | `HOME`              | `/my-jobs`                  | `892:5859` | `893:6265` | ✅ Complete | My Jobs dashboard, active booking card, bottom nav       |
+| 02  | `HOME_EMPTY`        | `/my-jobs-empty`            | `892:5946` | `893:6352` | ✅ Complete | Empty booking state, support CTA, bottom nav             |
+| 03  | `HOME_HISTORY`      | `/my-jobs-history`          | `892:6033` | `893:6439` | ✅ Complete | Archive list of completed & cancelled moves              |
+| 04  | `HOME_LOADING`      | `/my-jobs-loading`          | `892:6120` | `893:6526` | ✅ Complete | Skeleton loading state, retry action, bottom nav         |
+| 05  | `HOME_ACCESS`       | `/my-jobs-access`           | `892:6207` | `893:6613` | ✅ Complete | Booking unavailable / authorization required state       |
+| 06  | `DETAILS`           | `/job-details`              | `892:6294` | `893:6700` | ✅ Complete | 3-step booking timeline, $356 quote, reschedule CTA      |
+| 07  | `DETAILS_HISTORY`   | `/job-details-history`      | `892:6376` | `893:6782` | ✅ Complete | Archived service details, timeline, refund review CTA    |
+| 08  | `DETAILS_CANCELLED` | `/job-details-cancelled`    | `892:6458` | `893:6864` | ✅ Complete | Cancelled booking details, server fee status, support    |
+| 09  | `RESCHEDULE`        | `/job-reschedule`           | `892:6540` | `893:6946` | ✅ Complete | Date/time selection, policy notice, free vs admin review |
+| 10  | `RESCHED_FREE`      | `/job-reschedule-free`      | `892:6618` | `893:7024` | ✅ Complete | Eligible free reschedule confirmation (>=24h rule)       |
+| 11  | `RESCHED_ADMIN`     | `/job-reschedule-admin`     | `892:6696` | `893:7102` | ✅ Complete | Reschedule needs Admin review (<24h / driver assigned)   |
+| 12  | `RESCHED_PENDING`   | `/job-reschedule-pending`   | `892:6774` | `893:7180` | ✅ Complete | Reschedule under review, existing booking unchanged      |
+| 13  | `RESCHED_CONFIRMED` | `/job-reschedule-confirmed` | `892:6852` | `893:7258` | ✅ Complete | Successful schedule change confirmation, updated date    |
+| 14  | `RESCHED_FAILED`    | `/job-reschedule-failed`    | `892:6930` | `893:7336` | ✅ Complete | Unapproved reschedule outcome, original time preserved   |
+| 15  | `CANCEL_FEE`        | `/job-cancel-fee`           | `892:7008` | `893:7414` | ✅ Complete | Cancellation policy review, conditional $100 fee rules   |
+| 16  | `CANCEL_FREE`       | `/job-cancel-free`          | `892:7095` | `893:7501` | ✅ Complete | Qualifying fee-free cancellation ($0 fee, no-show/empty) |
+| 17  | `CANCEL_CHECK`      | `/job-cancel-check`         | `892:7182` | `893:7588` | ✅ Complete | Cancellation fee review step, server validation notice   |
+| 18  | `CANCEL_DONE`       | `/job-cancel-done`          | `892:7269` | `893:7675` | ✅ Complete | Cancellation outcome confirmed, return to My Jobs/detail |
 
 ---
 

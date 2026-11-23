@@ -60,14 +60,14 @@ export default function JobReschedulePendingScreen() {
 
   const handlePreviewApproved = useCallback(() => {
     router.push({
-      pathname: "/job-details",
+      pathname: "/job-reschedule-confirmed",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
 
   const handlePreviewDeclined = useCallback(() => {
     router.push({
-      pathname: "/job-details",
+      pathname: "/job-reschedule-failed",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
@@ -80,10 +80,22 @@ export default function JobReschedulePendingScreen() {
   }, [router, params.previewLocale]);
 
   const dateChips = [
-    { day: t("w07ReschedPending.dateTueDay"), num: t("w07ReschedPending.dateTueNum") },
-    { day: t("w07ReschedPending.dateWedDay"), num: t("w07ReschedPending.dateWedNum") },
-    { day: t("w07ReschedPending.dateThuDay"), num: t("w07ReschedPending.dateThuNum") },
-    { day: t("w07ReschedPending.dateFriDay"), num: t("w07ReschedPending.dateFriNum") },
+    {
+      day: t("w07ReschedPending.dateTueDay"),
+      num: t("w07ReschedPending.dateTueNum"),
+    },
+    {
+      day: t("w07ReschedPending.dateWedDay"),
+      num: t("w07ReschedPending.dateWedNum"),
+    },
+    {
+      day: t("w07ReschedPending.dateThuDay"),
+      num: t("w07ReschedPending.dateThuNum"),
+    },
+    {
+      day: t("w07ReschedPending.dateFriDay"),
+      num: t("w07ReschedPending.dateFriNum"),
+    },
   ];
 
   const timeSlots = [
