@@ -65,7 +65,7 @@ export default function ActiveServiceExtraAdminPendingScreen() {
 
   const handlePreviewApproved = useCallback(() => {
     router.push({
-      pathname: "/active-service-extra-request",
+      pathname: "/active-service-extra-approved",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

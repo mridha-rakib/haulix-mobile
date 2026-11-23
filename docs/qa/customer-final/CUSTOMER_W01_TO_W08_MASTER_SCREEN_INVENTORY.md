@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20 States) · W06 Progress (18/20 Canonical States, 36 Bilingual Variants)  
+**Status:** W05 Complete (20/20 States) · W06 Progress (24/26 Canonical States, 48 Bilingual Variants)  
 **Date:** November 23, 2026
 
 ---
@@ -87,30 +87,42 @@ Figma Parent Sections: `836:4571` (English) and `836:4572` (Spanish).
 
 ---
 
-## 4. Workflow 06: Active Service (18 Canonical States — In Progress: 18/20 Complete)
+## 4. Workflow 06: Active Service (24 Canonical States — In Progress: 24/26 Complete)
 
 Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
-| #   | Canonical State        | Route Path                             | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                      |
-| --- | ---------------------- | -------------------------------------- | ---------- | ---------- | ----------- | ------------------------------------------------ |
-| 01  | `PRE`                  | `/active-service-awaiting-departure`   | `882:5131` | `883:5495` | ✅ Complete | Privacy banner (location hidden), Marcus Vance   |
-| 02  | `ENROUTE`              | `/active-service-en-route`             | `882:5245` | `883:5609` | ✅ Complete | Illustrative map, top-left overlay badge, 4 pcs  |
-| 03  | `ETA_PENDING`          | `/active-service-eta-pending`          | `882:5356` | `883:5720` | ✅ Complete | Route provider sync card, privacy badge          |
-| 04  | `GPS_OFFLINE`          | `/active-service-gps-offline`          | `882:5470` | `883:5834` | ✅ Complete | Offline coordinates badge, direct driver action  |
-| 05  | `GPS_DENIED`           | `/active-service-gps-denied`           | `882:5584` | `883:5948` | ✅ Complete | Permission restricted badge, driver support      |
-| 06  | `ARRIVED`              | `/active-service-driver-arrived`       | `882:5698` | `883:6062` | ✅ Complete | Destination map, arrival badge, PIN 8492         |
-| 07  | `WORKING`              | `/active-service-working`              | `882:5809` | `883:6173` | ✅ Complete | Active work in progress, confirmed scope card    |
-| 08  | `CHAT`                 | `/active-service-chat`                 | `882:5916` | `883:6280` | ✅ Complete | Job-only chat with driver bubbles and composer   |
-| 09  | `CHAT_EMPTY`           | `/active-service-chat-empty`           | `882:6021` | `883:6385` | ✅ Complete | Empty conversation with communication notes      |
-| 10  | `CHAT_FAILED`          | `/active-service-chat-failed`          | `882:6126` | `883:6490` | ✅ Complete | Delivery error alert and preserved message draft |
-| 11  | `CHAT_SENT`            | `/active-service-chat-sent`            | `882:6231` | `883:6595` | ✅ Complete | Sent message confirmation and delivery receipt   |
-| 12  | `MEDIA`                | `/active-service-media`                | `882:6336` | `883:6700` | ✅ Complete | Evidence composer for photos and voice notes     |
-| 13  | `MEDIA_DENIED`         | `/active-service-media-denied`         | `882:6443` | `883:6807` | ✅ Complete | Permission choice guidance, continuous text chat |
-| 14  | `MEDIA_FAILED`         | `/active-service-media-failed`         | `882:6550` | `883:6914` | ✅ Complete | Cached upload retry, attachment removal option   |
-| 15  | `MEDIA_SENT`           | `/active-service-media-sent`           | `882:6657` | `883:7021` | ✅ Complete | Attached media confirmation, return to chat/work |
-| 16  | `EXTRA_REQUEST`        | `/active-service-extra-request`        | `882:6764` | `883:7128` | ✅ Complete | Revision R2 (+1 chair, +$40), Admin review CTA   |
-| 17  | `EXTRA_ADMIN_PENDING`  | `/active-service-extra-admin-pending`  | `882:6876` | `883:7240` | ✅ Complete | Admin review gate, customer acceptance blocked   |
-| 18  | `EXTRA_ADMIN_REJECTED` | `/active-service-extra-admin-rejected` | `882:6993` | `883:7357` | ✅ Complete | Original scope unblocked, zero extra fee charged |
+| #   | Canonical State        | Route Path                             | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                       |
+| --- | ---------------------- | -------------------------------------- | ---------- | ---------- | ----------- | ------------------------------------------------- |
+| 01  | `PRE`                  | `/active-service-awaiting-departure`   | `882:5131` | `883:5495` | ✅ Complete | Privacy banner (location hidden), Marcus Vance    |
+| 02  | `ENROUTE`              | `/active-service-en-route`             | `882:5245` | `883:5609` | ✅ Complete | Illustrative map, top-left overlay badge, 4 pcs   |
+| 03  | `ETA_PENDING`          | `/active-service-eta-pending`          | `882:5356` | `883:5720` | ✅ Complete | Route provider sync card, privacy badge           |
+| 04  | `GPS_OFFLINE`          | `/active-service-gps-offline`          | `882:5470` | `883:5834` | ✅ Complete | Offline coordinates badge, direct driver action   |
+| 05  | `GPS_DENIED`           | `/active-service-gps-denied`           | `882:5584` | `883:5948` | ✅ Complete | Permission restricted badge, driver support       |
+| 06  | `ARRIVED`              | `/active-service-driver-arrived`       | `882:5698` | `883:6062` | ✅ Complete | Destination map, arrival badge, PIN 8492          |
+| 07  | `WORKING`              | `/active-service-working`              | `882:5809` | `883:6173` | ✅ Complete | Active work in progress, confirmed scope card     |
+| 08  | `CHAT`                 | `/active-service-chat`                 | `882:5916` | `883:6280` | ✅ Complete | Job-only chat with driver bubbles and composer    |
+| 09  | `CHAT_EMPTY`           | `/active-service-chat-empty`           | `882:6021` | `883:6385` | ✅ Complete | Empty conversation with communication notes       |
+| 10  | `CHAT_FAILED`          | `/active-service-chat-failed`          | `882:6126` | `883:6490` | ✅ Complete | Delivery error alert and preserved message draft  |
+| 11  | `CHAT_SENT`            | `/active-service-chat-sent`            | `882:6231` | `883:6595` | ✅ Complete | Sent message confirmation and delivery receipt    |
+| 12  | `MEDIA`                | `/active-service-media`                | `882:6336` | `883:6700` | ✅ Complete | Evidence composer for photos and voice notes      |
+| 13  | `MEDIA_DENIED`         | `/active-service-media-denied`         | `882:6443` | `883:6807` | ✅ Complete | Permission choice guidance, continuous text chat  |
+| 14  | `MEDIA_FAILED`         | `/active-service-media-failed`         | `882:6550` | `883:6914` | ✅ Complete | Cached upload retry, attachment removal option    |
+| 15  | `MEDIA_SENT`           | `/active-service-media-sent`           | `882:6657` | `883:7021` | ✅ Complete | Attached media confirmation, return to chat/work  |
+| 16  | `EXTRA_REQUEST`        | `/active-service-extra-request`        | `882:6764` | `883:7128` | ✅ Complete | Revision R2 (+1 chair, +$40), Admin review CTA    |
+| 17  | `EXTRA_ADMIN_PENDING`  | `/active-service-extra-admin-pending`  | `882:6876` | `883:7240` | ✅ Complete | Admin review gate, customer acceptance blocked    |
+| 18  | `EXTRA_ADMIN_REJECTED` | `/active-service-extra-admin-rejected` | `882:6993` | `883:7357` | ✅ Complete | Original scope unblocked, zero extra fee charged  |
+| 19  | `EXTRA_APPROVED`       | `/active-service-extra-approved`       | `882:7105` | `883:7469` | ✅ Complete | Admin-approved R2 review, customer accept/decline |
+| 20  | `EXTRA_EXPIRED`        | `/active-service-extra-expired`        | `882:7222` | `883:7586` | ✅ Complete | Expired revision blocked, return to original      |
+| 21  | `EXTRA_ACCEPTED`       | `/active-service-extra-accepted`       | `882:7339` | `883:7703` | ✅ Complete | Dual-approval confirmed (Admin+Customer), demo    |
+| 22  | `EXTRA_DECLINED`       | `/active-service-extra-declined`       | `882:7451` | `883:7815` | ✅ Complete | Customer declined extra work, original continues  |
+| 23  | `NO_SHOW`              | `/active-service-no-show`              | `882:7563` | `883:7927` | ✅ Complete | In-service no-show exception, 20-min server rule  |
+| 24  | `GPS_CLOSED`           | `/active-service-gps-closed`           | `882:7670` | `883:8034` | ✅ Complete | Privacy window closed, zero fake GPS displayed    |
+| 19  | `EXTRA_APPROVED`       | `/active-service-extra-approved`       | `882:7105` | `883:7469` | ✅ Complete | Admin-approved R2 review, customer accept/decline|
+| 20  | `EXTRA_EXPIRED`        | `/active-service-extra-expired`        | `882:7222` | `883:7586` | ✅ Complete | Expired revision blocked, return to original     |
+| 21  | `EXTRA_ACCEPTED`       | `/active-service-extra-accepted`       | `882:7339` | `883:7703` | ✅ Complete | Dual-approval confirmed (Admin+Customer), demo   |
+| 22  | `EXTRA_DECLINED`       | `/active-service-extra-declined`       | `882:7451` | `883:7815` | ✅ Complete | Customer declined extra work, original continues |
+| 23  | `NO_SHOW`              | `/active-service-no-show`              | `882:7563` | `883:7927` | ✅ Complete | In-service no-show exception, 20-min server rule |
+| 24  | `GPS_CLOSED`           | `/active-service-gps-closed`           | `882:7670` | `883:8034` | ✅ Complete | Privacy window closed, zero fake GPS displayed   |
 
 ---
 

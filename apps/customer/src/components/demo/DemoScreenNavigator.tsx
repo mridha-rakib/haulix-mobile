@@ -321,6 +321,114 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "W06 Extra work declined due to vehicle capacity; original booking completed without extra charge",
   },
   {
+    id: "w06-extra-approved-es",
+    name: "W06 · Revisa la revisión aprobada (Español)",
+    figmaNode: "Node 883:7469",
+    route: "/active-service-extra-approved",
+    locale: "es",
+    description:
+      "W06 Revisión R2 aprobada por Admin esperando decisión explícita de aceptación o rechazo del cliente",
+  },
+  {
+    id: "w06-extra-approved-en",
+    name: "W06 · Review Admin-Approved Revision (English)",
+    figmaNode: "Node 882:7105",
+    route: "/active-service-extra-approved",
+    locale: "en",
+    description:
+      "W06 Admin-approved revision R2 awaiting customer decision with explicit accept/decline choices",
+  },
+  {
+    id: "w06-extra-expired-es",
+    name: "W06 · La revisión ya no es válida (Español)",
+    figmaNode: "Node 883:7586",
+    route: "/active-service-extra-expired",
+    locale: "es",
+    description:
+      "W06 Revisión vencida o superada que no permite aceptación ni cobro; alcance original garantizado",
+  },
+  {
+    id: "w06-extra-expired-en",
+    name: "W06 · Revision No Longer Valid (English)",
+    figmaNode: "Node 882:7222",
+    route: "/active-service-extra-expired",
+    locale: "en",
+    description:
+      "W06 Expired or superseded revision state blocking extra charge while preserving original scope",
+  },
+  {
+    id: "w06-extra-accepted-es",
+    name: "W06 · Alcance adicional aceptado (Español)",
+    figmaNode: "Node 883:7703",
+    route: "/active-service-extra-accepted",
+    locale: "es",
+    description:
+      "W06 Aceptación de revisión R2 con doble aprobación (Admin + Cliente) en entorno de demostración",
+  },
+  {
+    id: "w06-extra-accepted-en",
+    name: "W06 · Additional Scope Accepted (English)",
+    figmaNode: "Node 882:7339",
+    route: "/active-service-extra-accepted",
+    locale: "en",
+    description:
+      "W06 Demonstration confirmation of dual approval (Admin + Customer) for scope revision R2",
+  },
+  {
+    id: "w06-extra-declined-es",
+    name: "W06 · Trabajo adicional rechazado (Español)",
+    figmaNode: "Node 883:7815",
+    route: "/active-service-extra-declined",
+    locale: "es",
+    description:
+      "W06 Trabajo adicional rechazado por el cliente; continúa el servicio original sin costo extra",
+  },
+  {
+    id: "w06-extra-declined-en",
+    name: "W06 · Additional Work Declined (English)",
+    figmaNode: "Node 882:7451",
+    route: "/active-service-extra-declined",
+    locale: "en",
+    description:
+      "W06 Customer decline of extra scope; original booking proceeds unblocked with zero fee",
+  },
+  {
+    id: "w06-no-show-es",
+    name: "W06 · Revisión por ausencia (Español)",
+    figmaNode: "Node 883:7927",
+    route: "/active-service-no-show",
+    locale: "es",
+    description:
+      "W06 Incidencia verificada tras 20 min sin retraso aprobado; opciones de sustitución o cancelación",
+  },
+  {
+    id: "w06-no-show-en",
+    name: "W06 · Driver No-Show Review (English)",
+    figmaNode: "Node 882:7563",
+    route: "/active-service-no-show",
+    locale: "en",
+    description:
+      "W06 In-service no-show exception after 20-min window with replacement and fee-free cancel options",
+  },
+  {
+    id: "w06-gps-closed-es",
+    name: "W06 · Se terminó compartir ubicación (Español)",
+    figmaNode: "Node 883:8034",
+    route: "/active-service-gps-closed",
+    locale: "es",
+    description:
+      "W06 Cierre de ubicación por privacidad tras finalizar o cancelar; no se expone GPS no autorizado",
+  },
+  {
+    id: "w06-gps-closed-en",
+    name: "W06 · Location Sharing Ended (English)",
+    figmaNode: "Node 882:7670",
+    route: "/active-service-gps-closed",
+    locale: "en",
+    description:
+      "W06 Location sharing terminated following job closure to uphold driver and customer privacy",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",
