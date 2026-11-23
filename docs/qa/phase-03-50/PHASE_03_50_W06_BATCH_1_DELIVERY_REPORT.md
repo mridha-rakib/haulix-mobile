@@ -1,4 +1,5 @@
 # HAULIX Customer Mobile App — Phase 03.50 Delivery Report
+
 ## Workflow 06: Active Service — Batch 1 (Six Canonical States · 12 Bilingual Variants)
 
 **Repository:** `mridha-rakib/haulix-mobile`  
@@ -21,14 +22,14 @@ Every screen strictly reflects the authoritative Figma compositions in `meiXxwUN
 
 ## 2. Implemented W06 Canonical States & Figma Node Mapping
 
-| State | Name / Headline | Route Path | Figma EN | Figma ES | Status | Key UI Features & Behavior |
-|---|---|---|---|---|---|---|
-| **PRE** | Driver assigned — awaiting departure | `/active-service-awaiting-departure` | `882:5131` | `883:5495` | ✅ Complete | Step 0 (Assigned) active. Privacy banner: *"Location hidden until travel starts"*. Illustrative quote (\$356.00) & 4 items. |
-| **ENROUTE** | Driver is on the way | `/active-service-en-route` | `882:5245` | `883:5609` | ✅ Complete | Steps 0 & 1 active. `HaulixDispatchMap` in `w06_enroute` mode with overlay badge: *"ILLUSTRATIVE MAP · NOT LIVE GPS"*. |
-| **ETA_PENDING** | Updating the route estimate | `/active-service-eta-pending` | `882:5356` | `883:5720` | ✅ Complete | Step 1 active. Gold warning badge (`#F2C94C`): *"ETA PENDING"*. Privacy card: *"Signal syncing · No simulated GPS displayed"*. |
-| **GPS_OFFLINE** | Location is temporarily unavailable | `/active-service-gps-offline` | `882:5470` | `883:5834` | ✅ Complete | Step 1 active. Orange warning badge (`#F2994A`): *"GPS OFFLINE"*. Privacy card: *"No verified coordinates available"*. |
-| **GPS_DENIED** | Location cannot be displayed | `/active-service-gps-denied` | `882:5584` | `883:5948` | ✅ Complete | Step 1 active. Red warning badge (`#EB5757`): *"LOCATION RESTRICTED"*. Support routing without fake telemetry. |
-| **ARRIVED** | Your driver has arrived | `/active-service-driver-arrived` | `882:5698` | `883:6062` | ✅ Complete | Steps 0, 1 & 2 active. `HaulixDispatchMap` in `w06_arrived` mode. Arrival confirmed badge (`colors.brand`). |
+| State           | Name / Headline                      | Route Path                           | Figma EN   | Figma ES   | Status      | Key UI Features & Behavior                                                                                                     |
+| --------------- | ------------------------------------ | ------------------------------------ | ---------- | ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **PRE**         | Driver assigned — awaiting departure | `/active-service-awaiting-departure` | `882:5131` | `883:5495` | ✅ Complete | Step 0 (Assigned) active. Privacy banner: _"Location hidden until travel starts"_. Illustrative quote (\$356.00) & 4 items.    |
+| **ENROUTE**     | Driver is on the way                 | `/active-service-en-route`           | `882:5245` | `883:5609` | ✅ Complete | Steps 0 & 1 active. `HaulixDispatchMap` in `w06_enroute` mode with overlay badge: _"ILLUSTRATIVE MAP · NOT LIVE GPS"_.         |
+| **ETA_PENDING** | Updating the route estimate          | `/active-service-eta-pending`        | `882:5356` | `883:5720` | ✅ Complete | Step 1 active. Gold warning badge (`#F2C94C`): _"ETA PENDING"_. Privacy card: _"Signal syncing · No simulated GPS displayed"_. |
+| **GPS_OFFLINE** | Location is temporarily unavailable  | `/active-service-gps-offline`        | `882:5470` | `883:5834` | ✅ Complete | Step 1 active. Orange warning badge (`#F2994A`): _"GPS OFFLINE"_. Privacy card: _"No verified coordinates available"_.         |
+| **GPS_DENIED**  | Location cannot be displayed         | `/active-service-gps-denied`         | `882:5584` | `883:5948` | ✅ Complete | Step 1 active. Red warning badge (`#EB5757`): _"LOCATION RESTRICTED"_. Support routing without fake telemetry.                 |
+| **ARRIVED**     | Your driver has arrived              | `/active-service-driver-arrived`     | `882:5698` | `883:6062` | ✅ Complete | Steps 0, 1 & 2 active. `HaulixDispatchMap` in `w06_arrived` mode. Arrival confirmed badge (`colors.brand`).                    |
 
 ---
 
@@ -62,12 +63,12 @@ Every screen strictly reflects the authoritative Figma compositions in `meiXxwUN
 
 ## 4. Automated Verification & Quality Gates
 
-| Quality Gate | Command | Result | Details |
-|---|---|---|---|
-| **Linter & Formatter** | `pnpm check` | ✅ PASSED | Biome check completed with 0 errors across 778 files. |
-| **TypeScript Compilation** | `pnpm typecheck` | ✅ PASSED | All 7 monorepo packages compiled successfully with 0 type errors. |
-| **Unit & Integration Tests** | `pnpm test` | ✅ PASSED | 115 test suites passed, 765 total tests passed (including `w06-phase-03-50.test.tsx`). |
-| **Dependency Health** | `pnpm doctor` | ✅ PASSED | All package manager versions and filesystem links verified. |
+| Quality Gate                 | Command          | Result    | Details                                                                                |
+| ---------------------------- | ---------------- | --------- | -------------------------------------------------------------------------------------- |
+| **Linter & Formatter**       | `pnpm check`     | ✅ PASSED | Biome check completed with 0 errors across 778 files.                                  |
+| **TypeScript Compilation**   | `pnpm typecheck` | ✅ PASSED | All 7 monorepo packages compiled successfully with 0 type errors.                      |
+| **Unit & Integration Tests** | `pnpm test`      | ✅ PASSED | 115 test suites passed, 765 total tests passed (including `w06-phase-03-50.test.tsx`). |
+| **Dependency Health**        | `pnpm doctor`    | ✅ PASSED | All package manager versions and filesystem links verified.                            |
 
 ---
 
@@ -85,6 +86,7 @@ Every screen strictly reflects the authoritative Figma compositions in `meiXxwUN
 ## 6. Next Steps (Workflow 06 Batch 2)
 
 Phase 03.51 will implement the second batch of W06 canonical states:
+
 1. Active Loading In-Progress
 2. Photo Verification / Item Load Checklist
 3. Active Transit Live Updates

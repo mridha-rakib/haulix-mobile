@@ -173,7 +173,7 @@ describe("Phase 03.53 — W06 Active Service Batch 4 Tests", () => {
       "utf-8"
     );
     expect(acceptedSource).toContain('pathname: "/active-service-working"');
-    expect(acceptedSource).toContain('pathname: "/job-active-bridge"');
+    expect(acceptedSource).toContain('pathname: "/active-service-completion-bridge"');
 
     // 5. EXTRA_DECLINED routes to working and chat
     const declinedSource = fs.readFileSync(

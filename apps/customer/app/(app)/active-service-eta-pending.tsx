@@ -24,7 +24,6 @@ import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "reac
 import {
   C32BoxIcon,
   C32CalendarIcon,
-  C32CheckCircleIcon,
   C32ClockIcon,
   C32LocationPinIcon,
   C32LockIcon,

@@ -71,14 +71,14 @@ export default function ActiveServiceExtraAcceptedScreen() {
 
   const handlePreviewHandoff = useCallback(() => {
     router.push({
-      pathname: "/job-active-bridge",
+      pathname: "/active-service-completion-bridge",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
 
   const handleSupportLink = useCallback(() => {
     router.push({
-      pathname: "/dispatch-support",
+      pathname: "/active-service-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

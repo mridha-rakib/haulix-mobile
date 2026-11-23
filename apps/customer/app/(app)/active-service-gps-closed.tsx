@@ -22,11 +22,9 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
-  C32AlertTriangleIcon,
   C32BoxIcon,
   C32CalendarIcon,
   C32CheckCircleIcon,
-  C32ClockIcon,
   C32LocationPinIcon,
   C32LockIcon,
   C32ShieldCheckIcon,
@@ -66,14 +64,14 @@ export default function ActiveServiceGpsClosedScreen() {
 
   const handleReviewCompletion = useCallback(() => {
     router.push({
-      pathname: "/job-active-bridge",
+      pathname: "/active-service-completion-bridge",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
 
   const handleContactSupport = useCallback(() => {
     router.push({
-      pathname: "/dispatch-support",
+      pathname: "/active-service-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

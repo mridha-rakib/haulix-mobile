@@ -22,14 +22,14 @@ Every screen strictly reflects the authoritative Figma compositions in `meiXxwUN
 
 ## 2. Implemented W06 Canonical States & Figma Node Mapping
 
-| State           | Name / Headline                 | Route Path                      | Figma EN   | Figma ES   | Status      | Key UI Features & Behavior                                                                                                                  |
-| --------------- | ------------------------------- | ------------------------------- | ---------- | ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **WORKING**     | Service is in progress          | `/active-service-working`       | `882:5809` | `883:6173` | ✅ Complete | Step 3 (Service) active. Confirmed scope card ($356.00 / 4 pcs). Primary CTA: "Open job conversation". Secondary CTA: "View extra-work". |
-| **CHAT**        | Job conversation                | `/active-service-chat`          | `882:5916` | `883:6280` | ✅ Complete | Step 3 active. Driver message bubble + customer draft bubble, composer row with attachment & send buttons. State switching preview pills.  |
-| **CHAT_EMPTY**  | No messages yet                 | `/active-service-chat-empty`    | `882:6021` | `883:6385` | ✅ Complete | Step 3 active. Empty conversation illustration with communication notes & privacy protection insights. Primary: "Start conversation".       |
-| **CHAT_FAILED** | Message could not be sent       | `/active-service-chat-failed`   | `882:6126` | `883:6490` | ✅ Complete | Step 3 active. Red alert header (`#EF4444`), preserved message draft card, troubleshooting insights. Primary: "Retry sample send".         |
-| **CHAT_SENT**   | Sample message sent             | `/active-service-chat-sent`     | `882:6231` | `883:6595` | ✅ Complete | Step 3 active. Delivered confirmation with check circle, timestamped sent message preview box. Primary: "Return to conversation".           |
-| **MEDIA**       | Send photo or voice evidence    | `/active-service-media`         | `882:6336` | `883:6700` | ✅ Complete | Step 3 active. Dual media attach tiles: "Item photo" (JPG/PNG) & "Voice note" (max 30s async). Evidence standards card.                   |
+| State           | Name / Headline              | Route Path                    | Figma EN   | Figma ES   | Status      | Key UI Features & Behavior                                                                                                                |
+| --------------- | ---------------------------- | ----------------------------- | ---------- | ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **WORKING**     | Service is in progress       | `/active-service-working`     | `882:5809` | `883:6173` | ✅ Complete | Step 3 (Service) active. Confirmed scope card ($356.00 / 4 pcs). Primary CTA: "Open job conversation". Secondary CTA: "View extra-work".  |
+| **CHAT**        | Job conversation             | `/active-service-chat`        | `882:5916` | `883:6280` | ✅ Complete | Step 3 active. Driver message bubble + customer draft bubble, composer row with attachment & send buttons. State switching preview pills. |
+| **CHAT_EMPTY**  | No messages yet              | `/active-service-chat-empty`  | `882:6021` | `883:6385` | ✅ Complete | Step 3 active. Empty conversation illustration with communication notes & privacy protection insights. Primary: "Start conversation".     |
+| **CHAT_FAILED** | Message could not be sent    | `/active-service-chat-failed` | `882:6126` | `883:6490` | ✅ Complete | Step 3 active. Red alert header (`#EF4444`), preserved message draft card, troubleshooting insights. Primary: "Retry sample send".        |
+| **CHAT_SENT**   | Sample message sent          | `/active-service-chat-sent`   | `882:6231` | `883:6595` | ✅ Complete | Step 3 active. Delivered confirmation with check circle, timestamped sent message preview box. Primary: "Return to conversation".         |
+| **MEDIA**       | Send photo or voice evidence | `/active-service-media`       | `882:6336` | `883:6700` | ✅ Complete | Step 3 active. Dual media attach tiles: "Item photo" (JPG/PNG) & "Voice note" (max 30s async). Evidence standards card.                   |
 
 ---
 

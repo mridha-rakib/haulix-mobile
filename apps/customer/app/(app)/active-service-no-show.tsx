@@ -23,7 +23,6 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
-  C32AlertTriangleIcon,
   C32BoxIcon,
   C32CalendarIcon,
   C32CheckCircleIcon,

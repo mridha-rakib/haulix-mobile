@@ -429,6 +429,42 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "W06 Location sharing terminated following job closure to uphold driver and customer privacy",
   },
   {
+    id: "w06-support-es",
+    name: "W06 · Soporte del servicio (Español)",
+    figmaNode: "Node 883:8148",
+    route: "/active-service-support",
+    locale: "es",
+    description:
+      "W06 Soporte de servicio activo para dudas operativas con Mike R. y reserva HX-AZ-DEMO-0042",
+  },
+  {
+    id: "w06-support-en",
+    name: "W06 · HAULIX Job Support (English)",
+    figmaNode: "Node 882:7784",
+    route: "/active-service-support",
+    locale: "en",
+    description:
+      "W06 In-service customer support for active booking HX-AZ-DEMO-0042 and assigned driver Mike R.",
+  },
+  {
+    id: "w06-w08-handoff-es",
+    name: "W06 · Siguiente: Prueba y finalización (Español)",
+    figmaNode: "Node 883:8255",
+    route: "/active-service-completion-bridge",
+    locale: "es",
+    description:
+      "W06 Puente de finalización de servicio activo hacia comprobante y firma de entrega W08",
+  },
+  {
+    id: "w06-w08-handoff-en",
+    name: "W06 · Next: Proof and Completion (English)",
+    figmaNode: "Node 882:7891",
+    route: "/active-service-completion-bridge",
+    locale: "en",
+    description:
+      "W06 In-service completion transition to W08 delivery verification, signature, and rating",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",
