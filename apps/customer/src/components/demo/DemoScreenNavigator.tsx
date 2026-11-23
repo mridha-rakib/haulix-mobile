@@ -213,6 +213,114 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     description: "W06 Evidence media composer supporting item photos and asynchronous voice clips",
   },
   {
+    id: "w06-media-denied-es",
+    name: "W06 · Permiso multimedia requerido (Español)",
+    figmaNode: "Node 883:6807",
+    route: "/active-service-media-denied",
+    locale: "es",
+    description:
+      "W06 Permiso denegado para cámara o micrófono con opciones de configuración y chat seguro",
+  },
+  {
+    id: "w06-media-denied-en",
+    name: "W06 · Media Permission Required (English)",
+    figmaNode: "Node 882:6443",
+    route: "/active-service-media-denied",
+    locale: "en",
+    description:
+      "W06 Permission required state with app settings guidance and continuous text messaging",
+  },
+  {
+    id: "w06-media-failed-es",
+    name: "W06 · Carga de evidencia interrumpida (Español)",
+    figmaNode: "Node 883:6914",
+    route: "/active-service-media-failed",
+    locale: "es",
+    description:
+      "W06 Interrupción de red durante la carga de evidencia con borrador guardado y reintento",
+  },
+  {
+    id: "w06-media-failed-en",
+    name: "W06 · Evidence Upload Interrupted (English)",
+    figmaNode: "Node 882:6550",
+    route: "/active-service-media-failed",
+    locale: "en",
+    description:
+      "W06 Network interruption during evidence upload with cached draft and one-tap retry",
+  },
+  {
+    id: "w06-media-sent-es",
+    name: "W06 · Evidencia adjunta al servicio (Español)",
+    figmaNode: "Node 883:7021",
+    route: "/active-service-media-sent",
+    locale: "es",
+    description:
+      "W06 Confirmación de evidencia multimedia adjunta exitosamente al registro del servicio",
+  },
+  {
+    id: "w06-media-sent-en",
+    name: "W06 · Evidence Attached to Job (English)",
+    figmaNode: "Node 882:6657",
+    route: "/active-service-media-sent",
+    locale: "en",
+    description:
+      "W06 Multimedia evidence successfully attached confirmation with audit trail and return CTAs",
+  },
+  {
+    id: "w06-extra-request-es",
+    name: "W06 · Trabajo adicional solicitado (Español)",
+    figmaNode: "Node 883:7128",
+    route: "/active-service-extra-request",
+    locale: "es",
+    description:
+      "W06 Solicitud de cambio de alcance durante el servicio (+1 silla, +$40 retención) antes de aprobación",
+  },
+  {
+    id: "w06-extra-request-en",
+    name: "W06 · Additional Work Requested (English)",
+    figmaNode: "Node 882:6764",
+    route: "/active-service-extra-request",
+    locale: "en",
+    description:
+      "W06 In-service scope revision R2 (+1 chair, +$40 illustrative hold) awaiting operational review",
+  },
+  {
+    id: "w06-extra-admin-pending-es",
+    name: "W06 · Esperando revisión del administrador (Español)",
+    figmaNode: "Node 883:7240",
+    route: "/active-service-extra-admin-pending",
+    locale: "es",
+    description:
+      "W06 Revisión administrativa en curso para trabajo adicional con trabajo base continuando sin pausa",
+  },
+  {
+    id: "w06-extra-admin-pending-en",
+    name: "W06 · Awaiting HAULIX Admin Review (English)",
+    figmaNode: "Node 882:6876",
+    route: "/active-service-extra-admin-pending",
+    locale: "en",
+    description:
+      "W06 Administrative review pending for scope revision R2 while base service proceeds unblocked",
+  },
+  {
+    id: "w06-extra-admin-rejected-es",
+    name: "W06 · Trabajo adicional no aprobado (Español)",
+    figmaNode: "Node 883:7357",
+    route: "/active-service-extra-admin-rejected",
+    locale: "es",
+    description:
+      "W06 Revisión no aprobada por capacidad operativa; servicio original garantizado sin cobro extra",
+  },
+  {
+    id: "w06-extra-admin-rejected-en",
+    name: "W06 · Additional Work Not Approved (English)",
+    figmaNode: "Node 882:6993",
+    route: "/active-service-extra-admin-rejected",
+    locale: "en",
+    description:
+      "W06 Extra work declined due to vehicle capacity; original booking completed without extra charge",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",

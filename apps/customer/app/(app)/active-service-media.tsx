@@ -71,7 +71,7 @@ export default function ActiveServiceMediaScreen() {
 
   const handlePermissionsDenied = useCallback(() => {
     router.push({
-      pathname: "/active-service-chat",
+      pathname: "/active-service-media-denied",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

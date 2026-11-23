@@ -74,7 +74,7 @@ export default function ActiveServiceWorkingScreen() {
 
   const handleExtraWork = useCallback(() => {
     router.push({
-      pathname: "/extra-access-help",
+      pathname: "/active-service-extra-request",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
