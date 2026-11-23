@@ -75,7 +75,7 @@ export default function JobCancelDoneScreen() {
 
   const handleNeedAssistance = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

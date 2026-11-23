@@ -121,21 +121,21 @@ describe("Phase 03.56 — W07 Batch 2 Tests", () => {
   });
 
   test("verifies navigation routing across W07 Batch 2 screens", () => {
-    // 1. Past Service Details routes to refund review (/active-service-support) and back to history
+    // 1. Past Service Details routes to refund review (/job-support) and back to history
     const historyDetailsSource = fs.readFileSync(
       path.join(customerAppDir, "job-details-history.tsx"),
       "utf-8"
     );
-    expect(historyDetailsSource).toContain('pathname: "/active-service-support"');
+    expect(historyDetailsSource).toContain('pathname: "/job-support"');
     expect(historyDetailsSource).toContain('pathname: "/my-jobs-history"');
 
-    // 2. Cancelled Booking Details routes to My Jobs and active-service-support
+    // 2. Cancelled Booking Details routes to My Jobs and job-support
     const cancelledSource = fs.readFileSync(
       path.join(customerAppDir, "job-details-cancelled.tsx"),
       "utf-8"
     );
     expect(cancelledSource).toContain('pathname: "/my-jobs"');
-    expect(cancelledSource).toContain('pathname: "/active-service-support"');
+    expect(cancelledSource).toContain('pathname: "/job-support"');
 
     // 3. Reschedule Booking routes to free change, late change (admin), and keeps current time (/job-details)
     const rescheduleSource = fs.readFileSync(
@@ -162,7 +162,7 @@ describe("Phase 03.56 — W07 Batch 2 Tests", () => {
     );
     expect(adminSource).toContain('pathname: "/job-reschedule-pending"');
     expect(adminSource).toContain('pathname: "/job-reschedule"');
-    expect(adminSource).toContain('pathname: "/active-service-support"');
+    expect(adminSource).toContain('pathname: "/job-support"');
 
     // 6. Reschedule Under Review routes to preview outcomes and back to job-details
     const pendingSource = fs.readFileSync(

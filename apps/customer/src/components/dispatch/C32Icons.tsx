@@ -364,3 +364,54 @@ export function C32InfoIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
     </Svg>
   );
 }
+
+export function C32HelpCircleIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx={12} cy={12} r={10} stroke={color} strokeWidth={1.8} />
+      <Path
+        d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+      />
+    </Svg>
+  );
+}
+
+export function C32MessageSquareIcon({ size = 18, color = "#BAFF42" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function C32PackageIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="m16.5 9.4 4.5-2.8-9-5-9 5 4.5 2.8M3 7.8v8.4l9 5 9-5V7.8M12 12v9.5"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function C32SmartphoneIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Rect x={5} y={2} width={14} height={20} rx={2} ry={2} stroke={color} strokeWidth={1.8} />
+      <Path d="M12 18h.01" stroke={color} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
+  );
+}

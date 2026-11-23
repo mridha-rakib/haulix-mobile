@@ -69,14 +69,14 @@ export default function JobDetailsCancelledScreen() {
 
   const handleDiscussCancellation = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
 
   const handleRefundDispute = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

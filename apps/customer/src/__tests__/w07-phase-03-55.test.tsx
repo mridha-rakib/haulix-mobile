@@ -153,7 +153,7 @@ describe("Phase 03.55 — W07 Batch 1 Tests", () => {
     const emptySource = fs.readFileSync(path.join(customerAppDir, "my-jobs-empty.tsx"), "utf-8");
     expect(emptySource).toContain('pathname: "/my-jobs"');
     expect(emptySource).toContain('pathname: "/job-details"');
-    expect(emptySource).toContain('pathname: "/active-service-support"');
+    expect(emptySource).toContain('pathname: "/job-support"');
 
     // 3. History state routes to details and back to my-jobs
     const historySource = fs.readFileSync(
@@ -175,13 +175,13 @@ describe("Phase 03.55 — W07 Batch 1 Tests", () => {
     // 5. Access state routes to my-jobs and support
     const accessSource = fs.readFileSync(path.join(customerAppDir, "my-jobs-access.tsx"), "utf-8");
     expect(accessSource).toContain('pathname: "/my-jobs"');
-    expect(accessSource).toContain('pathname: "/active-service-support"');
+    expect(accessSource).toContain('pathname: "/job-support"');
 
     // 6. Details screen routes to reschedule, cancel, support, and back to my-jobs
     const detailsSource = fs.readFileSync(path.join(customerAppDir, "job-details.tsx"), "utf-8");
     expect(detailsSource).toContain('pathname: "/job-reschedule"');
     expect(detailsSource).toContain('pathname: "/job-cancel-fee"');
-    expect(detailsSource).toContain('pathname: "/active-service-support"');
+    expect(detailsSource).toContain('pathname: "/job-support"');
     expect(detailsSource).toContain('pathname: "/my-jobs"');
   });
 

@@ -122,23 +122,23 @@ describe("Phase 03.57 — W07 Batch 3 Tests", () => {
   });
 
   test("verifies navigation routing across W07 Batch 3 screens", () => {
-    // 1. Reschedule Confirmed routes to /job-details, /my-jobs, and /active-service-support
+    // 1. Reschedule Confirmed routes to /job-details, /my-jobs, and /job-support
     const confirmedSource = fs.readFileSync(
       path.join(customerAppDir, "job-reschedule-confirmed.tsx"),
       "utf-8"
     );
     expect(confirmedSource).toContain('pathname: "/job-details"');
     expect(confirmedSource).toContain('pathname: "/my-jobs"');
-    expect(confirmedSource).toContain('pathname: "/active-service-support"');
+    expect(confirmedSource).toContain('pathname: "/job-support"');
 
-    // 2. Reschedule Failed routes to /job-reschedule, /job-details, and /active-service-support
+    // 2. Reschedule Failed routes to /job-reschedule, /job-details, and /job-support
     const failedSource = fs.readFileSync(
       path.join(customerAppDir, "job-reschedule-failed.tsx"),
       "utf-8"
     );
     expect(failedSource).toContain('pathname: "/job-reschedule"');
     expect(failedSource).toContain('pathname: "/job-details"');
-    expect(failedSource).toContain('pathname: "/active-service-support"');
+    expect(failedSource).toContain('pathname: "/job-support"');
 
     // 3. Cancel Fee routes to /job-cancel-check, /job-details, and /job-cancel-free
     const cancelFeeSource = fs.readFileSync(
@@ -158,23 +158,23 @@ describe("Phase 03.57 — W07 Batch 3 Tests", () => {
     expect(cancelFreeSource).toContain('pathname: "/job-details"');
     expect(cancelFreeSource).toContain('pathname: "/job-cancel-fee"');
 
-    // 5. Cancel Check routes to /job-cancel-done, /job-details, and /job-cancel-fee
+    // 5. Cancel Check routes to /job-cancel-done, /job-details, and /job-cancel-failed
     const cancelCheckSource = fs.readFileSync(
       path.join(customerAppDir, "job-cancel-check.tsx"),
       "utf-8"
     );
     expect(cancelCheckSource).toContain('pathname: "/job-cancel-done"');
     expect(cancelCheckSource).toContain('pathname: "/job-details"');
-    expect(cancelCheckSource).toContain('pathname: "/job-cancel-fee"');
+    expect(cancelCheckSource).toContain('pathname: "/job-cancel-failed"');
 
-    // 6. Cancel Done routes to /my-jobs, /job-details-cancelled, and /active-service-support
+    // 6. Cancel Done routes to /my-jobs, /job-details-cancelled, and /job-support
     const cancelDoneSource = fs.readFileSync(
       path.join(customerAppDir, "job-cancel-done.tsx"),
       "utf-8"
     );
     expect(cancelDoneSource).toContain('pathname: "/my-jobs"');
     expect(cancelDoneSource).toContain('pathname: "/job-details-cancelled"');
-    expect(cancelDoneSource).toContain('pathname: "/active-service-support"');
+    expect(cancelDoneSource).toContain('pathname: "/job-support"');
   });
 
   test("verifies job-reschedule-pending routes to /job-reschedule-confirmed and /job-reschedule-failed", () => {

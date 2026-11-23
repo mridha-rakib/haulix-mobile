@@ -74,7 +74,7 @@ export default function JobCancelCheckScreen() {
 
   const handlePreviewFailedRequest = useCallback(() => {
     router.push({
-      pathname: "/job-cancel-fee",
+      pathname: "/job-cancel-failed",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

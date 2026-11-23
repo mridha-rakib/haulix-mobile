@@ -74,7 +74,7 @@ export default function JobRescheduleFailedScreen() {
 
   const handleContactSupport = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

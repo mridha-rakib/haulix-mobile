@@ -75,7 +75,7 @@ export default function JobRescheduleConfirmedScreen() {
 
   const handleAskAssistance = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

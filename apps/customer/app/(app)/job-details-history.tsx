@@ -61,7 +61,7 @@ export default function JobDetailsHistoryScreen() {
 
   const handleRefundReview = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
@@ -75,7 +75,7 @@ export default function JobDetailsHistoryScreen() {
 
   const handleReportIssue = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

@@ -778,6 +778,111 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "W07 Confirmed cancellation demo outcome with links to cancellation details or My Jobs",
   },
   {
+    id: "w07-cancel-failed-es",
+    name: "W07 · Cancelación no completada (Español)",
+    figmaNode: "Node 893:7762",
+    route: "/job-cancel-failed",
+    locale: "es",
+    description: "W07 Estado de error o cancelación no confirmada con reserva original preservada",
+  },
+  {
+    id: "w07-cancel-failed-en",
+    name: "W07 · Cancellation Not Completed (English)",
+    figmaNode: "Node 892:7356",
+    route: "/job-cancel-failed",
+    locale: "en",
+    description:
+      "W07 Uncompleted cancellation outcome preserving original booking status without server changes",
+  },
+  {
+    id: "w07-support-es",
+    name: "W07 · Atención al cliente (Español)",
+    figmaNode: "Node 893:7849",
+    route: "/job-support",
+    locale: "es",
+    description:
+      "W07 Centro de soporte al cliente con selección de temas y composición de caso demo",
+  },
+  {
+    id: "w07-support-en",
+    name: "W07 · Customer Support (English)",
+    figmaNode: "Node 892:7443",
+    route: "/job-support",
+    locale: "en",
+    description:
+      "W07 Customer support hub for booking management with issue categories and local state",
+  },
+  {
+    id: "w07-support-submitted-es",
+    name: "W07 · Solicitud recibida (Español)",
+    figmaNode: "Node 893:7945",
+    route: "/job-support-submitted",
+    locale: "es",
+    description:
+      "W07 Confirmación de solicitud de soporte demo recibida con seguimiento ilustrativo",
+  },
+  {
+    id: "w07-support-submitted-en",
+    name: "W07 · Support Request Received (English)",
+    figmaNode: "Node 892:7539",
+    route: "/job-support-submitted",
+    locale: "en",
+    description:
+      "W07 Confirmation screen after submitting demo support case with next step tracking",
+  },
+  {
+    id: "w07-support-pending-es",
+    name: "W07 · Caso en revisión (Español)",
+    figmaNode: "Node 893:8041",
+    route: "/job-support-pending",
+    locale: "es",
+    description:
+      "W07 Estado de caso de soporte en revisión con opción de previsualizar resolución demo",
+  },
+  {
+    id: "w07-support-pending-en",
+    name: "W07 · Support Case in Review (English)",
+    figmaNode: "Node 892:7635",
+    route: "/job-support-pending",
+    locale: "en",
+    description: "W07 Support case under review with preview action to view resolved demo outcome",
+  },
+  {
+    id: "w07-support-resolved-es",
+    name: "W07 · Caso resuelto (Español)",
+    figmaNode: "Node 893:8137",
+    route: "/job-support-resolved",
+    locale: "es",
+    description:
+      "W07 Resolución de caso de soporte vinculada a la reserva con retorno a Mis servicios",
+  },
+  {
+    id: "w07-support-resolved-en",
+    name: "W07 · Support Case Resolved (English)",
+    figmaNode: "Node 892:7731",
+    route: "/job-support-resolved",
+    locale: "en",
+    description:
+      "W07 Resolved demo support case linked to booking with options to view booking or My Jobs",
+  },
+  {
+    id: "w07-support-failed-es",
+    name: "W07 · Error de envío (Español)",
+    figmaNode: "Node 893:8233",
+    route: "/job-support-failed",
+    locale: "es",
+    description:
+      "W07 Estado de error en envío de solicitud de soporte con opción de editar y reintentar",
+  },
+  {
+    id: "w07-support-failed-en",
+    name: "W07 · Could Not Send Request (English)",
+    figmaNode: "Node 892:7827",
+    route: "/job-support-failed",
+    locale: "en",
+    description: "W07 Failed demo support submission state allowing draft editing and retry",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",

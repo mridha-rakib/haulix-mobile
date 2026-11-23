@@ -77,7 +77,7 @@ export default function JobDetailsScreen() {
 
   const handleGetSupport = useCallback(() => {
     router.push({
-      pathname: "/active-service-support",
+      pathname: "/job-support",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
