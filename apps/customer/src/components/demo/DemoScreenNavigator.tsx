@@ -563,6 +563,114 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
     description: "W07 Comprehensive booking breakdown with 3-step timeline and $356 demo quote",
   },
   {
+    id: "w07-details-history-es",
+    name: "W07 · Detalles del servicio anterior (Español)",
+    figmaNode: "Node 893:6782",
+    route: "/job-details-history",
+    locale: "es",
+    description:
+      "W07 Historial de servicio archivado con cronología completa, cotización demo y opción de revisión",
+  },
+  {
+    id: "w07-details-history-en",
+    name: "W07 · Past Service Details (English)",
+    figmaNode: "Node 892:6376",
+    route: "/job-details-history",
+    locale: "en",
+    description:
+      "W07 Archived event history with booking timeline, demo quote, and refund review option",
+  },
+  {
+    id: "w07-details-cancelled-es",
+    name: "W07 · Detalles de reserva cancelada (Español)",
+    figmaNode: "Node 893:6864",
+    route: "/job-details-cancelled",
+    locale: "es",
+    description:
+      "W07 Estado de reserva cancelada con verificación en servidor, soporte y revisión de reembolso",
+  },
+  {
+    id: "w07-details-cancelled-en",
+    name: "W07 · Cancelled Booking Details (English)",
+    figmaNode: "Node 892:6458",
+    route: "/job-details-cancelled",
+    locale: "en",
+    description:
+      "W07 Cancelled booking details with server-verified status, support discussion, and refund review",
+  },
+  {
+    id: "w07-reschedule-es",
+    name: "W07 · Reprogramar reserva (Español)",
+    figmaNode: "Node 893:6946",
+    route: "/job-reschedule",
+    locale: "es",
+    description:
+      "W07 Selección de nueva fecha y franja horaria con evaluación de cambios gratuitos o revisión Admin",
+  },
+  {
+    id: "w07-reschedule-en",
+    name: "W07 · Reschedule Booking (English)",
+    figmaNode: "Node 892:6540",
+    route: "/job-reschedule",
+    locale: "en",
+    description:
+      "W07 Selection of new date and time window with eligible free change vs Admin review routes",
+  },
+  {
+    id: "w07-resched-free-es",
+    name: "W07 · Cambio gratuito elegible (Español)",
+    figmaNode: "Node 893:7024",
+    route: "/job-reschedule-free",
+    locale: "es",
+    description:
+      "W07 Confirmación de cambio sin cargo bajo política de 2 cambios gratuitos con más de 24 h de anticipación",
+  },
+  {
+    id: "w07-resched-free-en",
+    name: "W07 · Qualifying Free Reschedule (English)",
+    figmaNode: "Node 892:6618",
+    route: "/job-reschedule-free",
+    locale: "en",
+    description:
+      "W07 Free reschedule confirmation under policy of first 2 qualifying >=24h changes free",
+  },
+  {
+    id: "w07-resched-admin-es",
+    name: "W07 · Cambio requiere revisión (Español)",
+    figmaNode: "Node 893:7102",
+    route: "/job-reschedule-admin",
+    locale: "es",
+    description:
+      "W07 Solicitud de cambio tardío o tras asignación que requiere revisión y aprobación de Admin",
+  },
+  {
+    id: "w07-resched-admin-en",
+    name: "W07 · Reschedule Needs Review (English)",
+    figmaNode: "Node 892:6696",
+    route: "/job-reschedule-admin",
+    locale: "en",
+    description:
+      "W07 Reschedule request requiring Admin review due to late timing or accepted driver assignment",
+  },
+  {
+    id: "w07-resched-pending-es",
+    name: "W07 · Cambio en revisión (Español)",
+    figmaNode: "Node 893:7180",
+    route: "/job-reschedule-pending",
+    locale: "es",
+    description:
+      "W07 Estado de cambio pendiente donde la reserva original se mantiene inalterada hasta aprobación",
+  },
+  {
+    id: "w07-resched-pending-en",
+    name: "W07 · Reschedule Under Review (English)",
+    figmaNode: "Node 892:6774",
+    route: "/job-reschedule-pending",
+    locale: "en",
+    description:
+      "W07 Reschedule pending status showing existing booking remains unchanged until Admin approval",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",

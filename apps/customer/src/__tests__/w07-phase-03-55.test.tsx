@@ -160,7 +160,7 @@ describe("Phase 03.55 — W07 Batch 1 Tests", () => {
       path.join(customerAppDir, "my-jobs-history.tsx"),
       "utf-8"
     );
-    expect(historySource).toContain('pathname: "/job-details"');
+    expect(historySource).toContain('pathname: "/job-details-history"');
     expect(historySource).toContain('pathname: "/my-jobs"');
 
     // 4. Loading state routes to my-jobs, empty preview, and access-denied
@@ -179,7 +179,7 @@ describe("Phase 03.55 — W07 Batch 1 Tests", () => {
 
     // 6. Details screen routes to reschedule, cancel, support, and back to my-jobs
     const detailsSource = fs.readFileSync(path.join(customerAppDir, "job-details.tsx"), "utf-8");
-    expect(detailsSource).toContain('pathname: "/dispatch-reschedule"');
+    expect(detailsSource).toContain('pathname: "/job-reschedule"');
     expect(detailsSource).toContain('pathname: "/no-driver-fee-free-cancellation"');
     expect(detailsSource).toContain('pathname: "/active-service-support"');
     expect(detailsSource).toContain('pathname: "/my-jobs"');

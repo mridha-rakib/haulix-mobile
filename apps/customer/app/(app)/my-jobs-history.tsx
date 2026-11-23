@@ -67,9 +67,16 @@ export default function MyJobsHistoryScreen() {
     });
   }, [router, params.previewLocale]);
 
-  const handleViewDetails = useCallback(() => {
+  const handleViewPastDetails = useCallback(() => {
     router.push({
-      pathname: "/job-details",
+      pathname: "/job-details-history",
+      params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
+    });
+  }, [router, params.previewLocale]);
+
+  const handleViewCancelledDetails = useCallback(() => {
+    router.push({
+      pathname: "/job-details-cancelled",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);
@@ -196,7 +203,7 @@ export default function MyJobsHistoryScreen() {
         <Pressable
           accessibilityLabel={t("w07HomeHistory.primaryCta")}
           accessibilityRole="button"
-          onPress={handleViewDetails}
+          onPress={handleViewPastDetails}
           style={({ pressed }) => [styles.primaryButton, pressed && styles.primaryButtonPressed]}
           testID="w07-history-primary-cta"
         >
@@ -206,7 +213,7 @@ export default function MyJobsHistoryScreen() {
         <Pressable
           accessibilityLabel={t("w07HomeHistory.secondaryCta")}
           accessibilityRole="button"
-          onPress={handleViewDetails}
+          onPress={handleViewCancelledDetails}
           style={({ pressed }) => [
             styles.secondaryButton,
             pressed && styles.secondaryButtonPressed,

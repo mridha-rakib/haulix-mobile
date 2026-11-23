@@ -64,7 +64,7 @@ export default function JobDetailsScreen() {
 
   const handleRequestReschedule = useCallback(() => {
     router.push({
-      pathname: "/dispatch-reschedule",
+      pathname: "/job-reschedule",
       params: params.previewLocale ? { previewLocale: params.previewLocale } : {},
     });
   }, [router, params.previewLocale]);

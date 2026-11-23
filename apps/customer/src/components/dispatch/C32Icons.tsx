@@ -331,3 +331,36 @@ export function C32PaperclipIcon({ size = 20, color = "#ADB7B1" }: IconProps) {
     </Svg>
   );
 }
+
+export function C32BriefcaseIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Rect x={2} y={7} width={20} height={14} rx={2} ry={2} stroke={color} strokeWidth={1.8} />
+      <Path
+        d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function C32CreditCardIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Rect x={1} y={4} width={22} height={16} rx={2} ry={2} stroke={color} strokeWidth={1.8} />
+      <Path d="M1 10h22" stroke={color} strokeWidth={1.8} />
+    </Svg>
+  );
+}
+
+export function C32InfoIcon({ size = 18, color = "#ADB7B1" }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx={12} cy={12} r={10} stroke={color} strokeWidth={1.8} />
+      <Path d="M12 16v-4M12 8h.01" stroke={color} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
+  );
+}
