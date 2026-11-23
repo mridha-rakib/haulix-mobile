@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20 States) · W06 Complete (26/26 Canonical States, 52 Bilingual Variants)  
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Progress (6/34 Canonical States, 12 Bilingual Variants)  
 **Date:** November 23, 2026
 
 ---
@@ -122,14 +122,26 @@ Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
 ---
 
-## 5. Upcoming Workflow 07 & W08 Roadmap
+## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 6/34 Complete)
 
-Workflow 07 & W08 complete the customer journey:
+Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
-1. Delivery Completion & Sign-off (W07)
-2. Rating & Tipping Flow (W07)
-3. Receipt & Order History (W07)
-4. Customer Support, Claims & Cancellation (W08)
+| #   | Canonical State | Route Path         | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                         |
+| --- | --------------- | ------------------ | ---------- | ---------- | ----------- | --------------------------------------------------- |
+| 01  | `HOME`          | `/my-jobs`         | `892:5859` | `893:6265` | ✅ Complete | My Jobs dashboard, active booking card, bottom nav  |
+| 02  | `HOME_EMPTY`    | `/my-jobs-empty`   | `892:5946` | `893:6352` | ✅ Complete | Empty booking state, support CTA, bottom nav        |
+| 03  | `HOME_HISTORY`  | `/my-jobs-history` | `892:6033` | `893:6439` | ✅ Complete | Archive list of completed & cancelled moves         |
+| 04  | `HOME_LOADING`  | `/my-jobs-loading` | `892:6120` | `893:6526` | ✅ Complete | Skeleton loading state, retry action, bottom nav    |
+| 05  | `HOME_ACCESS`   | `/my-jobs-access`  | `892:6207` | `893:6613` | ✅ Complete | Booking unavailable / authorization required state  |
+| 06  | `DETAILS`       | `/job-details`     | `892:6294` | `893:6700` | ✅ Complete | 3-step booking timeline, $356 quote, reschedule CTA |
+
+---
+
+## 6. Upcoming Workflow 08 Roadmap
+
+Workflow 08 completes the customer journey:
+
+1. **Workflow 08 (28 Canonical States):** Delivery Completion Proof, Payment Finalization, Final Receipt, Star Rating & Driver Tipping, and Service Recovery (`907:6811` EN, `907:9711` ES).
 
 ---
 

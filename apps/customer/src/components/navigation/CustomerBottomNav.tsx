@@ -39,13 +39,12 @@ interface CustomerBottomNavProps {
  */
 const ROUTE_MAP: Partial<Record<NavTabId, string>> = {
   home: "/(app)",
+  jobs: "/my-jobs",
   account: "/(app)/account",
 };
 
 const getUpcomingNotice = (tab: NavTabId, t: (key: string) => string): string | undefined => {
   if (tab === "deals") return t("account.dealsNoticeMessage") || DEALS_NOTICE;
-  if (tab === "jobs")
-    return t("home.recentJobsNotice") || "My Jobs (W07) is scheduled for an upcoming phase.";
   if (tab === "book")
     return (
       t("home.bookServiceNotice") ||
