@@ -122,7 +122,7 @@ Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
 ---
 
-## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 24/34 Complete)
+## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 29/34 Complete)
 
 Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
@@ -152,6 +152,11 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 | 22  | `SUPPORT_PENDING`   | `/job-support-pending`      | `892:7635` | `893:8041` | ✅ Complete | Support case under review, preview resolved case option   |
 | 23  | `SUPPORT_RESOLVED`  | `/job-support-resolved`     | `892:7731` | `893:8137` | ✅ Complete | Resolved support case linked to booking, return to jobs   |
 | 24  | `SUPPORT_FAILED`    | `/job-support-failed`       | `892:7827` | `893:8233` | ✅ Complete | Send failed exception, edit and retry draft preserved     |
+| 25  | `REFUND`            | `/job-refund`               | `892:7923` | `893:8329` | ✅ Complete | Refund & dispute review request, reason chips, details    |
+| 26  | `REFUND_PENDING`    | `/job-refund-pending`       | `892:8011` | `893:8417` | ✅ Complete | Refund under Admin review, preview approved/declined CTAs |
+| 27  | `REFUND_RESOLVED`   | `/job-refund-resolved`      | `892:8099` | `893:8505` | ✅ Complete | Admin-approved demo refund outcome, return to My Jobs     |
+| 28  | `REFUND_REJECTED`   | `/job-refund-rejected`      | `892:8187` | `893:8593` | ✅ Complete | Declined refund outcome demo, support discussion link     |
+| 29  | `REFUND_FAILED`     | `/job-refund-failed`        | `892:8275` | `893:8681` | ✅ Complete | Review request submission failed, edit and retry draft    |
 
 ---
 
