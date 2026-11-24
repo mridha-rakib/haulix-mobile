@@ -1109,6 +1109,114 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
 			"W07 Categorized customer support flow for general account, mobile app, and policy inquiries",
 	},
 	{
+		id: "w08-proof-es",
+		name: "W08 · Revisar prueba de finalización (Español)",
+		figmaNode: "Node 907:9711",
+		route: "/completion-proof",
+		locale: "es",
+		description:
+			"W08 Galería y revisión fotográfica de la entrega completada por el conductor antes de confirmar",
+	},
+	{
+		id: "w08-proof-en",
+		name: "W08 · Review Completion Proof (English)",
+		figmaNode: "Node 907:6811",
+		route: "/completion-proof",
+		locale: "en",
+		description:
+			"W08 Photo evidence gallery and delivery review uploaded by driver before customer confirmation",
+	},
+	{
+		id: "w08-proof-missing-es",
+		name: "W08 · Falta prueba de finalización (Español)",
+		figmaNode: "Node 907:9813",
+		route: "/completion-proof-missing",
+		locale: "es",
+		description:
+			"W08 Estado de evidencia no subida por el conductor con opciones de reintento y reporte de incidencia",
+	},
+	{
+		id: "w08-proof-missing-en",
+		name: "W08 · Completion Proof Missing (English)",
+		figmaNode: "Node 907:6913",
+		route: "/completion-proof-missing",
+		locale: "en",
+		description:
+			"W08 Missing delivery evidence exception with retry and issue escalation pathways",
+	},
+	{
+		id: "w08-proof-denied-es",
+		name: "W08 · Acceso a evidencia restringido (Español)",
+		figmaNode: "Node 907:9915",
+		route: "/completion-proof-denied",
+		locale: "es",
+		description:
+			"W08 Protección de privacidad y confidencialidad que enmascara las pruebas para partes no autorizadas",
+	},
+	{
+		id: "w08-proof-denied-en",
+		name: "W08 · Evidence Access Restricted (English)",
+		figmaNode: "Node 907:7015",
+		route: "/completion-proof-denied",
+		locale: "en",
+		description:
+			"W08 Confidential evidence safeguarding masking cargo photos for unauthorized viewers",
+	},
+	{
+		id: "w08-confirm-es",
+		name: "W08 · ¿Confirmar servicio finalizado? (Español)",
+		figmaNode: "Node 907:10017",
+		route: "/completion-confirm",
+		locale: "es",
+		description:
+			"W08 Desglose de 3 pasos de decisión del cliente para confirmar o disputar la entrega",
+	},
+	{
+		id: "w08-confirm-en",
+		name: "W08 · Confirm Completed Service? (English)",
+		figmaNode: "Node 907:7117",
+		route: "/completion-confirm",
+		locale: "en",
+		description:
+			"W08 Customer 3-step decision breakdown to confirm completion or report an issue",
+	},
+	{
+		id: "w08-issue-es",
+		name: "W08 · Reportar problema de finalización (Español)",
+		figmaNode: "Node 907:10115",
+		route: "/completion-issue",
+		locale: "es",
+		description:
+			"W08 Formulario de reporte de incidencias en entrega con selección de tema y descripción",
+	},
+	{
+		id: "w08-issue-en",
+		name: "W08 · Report a Completion Issue (English)",
+		figmaNode: "Node 907:7215",
+		route: "/completion-issue",
+		locale: "en",
+		description:
+			"W08 Delivery issue intake form with topic chips, note composition, and demo attachment",
+	},
+	{
+		id: "w08-dispute-hold-es",
+		name: "W08 · Disputa bajo revisión de Admin (Español)",
+		figmaNode: "Node 907:10216",
+		route: "/completion-dispute-hold",
+		locale: "es",
+		description:
+			"W08 Retención de autorización de pago y revisión de disputa por el Administrador",
+	},
+	{
+		id: "w08-dispute-hold-en",
+		name: "W08 · Dispute Under Admin Review (English)",
+		figmaNode: "Node 907:7316",
+		route: "/completion-dispute-hold",
+		locale: "en",
+		description:
+			"W08 Payment authorization safeguard hold and Admin review investigation state",
+	},
+	{
 		id: "w05-no-show-es",
 		name: "W05 · El conductor aún no llega (Español)",
 		figmaNode: "Node 844:8128",

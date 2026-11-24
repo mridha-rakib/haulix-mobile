@@ -6,8 +6,8 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34 Canonical States, 68 Bilingual Variants)  
-**Date:** November 23, 2026
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batch 1 Complete (6/28 Canonical States, 12 Bilingual Variants)  
+**Date:** November 24, 2026
 
 ---
 
@@ -165,11 +165,20 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
 ---
 
-## 6. Upcoming Workflow 08 Roadmap
+## 6. Workflow 08: Completion Proof, Payment & Rating (6/28 Canonical States Delivered)
 
-Workflow 08 completes the customer journey:
+Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 
-1. **Workflow 08 (28 Canonical States):** Delivery Completion Proof, Payment Finalization, Final Receipt, Star Rating & Driver Tipping, and Service Recovery (`907:6811` EN, `907:9711` ES).
+| #   | Canonical State  | Route Path                  | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
+| --- | ---------------- | --------------------------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
+| 01  | `PROOF`          | `/completion-proof`         | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
+| 02  | `PROOF_MISSING`  | `/completion-proof-missing` | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
+| 03  | `PROOF_DENIED`   | `/completion-proof-denied`  | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
+| 04  | `CONFIRM`        | `/completion-confirm`       | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack, report issue |
+| 05  | `ISSUE`          | `/completion-issue`         | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
+| 06  | `DISPUTE_HOLD`   | `/completion-dispute-hold`  | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, authorization hold deadline box |
+
+Remaining 22 canonical states across Batches 2–5 will complete the payment finalization, receipts, driver tipping & star ratings, and service recovery lifecycles.
 
 ---
 
