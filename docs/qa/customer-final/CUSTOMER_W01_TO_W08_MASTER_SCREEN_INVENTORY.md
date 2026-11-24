@@ -13,7 +13,12 @@
 
 ## 1. Executive Summary & Architecture Overview
 
-The HAULIX Customer Mobile App frontend provides a 100% deterministic, zero-guard UX prototype of all core workflows from onboarding (W01) through active service execution (W06), completion/tipping (W07), and support/cancellation (W08).
+The HAULIX Customer Mobile App frontend provides a 100% deterministic, zero-guard UX prototype of all core workflows from onboarding (W01) through active service execution (W06), bookings, reschedule & support (W07), and delivery completion proof, capture, receipts & ratings (W08).
+
+> [!NOTE]
+> **Denominator Governance Clarification:**  
+> The count of **108 canonical states** (216 bilingual variants) represents post-booking workflows **W05 through W08 only** (W05: 20, W06: 26, W07: 34, W08: 28).  
+> The entire Customer Mobile App inventory (W01 through W08) contains **215 unique canonical routes** (214 route files + root index) and **423 bilingual variants** registered in `DemoScreenNavigator.tsx`.
 
 ### Guiding Principles:
 
