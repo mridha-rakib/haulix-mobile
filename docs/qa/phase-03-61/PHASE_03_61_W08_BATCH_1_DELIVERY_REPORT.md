@@ -86,17 +86,19 @@ All automated tests and quality checks run cleanly:
 
 ---
 
-## 5. Next Steps — Phase 03.62 Handoff
+## 5. Next Steps — Phase 03.62 Handoff (Corrected)
 
-**Phase 03.62 (W08 Batch 2):**
+> **Correction Notice:** The initial Phase 03.61 delivery report extrapolated numerical sequences that resulted in incorrect canonical identifiers (`AUTO_CONFIRMED`, `DISPUTE_RESOLVED`, etc.). Independent Figma inspection verified the authentic 28-state matrix below:
 
-- Implement States 07–12:
-  - `NO_REPLY` (`/completion-no-reply`) — EN `907:7417`, ES `907:10317`
-  - `AUTO_ELIGIBLE` (`/completion-auto-eligible`) — EN `907:7518`, ES `907:10418`
-  - `AUTO_CONFIRMED` (`/completion-auto-confirmed`) — EN `907:7619`, ES `907:10519`
-  - `DISPUTE_RESOLVED` (`/completion-dispute-resolved`) — EN `907:7720`, ES `907:10620`
-  - `DISPUTE_DENIED` (`/completion-dispute-denied`) — EN `907:7821`, ES `907:10721`
-  - `PAYMENT_READY` (`/completion-payment-ready`) — EN `907:7922`, ES `907:10822`
+**Phase 03.62 (W08 Batch 2 — Automatic Closure Policy & Payment Capture Lifecycle):**
+
+- Implemented States 07–12 (12 Bilingual Variants):
+  - `NO_REPLY` (`/completion-no-reply`) — EN `907:7414`, ES `907:10314`
+  - `AUTO_ELIGIBLE` (`/completion-auto-eligible`) — EN `907:7512`, ES `907:10412`
+  - `AUTO_BLOCKED` (`/completion-auto-blocked`) — EN `907:7610`, ES `907:10510`
+  - `CAPTURE_PENDING` (`/completion-capture-pending`) — EN `907:7708`, ES `907:10608`
+  - `CAPTURE_SUCCESS` (`/completion-capture-success`) — EN `907:7809`, ES `907:10709`
+  - `CAPTURE_FAILED` (`/completion-capture-failed`) — EN `907:7910`, ES `907:10810`
 
 ---
 

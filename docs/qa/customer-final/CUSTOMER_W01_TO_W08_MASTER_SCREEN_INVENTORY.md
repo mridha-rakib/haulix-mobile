@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batch 1 Complete (6/28 Canonical States, 12 Bilingual Variants)  
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batches 1 & 2 Complete (12/28 Canonical States, 24 Bilingual Variants)  
 **Date:** November 24, 2026
 
 ---
@@ -165,20 +165,26 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
 ---
 
-## 6. Workflow 08: Completion Proof, Payment & Rating (6/28 Canonical States Delivered)
+## 6. Workflow 08: Completion Proof, Payment & Rating (12/28 Canonical States Delivered)
 
 Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 
-| #   | Canonical State  | Route Path                  | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
-| --- | ---------------- | --------------------------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
-| 01  | `PROOF`          | `/completion-proof`         | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
-| 02  | `PROOF_MISSING`  | `/completion-proof-missing` | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
-| 03  | `PROOF_DENIED`   | `/completion-proof-denied`  | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
-| 04  | `CONFIRM`        | `/completion-confirm`       | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack, report issue |
-| 05  | `ISSUE`          | `/completion-issue`         | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
-| 06  | `DISPUTE_HOLD`   | `/completion-dispute-hold`  | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, authorization hold deadline box |
+| #   | Canonical State  | Route Path                    | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
+| --- | ---------------- | ----------------------------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
+| 01  | `PROOF`          | `/completion-proof`           | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
+| 02  | `PROOF_MISSING`  | `/completion-proof-missing`   | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
+| 03  | `PROOF_DENIED`   | `/completion-proof-denied`    | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
+| 04  | `CONFIRM`        | `/completion-confirm`         | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack routes to pay |
+| 05  | `ISSUE`          | `/completion-issue`           | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
+| 06  | `DISPUTE_HOLD`   | `/completion-dispute-hold`    | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, capture blocked pending review  |
+| 07  | `NO_REPLY`       | `/completion-no-reply`        | `907:7414` | `907:10314` | ✅ Complete | 24-hr response window, preview eligible / blocked paths      |
+| 08  | `AUTO_ELIGIBLE`  | `/completion-auto-eligible`   | `907:7512` | `907:10412` | ✅ Complete | 24-hr auto-closure eligible, preview eligible capture CTA    |
+| 09  | `AUTO_BLOCKED`   | `/completion-auto-blocked`    | `907:7610` | `907:10510` | ✅ Complete | Auto-closure blocked, check required evidence, review hold   |
+| 10  | `CAPTURE_PENDING`| `/completion-capture-pending` | `907:7708` | `907:10608` | ✅ Complete | Payment capture pending, view captured/failed demo paths     |
+| 11  | `CAPTURE_SUCCESS`| `/completion-capture-success` | `907:7809` | `907:10709` | ✅ Complete | Payment captured demo, view receipt modal, return to My Jobs |
+| 12  | `CAPTURE_FAILED` | `/completion-capture-failed`  | `907:7910` | `907:10810` | ✅ Complete | Payment capture failed, reauth options modal, admin support  |
 
-Remaining 22 canonical states across Batches 2–5 will complete the payment finalization, receipts, driver tipping & star ratings, and service recovery lifecycles.
+Remaining 16 canonical states across Batches 3–5 will complete the authorization renewals, itemized receipts, driver tipping & star ratings (1–5), and feedback/review lifecycles.
 
 ---
 
