@@ -7,7 +7,7 @@
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
 **Parent Sections:** English `902:6811`, Spanish `902:6812`  
-**Current Progress:** Batches 1, 2 & 3 Delivered — 18/28 Canonical States (36/56 Bilingual Variants)  
+**Current Progress:** Batches 1, 2, 3 & 4 Delivered — 25/28 Canonical States (50/56 Bilingual Variants)  
 **Date:** November 24, 2026
 
 ---
@@ -21,7 +21,7 @@ Workflow 08 represents the concluding customer-facing stage of the HAULIX moving
 3. **Automatic Closure Policy & Eligibility Exceptions:** 24-hour review window (`NO_REPLY`), policy-based auto-closure eligibility (`AUTO_ELIGIBLE`), and blocked closure safeguards when evidence is missing or disputes are pending (`AUTO_BLOCKED`).
 4. **Payment Capture Lifecycle:** Stripe payment hold capture processing (`CAPTURE_PENDING`), successful transaction finalization (`CAPTURE_SUCCESS`), and payment capture failure with customer re-authorization options (`CAPTURE_FAILED`).
 5. **Authorization Expiration & Receipts (Phase 03.63):** Expired authorization renewals (`AUTH_EXPIRED`), fresh authorization demonstration (`REAUTH`), transaction receipts (`RECEIPT`), pending receipt status (`RECEIPT_PENDING`), refund-adjusted receipts (`RECEIPT_REFUNDED`), and updated payment records (`RECEIPT_UPDATED`).
-6. **Ratings, Star Evaluation & Service Recovery (Phases 03.64–03.65):** Comprehensive driver rating matrix, lock states, ratings 1–5, feedback submission, and admin review.
+6. **Ratings, Star Evaluation & Service Review (Phases 03.64–03.65):** Comprehensive driver rating matrix, lock states, ratings 1–5, feedback submission, and admin review. Phase 03.64 delivers states 19–25; Phase 03.65 delivers final states 26–28.
 
 ---
 
@@ -47,13 +47,13 @@ Workflow 08 represents the concluding customer-facing stage of the HAULIX moving
 | 16 | `RECEIPT_PENDING` | `907:8320` | `907:11220` | `/completion-receipt-pending` | ✅ Complete (03.63) | Processing receipt status before processor settlement |
 | 17 | `RECEIPT_REFUNDED` | `907:8427` | `907:11327` | `/completion-receipt-refunded` | ✅ Complete (03.63) | Refund-adjusted receipt with link to refund review |
 | 18 | `RECEIPT_UPDATED` | `907:8534` | `907:11434` | `/completion-receipt-updated` | ✅ Complete (03.63) | Updated receipt reflecting modified line items & dispute action |
-| 19 | `RATING` | `907:8641` | `907:11541` | TBD | ⏳ Phase 03.64 | 5-star service evaluation for driver & helpers |
-| 20 | `RATING_LOCKED` | `907:8748` | `907:11648` | TBD | ⏳ Phase 03.64 | Rating submission locked state |
-| 21 | `RATING_1` | `907:8855` | `907:11755` | TBD | ⏳ Phase 03.64 | 1-star dissatisfaction feedback breakdown |
-| 22 | `RATING_2` | `907:8962` | `907:11862` | TBD | ⏳ Phase 03.64 | 2-star service improvement feedback |
-| 23 | `RATING_3` | `907:9069` | `907:11969` | TBD | ⏳ Phase 03.64 | 3-star neutral service feedback |
-| 24 | `RATING_4` | `907:9176` | `907:12076` | TBD | ⏳ Phase 03.64 | 4-star positive service feedback |
-| 25 | `RATING_5` | `907:9283` | `907:12183` | TBD | ⏳ Phase 03.64 | 5-star outstanding service feedback |
+| 19 | `RATING` | `907:8641` | `907:11541` | `/completion-rating` | ✅ Complete (03.64) | 5-star service evaluation entry, star selector & optional comment |
+| 20 | `RATING_LOCKED` | `907:8748` | `907:11648` | `/completion-rating-locked` | ✅ Complete (03.64) | Rating submission locked state when unverified or expired |
+| 21 | `RATING_1` | `907:8855` | `907:11755` | `/completion-rating-1` | ✅ Complete (03.64) | 1-star dissatisfaction rating with review finalization modal |
+| 22 | `RATING_2` | `907:8962` | `907:11862` | `/completion-rating-2` | ✅ Complete (03.64) | 2-star service improvement rating with review finalization modal |
+| 23 | `RATING_3` | `907:9069` | `907:11969` | `/completion-rating-3` | ✅ Complete (03.64) | 3-star neutral service rating with review finalization modal |
+| 24 | `RATING_4` | `907:9176` | `907:12076` | `/completion-rating-4` | ✅ Complete (03.64) | 4-star positive service rating with review finalization modal |
+| 25 | `RATING_5` | `907:9283` | `907:12183` | `/completion-rating-5` | ✅ Complete (03.64) | 5-star outstanding service rating with review finalization modal |
 | 26 | `RATING_SENT` | `907:9390` | `907:12290` | TBD | ⏳ Phase 03.65 | Rating sent confirmation |
 | 27 | `RATING_FAILED` | `907:9497` | `907:12397` | TBD | ⏳ Phase 03.65 | Rating submission failed exception |
 | 28 | `RATING_REVIEW` | `907:9604` | `907:12504` | TBD | ⏳ Phase 03.65 | Written review summary and completion close |
