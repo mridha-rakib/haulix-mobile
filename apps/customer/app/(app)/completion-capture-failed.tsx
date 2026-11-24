@@ -1,8 +1,8 @@
 import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { BackHandler, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useEffect } from "react";
+import { BackHandler, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import {
   W08BookingCard,
   W08Header,
@@ -12,20 +12,19 @@ import {
 export default function CompletionCaptureFailedScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [showReauthModal, setShowReauthModal] = useState(false);
 
   useEffect(() => {
     const onBackPress = () => {
-      if (showReauthModal) {
-        setShowReauthModal(false);
-        return true;
-      }
       router.push("/completion-capture-pending");
       return true;
     };
     const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
     return () => sub.remove();
-  }, [router, showReauthModal]);
+  }, [router]);
+
+  const handleReauthOptions = () => {
+    router.push("/completion-auth-expired");
+  };
 
   const handleAdminSupport = () => {
     router.push("/job-support");
@@ -85,7 +84,7 @@ export default function CompletionCaptureFailedScreen() {
           <View className="mt-6 gap-3">
             <TouchableOpacity
               className="bg-brand py-3.5 px-4 rounded-xl items-center active:opacity-90"
-              onPress={() => setShowReauthModal(true)}
+              onPress={handleReauthOptions}
               activeOpacity={0.8}
             >
               <Text className="text-neutral-900 font-bold text-base">
@@ -114,33 +113,6 @@ export default function CompletionCaptureFailedScreen() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        <Modal
-          visible={showReauthModal}
-          transparent
-          animationType="fade"
-          onRequestClose={() => setShowReauthModal(false)}
-        >
-          <View className="flex-1 bg-black/80 justify-center items-center px-6">
-            <View className="bg-surface-elevated border border-neutral-700 rounded-2xl p-6 w-full max-w-sm">
-              <Text className="text-lg font-bold text-white mb-2">
-                {t("w08CaptureFailed.reauthModalTitle")}
-              </Text>
-              <Text className="text-sm text-neutral-300 mb-6 leading-relaxed">
-                {t("w08CaptureFailed.reauthModalBody")}
-              </Text>
-              <TouchableOpacity
-                className="bg-brand py-3 rounded-xl items-center active:opacity-90"
-                onPress={() => setShowReauthModal(false)}
-                activeOpacity={0.8}
-              >
-                <Text className="text-neutral-900 font-bold text-sm">
-                  {t("w08CaptureFailed.reauthModalClose")}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
       </View>
     </HaulixSafeArea>
   );

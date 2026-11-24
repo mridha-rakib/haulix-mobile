@@ -15,7 +15,7 @@ export default function CompletionAutoBlockedScreen() {
 
   useEffect(() => {
     const onBackPress = () => {
-      router.push("/completion-auto-eligible");
+      router.push("/completion-no-reply");
       return true;
     };
     const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
@@ -31,7 +31,7 @@ export default function CompletionAutoBlockedScreen() {
   };
 
   const handleBack = () => {
-    router.push("/completion-auto-eligible");
+    router.push("/completion-no-reply");
   };
 
   return (

@@ -225,6 +225,10 @@ export function W08PaymentCard({
   );
 }
 
+export function W08ReceiptCard(props: W08PaymentCardProps) {
+  return <W08PaymentCard testID="w08-receipt-card" {...props} />;
+}
+
 interface W08DecisionCardProps {
   heading?: string;
   title?: string;

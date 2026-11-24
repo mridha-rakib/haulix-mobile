@@ -1,8 +1,8 @@
 import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { BackHandler, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useEffect } from "react";
+import { BackHandler, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import {
   W08BookingCard,
   W08Header,
@@ -12,23 +12,26 @@ import {
 export default function CompletionCaptureSuccessScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [modalType, setModalType] = useState<"receiptDemo" | "receiptPending" | null>(null);
 
   useEffect(() => {
     const onBackPress = () => {
-      if (modalType) {
-        setModalType(null);
-        return true;
-      }
       router.push("/completion-capture-pending");
       return true;
     };
     const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
     return () => sub.remove();
-  }, [router, modalType]);
+  }, [router]);
 
   const handleBack = () => {
     router.push("/completion-capture-pending");
+  };
+
+  const handleViewReceipt = () => {
+    router.push("/completion-receipt");
+  };
+
+  const handleReceiptPending = () => {
+    router.push("/completion-receipt-pending");
   };
 
   return (
@@ -81,7 +84,7 @@ export default function CompletionCaptureSuccessScreen() {
           <View className="mt-6 gap-3">
             <TouchableOpacity
               className="bg-brand py-3.5 px-4 rounded-xl items-center active:opacity-90"
-              onPress={() => setModalType("receiptDemo")}
+              onPress={handleViewReceipt}
               activeOpacity={0.8}
             >
               <Text className="text-neutral-900 font-bold text-base">
@@ -91,7 +94,7 @@ export default function CompletionCaptureSuccessScreen() {
 
             <TouchableOpacity
               className="bg-surface-elevated border border-neutral-700 py-3.5 px-4 rounded-xl items-center active:opacity-90"
-              onPress={() => setModalType("receiptPending")}
+              onPress={handleReceiptPending}
               activeOpacity={0.8}
             >
               <Text className="text-neutral-200 font-medium text-sm">
@@ -110,37 +113,6 @@ export default function CompletionCaptureSuccessScreen() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        <Modal
-          visible={modalType !== null}
-          transparent
-          animationType="fade"
-          onRequestClose={() => setModalType(null)}
-        >
-          <View className="flex-1 bg-black/80 justify-center items-center px-6">
-            <View className="bg-surface-elevated border border-neutral-700 rounded-2xl p-6 w-full max-w-sm">
-              <Text className="text-lg font-bold text-white mb-2">
-                {modalType === "receiptDemo"
-                  ? t("w08CaptureSuccess.receiptModalTitle")
-                  : t("w08CaptureSuccess.receiptPendingModalTitle")}
-              </Text>
-              <Text className="text-sm text-neutral-300 mb-6 leading-relaxed">
-                {modalType === "receiptDemo"
-                  ? t("w08CaptureSuccess.receiptModalBody")
-                  : t("w08CaptureSuccess.receiptPendingModalBody")}
-              </Text>
-              <TouchableOpacity
-                className="bg-brand py-3 rounded-xl items-center active:opacity-90"
-                onPress={() => setModalType(null)}
-                activeOpacity={0.8}
-              >
-                <Text className="text-neutral-900 font-bold text-sm">
-                  {t("w08CaptureSuccess.receiptModalClose")}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
       </View>
     </HaulixSafeArea>
   );

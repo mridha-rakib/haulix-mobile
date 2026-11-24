@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batches 1 & 2 Complete (12/28 Canonical States, 24 Bilingual Variants)  
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batches 1, 2 & 3 Complete (18/28 Canonical States, 36 Bilingual Variants)  
 **Date:** November 24, 2026
 
 ---
@@ -165,26 +165,32 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
 ---
 
-## 6. Workflow 08: Completion Proof, Payment & Rating (12/28 Canonical States Delivered)
+## 6. Workflow 08: Completion Proof, Payment & Rating (18/28 Canonical States Delivered)
 
 Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 
-| #   | Canonical State  | Route Path                    | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
-| --- | ---------------- | ----------------------------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
-| 01  | `PROOF`          | `/completion-proof`           | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
-| 02  | `PROOF_MISSING`  | `/completion-proof-missing`   | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
-| 03  | `PROOF_DENIED`   | `/completion-proof-denied`    | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
-| 04  | `CONFIRM`        | `/completion-confirm`         | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack routes to pay |
-| 05  | `ISSUE`          | `/completion-issue`           | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
-| 06  | `DISPUTE_HOLD`   | `/completion-dispute-hold`    | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, capture blocked pending review  |
-| 07  | `NO_REPLY`       | `/completion-no-reply`        | `907:7414` | `907:10314` | ✅ Complete | 24-hr response window, preview eligible / blocked paths      |
-| 08  | `AUTO_ELIGIBLE`  | `/completion-auto-eligible`   | `907:7512` | `907:10412` | ✅ Complete | 24-hr auto-closure eligible, preview eligible capture CTA    |
-| 09  | `AUTO_BLOCKED`   | `/completion-auto-blocked`    | `907:7610` | `907:10510` | ✅ Complete | Auto-closure blocked, check required evidence, review hold   |
-| 10  | `CAPTURE_PENDING`| `/completion-capture-pending` | `907:7708` | `907:10608` | ✅ Complete | Payment capture pending, view captured/failed demo paths     |
-| 11  | `CAPTURE_SUCCESS`| `/completion-capture-success` | `907:7809` | `907:10709` | ✅ Complete | Payment captured demo, view receipt modal, return to My Jobs |
-| 12  | `CAPTURE_FAILED` | `/completion-capture-failed`  | `907:7910` | `907:10810` | ✅ Complete | Payment capture failed, reauth options modal, admin support  |
+| #   | Canonical State    | Route Path                     | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
+| --- | ------------------ | ------------------------------ | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
+| 01  | `PROOF`            | `/completion-proof`            | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
+| 02  | `PROOF_MISSING`    | `/completion-proof-missing`    | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
+| 03  | `PROOF_DENIED`     | `/completion-proof-denied`     | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
+| 04  | `CONFIRM`          | `/completion-confirm`          | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack routes to pay |
+| 05  | `ISSUE`            | `/completion-issue`            | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
+| 06  | `DISPUTE_HOLD`     | `/completion-dispute-hold`     | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, capture blocked pending review  |
+| 07  | `NO_REPLY`         | `/completion-no-reply`         | `907:7414` | `907:10314` | ✅ Complete | 24-hr response window, preview eligible / blocked paths      |
+| 08  | `AUTO_ELIGIBLE`    | `/completion-auto-eligible`    | `907:7512` | `907:10412` | ✅ Complete | 24-hr auto-closure eligible, preview eligible capture CTA    |
+| 09  | `AUTO_BLOCKED`     | `/completion-auto-blocked`     | `907:7610` | `907:10510` | ✅ Complete | Auto-closure blocked, check required evidence, review hold   |
+| 10  | `CAPTURE_PENDING`  | `/completion-capture-pending`  | `907:7708` | `907:10608` | ✅ Complete | Payment capture pending, view captured/failed demo paths     |
+| 11  | `CAPTURE_SUCCESS`  | `/completion-capture-success`  | `907:7809` | `907:10709` | ✅ Complete | Payment captured demo, view receipt routes to /receipt       |
+| 12  | `CAPTURE_FAILED`   | `/completion-capture-failed`   | `907:7910` | `907:10810` | ✅ Complete | Payment capture failed, reauth options to /auth-expired      |
+| 13  | `AUTH_EXPIRED`     | `/completion-auth-expired`     | `907:8011` | `907:10911` | ✅ Complete | Card authorization expired, request new auth CTA             |
+| 14  | `REAUTH`           | `/completion-reauth`           | `907:8112` | `907:11012` | ✅ Complete | Fresh customer authorization intake to capture pending       |
+| 15  | `RECEIPT`          | `/completion-receipt`          | `907:8213` | `907:11113` | ✅ Complete | Itemized receipt ($356.00 quote, extras, taxes, tip, refund) |
+| 16  | `RECEIPT_PENDING`  | `/completion-receipt-pending`  | `907:8320` | `907:11220` | ✅ Complete | Processing receipt status before settlement                  |
+| 17  | `RECEIPT_REFUNDED` | `/completion-receipt-refunded` | `907:8427` | `907:11327` | ✅ Complete | Refund-adjusted receipt with link to refund review           |
+| 18  | `RECEIPT_UPDATED`  | `/completion-receipt-updated`  | `907:8534` | `907:11434` | ✅ Complete | Updated receipt reflecting modified line items & dispute     |
 
-Remaining 16 canonical states across Batches 3–5 will complete the authorization renewals, itemized receipts, driver tipping & star ratings (1–5), and feedback/review lifecycles.
+Remaining 10 canonical states across Batches 4 & 5 will complete the driver tipping & star ratings (1–5), feedback submission, and review closure lifecycles.
 
 ---
 

@@ -1265,6 +1265,114 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
       "W08 Payment capture transaction failure with customer re-authorization modal and admin escalation",
   },
   {
+    id: "w08-auth-expired-es",
+    name: "W08 · Autorización de tarjeta caducada (Español)",
+    figmaNode: "Node 907:10911",
+    route: "/completion-auth-expired",
+    locale: "es",
+    description:
+      "W08 Retención de tarjeta caducada con solicitud de nueva autorización y revisión de administrador",
+  },
+  {
+    id: "w08-auth-expired-en",
+    name: "W08 · Card Authorization Expired (English)",
+    figmaNode: "Node 907:8011",
+    route: "/completion-auth-expired",
+    locale: "en",
+    description:
+      "W08 Expired card hold notice with fresh authorization request and Admin review pathways",
+  },
+  {
+    id: "w08-reauth-es",
+    name: "W08 · Nueva autorización necesaria (Español)",
+    figmaNode: "Node 907:11012",
+    route: "/completion-reauth",
+    locale: "es",
+    description:
+      "W08 Solicitud de nuevo consentimiento y autenticación segura con retorno a captura pendiente",
+  },
+  {
+    id: "w08-reauth-en",
+    name: "W08 · Fresh Authorization Required (English)",
+    figmaNode: "Node 907:8112",
+    route: "/completion-reauth",
+    locale: "en",
+    description:
+      "W08 New consent and customer authentication flow connecting back to pending payment capture",
+  },
+  {
+    id: "w08-receipt-es",
+    name: "W08 · Recibo de transacción (Español)",
+    figmaNode: "Node 907:11113",
+    route: "/completion-receipt",
+    locale: "es",
+    description:
+      "W08 Desglose detallado de transacción conciliada con valores de cotización, extras, impuestos y propina",
+  },
+  {
+    id: "w08-receipt-en",
+    name: "W08 · Transaction Receipt (English)",
+    figmaNode: "Node 907:8213",
+    route: "/completion-receipt",
+    locale: "en",
+    description:
+      "W08 Itemized transaction receipt showing processor-reconciled quote, extras, taxes, tip, and total",
+  },
+  {
+    id: "w08-receipt-pending-es",
+    name: "W08 · Recibo en proceso (Español)",
+    figmaNode: "Node 907:11220",
+    route: "/completion-receipt-pending",
+    locale: "es",
+    description:
+      "W08 Estado de conciliación pendiente con el procesador con opción de revisión y error de cobro",
+  },
+  {
+    id: "w08-receipt-pending-en",
+    name: "W08 · Receipt Processing (English)",
+    figmaNode: "Node 907:8320",
+    route: "/completion-receipt-pending",
+    locale: "en",
+    description:
+      "W08 Pending processor reconciliation state with pathways to check status or capture failure",
+  },
+  {
+    id: "w08-receipt-refunded-es",
+    name: "W08 · Recibo ajustado por reembolso (Español)",
+    figmaNode: "Node 907:11327",
+    route: "/completion-receipt-refunded",
+    locale: "es",
+    description:
+      "W08 Recibo con ajuste de reembolso según registro de Stripe y enlace a revisión de reembolso",
+  },
+  {
+    id: "w08-receipt-refunded-en",
+    name: "W08 · Refund-Adjusted Receipt (English)",
+    figmaNode: "Node 907:8427",
+    route: "/completion-receipt-refunded",
+    locale: "en",
+    description:
+      "W08 Refund-adjusted transaction receipt reflecting processor records with refund review link",
+  },
+  {
+    id: "w08-receipt-updated-es",
+    name: "W08 · Detalles de pago actualizados (Español)",
+    figmaNode: "Node 907:11434",
+    route: "/completion-receipt-updated",
+    locale: "es",
+    description:
+      "W08 Recibo con impuestos, propinas y revisiones en libro mayor por separado con opción de disputa",
+  },
+  {
+    id: "w08-receipt-updated-en",
+    name: "W08 · Updated Payment Details (English)",
+    figmaNode: "Node 907:8534",
+    route: "/completion-receipt-updated",
+    locale: "en",
+    description:
+      "W08 Updated transaction ledger showing revisions and separate lines with dispute escalations",
+  },
+  {
     id: "w05-no-show-es",
     name: "W05 · El conductor aún no llega (Español)",
     figmaNode: "Node 844:8128",
