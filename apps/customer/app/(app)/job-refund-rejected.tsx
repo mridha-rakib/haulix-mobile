@@ -179,8 +179,8 @@ export default function JobRefundRejectedScreen() {
 								{t("w07RefundRejected.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07RefundRejected.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07RefundRejected.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>

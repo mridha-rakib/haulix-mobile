@@ -177,8 +177,8 @@ export default function JobRefundFailedScreen() {
 								{t("w07RefundFailed.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07RefundFailed.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07RefundFailed.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>

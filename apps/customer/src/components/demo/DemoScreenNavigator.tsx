@@ -1019,6 +1019,96 @@ const IMPLEMENTED_SCREENS: ScreenItem[] = [
 			"W07 Dispute submission failure exception allowing draft preservation and retry",
 	},
 	{
+		id: "w07-home-scheduled-es",
+		name: "W07 · Mis trabajos programados (Español)",
+		figmaNode: "Node 897:7145",
+		route: "/my-jobs-scheduled",
+		locale: "es",
+		description:
+			"W07 Vista de reservas programadas con pestañas Activo, Programado e Historial",
+	},
+	{
+		id: "w07-home-scheduled-en",
+		name: "W07 · My Jobs Scheduled (English)",
+		figmaNode: "Node 897:6671",
+		route: "/my-jobs-scheduled",
+		locale: "en",
+		description:
+			"W07 Scheduled jobs view with 3-tab segment for Active, Scheduled, and History",
+	},
+	{
+		id: "w07-support-driver-es",
+		name: "W07 · Soporte: Problema con el conductor (Español)",
+		figmaNode: "Node 897:7235",
+		route: "/job-support-driver",
+		locale: "es",
+		description:
+			"W07 Soporte categorizado para problemas con el conductor, asistencia en ruta y asignación",
+	},
+	{
+		id: "w07-support-driver-en",
+		name: "W07 · Support: Driver Issue (English)",
+		figmaNode: "Node 897:6761",
+		route: "/job-support-driver",
+		locale: "en",
+		description:
+			"W07 Categorized customer support flow for driver delays, assignment, and vehicle questions",
+	},
+	{
+		id: "w07-support-service-es",
+		name: "W07 · Soporte: Problema con el servicio (Español)",
+		figmaNode: "Node 897:7331",
+		route: "/job-support-service",
+		locale: "es",
+		description:
+			"W07 Soporte categorizado para alcance de carga, piezas dañadas o manipulación especial",
+	},
+	{
+		id: "w07-support-service-en",
+		name: "W07 · Support: Service Issue (English)",
+		figmaNode: "Node 897:6857",
+		route: "/job-support-service",
+		locale: "en",
+		description:
+			"W07 Categorized customer support flow for inventory discrepancy, handling, and service scope",
+	},
+	{
+		id: "w07-support-payment-es",
+		name: "W07 · Soporte: Problema con el pago (Español)",
+		figmaNode: "Node 897:7427",
+		route: "/job-support-payment",
+		locale: "es",
+		description:
+			"W07 Soporte categorizado para cobros no reconocidos, retenciones de tarjeta y cotizaciones",
+	},
+	{
+		id: "w07-support-payment-en",
+		name: "W07 · Support: Payment Issue (English)",
+		figmaNode: "Node 897:6953",
+		route: "/job-support-payment",
+		locale: "en",
+		description:
+			"W07 Categorized customer support flow for unrecognized charges, card holds, and quote queries",
+	},
+	{
+		id: "w07-support-other-es",
+		name: "W07 · Soporte: Otra consulta (Español)",
+		figmaNode: "Node 897:7523",
+		route: "/job-support-other",
+		locale: "es",
+		description:
+			"W07 Soporte categorizado para consultas generales de cuenta, app o políticas de servicio",
+	},
+	{
+		id: "w07-support-other-en",
+		name: "W07 · Support: Other Question (English)",
+		figmaNode: "Node 897:7049",
+		route: "/job-support-other",
+		locale: "en",
+		description:
+			"W07 Categorized customer support flow for general account, mobile app, and policy inquiries",
+	},
+	{
 		id: "w05-no-show-es",
 		name: "W05 · El conductor aún no llega (Español)",
 		figmaNode: "Node 844:8128",

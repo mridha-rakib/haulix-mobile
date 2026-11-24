@@ -167,8 +167,8 @@ export default function JobDetailsHistoryScreen() {
 								{t("w07DetailsHistory.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07DetailsHistory.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07DetailsHistory.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>

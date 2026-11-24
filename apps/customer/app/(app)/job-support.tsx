@@ -143,6 +143,41 @@ export default function JobSupportScreen() {
 		});
 	}, [router, params.previewLocale]);
 
+	const handlePreviewFailure = useCallback(() => {
+		router.push({
+			pathname: "/job-support-failed",
+			params: {
+				...(params.previewLocale
+					? { previewLocale: params.previewLocale }
+					: {}),
+				originatingCategory: selectedTopic,
+			},
+		});
+	}, [router, params.previewLocale, selectedTopic]);
+
+	const handleSelectTopic = useCallback(
+		(topic: SupportTopic) => {
+			setSelectedTopic(topic);
+			const navParams = {
+				...(params.previewLocale
+					? { previewLocale: params.previewLocale }
+					: {}),
+				draftText: descriptionText,
+				evidenceAttached: evidenceAttached ? "true" : "false",
+			};
+			if (topic === "driver") {
+				router.push({ pathname: "/job-support-driver", params: navParams });
+			} else if (topic === "service") {
+				router.push({ pathname: "/job-support-service", params: navParams });
+			} else if (topic === "payment") {
+				router.push({ pathname: "/job-support-payment", params: navParams });
+			} else if (topic === "other") {
+				router.push({ pathname: "/job-support-other", params: navParams });
+			}
+		},
+		[router, params.previewLocale, descriptionText, evidenceAttached],
+	);
+
 	return (
 		<HaulixSafeArea edges={["top", "bottom"]} style={styles.safeArea}>
 			{/* Brand Header */}
@@ -203,7 +238,7 @@ export default function JobSupportScreen() {
 								{t("w07Support.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07Support.itemSummary")}
+								{`${t("w07Support.itemSummary")} · ${t("common.inventoryScope")}`}
 							</Text>
 							<View style={styles.scheduleRow}>
 								<C32CalendarIcon color={colors.secondaryText} size={14} />
@@ -235,7 +270,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicChanges")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "changes"}
 							testID="w07-support-topic-changes"
 							topic="changes"
@@ -252,7 +287,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicDriver")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "driver"}
 							testID="w07-support-topic-driver"
 							topic="driver"
@@ -269,7 +304,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicService")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "service"}
 							testID="w07-support-topic-service"
 							topic="service"
@@ -290,7 +325,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicPayment")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "payment"}
 							testID="w07-support-topic-payment"
 							topic="payment"
@@ -307,7 +342,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicApp")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "app"}
 							testID="w07-support-topic-app"
 							topic="app"
@@ -324,7 +359,7 @@ export default function JobSupportScreen() {
 								/>
 							}
 							label={t("w07Support.topicOther")}
-							onSelect={setSelectedTopic}
+							onSelect={handleSelectTopic}
 							selected={selectedTopic === "other"}
 							testID="w07-support-topic-other"
 							topic="other"
@@ -417,6 +452,19 @@ export default function JobSupportScreen() {
 					>
 						<Text style={styles.tertiaryText}>
 							{t("w07Support.tertiaryCta")}
+						</Text>
+					</Pressable>
+
+					<Pressable
+						accessibilityRole="button"
+						onPress={handlePreviewFailure}
+						style={styles.tertiaryLink}
+						testID="w07-support-preview-failed-btn"
+					>
+						<Text style={styles.tertiaryText}>
+							{params.previewLocale === "es"
+								? "Simular error de envío (QA)"
+								: "Simulate submission failure (QA)"}
 						</Text>
 					</Pressable>
 				</View>

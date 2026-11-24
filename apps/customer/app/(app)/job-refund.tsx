@@ -139,6 +139,15 @@ export default function JobRefundScreen() {
 		});
 	}, [router, params.previewLocale]);
 
+	const handlePreviewFailed = useCallback(() => {
+		router.push({
+			pathname: "/job-refund-failed",
+			params: params.previewLocale
+				? { previewLocale: params.previewLocale }
+				: {},
+		});
+	}, [router, params.previewLocale]);
+
 	return (
 		<HaulixSafeArea edges={["top", "bottom"]} style={styles.safeArea}>
 			{/* Brand Header */}
@@ -206,7 +215,7 @@ export default function JobRefundScreen() {
 								{t("w07Refund.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07Refund.itemSummary")} · 4 pieces across 3 categories
+								{t("w07Refund.itemSummary")} · {t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>
@@ -409,6 +418,20 @@ export default function JobRefundScreen() {
 				>
 					<Text style={styles.tertiaryLinkText}>
 						{t("w07Refund.tertiaryCta")}
+					</Text>
+				</Pressable>
+
+				{/* Failed Submission Preview link */}
+				<Pressable
+					accessibilityRole="button"
+					onPress={handlePreviewFailed}
+					style={styles.tertiaryLink}
+					testID="w07-refund-preview-failed-btn"
+				>
+					<Text style={styles.tertiaryLinkText}>
+						{i18n?.language === "es"
+							? "Vista previa de error de envío"
+							: "Preview failed submission"}
 					</Text>
 				</Pressable>
 

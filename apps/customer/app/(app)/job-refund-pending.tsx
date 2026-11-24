@@ -181,8 +181,8 @@ export default function JobRefundPendingScreen() {
 								{t("w07RefundPending.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07RefundPending.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07RefundPending.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>

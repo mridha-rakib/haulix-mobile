@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Progress (6/34 Canonical States, 12 Bilingual Variants)  
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34 Canonical States, 68 Bilingual Variants)  
 **Date:** November 23, 2026
 
 ---
@@ -122,41 +122,46 @@ Figma Parent Sections: `881:5131` (English) and `881:5132` (Spanish).
 
 ---
 
-## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — In Progress: 29/34 Complete)
+## 5. Workflow 07: My Jobs, Booking History & Details (34 Canonical States — 100% Complete: 34/34 States, 68 Bilingual Variants)
 
 Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
-| #   | Canonical State     | Route Path                  | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                               |
-| --- | ------------------- | --------------------------- | ---------- | ---------- | ----------- | --------------------------------------------------------- |
-| 01  | `HOME`              | `/my-jobs`                  | `892:5859` | `893:6265` | ✅ Complete | My Jobs dashboard, active booking card, bottom nav        |
-| 02  | `HOME_EMPTY`        | `/my-jobs-empty`            | `892:5946` | `893:6352` | ✅ Complete | Empty booking state, support CTA, bottom nav              |
-| 03  | `HOME_HISTORY`      | `/my-jobs-history`          | `892:6033` | `893:6439` | ✅ Complete | Archive list of completed & cancelled moves               |
-| 04  | `HOME_LOADING`      | `/my-jobs-loading`          | `892:6120` | `893:6526` | ✅ Complete | Skeleton loading state, retry action, bottom nav          |
-| 05  | `HOME_ACCESS`       | `/my-jobs-access`           | `892:6207` | `893:6613` | ✅ Complete | Booking unavailable / authorization required state        |
-| 06  | `DETAILS`           | `/job-details`              | `892:6294` | `893:6700` | ✅ Complete | 3-step booking timeline, $356 quote, reschedule CTA       |
-| 07  | `DETAILS_HISTORY`   | `/job-details-history`      | `892:6376` | `893:6782` | ✅ Complete | Archived service details, timeline, refund review CTA     |
-| 08  | `DETAILS_CANCELLED` | `/job-details-cancelled`    | `892:6458` | `893:6864` | ✅ Complete | Cancelled booking details, server fee status, support     |
-| 09  | `RESCHEDULE`        | `/job-reschedule`           | `892:6540` | `893:6946` | ✅ Complete | Date/time selection, policy notice, free vs admin review  |
-| 10  | `RESCHED_FREE`      | `/job-reschedule-free`      | `892:6618` | `893:7024` | ✅ Complete | Eligible free reschedule confirmation (>=24h rule)        |
-| 11  | `RESCHED_ADMIN`     | `/job-reschedule-admin`     | `892:6696` | `893:7102` | ✅ Complete | Reschedule needs Admin review (<24h / driver assigned)    |
-| 12  | `RESCHED_PENDING`   | `/job-reschedule-pending`   | `892:6774` | `893:7180` | ✅ Complete | Reschedule under review, existing booking unchanged       |
-| 13  | `RESCHED_CONFIRMED` | `/job-reschedule-confirmed` | `892:6852` | `893:7258` | ✅ Complete | Successful schedule change confirmation, updated date     |
-| 14  | `RESCHED_FAILED`    | `/job-reschedule-failed`    | `892:6930` | `893:7336` | ✅ Complete | Unapproved reschedule outcome, original time preserved    |
-| 15  | `CANCEL_FEE`        | `/job-cancel-fee`           | `892:7008` | `893:7414` | ✅ Complete | Cancellation policy review, conditional $100 fee rules    |
-| 16  | `CANCEL_FREE`       | `/job-cancel-free`          | `892:7095` | `893:7501` | ✅ Complete | Qualifying fee-free cancellation ($0 fee, no-show/empty)  |
-| 17  | `CANCEL_CHECK`      | `/job-cancel-check`         | `892:7182` | `893:7588` | ✅ Complete | Cancellation fee review step, server validation notice    |
-| 18  | `CANCEL_DONE`       | `/job-cancel-done`          | `892:7269` | `893:7675` | ✅ Complete | Cancellation outcome confirmed, return to My Jobs/detail  |
-| 19  | `CANCEL_FAILED`     | `/job-cancel-failed`        | `892:7356` | `893:7762` | ✅ Complete | Cancellation uncompleted error, booking active preserved  |
-| 20  | `SUPPORT`           | `/job-support`              | `892:7443` | `893:7849` | ✅ Complete | Booking support hub, topic options, local draft input     |
-| 21  | `SUPPORT_SUBMITTED` | `/job-support-submitted`    | `892:7539` | `893:7945` | ✅ Complete | Support request received confirmation, tracking next step |
-| 22  | `SUPPORT_PENDING`   | `/job-support-pending`      | `892:7635` | `893:8041` | ✅ Complete | Support case under review, preview resolved case option   |
-| 23  | `SUPPORT_RESOLVED`  | `/job-support-resolved`     | `892:7731` | `893:8137` | ✅ Complete | Resolved support case linked to booking, return to jobs   |
-| 24  | `SUPPORT_FAILED`    | `/job-support-failed`       | `892:7827` | `893:8233` | ✅ Complete | Send failed exception, edit and retry draft preserved     |
-| 25  | `REFUND`            | `/job-refund`               | `892:7923` | `893:8329` | ✅ Complete | Refund & dispute review request, reason chips, details    |
-| 26  | `REFUND_PENDING`    | `/job-refund-pending`       | `892:8011` | `893:8417` | ✅ Complete | Refund under Admin review, preview approved/declined CTAs |
-| 27  | `REFUND_RESOLVED`   | `/job-refund-resolved`      | `892:8099` | `893:8505` | ✅ Complete | Admin-approved demo refund outcome, return to My Jobs     |
-| 28  | `REFUND_REJECTED`   | `/job-refund-rejected`      | `892:8187` | `893:8593` | ✅ Complete | Declined refund outcome demo, support discussion link     |
-| 29  | `REFUND_FAILED`     | `/job-refund-failed`        | `892:8275` | `893:8681` | ✅ Complete | Review request submission failed, edit and retry draft    |
+| #   | Canonical State     | Route Path                  | Figma EN   | Figma ES   | Status      | Key Actions & UI Components                                  |
+| --- | ------------------- | --------------------------- | ---------- | ---------- | ----------- | ------------------------------------------------------------ |
+| 01  | `HOME`              | `/my-jobs`                  | `892:5859` | `893:6265` | ✅ Complete | My Jobs dashboard, active booking card, bottom nav           |
+| 02  | `HOME_EMPTY`        | `/my-jobs-empty`            | `892:5946` | `893:6352` | ✅ Complete | Empty booking state, support CTA, bottom nav                 |
+| 03  | `HOME_HISTORY`      | `/my-jobs-history`          | `892:6033` | `893:6439` | ✅ Complete | Archive list of completed & cancelled moves                  |
+| 04  | `HOME_LOADING`      | `/my-jobs-loading`          | `892:6120` | `893:6526` | ✅ Complete | Skeleton loading state, retry action, bottom nav             |
+| 05  | `HOME_ACCESS`       | `/my-jobs-access`           | `892:6207` | `893:6613` | ✅ Complete | Booking unavailable / authorization required state           |
+| 06  | `DETAILS`           | `/job-details`              | `892:6294` | `893:6700` | ✅ Complete | 3-step booking timeline, $356 quote, reschedule CTA          |
+| 07  | `DETAILS_HISTORY`   | `/job-details-history`      | `892:6376` | `893:6782` | ✅ Complete | Archived service details, timeline, refund review CTA        |
+| 08  | `DETAILS_CANCELLED` | `/job-details-cancelled`    | `892:6458` | `893:6864` | ✅ Complete | Cancelled booking details, server fee status, support        |
+| 09  | `RESCHEDULE`        | `/job-reschedule`           | `892:6540` | `893:6946` | ✅ Complete | Date/time selection, policy notice, free vs admin review     |
+| 10  | `RESCHED_FREE`      | `/job-reschedule-free`      | `892:6618` | `893:7024` | ✅ Complete | Eligible free reschedule confirmation (>=24h rule)           |
+| 11  | `RESCHED_ADMIN`     | `/job-reschedule-admin`     | `892:6696` | `893:7102` | ✅ Complete | Reschedule needs Admin review (<24h / driver assigned)       |
+| 12  | `RESCHED_PENDING`   | `/job-reschedule-pending`   | `892:6774` | `893:7180` | ✅ Complete | Reschedule under review, existing booking unchanged          |
+| 13  | `RESCHED_CONFIRMED` | `/job-reschedule-confirmed` | `892:6852` | `893:7258` | ✅ Complete | Successful schedule change confirmation, updated date        |
+| 14  | `RESCHED_FAILED`    | `/job-reschedule-failed`    | `892:6930` | `893:7336` | ✅ Complete | Unapproved reschedule outcome, original time preserved       |
+| 15  | `CANCEL_FEE`        | `/job-cancel-fee`           | `892:7008` | `893:7414` | ✅ Complete | Cancellation policy review, conditional $100 fee rules       |
+| 16  | `CANCEL_FREE`       | `/job-cancel-free`          | `892:7095` | `893:7501` | ✅ Complete | Qualifying fee-free cancellation ($0 fee, no-show/empty)     |
+| 17  | `CANCEL_CHECK`      | `/job-cancel-check`         | `892:7182` | `893:7588` | ✅ Complete | Cancellation fee review step, server validation notice       |
+| 18  | `CANCEL_DONE`       | `/job-cancel-done`          | `892:7269` | `893:7675` | ✅ Complete | Cancellation outcome confirmed, return to My Jobs/detail     |
+| 19  | `CANCEL_FAILED`     | `/job-cancel-failed`        | `892:7356` | `893:7762` | ✅ Complete | Cancellation uncompleted error, booking active preserved     |
+| 20  | `SUPPORT`           | `/job-support`              | `892:7443` | `893:7849` | ✅ Complete | Booking support hub, topic options, local draft input        |
+| 21  | `SUPPORT_SUBMITTED` | `/job-support-submitted`    | `892:7539` | `893:7945` | ✅ Complete | Support request received confirmation, tracking next step    |
+| 22  | `SUPPORT_PENDING`   | `/job-support-pending`      | `892:7635` | `893:8041` | ✅ Complete | Support case under review, preview resolved case option      |
+| 23  | `SUPPORT_RESOLVED`  | `/job-support-resolved`     | `892:7731` | `893:8137` | ✅ Complete | Resolved support case linked to booking, return to jobs      |
+| 24  | `SUPPORT_FAILED`    | `/job-support-failed`       | `892:7827` | `893:8233` | ✅ Complete | Send failed exception, edit and retry draft preserved        |
+| 25  | `REFUND`            | `/job-refund`               | `892:7923` | `893:8329` | ✅ Complete | Refund & dispute review request, reason chips, details       |
+| 26  | `REFUND_PENDING`    | `/job-refund-pending`       | `892:8011` | `893:8417` | ✅ Complete | Refund under Admin review, preview approved/declined CTAs    |
+| 27  | `REFUND_RESOLVED`   | `/job-refund-resolved`      | `892:8099` | `893:8505` | ✅ Complete | Admin-approved demo refund outcome, return to My Jobs        |
+| 28  | `REFUND_REJECTED`   | `/job-refund-rejected`      | `892:8187` | `893:8593` | ✅ Complete | Declined refund outcome demo, support discussion link        |
+| 29  | `REFUND_FAILED`     | `/job-refund-failed`        | `892:8275` | `893:8681` | ✅ Complete | Review request submission failed, edit and retry draft       |
+| 30  | `HOME_SCHEDULED`    | `/my-jobs-scheduled`        | `897:6671` | `897:7145` | ✅ Complete | Scheduled bookings view, active scheduled tab, change CTA    |
+| 31  | `SUPPORT_DRIVER`    | `/job-support-driver`       | `897:6761` | `897:7235` | ✅ Complete | Driver issue support, routing, topic switcher                |
+| 32  | `SUPPORT_SERVICE`   | `/job-support-service`      | `897:6857` | `897:7331` | ✅ Complete | Service issue support, damaged item/scope, photo evidence    |
+| 33  | `SUPPORT_PAYMENT`   | `/job-support-payment`      | `897:6953` | `897:7427` | ✅ Complete | Payment issue support, quote/charge inquiries, review notice |
+| 34  | `SUPPORT_OTHER`     | `/job-support-other`        | `897:7049` | `897:7523` | ✅ Complete | Other inquiries support, policy & account assistance, demo   |
 
 ---
 

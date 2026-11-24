@@ -168,8 +168,8 @@ export default function JobDetailsCancelledScreen() {
 								{t("w07DetailsCancelled.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07DetailsCancelled.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07DetailsCancelled.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>

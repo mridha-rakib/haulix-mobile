@@ -180,8 +180,8 @@ export default function JobRefundResolvedScreen() {
 								{t("w07RefundResolved.serviceCategory")}
 							</Text>
 							<Text style={styles.bookingItemsText}>
-								{t("w07RefundResolved.itemSummary")} · 4 pieces across 3
-								categories
+								{t("w07RefundResolved.itemSummary")} ·{" "}
+								{t("common.inventoryScope")}
 							</Text>
 						</View>
 					</View>
