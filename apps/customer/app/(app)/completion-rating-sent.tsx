@@ -2,13 +2,13 @@ import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
-import { useRatingDraft } from "../../src/components/completion/ratingDraftStore";
+import { useSubmittedSnapshot } from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRatingSentScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { draft } = useRatingDraft();
+  const snapshot = useSubmittedSnapshot();
 
   useEffect(() => {
     const onBackPress = () => {
@@ -42,7 +42,7 @@ export default function CompletionRatingSentScreen() {
       cardTitle={t("w08RatingSent.cardTitle")}
       commentLabel={t("w08RatingSent.commentLabel")}
       commentPlaceholder={t("w08RatingSent.commentPlaceholder")}
-      commentValue={draft.comment}
+      commentValue={snapshot.comment}
       disclaimerText={t("w08RatingSent.prototypeDisclaimer")}
       eligibilityLabel={t("w08RatingSent.eligibilityLabel")}
       eligibilityText={t("w08RatingSent.eligibilityText")}
@@ -56,7 +56,7 @@ export default function CompletionRatingSentScreen() {
       primaryButtonLabel={t("w08RatingSent.goToJobsButton")}
       readOnly={true}
       secondaryButtonLabel={t("w08RatingSent.moderationStatusButton")}
-      selectedRating={draft.rating || 5}
+      selectedRating={snapshot.rating}
       tertiaryButtonLabel={t("w08RatingSent.tertiaryJobsLink")}
       testID="completion-rating-sent-screen"
     />

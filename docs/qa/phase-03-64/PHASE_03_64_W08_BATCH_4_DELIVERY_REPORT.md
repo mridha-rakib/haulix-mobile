@@ -1,5 +1,7 @@
 # HAULIX Customer Mobile App — Phase 03.64 Delivery Report
+
 ## W08 Batch 4 — Service Rating Eligibility, Interactive Star Selection & Review Composition
+
 ### Seven Canonical States · 14 English/Spanish Variants · Receipt-to-Rating Integration
 
 **Repository:** `mridha-rakib/haulix-mobile`  
@@ -11,7 +13,7 @@
 **Parent Sections:** English `902:6811`, Spanish `902:6812`  
 **Target Hardware:** Realme Note 60 (RMX3933), Android 15, 360dp logical width  
 **ADB Serial:** `0B04731X200003BB`  
-**Date:** November 24, 2026  
+**Date:** November 24, 2026
 
 ---
 
@@ -30,21 +32,22 @@ Building upon the foundations of Phase 03.63 (which established the transaction 
 
 ## 2. Canonical State Implementation Matrix (States 19–25)
 
-| # | State Key | English Frame | Spanish Frame | Deep Link Route | Component File | Description & Primary CTAs |
-|---|---|---|---|---|---|---|
-| 19 | `RATING` | `907:8641` | `907:11541` | `/completion-rating` | `completion-rating.tsx` | Service feedback entry; 5 unselected star buttons, optional comment input; CTA: "Select 5 stars · DEMO" → `/completion-rating-5`, Secondary: "Review eligibility" → `/completion-rating-locked`, Tertiary: "My Jobs / Support" → `/my-jobs`. |
-| 20 | `RATING_LOCKED` | `907:8748` | `907:11648` | `/completion-rating-locked` | `completion-rating-locked.tsx` | Locked rating state for unverified/expired bookings; disabled star controls and inputs; CTA: "Check completion" → `/completion-receipt`, Secondary: "Back to history" → `/my-jobs-history`, Tertiary: "My Jobs / Support" → `/my-jobs`. |
-| 21 | `RATING_1` | `907:8855` | `907:11755` | `/completion-rating-1` | `completion-rating-1.tsx` | 1-star dissatisfaction feedback; star 1 active lime (`#baff42`), stars 2–5 inactive; CTA: "Submit review · DEMO" (opens finalization modal), Secondary: "Change rating" → `/completion-rating`. |
-| 22 | `RATING_2` | `907:8962` | `907:11862` | `/completion-rating-2` | `completion-rating-2.tsx` | 2-star service improvement feedback; stars 1–2 active lime, stars 3–5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`. |
-| 23 | `RATING_3` | `907:9069` | `907:11969` | `/completion-rating-3` | `completion-rating-3.tsx` | 3-star neutral service feedback; stars 1–3 active lime, stars 4–5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`. |
-| 24 | `RATING_4` | `907:9176` | `907:12076` | `/completion-rating-4` | `completion-rating-4.tsx` | 4-star positive service feedback; stars 1–4 active lime, star 5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`. |
-| 25 | `RATING_5` | `907:9283` | `907:12183` | `/completion-rating-5` | `completion-rating-5.tsx` | 5-star outstanding service feedback; stars 1–5 active lime; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`. |
+| #   | State Key       | English Frame | Spanish Frame | Deep Link Route             | Component File                 | Description & Primary CTAs                                                                                                                                                                                                                   |
+| --- | --------------- | ------------- | ------------- | --------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 19  | `RATING`        | `907:8641`    | `907:11541`   | `/completion-rating`        | `completion-rating.tsx`        | Service feedback entry; 5 unselected star buttons, optional comment input; CTA: "Select 5 stars · DEMO" → `/completion-rating-5`, Secondary: "Review eligibility" → `/completion-rating-locked`, Tertiary: "My Jobs / Support" → `/my-jobs`. |
+| 20  | `RATING_LOCKED` | `907:8748`    | `907:11648`   | `/completion-rating-locked` | `completion-rating-locked.tsx` | Locked rating state for unverified/expired bookings; disabled star controls and inputs; CTA: "Check completion" → `/completion-receipt`, Secondary: "Back to history" → `/my-jobs-history`, Tertiary: "My Jobs / Support" → `/my-jobs`.      |
+| 21  | `RATING_1`      | `907:8855`    | `907:11755`   | `/completion-rating-1`      | `completion-rating-1.tsx`      | 1-star dissatisfaction feedback; star 1 active lime (`#baff42`), stars 2–5 inactive; CTA: "Submit review · DEMO" (opens finalization modal), Secondary: "Change rating" → `/completion-rating`.                                              |
+| 22  | `RATING_2`      | `907:8962`    | `907:11862`   | `/completion-rating-2`      | `completion-rating-2.tsx`      | 2-star service improvement feedback; stars 1–2 active lime, stars 3–5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`.                                                                              |
+| 23  | `RATING_3`      | `907:9069`    | `907:11969`   | `/completion-rating-3`      | `completion-rating-3.tsx`      | 3-star neutral service feedback; stars 1–3 active lime, stars 4–5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`.                                                                                  |
+| 24  | `RATING_4`      | `907:9176`    | `907:12076`   | `/completion-rating-4`      | `completion-rating-4.tsx`      | 4-star positive service feedback; stars 1–4 active lime, star 5 inactive; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`.                                                                                    |
+| 25  | `RATING_5`      | `907:9283`    | `907:12183`   | `/completion-rating-5`      | `completion-rating-5.tsx`      | 5-star outstanding service feedback; stars 1–5 active lime; CTA: "Submit review · DEMO", Secondary: "Change rating" → `/completion-rating`.                                                                                                  |
 
 ---
 
 ## 3. Receipt-to-Rating Modal Replacement & Workflow Continuity
 
 In compliance with Phase 03.64 core directives:
+
 - The temporary modal (`showRatingModal`) in `apps/customer/app/(app)/completion-receipt.tsx` has been **completely removed**.
 - The primary action button ("Rate eligible service" / "Calificar servicio") now navigates directly via `router.push("/completion-rating")`.
 - Hardware Back press in `completion-receipt.tsx` cleanly returns to `/completion-capture-success`.
@@ -194,6 +197,7 @@ Each dictionary includes localized screen titles, subtitles, card headers, quest
 ## 17. Boundary Discipline: Omission of Phase 03.65 States
 
 As mandated by project constraints, the following states are **strictly excluded** from Phase 03.64 and reserved for Phase 03.65:
+
 - State 26: `RATING_SENT` (EN `907:9390`, ES `907:12290`)
 - State 27: `RATING_FAILED` (EN `907:9497`, ES `907:12397`)
 - State 28: `RATING_REVIEW` (EN `907:9604`, ES `907:12504`)
@@ -237,6 +241,7 @@ No modifications were made to Driver/Worker app directories (`apps/driver`). All
 ## 20. Handoff Protocol for Phase 03.65 (Final Batch 5)
 
 Phase 03.65 represents the **final customer app phase**, completing the remaining 3 canonical states:
+
 1. `RATING_SENT` — Confirmation that customer review and rating was transmitted.
 2. `RATING_FAILED` — Network/processing exception with retry and draft recovery options.
 3. `RATING_REVIEW` — Finalized review overview closing out Workflow 08 and the Customer App lifecycle.
@@ -248,6 +253,7 @@ Upon completion of Phase 03.65, the Customer App will reach **100% completion (1
 ## 21. Verified Git Delivery & Commit Hash
 
 All changes have been staged, verified, committed, and pushed to `origin main`:
+
 - **Commit Message:** `feat(customer): implement W08 rating eligibility and star selection (phase 03.64)`
 - **Branch:** `main`
 - **Remote:** `origin/main` (`mridha-rakib/haulix-mobile`)

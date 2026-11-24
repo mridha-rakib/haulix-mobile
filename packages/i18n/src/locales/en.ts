@@ -6079,6 +6079,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08RatingLocked: {
     brandHaul: "HAUL",
@@ -6107,6 +6108,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08Rating1: {
     brandHaul: "HAUL",
@@ -6139,6 +6141,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08Rating2: {
     brandHaul: "HAUL",
@@ -6171,6 +6174,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08Rating3: {
     brandHaul: "HAUL",
@@ -6203,6 +6207,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08Rating4: {
     brandHaul: "HAUL",
@@ -6235,6 +6240,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08Rating5: {
     brandHaul: "HAUL",
@@ -6267,6 +6273,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08RatingSent: {
     brandHaul: "HAUL",
@@ -6295,6 +6302,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08RatingFailed: {
     brandHaul: "HAUL",
@@ -6323,6 +6331,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   w08RatingReview: {
     brandHaul: "HAUL",
@@ -6351,6 +6360,7 @@ const en = {
     starA11y3: "3 stars",
     starA11y4: "4 stars",
     starA11y5: "5 stars",
+    starA11yHint: "Selects this star rating for your review",
   },
   errors: {
     network: "Network error. Please check your connection.",

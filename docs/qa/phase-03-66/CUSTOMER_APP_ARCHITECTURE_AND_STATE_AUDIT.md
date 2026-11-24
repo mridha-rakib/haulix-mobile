@@ -52,6 +52,7 @@ export interface RatingDraft {
 ```
 
 #### Verified In-Memory Behaviors:
+
 - **Draft Preservation Across Stars:** When a user types a comment on `/completion-rating-1` and switches to `/completion-rating-5`, the text draft is preserved intact.
 - **Failure Recovery Restoration:** If review submission fails (`/completion-rating-failed`), tapping "Retry demo review" restores the draft comment and rating route cleanly.
 - **Zero Privacy Leakage:** Private customer comments and ratings are never serialized to URL query strings or written to remote backends.
@@ -59,19 +60,19 @@ export interface RatingDraft {
 #### Confirmed Architectural Gaps & Findings:
 
 1. **ARCH-01 (Single Draft Mutation vs Immutable Submitted Snapshot):**  
-   *Observation:* `submitReview()` sets `currentDraft.status = "sent"` on the singleton draft object. There is no separate immutable `submittedReviewSnapshot` record. If the user subsequently navigates back to an earlier rating screen and modifies the comment, the displayed snapshot on `/completion-rating-sent` or `/completion-rating-review` will mutate.  
-   *Remediation (Phase 03.67):* Separate `currentDraft` from an immutable `submittedReview` snapshot store.
+   _Observation:_ `submitReview()` sets `currentDraft.status = "sent"` on the singleton draft object. There is no separate immutable `submittedReviewSnapshot` record. If the user subsequently navigates back to an earlier rating screen and modifies the comment, the displayed snapshot on `/completion-rating-sent` or `/completion-rating-review` will mutate.  
+   _Remediation (Phase 03.67):_ Separate `currentDraft` from an immutable `submittedReview` snapshot store.
 
 2. **ARCH-02 (Failure Simulation Coupling to User Comment):**  
-   *Observation:* In `completion-rating-[1-5].tsx`, failure demonstration is triggered by inspecting whether `draft.comment.toLowerCase().includes("fail")`. While deterministic, this couples testing behavior to user-entered text content.  
-   *Remediation (Phase 03.67):* Decouple simulation via an explicit demo menu trigger or query parameter (`?simulateFailure=1`) while retaining normal review submission for all text inputs.
+   _Observation:_ In `completion-rating-[1-5].tsx`, failure demonstration is triggered by inspecting whether `draft.comment.toLowerCase().includes("fail")`. While deterministic, this couples testing behavior to user-entered text content.  
+   _Remediation (Phase 03.67):_ Decouple simulation via an explicit demo menu trigger or query parameter (`?simulateFailure=1`) while retaining normal review submission for all text inputs.
 
 3. **ARCH-03 (Direct Navigator Entry Fixtures):**  
-   *Observation:* When navigating directly to `/completion-rating-sent` or `/completion-rating-review` from `DemoScreenNavigator` without prior user input, the screen falls back to `draft.rating || 5` and an empty comment.  
-   *Remediation (Phase 03.67):* Seed dedicated static demo fixtures for direct-entry navigator testing so reviews display rich sample text when inspected in isolation.
+   _Observation:_ When navigating directly to `/completion-rating-sent` or `/completion-rating-review` from `DemoScreenNavigator` without prior user input, the screen falls back to `draft.rating || 5` and an empty comment.  
+   _Remediation (Phase 03.67):_ Seed dedicated static demo fixtures for direct-entry navigator testing so reviews display rich sample text when inspected in isolation.
 
 4. **ARCH-04 (Locked Rating Bypass via Zero-Guard Architecture):**  
-   *Observation:* By design, zero-guard architecture permits direct deep linking to `/completion-rating-5` without enforcing pre-conditions from `/completion-rating-locked`. This is intentional for design-review purposes, but production apps will require server-validated eligibility middleware.
+   _Observation:_ By design, zero-guard architecture permits direct deep linking to `/completion-rating-5` without enforcing pre-conditions from `/completion-rating-locked`. This is intentional for design-review purposes, but production apps will require server-validated eligibility middleware.
 
 ---
 

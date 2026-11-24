@@ -17,12 +17,12 @@
 import { W07SupportLayout } from "../../src/components/support/W07SupportLayout";
 
 export default function JobSupportPaymentScreen() {
-	return (
-		<W07SupportLayout
-			defaultTopic="payment"
-			namespace="w07SupportPayment"
-			screenTestId="w07-support-payment"
-			variant="payment"
-		/>
-	);
+  return (
+    <W07SupportLayout
+      defaultTopic="payment"
+      namespace="w07SupportPayment"
+      screenTestId="w07-support-payment"
+      variant="payment"
+    />
+  );
 }

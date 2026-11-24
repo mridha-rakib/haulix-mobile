@@ -17,12 +17,12 @@
 import { W07SupportLayout } from "../../src/components/support/W07SupportLayout";
 
 export default function JobSupportDriverScreen() {
-	return (
-		<W07SupportLayout
-			defaultTopic="driver"
-			namespace="w07SupportDriver"
-			screenTestId="w07-support-driver"
-			variant="driver"
-		/>
-	);
+  return (
+    <W07SupportLayout
+      defaultTopic="driver"
+      namespace="w07SupportDriver"
+      screenTestId="w07-support-driver"
+      variant="driver"
+    />
+  );
 }

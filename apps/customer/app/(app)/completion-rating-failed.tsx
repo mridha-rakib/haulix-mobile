@@ -2,7 +2,10 @@ import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
-import { useRatingDraft } from "../../src/components/completion/ratingDraftStore";
+import {
+  DEFAULT_FAILED_COMMENT,
+  useRatingDraft,
+} from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRatingFailedScreen() {
@@ -39,6 +42,8 @@ export default function CompletionRatingFailedScreen() {
     router.push(retryRoute);
   };
 
+  const displayedComment = draft.comment.trim() ? draft.comment : DEFAULT_FAILED_COMMENT;
+
   return (
     <W08RatingLayout
       backA11y={t("w08RatingFailed.backA11y")}
@@ -46,7 +51,7 @@ export default function CompletionRatingFailedScreen() {
       cardTitle={t("w08RatingFailed.cardTitle")}
       commentLabel={t("w08RatingFailed.commentLabel")}
       commentPlaceholder={t("w08RatingFailed.commentPlaceholder")}
-      commentValue={draft.comment}
+      commentValue={displayedComment}
       disclaimerText={t("w08RatingFailed.prototypeDisclaimer")}
       eligibilityLabel={t("w08RatingFailed.eligibilityLabel")}
       eligibilityText={t("w08RatingFailed.eligibilityText")}

@@ -17,12 +17,12 @@
 import { W07SupportLayout } from "../../src/components/support/W07SupportLayout";
 
 export default function JobSupportOtherScreen() {
-	return (
-		<W07SupportLayout
-			defaultTopic="other"
-			namespace="w07SupportOther"
-			screenTestId="w07-support-other"
-			variant="other"
-		/>
-	);
+  return (
+    <W07SupportLayout
+      defaultTopic="other"
+      namespace="w07SupportOther"
+      screenTestId="w07-support-other"
+      variant="other"
+    />
+  );
 }

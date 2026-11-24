@@ -19,11 +19,13 @@
 ## 1. Executive Summary
 
 Phase 03.65 concludes the implementation of Workflow 08 (Completion Proof, Payment & Rating) by delivering the final three canonical states:
+
 1. `RATING_SENT` (State 26): Review submission confirmation
 2. `RATING_FAILED` (State 27): Review submission exception and safe retry
 3. `RATING_REVIEW` (State 28): Review under moderation notice and Admin review link
 
 With this delivery:
+
 - **Workflow 08 is 100% complete:** 28/28 canonical states, 56 bilingual variants.
 - **Customer App is 100% complete:** W01–W08 workflows delivered, with W05–W08 comprising 108 canonical states (216 bilingual variants).
 - **Prerequisite Completion Gate for Phase 03.66 is fully satisfied.**
@@ -32,11 +34,11 @@ With this delivery:
 
 ## 2. Canonical States & Figma Node Matrix
 
-| # | State Identifier | Route Path | Figma EN Node | Figma ES Node | Component File | Key Action / Flow |
-|---|---|---|---|---|---|---|
-| 26 | `RATING_SENT` | `/completion-rating-sent` | `907:9390` | `907:12290` | `completion-rating-sent.tsx` | Submitted rating display, Primary: Go to My Jobs (`/my-jobs-history`), Secondary: Moderation status (`/completion-rating-review`), Tertiary: My Jobs (`/my-jobs`) |
-| 27 | `RATING_FAILED` | `/completion-rating-failed` | `907:9497` | `907:12397` | `completion-rating-failed.tsx` | Failed submission alert, Primary: Retry demo review (`/completion-rating-[rating]`), Secondary: Get support (`/job-support`), Tertiary: My Jobs (`/my-jobs`) |
-| 28 | `RATING_REVIEW` | `/completion-rating-review` | `907:9604` | `907:12504` | `completion-rating-review.tsx` | Moderation oversight notice, Primary: Back to history (`/my-jobs-history`), Secondary: Contact support (`/job-support`), Tertiary: My Jobs (`/my-jobs`) |
+| #   | State Identifier | Route Path                  | Figma EN Node | Figma ES Node | Component File                 | Key Action / Flow                                                                                                                                                 |
+| --- | ---------------- | --------------------------- | ------------- | ------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 26  | `RATING_SENT`    | `/completion-rating-sent`   | `907:9390`    | `907:12290`   | `completion-rating-sent.tsx`   | Submitted rating display, Primary: Go to My Jobs (`/my-jobs-history`), Secondary: Moderation status (`/completion-rating-review`), Tertiary: My Jobs (`/my-jobs`) |
+| 27  | `RATING_FAILED`  | `/completion-rating-failed` | `907:9497`    | `907:12397`   | `completion-rating-failed.tsx` | Failed submission alert, Primary: Retry demo review (`/completion-rating-[rating]`), Secondary: Get support (`/job-support`), Tertiary: My Jobs (`/my-jobs`)      |
+| 28  | `RATING_REVIEW`  | `/completion-rating-review` | `907:9604`    | `907:12504`   | `completion-rating-review.tsx` | Moderation oversight notice, Primary: Back to history (`/my-jobs-history`), Secondary: Contact support (`/job-support`), Tertiary: My Jobs (`/my-jobs`)           |
 
 ---
 

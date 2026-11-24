@@ -134,6 +134,8 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
           <Text
             style={[styles.tabLabel, activeTab === "home" && styles.tabLabelActive]}
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
           >
             {t("nav.home")}
           </Text>
@@ -153,6 +155,8 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
           <Text
             style={[styles.tabLabel, activeTab === "jobs" && styles.tabLabelActive]}
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
           >
             {t("nav.myJobs")}
           </Text>
@@ -177,6 +181,8 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
               activeTab === "book" && styles.tabLabelActive,
             ]}
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
           >
             {t("nav.book")}
           </Text>
@@ -196,6 +202,8 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
           <Text
             style={[styles.tabLabel, activeTab === "deals" && styles.tabLabelActive]}
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
           >
             {t("nav.deals")}
           </Text>
@@ -218,6 +226,8 @@ export const CustomerBottomNav: FC<CustomerBottomNavProps> = ({
           <Text
             style={[styles.tabLabel, activeTab === "account" && styles.tabLabelActive]}
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
           >
             {t("nav.account")}
           </Text>

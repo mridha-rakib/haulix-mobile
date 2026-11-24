@@ -1,13 +1,18 @@
 import { useTranslation } from "@haulix/i18n";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
-import { type RatingValue, useRatingDraft } from "../../src/components/completion/ratingDraftStore";
+import {
+  type RatingValue,
+  ratingDraftStore,
+  useRatingDraft,
+} from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRating4Screen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const params = useLocalSearchParams<{ simulateFailure?: string }>();
   const { draft, setRating, setComment, submitReview, failReview } = useRatingDraft(4);
 
   useEffect(() => {
@@ -46,7 +51,8 @@ export default function CompletionRating4Screen() {
   };
 
   const handlePrimaryPress = () => {
-    if (draft.comment.trim().toLowerCase().includes("fail")) {
+    const shouldFail = ratingDraftStore.getSimulateFailure() || params.simulateFailure === "1";
+    if (shouldFail) {
       failReview();
       router.push("/completion-rating-failed");
     } else {

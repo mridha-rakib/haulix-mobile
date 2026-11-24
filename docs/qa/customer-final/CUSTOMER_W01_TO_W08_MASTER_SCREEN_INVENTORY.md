@@ -174,36 +174,36 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
 Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 
-| #   | Canonical State    | Route Path                     | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                           |
-| --- | ------------------ | ------------------------------ | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
-| 01  | `PROOF`            | `/completion-proof`            | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA       |
-| 02  | `PROOF_MISSING`    | `/completion-proof-missing`    | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue       |
-| 03  | `PROOF_DENIED`     | `/completion-proof-denied`     | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link     |
-| 04  | `CONFIRM`          | `/completion-confirm`          | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack routes to pay |
-| 05  | `ISSUE`            | `/completion-issue`            | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)   |
-| 06  | `DISPUTE_HOLD`     | `/completion-dispute-hold`     | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, capture blocked pending review  |
-| 07  | `NO_REPLY`         | `/completion-no-reply`         | `907:7414` | `907:10314` | ✅ Complete | 24-hr response window, preview eligible / blocked paths      |
-| 08  | `AUTO_ELIGIBLE`    | `/completion-auto-eligible`    | `907:7512` | `907:10412` | ✅ Complete | 24-hr auto-closure eligible, preview eligible capture CTA    |
-| 09  | `AUTO_BLOCKED`     | `/completion-auto-blocked`     | `907:7610` | `907:10510` | ✅ Complete | Auto-closure blocked, check required evidence, review hold   |
-| 10  | `CAPTURE_PENDING`  | `/completion-capture-pending`  | `907:7708` | `907:10608` | ✅ Complete | Payment capture pending, view captured/failed demo paths     |
-| 11  | `CAPTURE_SUCCESS`  | `/completion-capture-success`  | `907:7809` | `907:10709` | ✅ Complete | Payment captured demo, view receipt routes to /receipt       |
-| 12  | `CAPTURE_FAILED`   | `/completion-capture-failed`   | `907:7910` | `907:10810` | ✅ Complete | Payment capture failed, reauth options to /auth-expired      |
-| 13  | `AUTH_EXPIRED`     | `/completion-auth-expired`     | `907:8011` | `907:10911` | ✅ Complete | Card authorization expired, request new auth CTA             |
-| 14  | `REAUTH`           | `/completion-reauth`           | `907:8112` | `907:11012` | ✅ Complete | Fresh customer authorization intake to capture pending       |
-| 15  | `RECEIPT`          | `/completion-receipt`          | `907:8213` | `907:11113` | ✅ Complete | Itemized receipt ($356.00 quote, extras, taxes, tip, refund) |
-| 16  | `RECEIPT_PENDING`  | `/completion-receipt-pending`  | `907:8320` | `907:11220` | ✅ Complete | Processing receipt status before settlement                  |
-| 17  | `RECEIPT_REFUNDED` | `/completion-receipt-refunded` | `907:8427` | `907:11327` | ✅ Complete | Refund-adjusted receipt with link to refund review           |
-| 18  | `RECEIPT_UPDATED`  | `/completion-receipt-updated`  | `907:8534` | `907:11434` | ✅ Complete | Updated receipt reflecting modified line items & dispute     |
-| 19  | `RATING`           | `/completion-rating`           | `907:8641` | `907:11541` | ✅ Complete | 5-star service evaluation entry, star selector & comment     |
-| 20  | `RATING_LOCKED`    | `/completion-rating-locked`    | `907:8748` | `907:11648` | ✅ Complete | Rating submission locked state when unverified or expired    |
-| 21  | `RATING_1`         | `/completion-rating-1`         | `907:8855` | `907:11755` | ✅ Complete | 1-star dissatisfaction rating with review composition        |
-| 22  | `RATING_2`         | `/completion-rating-2`         | `907:8962` | `907:11862` | ✅ Complete | 2-star service improvement rating with review composition    |
-| 23  | `RATING_3`         | `/completion-rating-3`         | `907:9069` | `907:11969` | ✅ Complete | 3-star neutral service rating with review composition        |
-| 24  | `RATING_4`         | `/completion-rating-4`         | `907:9176` | `907:12076` | ✅ Complete | 4-star positive service rating with review composition       |
-| 25  | `RATING_5`         | `/completion-rating-5`         | `907:9283` | `907:12183` | ✅ Complete | 5-star outstanding service rating with review composition    |
-| 26  | `RATING_SENT`      | `/completion-rating-sent`      | `907:9390` | `907:12290` | ✅ Complete | Review submitted confirmation, link to moderation and history|
-| 27  | `RATING_FAILED`    | `/completion-rating-failed`    | `907:9497` | `907:12397` | ✅ Complete | Review submission failure exception, safe retry and support  |
-| 28  | `RATING_REVIEW`    | `/completion-rating-review`    | `907:9604` | `907:12504` | ✅ Complete | Review under moderation notice, Admin oversight and support  |
+| #   | Canonical State    | Route Path                     | Figma EN   | Figma ES    | Status      | Key Actions & CTAs                                            |
+| --- | ------------------ | ------------------------------ | ---------- | ----------- | ----------- | ------------------------------------------------------------- |
+| 01  | `PROOF`            | `/completion-proof`            | `907:6811` | `907:9711`  | ✅ Complete | Photo proof review, lightbox, confirm CTA, missing CTA        |
+| 02  | `PROOF_MISSING`    | `/completion-proof-missing`    | `907:6913` | `907:9813`  | ✅ Complete | Missing photo notice, retry photo review, report issue        |
+| 03  | `PROOF_DENIED`     | `/completion-proof-denied`     | `907:7015` | `907:9915`  | ✅ Complete | Masked confidential access banner, My Jobs, support link      |
+| 04  | `CONFIRM`          | `/completion-confirm`          | `907:7117` | `907:10017` | ✅ Complete | 3-step decision breakdown, demo completion ack routes to pay  |
+| 05  | `ISSUE`            | `/completion-issue`            | `907:7215` | `907:10115` | ✅ Complete | Issue intake form (chips, description, attachment, submit)    |
+| 06  | `DISPUTE_HOLD`     | `/completion-dispute-hold`     | `907:7316` | `907:10216` | ✅ Complete | Dispute under review banner, capture blocked pending review   |
+| 07  | `NO_REPLY`         | `/completion-no-reply`         | `907:7414` | `907:10314` | ✅ Complete | 24-hr response window, preview eligible / blocked paths       |
+| 08  | `AUTO_ELIGIBLE`    | `/completion-auto-eligible`    | `907:7512` | `907:10412` | ✅ Complete | 24-hr auto-closure eligible, preview eligible capture CTA     |
+| 09  | `AUTO_BLOCKED`     | `/completion-auto-blocked`     | `907:7610` | `907:10510` | ✅ Complete | Auto-closure blocked, check required evidence, review hold    |
+| 10  | `CAPTURE_PENDING`  | `/completion-capture-pending`  | `907:7708` | `907:10608` | ✅ Complete | Payment capture pending, view captured/failed demo paths      |
+| 11  | `CAPTURE_SUCCESS`  | `/completion-capture-success`  | `907:7809` | `907:10709` | ✅ Complete | Payment captured demo, view receipt routes to /receipt        |
+| 12  | `CAPTURE_FAILED`   | `/completion-capture-failed`   | `907:7910` | `907:10810` | ✅ Complete | Payment capture failed, reauth options to /auth-expired       |
+| 13  | `AUTH_EXPIRED`     | `/completion-auth-expired`     | `907:8011` | `907:10911` | ✅ Complete | Card authorization expired, request new auth CTA              |
+| 14  | `REAUTH`           | `/completion-reauth`           | `907:8112` | `907:11012` | ✅ Complete | Fresh customer authorization intake to capture pending        |
+| 15  | `RECEIPT`          | `/completion-receipt`          | `907:8213` | `907:11113` | ✅ Complete | Itemized receipt ($356.00 quote, extras, taxes, tip, refund)  |
+| 16  | `RECEIPT_PENDING`  | `/completion-receipt-pending`  | `907:8320` | `907:11220` | ✅ Complete | Processing receipt status before settlement                   |
+| 17  | `RECEIPT_REFUNDED` | `/completion-receipt-refunded` | `907:8427` | `907:11327` | ✅ Complete | Refund-adjusted receipt with link to refund review            |
+| 18  | `RECEIPT_UPDATED`  | `/completion-receipt-updated`  | `907:8534` | `907:11434` | ✅ Complete | Updated receipt reflecting modified line items & dispute      |
+| 19  | `RATING`           | `/completion-rating`           | `907:8641` | `907:11541` | ✅ Complete | 5-star service evaluation entry, star selector & comment      |
+| 20  | `RATING_LOCKED`    | `/completion-rating-locked`    | `907:8748` | `907:11648` | ✅ Complete | Rating submission locked state when unverified or expired     |
+| 21  | `RATING_1`         | `/completion-rating-1`         | `907:8855` | `907:11755` | ✅ Complete | 1-star dissatisfaction rating with review composition         |
+| 22  | `RATING_2`         | `/completion-rating-2`         | `907:8962` | `907:11862` | ✅ Complete | 2-star service improvement rating with review composition     |
+| 23  | `RATING_3`         | `/completion-rating-3`         | `907:9069` | `907:11969` | ✅ Complete | 3-star neutral service rating with review composition         |
+| 24  | `RATING_4`         | `/completion-rating-4`         | `907:9176` | `907:12076` | ✅ Complete | 4-star positive service rating with review composition        |
+| 25  | `RATING_5`         | `/completion-rating-5`         | `907:9283` | `907:12183` | ✅ Complete | 5-star outstanding service rating with review composition     |
+| 26  | `RATING_SENT`      | `/completion-rating-sent`      | `907:9390` | `907:12290` | ✅ Complete | Review submitted confirmation, link to moderation and history |
+| 27  | `RATING_FAILED`    | `/completion-rating-failed`    | `907:9497` | `907:12397` | ✅ Complete | Review submission failure exception, safe retry and support   |
+| 28  | `RATING_REVIEW`    | `/completion-rating-review`    | `907:9604` | `907:12504` | ✅ Complete | Review under moderation notice, Admin oversight and support   |
 
 ---
 

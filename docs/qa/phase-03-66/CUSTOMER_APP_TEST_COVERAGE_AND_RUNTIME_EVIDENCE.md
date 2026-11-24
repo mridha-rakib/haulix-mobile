@@ -106,6 +106,7 @@ Checked 13 files in 17ms. No fixes applied.
 - **Android Version:** Android 15 (API level 35 / 36)
 - **Display Resolution:** 720 × 1600 px (360dp logical width @ 2.0x density)
 - **ADB Connection:** Direct USB Debugging verified:
+
   ```text
   $ adb devices
   List of devices attached

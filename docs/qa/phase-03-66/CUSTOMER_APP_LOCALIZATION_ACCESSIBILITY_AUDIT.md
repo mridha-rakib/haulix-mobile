@@ -16,27 +16,28 @@
 ### Architecture & Locale Switching
 
 The application uses `@haulix/i18n` with central locale dictionaries:
+
 - English: `packages/i18n/src/locales/en.ts`
 - Spanish: `packages/i18n/src/locales/es.ts`
 - Type Definition: `TranslationSchema` enforces compile-time structural equality.
 
 ### Namespace Parity Verification
 
-| Workflow | Scope / Namespaces | Key Count (EN) | Key Count (ES) | Structural Parity | Notes / Observations |
-|---|---|---|---|---|---|
-| **W01** | `auth`, `account`, `editProfile`, `home` | 184 | 184 | 100% Symmetrical | Fully bilingual profile and sign-in |
-| **W02** | `serviceDiscovery`, `itemCatalog`, `aiIntake` | 312 | 312 | 100% Symmetrical | Complete category translations |
-| **W03** | `location`, `accessDetails`, `serviceArea` | 240 | 240 | 100% Symmetrical | Phoenix metro and access labels |
-| **W04** | `quote`, `schedule`, `paymentAuth`, `c29_3d` | 296 | 296 | 100% Symmetrical | Symmetrical $356.00 quote and 3DS |
-| **W05** | `c32Dispatch`, `w05Late`, `w05NoShow`, etc. | 340 | 340 | 100% Symmetrical | Dispatch radius and crew tracking |
-| **W06** | `w06ActiveService`, `w06Chat`, `w06Media`, etc. | 412 | 412 | 100% Symmetrical | Chat bubbles and scope revision R2 |
-| **W07** | `w07Details`, `w07Reschedule`, `w07Support`, etc. | 520 | 520 | 100% Symmetrical | Reschedule and cancellation rules |
-| **W08** | `w08Proof`, `w08Receipt`, `w08Rating`, `w08RatingSent`, `w08RatingFailed`, `w08RatingReview` | 468 | 468 | 100% Symmetrical | Proof, capture hold, rating 1–5, and moderation |
+| Workflow | Scope / Namespaces                                                                           | Key Count (EN) | Key Count (ES) | Structural Parity | Notes / Observations                            |
+| -------- | -------------------------------------------------------------------------------------------- | -------------- | -------------- | ----------------- | ----------------------------------------------- |
+| **W01**  | `auth`, `account`, `editProfile`, `home`                                                     | 184            | 184            | 100% Symmetrical  | Fully bilingual profile and sign-in             |
+| **W02**  | `serviceDiscovery`, `itemCatalog`, `aiIntake`                                                | 312            | 312            | 100% Symmetrical  | Complete category translations                  |
+| **W03**  | `location`, `accessDetails`, `serviceArea`                                                   | 240            | 240            | 100% Symmetrical  | Phoenix metro and access labels                 |
+| **W04**  | `quote`, `schedule`, `paymentAuth`, `c29_3d`                                                 | 296            | 296            | 100% Symmetrical  | Symmetrical $356.00 quote and 3DS               |
+| **W05**  | `c32Dispatch`, `w05Late`, `w05NoShow`, etc.                                                  | 340            | 340            | 100% Symmetrical  | Dispatch radius and crew tracking               |
+| **W06**  | `w06ActiveService`, `w06Chat`, `w06Media`, etc.                                              | 412            | 412            | 100% Symmetrical  | Chat bubbles and scope revision R2              |
+| **W07**  | `w07Details`, `w07Reschedule`, `w07Support`, etc.                                            | 520            | 520            | 100% Symmetrical  | Reschedule and cancellation rules               |
+| **W08**  | `w08Proof`, `w08Receipt`, `w08Rating`, `w08RatingSent`, `w08RatingFailed`, `w08RatingReview` | 468            | 468            | 100% Symmetrical  | Proof, capture hold, rating 1–5, and moderation |
 
 ### Localization Observations & Quality
 
 1. **Honest Prototype Disclaimers:** All Spanish screens translate the prototype disclosure as `"PROTOTIPO DE IU · Fotos y pagos ilustrativos; sin transacción real"`, matching English `"UI PROTOTYPE · Illustrative photos and payments; no real transaction."`
-2. **Contextual Grammar:** Correct grammatical gender and phrasing across Spanish notifications (e.g. *"El conductor aún no llega"*, *"Reseña en moderación"*).
+2. **Contextual Grammar:** Correct grammatical gender and phrasing across Spanish notifications (e.g. _"El conductor aún no llega"_, _"Reseña en moderación"_).
 3. **Currency & Units:** Standardized format `$356.00 USD` preserved identically in both languages without localization formatting drift.
 
 ---
@@ -53,7 +54,7 @@ The application uses `@haulix/i18n` with central locale dictionaries:
 ### Screen Reader Support & Semantic Roles
 
 - `accessibilityRole="button"` explicitly set on all interactive pressables, back arrows, star selectors, and CTA buttons.
-- `accessibilityLabel` wired across all action triggers with localized strings (e.g. `t("w08Rating.starA11y1")` → *"1 star"* / *"1 estrella"*).
+- `accessibilityLabel` wired across all action triggers with localized strings (e.g. `t("w08Rating.starA11y1")` → _"1 star"_ / _"1 estrella"_).
 - `accessibilityState` correctly conveys `disabled` and `selected` properties on rating stars, terms checkboxes, and submission buttons.
 
 ### Color Contrast Ratios (WCAG 2.1 AA)
@@ -76,8 +77,8 @@ The application uses `@haulix/i18n` with central locale dictionaries:
 ## 4. Confirmed Accessibility Gaps & Remediation
 
 1. **A11Y-01 (Star Selector Accessibility Hint):**  
-   *Current:* Stars announce *"1 star"*, *"2 stars"*, but lack hint announcing current selection state to screen readers.  
-   *Remediation:* Add `accessibilityHint` (e.g. *"Double tap to set rating to 3 stars"*) in Phase 03.67.
+   _Current:_ Stars announce _"1 star"_, _"2 stars"_, but lack hint announcing current selection state to screen readers.  
+   _Remediation:_ Add `accessibilityHint` (e.g. _"Double tap to set rating to 3 stars"_) in Phase 03.67.
 2. **A11Y-02 (Keyboard Dismiss on Tap Outside):**  
-   *Current:* Comment inputs in `W08RatingLayout` do not wrap the outer container with `TouchableWithoutFeedback` to dismiss keyboard on background tap.  
-   *Remediation:* Wrap scroll container with keyboard dismissing touch handler in Phase 03.67.
+   _Current:_ Comment inputs in `W08RatingLayout` do not wrap the outer container with `TouchableWithoutFeedback` to dismiss keyboard on background tap.  
+   _Remediation:_ Wrap scroll container with keyboard dismissing touch handler in Phase 03.67.

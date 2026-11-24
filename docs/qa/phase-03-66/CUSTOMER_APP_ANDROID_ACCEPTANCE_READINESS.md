@@ -78,10 +78,12 @@ The customer app build pipeline is configured via EAS Build:
 ## 3. Standalone APK Delivery Action Plan
 
 1. **Build Generation:**
+
    ```bash
    eas build --platform android --profile preview --local
    ```
 2. **Device Deployment:**
+
    ```bash
    adb -s 0B04731X200003BB install -r haulix-customer-preview-1.0.0.apk
    ```

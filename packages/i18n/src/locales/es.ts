@@ -6119,6 +6119,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08RatingLocked: {
     brandHaul: "HAUL",
@@ -6147,6 +6148,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08Rating1: {
     brandHaul: "HAUL",
@@ -6179,6 +6181,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08Rating2: {
     brandHaul: "HAUL",
@@ -6211,6 +6214,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08Rating3: {
     brandHaul: "HAUL",
@@ -6243,6 +6247,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08Rating4: {
     brandHaul: "HAUL",
@@ -6275,6 +6280,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08Rating5: {
     brandHaul: "HAUL",
@@ -6307,6 +6313,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08RatingSent: {
     brandHaul: "HAUL",
@@ -6335,6 +6342,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08RatingFailed: {
     brandHaul: "HAUL",
@@ -6363,6 +6371,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   w08RatingReview: {
     brandHaul: "HAUL",
@@ -6391,6 +6400,7 @@ const es: En = {
     starA11y3: "3 estrellas",
     starA11y4: "4 estrellas",
     starA11y5: "5 estrellas",
+    starA11yHint: "Selecciona esta calificación con estrellas para tu reseña",
   },
   errors: {
     network: "Error de red. Verifica tu conexión.",

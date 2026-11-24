@@ -17,12 +17,12 @@
 import { W07SupportLayout } from "../../src/components/support/W07SupportLayout";
 
 export default function JobSupportServiceScreen() {
-	return (
-		<W07SupportLayout
-			defaultTopic="service"
-			namespace="w07SupportService"
-			screenTestId="w07-support-service"
-			variant="service"
-		/>
-	);
+  return (
+    <W07SupportLayout
+      defaultTopic="service"
+      namespace="w07SupportService"
+      screenTestId="w07-support-service"
+      variant="service"
+    />
+  );
 }

@@ -9,12 +9,14 @@ import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useState } from "react";
 import {
+  Keyboard,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import {
@@ -69,6 +71,7 @@ function StarSelector({
         return (
           <Pressable
             key={star}
+            accessibilityHint={t("w08Rating.starA11yHint")}
             accessibilityLabel={t(a11yKey)}
             accessibilityRole="button"
             accessibilityState={{ disabled: isDisabled, selected: isSelected }}
@@ -204,74 +207,80 @@ export function W08RatingLayout({
 
         <ScrollView
           contentContainerStyle={styles.scrollContent}
+          keyboardDismissMode="on-drag"
+          keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
           style={styles.scrollView}
         >
-          <View style={styles.heroSection}>
-            <Text style={styles.heroTitle}>{heroTitle}</Text>
-            <Text style={styles.heroSubtitle}>{heroSubtitle}</Text>
-          </View>
+          <TouchableWithoutFeedback accessible={false} onPress={Keyboard.dismiss}>
+            <View style={styles.innerTouchable}>
+              <View style={styles.heroSection}>
+                <Text style={styles.heroTitle}>{heroTitle}</Text>
+                <Text style={styles.heroSubtitle}>{heroSubtitle}</Text>
+              </View>
 
-          {headerBadge ? <W08StatusBadge label={headerBadge} /> : null}
+              {headerBadge ? <W08StatusBadge label={headerBadge} /> : null}
 
-          <W08BookingCard />
+              <W08BookingCard />
 
-          <View style={styles.ratingCard} testID="w08-rating-card">
-            <Text style={styles.ratingCardTitle}>{cardTitle}</Text>
-            <Text style={styles.ratingCardQuestion}>{cardQuestion}</Text>
+              <View style={styles.ratingCard} testID="w08-rating-card">
+                <Text style={styles.ratingCardTitle}>{cardTitle}</Text>
+                <Text style={styles.ratingCardQuestion}>{cardQuestion}</Text>
 
-            <StarSelector
-              isLocked={isLocked}
-              onSelectRating={onSelectRating}
-              readOnly={readOnly}
-              selectedRating={selectedRating}
-            />
+                <StarSelector
+                  isLocked={isLocked}
+                  onSelectRating={onSelectRating}
+                  readOnly={readOnly}
+                  selectedRating={selectedRating}
+                />
 
-            <CommentInput
-              disabled={isLocked || readOnly}
-              label={commentLabel}
-              onChangeText={setComment}
-              placeholder={commentPlaceholder}
-              value={comment}
-            />
+                <CommentInput
+                  disabled={isLocked || readOnly}
+                  label={commentLabel}
+                  onChangeText={setComment}
+                  placeholder={commentPlaceholder}
+                  value={comment}
+                />
 
-            <EligibilityBox label={eligibilityLabel} text={eligibilityText} />
-          </View>
+                <EligibilityBox label={eligibilityLabel} text={eligibilityText} />
+              </View>
 
-          <View style={styles.actionsContainer}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={onPrimaryPress}
-              style={styles.primaryButton}
-              testID="w08-primary-action-button"
-            >
-              <Text style={styles.primaryButtonText}>{primaryButtonLabel}</Text>
-            </TouchableOpacity>
+              <View style={styles.actionsContainer}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={onPrimaryPress}
+                  style={styles.primaryButton}
+                  testID="w08-primary-action-button"
+                >
+                  <Text style={styles.primaryButtonText}>{primaryButtonLabel}</Text>
+                </TouchableOpacity>
 
-            {secondaryButtonLabel && onSecondaryPress ? (
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={onSecondaryPress}
-                style={styles.secondaryButton}
-                testID="w08-secondary-action-button"
-              >
-                <Text style={styles.secondaryButtonText}>{secondaryButtonLabel}</Text>
-              </TouchableOpacity>
-            ) : null}
+                {secondaryButtonLabel && onSecondaryPress ? (
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={onSecondaryPress}
+                    style={styles.secondaryButton}
+                    testID="w08-secondary-action-button"
+                  >
+                    <Text style={styles.secondaryButtonText}>{secondaryButtonLabel}</Text>
+                  </TouchableOpacity>
+                ) : null}
 
-            {tertiaryButtonLabel && onTertiaryPress ? (
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={onTertiaryPress}
-                style={styles.tertiaryButton}
-                testID="w08-tertiary-action-button"
-              >
-                <Text style={styles.tertiaryButtonText}>{tertiaryButtonLabel}</Text>
-              </TouchableOpacity>
-            ) : null}
-          </View>
+                {tertiaryButtonLabel && onTertiaryPress ? (
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={onTertiaryPress}
+                    style={styles.tertiaryButton}
+                    testID="w08-tertiary-action-button"
+                  >
+                    <Text style={styles.tertiaryButtonText}>{tertiaryButtonLabel}</Text>
+                  </TouchableOpacity>
+                ) : null}
+              </View>
 
-          {disclaimerText ? <W08PrototypeDisclaimer text={disclaimerText} /> : null}
+              {disclaimerText ? <W08PrototypeDisclaimer text={disclaimerText} /> : null}
+            </View>
+          </TouchableWithoutFeedback>
         </ScrollView>
       </View>
     </HaulixSafeArea>
@@ -289,6 +298,9 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 40,
+    gap: 14,
+  },
+  innerTouchable: {
     gap: 14,
   },
   heroSection: {
@@ -342,6 +354,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
     lineHeight: 26,
+    textAlign: "center",
+    includeFontPadding: false,
   },
   commentContainer: {
     backgroundColor: "#222827",
