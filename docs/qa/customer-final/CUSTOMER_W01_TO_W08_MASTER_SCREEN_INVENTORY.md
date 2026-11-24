@@ -6,7 +6,7 @@
 **Application:** `@haulix/customer` (`apps/customer`)  
 **Package:** `com.haulix.customer`  
 **Figma File:** `meiXxwUNJaDo0a3mhcHBXv` (Student Team)  
-**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Batches 1, 2, 3 & 4 Complete (25/28 Canonical States, 50 Bilingual Variants)  
+**Status:** W05 Complete (20/20) · W06 Complete (26/26) · W07 Complete (34/34) · W08 Complete (28/28 Canonical States, 56 Bilingual Variants) — Customer App 100% Complete (108/108 Canonical States, 216 Bilingual Variants)  
 **Date:** November 24, 2026
 
 ---
@@ -165,7 +165,7 @@ Figma Parent Sections: `891:5859` (English) and `891:5860` (Spanish).
 
 ---
 
-## 6. Workflow 08: Completion Proof, Payment & Rating (25/28 Canonical States Delivered)
+## 6. Workflow 08: Completion Proof, Payment & Rating (28/28 Canonical States Delivered — 100% Complete)
 
 Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 
@@ -191,13 +191,14 @@ Figma Parent Sections: `902:6811` (English) and `902:6812` (Spanish).
 | 18  | `RECEIPT_UPDATED`  | `/completion-receipt-updated`  | `907:8534` | `907:11434` | ✅ Complete | Updated receipt reflecting modified line items & dispute     |
 | 19  | `RATING`           | `/completion-rating`           | `907:8641` | `907:11541` | ✅ Complete | 5-star service evaluation entry, star selector & comment     |
 | 20  | `RATING_LOCKED`    | `/completion-rating-locked`    | `907:8748` | `907:11648` | ✅ Complete | Rating submission locked state when unverified or expired    |
-| 21  | `RATING_1`         | `/completion-rating-1`         | `907:8855` | `907:11755` | ✅ Complete | 1-star dissatisfaction rating with review finalization modal |
-| 22  | `RATING_2`         | `/completion-rating-2`         | `907:8962` | `907:11862` | ✅ Complete | 2-star service improvement rating with review final modal    |
-| 23  | `RATING_3`         | `/completion-rating-3`         | `907:9069` | `907:11969` | ✅ Complete | 3-star neutral service rating with review finalization modal |
-| 24  | `RATING_4`         | `/completion-rating-4`         | `907:9176` | `907:12076` | ✅ Complete | 4-star positive service rating with review finalization modal|
-| 25  | `RATING_5`         | `/completion-rating-5`         | `907:9283` | `907:12183` | ✅ Complete | 5-star outstanding service rating with review final modal    |
-
-Remaining 3 canonical states (States 26–28: `RATING_SENT`, `RATING_FAILED`, `RATING_REVIEW`) in Batch 5 will complete the W08 and Customer App delivery program.
+| 21  | `RATING_1`         | `/completion-rating-1`         | `907:8855` | `907:11755` | ✅ Complete | 1-star dissatisfaction rating with review composition        |
+| 22  | `RATING_2`         | `/completion-rating-2`         | `907:8962` | `907:11862` | ✅ Complete | 2-star service improvement rating with review composition    |
+| 23  | `RATING_3`         | `/completion-rating-3`         | `907:9069` | `907:11969` | ✅ Complete | 3-star neutral service rating with review composition        |
+| 24  | `RATING_4`         | `/completion-rating-4`         | `907:9176` | `907:12076` | ✅ Complete | 4-star positive service rating with review composition       |
+| 25  | `RATING_5`         | `/completion-rating-5`         | `907:9283` | `907:12183` | ✅ Complete | 5-star outstanding service rating with review composition    |
+| 26  | `RATING_SENT`      | `/completion-rating-sent`      | `907:9390` | `907:12290` | ✅ Complete | Review submitted confirmation, link to moderation and history|
+| 27  | `RATING_FAILED`    | `/completion-rating-failed`    | `907:9497` | `907:12397` | ✅ Complete | Review submission failure exception, safe retry and support  |
+| 28  | `RATING_REVIEW`    | `/completion-rating-review`    | `907:9604` | `907:12504` | ✅ Complete | Review under moderation notice, Admin oversight and support  |
 
 ---
 

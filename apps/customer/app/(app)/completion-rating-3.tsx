@@ -1,51 +1,58 @@
 import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BackHandler } from "react-native";
+import { type RatingValue, useRatingDraft } from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRating3Screen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
+  const { draft, setRating, setComment, submitReview, failReview } = useRatingDraft(3);
 
   useEffect(() => {
     const onBackPress = () => {
-      if (showModal) {
-        setShowModal(false);
-        return true;
-      }
       router.push("/completion-rating");
       return true;
     };
     const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
     return () => sub.remove();
-  }, [router, showModal]);
+  }, [router]);
 
   const handleSelectRating = (star: number) => {
+    if (star === 3) {
+      return;
+    }
+    setRating(star as RatingValue);
     switch (star) {
       case 1:
-        router.push("/completion-rating-1");
+        router.replace("/completion-rating-1");
         break;
       case 2:
-        router.push("/completion-rating-2");
+        router.replace("/completion-rating-2");
         break;
       case 3:
-        router.push("/completion-rating-3");
+        router.replace("/completion-rating-3");
         break;
       case 4:
-        router.push("/completion-rating-4");
+        router.replace("/completion-rating-4");
         break;
       case 5:
-        router.push("/completion-rating-5");
+        router.replace("/completion-rating-5");
         break;
       default:
-        router.push("/completion-rating");
+        router.replace("/completion-rating");
     }
   };
 
   const handlePrimaryPress = () => {
-    setShowModal(true);
+    if (draft.comment.trim().toLowerCase().includes("fail")) {
+      failReview();
+      router.push("/completion-rating-failed");
+    } else {
+      submitReview();
+      router.push("/completion-rating-sent");
+    }
   };
 
   const handleSecondaryPress = () => {
@@ -67,17 +74,15 @@ export default function CompletionRating3Screen() {
       cardTitle={t("w08Rating3.cardTitle")}
       commentLabel={t("w08Rating3.commentLabel")}
       commentPlaceholder={t("w08Rating3.commentPlaceholder")}
+      commentValue={draft.comment}
       disclaimerText={t("w08Rating3.prototypeDisclaimer")}
       eligibilityLabel={t("w08Rating3.eligibilityLabel")}
       eligibilityText={t("w08Rating3.eligibilityText")}
       headerBadge={t("w08Rating3.screenBadge")}
       heroSubtitle={t("w08Rating3.screenSubtitle")}
       heroTitle={t("w08Rating3.screenTitle")}
-      modalBody={t("w08Rating3.modalBody")}
-      modalCloseText={t("w08Rating3.modalClose")}
-      modalTitle={t("w08Rating3.modalTitle")}
       onBack={handleBack}
-      onCloseBoundaryModal={() => setShowModal(false)}
+      onChangeComment={setComment}
       onPrimaryPress={handlePrimaryPress}
       onSecondaryPress={handleSecondaryPress}
       onSelectRating={handleSelectRating}
@@ -85,7 +90,6 @@ export default function CompletionRating3Screen() {
       primaryButtonLabel={t("w08Rating3.submitReviewButton")}
       secondaryButtonLabel={t("w08Rating3.changeRatingButton")}
       selectedRating={3}
-      showBoundaryModal={showModal}
       tertiaryButtonLabel={t("w08Rating3.tertiaryJobsLink")}
       testID="completion-rating-3-screen"
     />

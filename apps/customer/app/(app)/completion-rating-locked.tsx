@@ -10,7 +10,7 @@ export default function CompletionRatingLockedScreen() {
 
   useEffect(() => {
     const onBackPress = () => {
-      router.push("/completion-rating");
+      router.push("/completion-receipt");
       return true;
     };
     const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
@@ -30,7 +30,7 @@ export default function CompletionRatingLockedScreen() {
   };
 
   const handleBack = () => {
-    router.push("/completion-rating");
+    router.push("/completion-receipt");
   };
 
   return (

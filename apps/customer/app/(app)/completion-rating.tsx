@@ -2,11 +2,13 @@ import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
+import { type RatingValue, useRatingDraft } from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRatingScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { draft, setRating, setComment } = useRatingDraft();
 
   useEffect(() => {
     const onBackPress = () => {
@@ -18,6 +20,7 @@ export default function CompletionRatingScreen() {
   }, [router]);
 
   const handleSelectRating = (star: number) => {
+    setRating(star as RatingValue);
     switch (star) {
       case 1:
         router.push("/completion-rating-1");
@@ -40,7 +43,8 @@ export default function CompletionRatingScreen() {
   };
 
   const handlePrimaryPress = () => {
-    router.push("/completion-rating-5");
+    const target = draft.rating || 5;
+    handleSelectRating(target);
   };
 
   const handleSecondaryPress = () => {
@@ -62,6 +66,7 @@ export default function CompletionRatingScreen() {
       cardTitle={t("w08Rating.cardTitle")}
       commentLabel={t("w08Rating.commentLabel")}
       commentPlaceholder={t("w08Rating.commentPlaceholder")}
+      commentValue={draft.comment}
       disclaimerText={t("w08Rating.prototypeDisclaimer")}
       eligibilityLabel={t("w08Rating.eligibilityLabel")}
       eligibilityText={t("w08Rating.eligibilityText")}
@@ -69,13 +74,14 @@ export default function CompletionRatingScreen() {
       heroSubtitle={t("w08Rating.screenSubtitle")}
       heroTitle={t("w08Rating.screenTitle")}
       onBack={handleBack}
+      onChangeComment={setComment}
       onPrimaryPress={handlePrimaryPress}
       onSecondaryPress={handleSecondaryPress}
       onSelectRating={handleSelectRating}
       onTertiaryPress={handleTertiaryPress}
       primaryButtonLabel={t("w08Rating.selectStarsButton")}
       secondaryButtonLabel={t("w08Rating.reviewEligibilityButton")}
-      selectedRating={0}
+      selectedRating={draft.rating || 0}
       tertiaryButtonLabel={t("w08Rating.tertiaryJobsLink")}
       testID="completion-rating-screen"
     />

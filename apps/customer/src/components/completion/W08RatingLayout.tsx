@@ -1,7 +1,7 @@
 /**
- * HAULIX Customer Mobile App — Phase 03.64
+ * HAULIX Customer Mobile App — Phase 03.65
  * Shared Layout and Components for W08 Rating Lifecycle
- * Canonical States: RATING, RATING_LOCKED, RATING_1..5
+ * Canonical States: RATING, RATING_LOCKED, RATING_1..5, RATING_SENT, RATING_FAILED, RATING_REVIEW
  */
 
 import { colors } from "@haulix/design-tokens";
@@ -9,7 +9,6 @@ import { useTranslation } from "@haulix/i18n";
 import { HaulixSafeArea } from "@haulix/ui";
 import { useState } from "react";
 import {
-  Modal,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -28,6 +27,7 @@ import {
 interface StarSelectorProps {
   selectedRating: number;
   isLocked: boolean;
+  readOnly?: boolean;
   onSelectRating?: (rating: number) => void;
   testID?: string;
 }
@@ -35,17 +35,19 @@ interface StarSelectorProps {
 function StarSelector({
   selectedRating,
   isLocked,
+  readOnly = false,
   onSelectRating,
   testID = "w08-star-selector",
 }: StarSelectorProps) {
   const { t } = useTranslation();
   const stars = [1, 2, 3, 4, 5];
+  const isDisabled = isLocked || readOnly;
 
   return (
     <View style={styles.starRow} testID={testID}>
       {stars.map((star) => {
-        const isSelected = star <= selectedRating && !isLocked;
-        const isHighestSelected = star === selectedRating && !isLocked;
+        const isSelected = star <= selectedRating && selectedRating > 0;
+        const isHighestSelected = star === selectedRating && selectedRating > 0;
 
         let boxBg = "#151a19";
         let boxBorder = "#35403b";
@@ -69,8 +71,8 @@ function StarSelector({
             key={star}
             accessibilityLabel={t(a11yKey)}
             accessibilityRole="button"
-            accessibilityState={{ disabled: isLocked, selected: isSelected }}
-            disabled={isLocked}
+            accessibilityState={{ disabled: isDisabled, selected: isSelected }}
+            disabled={isDisabled}
             onPress={() => onSelectRating?.(star)}
             style={[
               styles.starBox,
@@ -136,41 +138,6 @@ function EligibilityBox({ label, text }: EligibilityBoxProps) {
   );
 }
 
-interface RatingBoundaryModalProps {
-  visible: boolean;
-  title: string;
-  body: string;
-  closeText: string;
-  onClose: () => void;
-}
-
-function RatingBoundaryModal({
-  visible,
-  title,
-  body,
-  closeText,
-  onClose,
-}: RatingBoundaryModalProps) {
-  return (
-    <Modal animationType="fade" onRequestClose={onClose} transparent visible={visible}>
-      <View style={styles.modalOverlay}>
-        <View style={styles.modalCard} testID="w08-rating-boundary-modal">
-          <Text style={styles.modalTitle}>{title}</Text>
-          <Text style={styles.modalBody}>{body}</Text>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={onClose}
-            style={styles.modalCloseButton}
-            testID="w08-modal-acknowledge-button"
-          >
-            <Text style={styles.modalCloseText}>{closeText}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
-  );
-}
-
 export interface W08RatingLayoutProps {
   headerBadge?: string;
   onBack: () => void;
@@ -179,11 +146,14 @@ export interface W08RatingLayoutProps {
   heroSubtitle: string;
   selectedRating?: number;
   isLocked?: boolean;
+  readOnly?: boolean;
   onSelectRating?: (rating: number) => void;
   cardTitle: string;
   cardQuestion: string;
   commentLabel: string;
   commentPlaceholder: string;
+  commentValue?: string;
+  onChangeComment?: (text: string) => void;
   eligibilityLabel: string;
   eligibilityText: string;
   primaryButtonLabel: string;
@@ -193,11 +163,6 @@ export interface W08RatingLayoutProps {
   tertiaryButtonLabel?: string;
   onTertiaryPress?: () => void;
   disclaimerText?: string;
-  showBoundaryModal?: boolean;
-  modalTitle?: string;
-  modalBody?: string;
-  modalCloseText?: string;
-  onCloseBoundaryModal?: () => void;
   testID?: string;
 }
 
@@ -209,11 +174,14 @@ export function W08RatingLayout({
   heroSubtitle,
   selectedRating = 0,
   isLocked = false,
+  readOnly = false,
   onSelectRating,
   cardTitle,
   cardQuestion,
   commentLabel,
   commentPlaceholder,
+  commentValue,
+  onChangeComment,
   eligibilityLabel,
   eligibilityText,
   primaryButtonLabel,
@@ -223,14 +191,11 @@ export function W08RatingLayout({
   tertiaryButtonLabel,
   onTertiaryPress,
   disclaimerText,
-  showBoundaryModal = false,
-  modalTitle = "Review Finalization",
-  modalBody = "Review submission, failure handling, and ratings review workflows will be finalized in Phase 03.65.",
-  modalCloseText = "Acknowledge",
-  onCloseBoundaryModal,
   testID = "w08-rating-screen",
 }: W08RatingLayoutProps) {
-  const [comment, setComment] = useState("");
+  const [internalComment, setInternalComment] = useState("");
+  const comment = commentValue !== undefined ? commentValue : internalComment;
+  const setComment = onChangeComment || setInternalComment;
 
   return (
     <HaulixSafeArea>
@@ -258,11 +223,12 @@ export function W08RatingLayout({
             <StarSelector
               isLocked={isLocked}
               onSelectRating={onSelectRating}
+              readOnly={readOnly}
               selectedRating={selectedRating}
             />
 
             <CommentInput
-              disabled={isLocked}
+              disabled={isLocked || readOnly}
               label={commentLabel}
               onChangeText={setComment}
               placeholder={commentPlaceholder}
@@ -305,16 +271,8 @@ export function W08RatingLayout({
             ) : null}
           </View>
 
-          <W08PrototypeDisclaimer disclaimer={disclaimerText} />
+          {disclaimerText ? <W08PrototypeDisclaimer text={disclaimerText} /> : null}
         </ScrollView>
-
-        <RatingBoundaryModal
-          body={modalBody}
-          closeText={modalCloseText}
-          onClose={onCloseBoundaryModal || (() => {})}
-          title={modalTitle}
-          visible={showBoundaryModal}
-        />
       </View>
     </HaulixSafeArea>
   );
@@ -463,44 +421,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: "600",
     color: colors.brand,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.75)",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-  },
-  modalCard: {
-    backgroundColor: "#151a19",
-    borderRadius: 16,
-    padding: 20,
-    width: "100%",
-    maxWidth: 360,
-    borderWidth: 1,
-    borderColor: "#35403b",
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#ffffff",
-    marginBottom: 8,
-  },
-  modalBody: {
-    fontSize: 14,
-    color: "#adb7b1",
-    lineHeight: 20,
-    marginBottom: 20,
-  },
-  modalCloseButton: {
-    backgroundColor: colors.brand,
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  modalCloseText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#080b0b",
   },
 });
