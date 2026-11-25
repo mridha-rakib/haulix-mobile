@@ -9,6 +9,7 @@
 **Authoritative Figma File:** `meiXxwUNJaDo0a3mhcHBXv`  
 **Driver/Worker Canvas Page:** `1:3` (`02 — HAULIX Driver & Worker App · iOS Android · EN ES`)  
 **Verified Pre-Flight Baseline:** `79ce5d94cc80473f30c1c0ae3992133513d0d308`  
+**Verified Remote Delivery Commit:** `bbd213f03e03a5362fcc727133306fd126a482c9`  
 **Customer App Frozen Baseline:** `942c869de6726b9f277abcd1776728b228f7b2e4` (strictly untouched)  
 **Requirements Baseline:** Signed HAULIX SRS v1.6 (Requirements Crosswalk Frame `1329:1824`, Row `1329:1853`, Text `1329:1857`, Handoff Index `1091:3`, UX Audit Board `1317:1805`)  
 **Target Hardware Baseline:** Realme Note 60 (RMX3933), Android 15, 360dp logical width  
