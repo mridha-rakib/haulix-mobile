@@ -14,7 +14,7 @@
 | Overlay ID | Functional Purpose | EN Node ID | EN Frame Name | ES Node ID | ES Frame Name | Dimensions | Connected Parent Screens | Primary Interactive Trigger | Audit Status |
 |:---:|:---|:---:|:---|:---:|:---|:---:|:---|:---|:---:|
 | **OV-01** | Profile Photo Upload & Camera Action | `1281:519` | `QA Overlay / Change profile photo / EN` | `1282:518` | `QA Overlay / photo-es` | 430 × 352 (EN) / 430 × 377 (ES) | `DW37`, `DW55` | Tap profile avatar or "Change Photo" button | Scheduled (DW-D09) |
-| **OV-02** | Payout Confirmation & Account Switch | `1282:529` | `QA Overlay / payout-en` | `1282:539` | `QA Overlay / payout-es` | 430 × 280 | `DW25`, `DW40`, `DW67`, `DW68` | Tap "Change Payout Account" or "Confirm Withdrawal" | Scheduled (DW-D08) |
+| **OV-02** | Payout Confirmation & Account Switch | `1282:529` | `QA Overlay / payout-en` | `1282:539` | `QA Overlay / payout-es` | 430 × 280 | `DW25`, `DW40`, `DW67`, `DW68` | Tap "Change Payout Account" or "Confirm Withdrawal" | **Audited & Verified (DW-D08)** |
 | **OV-03** | Security & 2FA Verification Modal | `1282:549` | `QA Overlay / security-en` | `1282:559` | `QA Overlay / security-es` | 430 × 280 | `DW32`, `DW41` | Tap "Enable 2FA" or "Security Challenge" | Scheduled (DW-D09) |
 | **OV-04** | Emergency & Safety Assistance Sheet | `1286:532` | `QA Overlay / emergency-en` | `1286:543` | `QA Overlay / emergency-es` | 430 × 275 | `DW17`, `DW19`, `DW62`, `DW63` | Tap Emergency Shield icon (`911` / HAULIX Safety line) | Scheduled (DW-D09) |
 | **OV-05** | Availability Schedule & Radius Sheet | `1286:554` | `QA Overlay / availability-en` | `1286:568` | `QA Overlay / availability-es` | 430 × 298 | `DW09`, `DW31`, `DW39` | Tap "Adjust Hours" or "Service Radius Filter" | **Audited & Verified (DW-D03)** |
