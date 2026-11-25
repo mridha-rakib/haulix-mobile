@@ -232,7 +232,8 @@ Catalogs all 14 modal overlay frames in Section `1281:518` across 7 bilingual ty
 
 - **Commit Message:** `docs(driver): complete credential and eligibility design audit (DW-D02)`
 - **Target Branch:** `main`
-- **Full 40-Character Commit SHA:** `16303ed52802daaf9bd3fb352174339e1ff90c17` (prior baseline; pending push of DW-D02 documentation and screenshots).
+- **Full 40-Character Commit SHA:** `398faf9b5bfcf6503eaab2f78d3cce78de6a3334`
+- **Direct GitHub Commit URL:** https://github.com/mridha-rakib/haulix-mobile/commit/398faf9b5bfcf6503eaab2f78d3cce78de6a3334
 
 ---
 
