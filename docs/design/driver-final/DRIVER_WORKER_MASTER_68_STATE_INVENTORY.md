@@ -6,7 +6,7 @@
 **Figma Canvas URL:** https://www.figma.com/design/meiXxwUNJaDo0a3mhcHBXv/HAULIX-%E2%80%94-UI-UX-Concept--Copy-?node-id=1-3  
 **Authoritative Baseline:** 68 unique canonical states · 136 localized screens (68 English + 68 Spanish)  
 **Requirements Source:** Signed HAULIX SRS v1.6 (Crosswalk Frame `1329:1824`, Handoff Index `1091:3`, UX Audit Board `1317:1805`)  
-**Verified Audit Coverage:** 42 / 68 Canonical States (84 / 136 Localized Variants)
+**Verified Audit Coverage:** 46 / 68 Canonical States (92 / 136 Localized Variants)
 
 ---
 
@@ -34,8 +34,8 @@
 | **DW18** | Job messages | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:459` | `1088:788` | Verified (Customer/Crew chat, Voice notes, Media) | **DW-D05 (Audited & Verified)** |
 | **DW19** | On-site job progress | DW-W06 (Active Service) | Primary Driver | `1086:512` | `1088:841` | Verified (Milestone progression, Service in progress, Evidence handoff) | **DW-D06 (Audited & Verified)** |
 | **DW20** | Additional work approval | DW-W06 (Active Service) | Primary Driver | `1086:562` | `1088:891` | Verified (Extra item proposal, Dual Admin & Customer gate) | **DW-D06 (Audited & Verified)** |
-| **DW21** | Completion evidence | DW-W07 (Proof & Dispute) | Primary Driver | `1086:596` | `1088:925` | Verified (2-tile delivery photos, Checklist sign-off) | DW-D07 (Scheduled) |
-| **DW22** | Job completed | DW-W07 (Proof & Dispute) | Driver & Helper | `1086:637` | `1088:966` | Verified (24h review notice, Payout preview) | DW-D07 (Scheduled) |
+| **DW21** | Completion evidence | DW-W07 (Proof & Dispute) | Primary Driver | `1086:596` | `1088:925` | Verified (Two-photo delivery proof, Server verification, Review notice) | **DW-D07 (Audited & Verified)** |
+| **DW22** | Job completed | DW-W07 (Proof & Dispute) | Driver & Helper | `1086:637` | `1088:966` | Verified (Completion confirmation, Earnings calculation notice, Non-payout preview) | **DW-D07 (Audited & Verified)** |
 | **DW23** | Earnings overview | DW-W08 (Wallet & Cashout) | Driver & Helper | `1086:670` | `1088:999` | Verified (Ledger balance, Weekly payout schedule) | DW-D08 (Scheduled) |
 | **DW24** | Worker earnings detail | DW-W08 (Wallet & Cashout) | Crew Helper | `1086:728` | `1088:1057` | Verified (65/35 base share, 100% tip pass-through) | DW-D08 (Scheduled) |
 | **DW25** | Instant Cash Out | DW-W08 (Wallet & Cashout) | Eligible Crew | `1086:765` | `1088:1094` | Verified (Eligibility check, Fee disclosure, Debit route) | DW-D08 (Scheduled) |
@@ -77,8 +77,8 @@
 | **DW61** | Phone sign-in verification | DW-W01 (Onboarding) | Returning Users | `1309:896` | `1309:1619` | Verified (Passwordless OTP login for registered crew) | **DW-D01 (Audited & Verified)** |
 | **DW62** | Helper active job | DW-W05 (Pickup & Nav) | Crew Helper | `1309:954` | `1309:1677` | Verified (Passenger navigation, Arrival confirmation) | **DW-D05 (Audited & Verified)** |
 | **DW63** | Helper on-site progress | DW-W06 (Active Service) | Crew Helper | `1309:1052` | `1309:1759` | Verified (Labor task checklist, Safety rules, Independent evidence handoff) | **DW-D06 (Audited & Verified)** |
-| **DW64** | Helper work evidence | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1147` | `1309:1838` | Verified (Co-verify delivery photos, Helper check-off) | DW-D07 (Scheduled) |
-| **DW65** | Helper work submitted | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1243` | `1309:1918` | Verified (Helper completion confirmation, Review window) | DW-D07 (Scheduled) |
+| **DW64** | Helper work evidence | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1147` | `1309:1838` | Verified (Helper labor photo proof, Task evidence, Standardized 88px nav) | **DW-D07 (Audited & Verified)** |
+| **DW65** | Helper work submitted | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1243` | `1309:1918` | Verified (Helper completion confirmation, Payable share disclosure, Standardized 88px nav) | **DW-D07 (Audited & Verified)** |
 | **DW66** | Verification code issue | DW-W01 (Onboarding) | All Applicants | `1309:1332` | `1309:1991` | Verified (SMS resend, Call me, Edit phone modal) | **DW-D01 (Audited & Verified)** |
 | **DW67** | Standard bank Cash Out | DW-W08 (Wallet & Cashout) | Driver & Helper | `1325:1804` | `1325:1938` | Verified (ACH settlement, 2–3 business days, Free) | DW-D08 (Scheduled) |
 | **DW68** | Instant fee & payout review | DW-W08 (Wallet & Cashout) | Eligible Crew | `1325:1866` | `1325:2000` | Verified (1.5% fee disclosure, Net payout preview) | DW-D08 (Scheduled) |
