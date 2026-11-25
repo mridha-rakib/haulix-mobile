@@ -155,4 +155,4 @@ All sixteen screenshots (12 core screens + 4 overlays) are stored in `docs/desig
   `11 (DW-D01) + 7 (DW-D02) + 3 (DW-D03) + 9 (DW-D04) + 6 (DW-D05) + 6 (DW-D06) + 4 (DW-D07) + 9 (DW-D08) + 13 (DW-D09) = 68 Canonical Screens` (136 bilingual variants).
 - **Cumulative Audit Progress:** **36 / 68 Canonical States (52.9%)** and **72 / 136 Localized Variants (52.9%)** verified and closed.
 - **Customer App Frozen Baseline:** `942c869de6726b9f277abcd1776728b228f7b2e4`.
-- **Verified Remote Git Baseline:** `001902087a63bd9bf372cc7e9dbe9708170bf798` on branch `main`.
+- **Verified Remote Git Baseline for Phase DW-D05 Delivery:** `8408a6763ef9a93595ac65dd2d5c4d30ff97d027` on branch `main`.

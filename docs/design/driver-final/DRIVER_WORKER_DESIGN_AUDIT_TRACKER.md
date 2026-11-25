@@ -20,7 +20,7 @@
 | **DW-D02** | DW-W02: Driver & Helper Eligibility & Documents | 7 screens (14 variants) | `DW05–DW08`, `DW33`, `DW38`, `DW56` | **VERIFIED & CLOSED** | `207976a014e27e59aaeafa521055103b9b257a5a` |
 | **DW-D03** | DW-W03: Operational Home & Availability Dashboard | 3 screens (6 variants) | `DW09`, `DW31`, `DW39` | **VERIFIED & CLOSED** | `df5be9a5b2e0edbf412311391cc2dcde9294a3cc` |
 | **DW-D04** | DW-W04: Job Offers, Dispatch Matching & Crew Formation | 9 screens (18 variants) | `DW10–DW16`, `DW48–DW49` | **VERIFIED & CLOSED** | `001902087a63bd9bf372cc7e9dbe9708170bf798` |
-| **DW-D05** | DW-W05: Pickup Routing, Navigation, Chat & Connection | 6 screens (12 variants) | `DW17–DW18`, `DW34`, `DW47`, `DW50`, `DW62` | **VERIFIED & CLOSED** | Current Phase (DW-D05) |
+| **DW-D05** | DW-W05: Pickup Routing, Navigation, Chat & Connection | 6 screens (12 variants) | `DW17–DW18`, `DW34`, `DW47`, `DW50`, `DW62` | **VERIFIED & CLOSED** | `8408a6763ef9a93595ac65dd2d5c4d30ff97d027` |
 | **DW-D06** | DW-W06: Active Service, Item Inventory & Scope Revisions | 6 screens (12 variants) | `DW19–DW20`, `DW51–DW53`, `DW63` | Scheduled Next | Ready for DW-D06 Authorization |
 | **DW-D07** | DW-W07: Completion Evidence, Proof & Review Window | 4 screens (8 variants) | `DW21–DW22`, `DW64–DW65` | Scheduled | Pending Phase Authorization |
 | **DW-D08** | DW-W08: Worker Ledger, Cash Out & Payout Processing | 9 screens (18 variants) | `DW23–DW26`, `DW35`, `DW40`, `DW54`, `DW67–DW68` | Scheduled | Pending Phase Authorization |
