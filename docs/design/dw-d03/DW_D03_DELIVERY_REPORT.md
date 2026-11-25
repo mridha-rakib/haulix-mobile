@@ -181,6 +181,8 @@ Stored in repository at `docs/design/dw-d03/screenshots/`:
 
 - **Commit Message:** `docs(driver): complete operational home and navigation design audit (DW-D03)`
 - **Target Branch:** `main`
+- **Full 40-Character Commit SHA:** `1984e22c18d9fda40bf07c1a40410fe595cbf84b`
+- **Direct GitHub Commit URL:** https://github.com/mridha-rakib/haulix-mobile/commit/1984e22c18d9fda40bf07c1a40410fe595cbf84b
 
 ---
 
