@@ -1,5 +1,5 @@
 import { useTranslation } from "@haulix/i18n";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
 import {
@@ -12,14 +12,19 @@ import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout
 export default function CompletionRatingScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { draft, setRating, setComment } = useRatingDraft();
+  const params = useLocalSearchParams<{ bookingContext?: string }>();
+  const bookingContext = params.bookingContext;
+  const { draft, setRating, setComment } = useRatingDraft(undefined, bookingContext);
 
-  // RES-01: Ineligible/locked flow redirect protection
+  // RES-01 / FINAL-01: Ineligible/locked flow redirect protection
   useEffect(() => {
-    if (!ratingDraftStore.isRatingEligible()) {
+    if (
+      !ratingDraftStore.isRatingEligible() ||
+      !ratingDraftStore.isRatingEligible(bookingContext)
+    ) {
       router.replace("/completion-rating-locked");
     }
-  }, [router]);
+  }, [router, bookingContext]);
 
   useEffect(() => {
     const onBackPress = () => {

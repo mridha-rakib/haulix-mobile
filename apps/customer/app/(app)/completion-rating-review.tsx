@@ -1,5 +1,5 @@
 import { useTranslation } from "@haulix/i18n";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
 import { useSubmittedSnapshot } from "../../src/components/completion/ratingDraftStore";
@@ -8,7 +8,8 @@ import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout
 export default function CompletionRatingReviewScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const snapshot = useSubmittedSnapshot();
+  const params = useLocalSearchParams<{ bookingContext?: string }>();
+  const snapshot = useSubmittedSnapshot(params.bookingContext);
 
   useEffect(() => {
     const onBackPress = () => {

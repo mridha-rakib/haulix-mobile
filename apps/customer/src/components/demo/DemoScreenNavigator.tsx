@@ -5,6 +5,7 @@ import type React from "react";
 import { useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ratingDraftStore } from "../completion/ratingDraftStore";
 
 interface ScreenItem {
   id: string;
@@ -3680,6 +3681,12 @@ export const DemoScreenNavigator: React.FC = () => {
       await changeLocale(screen.locale);
     }
     setIsOpen(false);
+    // FINAL-01: Ensure independent eligible QA previews remain accessible after opening locked preview
+    if (screen.route === "/completion-rating" || screen.route.startsWith("/completion-rating-")) {
+      if (screen.route !== "/completion-rating-locked") {
+        ratingDraftStore.setRatingEligible(true, "HX-AZ-DEMO-0042");
+      }
+    }
     if (screen.params) {
       router.replace({
         pathname: screen.route as Href,

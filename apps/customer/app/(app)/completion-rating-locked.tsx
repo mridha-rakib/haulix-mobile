@@ -1,5 +1,5 @@
 import { useTranslation } from "@haulix/i18n";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
 import { ratingDraftStore } from "../../src/components/completion/ratingDraftStore";
@@ -8,11 +8,16 @@ import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout
 export default function CompletionRatingLockedScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const params = useLocalSearchParams<{ bookingContext?: string }>();
+  const bookingContext = params.bookingContext || "HX-AZ-LOCKED-0099";
 
   useEffect(() => {
-    // Explicitly record ineligibility for this demonstration flow
+    // Explicitly record ineligibility for this demonstration flow context
     ratingDraftStore.setRatingEligible(false);
-  }, []);
+    if (bookingContext) {
+      ratingDraftStore.setRatingEligible(false, bookingContext);
+    }
+  }, [bookingContext]);
 
   useEffect(() => {
     const onBackPress = () => {

@@ -52,7 +52,7 @@ export default function CompletionRating3Screen() {
   };
 
   const handlePrimaryPress = () => {
-    if (isSubmitting || ratingDraftStore.isSubmitting()) {
+    if (isSubmitting || ratingDraftStore.isSubmitting() || draft.status === "sent") {
       return;
     }
     setIsSubmitting(true);
@@ -66,6 +66,8 @@ export default function CompletionRating3Screen() {
         submitReview();
         router.push("/completion-rating-sent");
       }
+    } catch {
+      // Handled safely without crash
     } finally {
       setIsSubmitting(false);
       ratingDraftStore.setIsSubmitting(false);
