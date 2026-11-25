@@ -60,7 +60,7 @@ DW-W07: Completion & Proof ──► DW-W08: Earnings & Wallet Payouts ──►
 ### DW-W04 — Job Offers & Crew Assignment
 - **Objective:** Transparent, time-sensitive dispatch matching with clear distance, scope, and payout previews.
 - **Key Modules:**
-  - Incoming job broadcast card (60-second countdown timer)
+  - Incoming job broadcast card with tiered radius expiry per SRS DP-01–18 (10/20/30/40/50 mi expansion at 0/2/4/6/8 min; 15-min scheduled-offer cap; no arbitrary 60s timer)
   - Job details preview: Category (Furniture, Mattress, Retail), item count, pickup address, dropoff address, estimated duration, and guaranteed payout
   - Crew matching: Displays designated Helper name and contact
   - Accept Offer / Decline Offer / Offer Expired states

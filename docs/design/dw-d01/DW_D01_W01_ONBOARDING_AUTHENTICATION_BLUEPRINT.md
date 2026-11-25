@@ -2,71 +2,80 @@
 # DW-W01: Onboarding & Authentication Canonical Design Blueprint
 
 **Workflow ID:** `DW-W01`  
-**Module Name:** Driver & Worker Onboarding & Authentication  
+**Module Name:** Driver & Helper Onboarding, Role Intake & Authentication  
 **Phase:** DW-D01  
-**Languages:** English (`en`) & Spanish (`es`)  
-**Target Viewport:** 430px reference width (Responsive down to 360dp)
+**Authoritative Figma File:** `meiXxwUNJaDo0a3mhcHBXv`  
+**Page:** `1:3` (`02 — HAULIX Driver & Worker App · iOS Android · EN ES`)  
+**English Section:** `1085:2` (`HAULIX Driver & Helper — English · 68 Core Screens`)  
+**Spanish Section:** `1088:2` (`HAULIX Driver & Helper — Español · 68 Pantallas`)  
+**Signed SRS Crosswalk:** `1329:1824` (`WK-01–02, 13–15`)  
+**Viewport:** 430 × 932 px reference canvas (Responsive down to 360dp Android physical baseline)
 
 ---
 
-## 1. Canonical Screen Inventory & Matrix
+## 1. Authoritative Figma Screen Inventory & Node Mapping
 
-| State ID | Canonical Screen Name | Applicable Roles | Screen Identifier | English Section Title | Spanish Section Title | Primary CTA | Next Transition |
-|:---:|:---|:---:|:---|:---|:---|:---|:---|
-| **DW-W01-01** | Driver/Worker Welcome Hero | All Users | `dw-welcome` | Welcome to HAULIX Crew | Bienvenido a la Cuadrilla HAULIX | "Get Started" / "Empezar" | `DW-W01-02` |
-| **DW-W01-02** | Role Selection & Overview | Applicants | `dw-role-selection` | Select Your Crew Role | Selecciona tu Rol de Cuadrilla | "Continue" / "Continuar" | `DW-W01-03` |
-| **DW-W01-03** | Phone Number Authentication | All Users | `dw-auth-phone` | Enter Mobile Phone | Ingresar Teléfono Móvil | "Send Verification Code" / "Enviar Código" | `DW-W01-04` |
-| **DW-W01-04** | SMS OTP Code Verification | All Users | `dw-auth-otp` | Verify 6-Digit Code | Verificar Código de 6 Dígitos | "Verify & Continue" / "Verificar y Continuar" | `DW-W01-06` (or `05`) |
-| **DW-W01-05** | Password Login (Returning Users) | Registered Users | `dw-auth-password` | Sign In with Password | Iniciar Sesión con Contraseña | "Sign In" / "Iniciar Sesión" | `DW-W03-01` (Home) |
-| **DW-W01-06** | Legal Consent & Contractor Agreement | Applicants | `dw-auth-legal` | Contractor Agreements | Acuerdos de Contratista | "Accept & Agree" / "Aceptar y Continuar" | `DW-W02-01` (Docs) |
-| **DW-W01-07** | Password Reset / Recovery | Registered Users | `dw-auth-forgot-password` | Reset Your Password | Restablecer Contraseña | "Send Reset Link" / "Enviar Enlace" | `DW-W01-05` |
-| **DW-W01-08** | Authentication Error & Network Retry | All Users | `dw-auth-error` | Authentication Issue | Problema de Autenticación | "Try Again" / "Reintentar" | Prior Auth State |
+The DW-W01 workflow encompasses 11 core screens (22 bilingual variants across English and Spanish), plus interactive role selector component sets:
+
+| Screen ID | Canonical Function | English Screen Name | English Node ID | Spanish Screen Name | Spanish Node ID | Primary Actions / Prototype Transitions |
+|:---:|:---|:---|:---:|:---|:---:|:---|
+| **DW01** | Welcome & Landing | `DW01 · Welcome` | `1085:3` | `DW01 · Bienvenida` | `1088:3` | "Get started" ➔ `DW02`; "Sign in" ➔ `DW03`; Lang Pill toggles EN (`1085:3`) ↔ ES (`1088:3`) |
+| **DW02** | Account Registration & Role Intake | `DW02 · Create your account` | `1085:39` | `DW02 · Crear cuenta` | `1088:39` | Role Selector (`1193:1072` / `1203:820`): Driver ➔ `DW58`; Helper ➔ `DW59` |
+| **DW03** | Password Sign In | `DW03 · Sign in` | `1085:80` | `DW03 · Iniciar sesión` | `1088:80` | "Forgot password?" ➔ `DW43`; "Sign in with phone" ➔ `DW61`; Submit ➔ `DW09` / `DW13` |
+| **DW04** | Phone OTP Verification | `DW04 · Phone verification` | `1085:114` | `DW04 · Verificación de teléfono` | `1088:114` | 6-Digit SMS Code entry; "Resend code in 45s"; Submit ➔ `DW05` (Eligibility) |
+| **DW43** | Password Reset Request | `DW43 · Reset password` | `1301:556` | `DW43 · Restablecer contraseña` | `1301:1798` | Email input; Submit ➔ `DW44`; "Back to sign in" ➔ `DW03` |
+| **DW44** | Reset Link Confirmation | `DW44 · Check your inbox` | `1301:611` | `DW44 · Revisa tu correo` | `1301:1853` | "Open email app"; "Back to sign in" ➔ `DW03` |
+| **DW58** | Driver Account Details | `DW58 · Driver account details` | `1309:706` | `DW58 · Datos de cuenta conductor` | `1309:1429` | Full name, email, phone, password; Continue ➔ `DW04` |
+| **DW59** | Helper Account Details | `DW59 · Helper account details` | `1309:772` | `DW59 · Datos de cuenta ayudante` | `1309:1495` | Full name, email, phone, password; Continue ➔ `DW60` |
+| **DW60** | Helper Phone OTP Verification | `DW60 · Helper phone verification` | `1309:838` | `DW60 · Verificación teléfono ayudante` | `1309:1561` | 6-Digit code; Continue ➔ `DW06` (Helper identity & documents) |
+| **DW61** | Phone Passwordless Sign In | `DW61 · Phone sign-in verification` | `1309:896` | `DW61 · Verificación inicio por teléfono` | `1309:1619` | Phone OTP flow for registered crew members; Submit ➔ Operational Home |
+| **DW66** | OTP Resend / Code Issue Modal | `DW66 · Verification code issue` | `1309:1332` | `DW66 · Problema con código` | `1309:1991` | "Resend via SMS", "Call me instead", "Change phone number"; Action: Native `BACK` |
 
 ---
 
-## 2. Detailed Screen Compositions
+## 2. Interactive Role Selection Components
 
-### DW-W01-01: Driver/Worker Welcome Hero
-- **Header:** HAULIX Wordmark + Language Switcher Pill (EN ↔ ES) in top-right.
-- **Hero Graphic:** Dark high-tech container with stylized cargo van illustration + logistics route accent lines in Electric Lime (`#BAFF42`).
-- **Headlines:**
-  - EN: "Drive & Earn with HAULIX" / Sub: "The on-demand platform for professional drivers and moving helpers in Arizona."
-  - ES: "Conduce y Gana con HAULIX" / Sub: "La plataforma bajo demanda para conductores profesionales y ayudantes de mudanza en Arizona."
-- **CTAs:**
-  - Primary CTA: "Get Started" / "Empezar" (Electric Lime `#BAFF42` pill button, 54dp height)
-  - Secondary CTA: "Sign In to Account" / "Iniciar Sesión" (Ghost button with elevated border)
+Located on Page `1:3`:
 
-### DW-W01-02: Role Selection & Operational Overview
-- **Header:** Back button (`‹`), Step Indicator "Step 1 of 3", Language Switcher.
-- **Title:** "Choose Your Operating Role" / "¿Cómo deseas trabajar con nosotros?"
-- **Role Cards (Radio Selection):**
-  - Card 1: **Primary Driver with Vehicle**
-    - Description: "You have a pickup truck, cargo van, or box truck with active registration and insurance. You manage transport and route navigation."
-    - Requirements Tag: "Driver's License + Vehicle Required"
-  - Card 2: **Helper / Moving Laborer**
-    - Description: "You assist with loading, unloading, carrying, and item handling. No personal transport vehicle required."
-    - Requirements Tag: "ID Verification Required"
-- **Primary CTA:** "Continue with Selected Role" / "Continuar con Rol Seleccionado"
+1. **English Component Set:**
+   - **Node ID:** `1193:1072` (`Driver / Role Selection with CTA · Interactive`)
+   - **Variants:** `Role=Driver` (Node `1193:1073`), `Role=Helper` (Node `1193:1095`)
+   - **Driver Card:** "Primary Driver (Has vehicle & license)" — highlights required truck/van registration and insurance.
+   - **Helper Card:** "Crew Helper (Moving assistant)" — highlights physical loading/unloading role without personal vehicle requirement.
+   - **Behavior:** Toggling changes state locally and routes the primary CTA dynamically to either `DW58` (Driver account details) or `DW59` (Helper account details).
 
-### DW-W01-03: Phone Number Authentication
-- **Header:** Back button, Title "Phone Verification", Language Switcher.
-- **Input Module:** Country Code Selector (`+1` USA) + Formatted Phone Input Field (`(555) 000-0000`).
-- **Helper Notice:** "We'll send a 6-digit SMS verification code to verify your mobile device for dispatch notifications."
-- **Primary CTA:** "Send Verification Code" / "Enviar Código de Verificación"
+2. **Spanish Component Set:**
+   - **Node ID:** `1203:820` (`Driver / Selector de rol / Español · Interactive`)
+   - **Variants:** `Rol=Conductor` (Node `1203:821`), `Rol=Ayudante` (Node `1203:843`)
+   - **Conductor Card:** "Conductor Principal (Con vehículo y licencia)"
+   - **Ayudante Card:** "Ayudante de Cuadrilla (Asistente de mudanza)"
 
-### DW-W01-04: SMS OTP Code Verification
-- **Header:** Back button, Title "Verify Phone".
-- **Code Inputs:** 6 individual box digits with auto-advance and numeric keypad focus.
-- **Resend Action:** Countdown timer (`Resend code in 45s`) + "Resend Code" link.
-- **Primary CTA:** "Verify & Proceed" / "Verificar y Continuar"
+---
 
-### DW-W01-06: Legal Consent & Contractor Agreement
-- **Header:** Title "Legal Disclosures".
-- **Scrollable Review Containers:**
-  - 1. Independent Contractor Services Agreement (Arizona Logistics Standards)
-  - 2. Background Check (MVR & Identity) Authorization Disclosure
-  - 3. Commercial Transport Safety & Cargo Handling Guidelines
-- **Consent Checkboxes:**
-  - [x] "I agree to the HAULIX Independent Contractor Agreement."
-  - [x] "I consent to background check and driving record verification."
-- **Primary CTA:** "Accept & Continue to Verification" / "Aceptar y Continuar a Verificación"
+## 3. Visual & Styling Standards (Strict Design Token Reuse)
+
+All DW-W01 screens adhere strictly to the HAULIX design system:
+- **Background:** `#0D1111` (`colors.background` / `bg-background`)
+- **Surface / Cards:** `#151A19` (`colors.surface` / `bg-surface`)
+- **Card Borders:** `#222A28` (`colors.elevated` / `border-elevated`)
+- **Brand Accent:** `#BAFF42` (`colors.brand` / `text-brand` / `bg-brand` Electric Lime)
+- **Primary Text:** `#FFFFFF` (`colors.text.primary`)
+- **Secondary Text:** `#8E9B97` (`colors.text.secondary`)
+- **Muted / Inactive:** `#525D5A` (`colors.text.muted`)
+- **Error / Failure:** `#FF4D4D` (`colors.status.error`)
+- **Typography:**
+  - Headlines: Display Bold 24–28px, tracking -0.5px
+  - Form Labels: Medium 13–14px
+  - Input Text: Regular 15–16px
+  - Button Labels: Bold 15–16px uppercase or title case
+
+---
+
+## 4. Key SRS v1.6 Requirements Alignment
+
+- **Role Intake vs System Authoritative Role (`WK-01–02`):**
+  Role selection in `DW02` is an onboarding applicant preference intake only. The system does not grant operational primary driver dispatch access until vehicle registration, driver's license, and insurance are approved via `DW05` / `DW07` / `DW08`.
+- **No Local Role Switching:**
+  In accordance with Critical Rule #3, client-side role swapping is disabled in active operational states. Helpers cannot toggle themselves into Drivers locally.
+- **Bi-directional Bilingual Parity (`NFR-14/15`):**
+  Every English screen in `1085:2` has an identical Spanish peer in `1088:2`.
