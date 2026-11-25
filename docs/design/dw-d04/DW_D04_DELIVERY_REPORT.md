@@ -8,6 +8,7 @@
 **Authoritative Figma File:** `meiXxwUNJaDo0a3mhcHBXv`  
 **Driver/Worker Canvas Page:** `1:3` (`02 — HAULIX Driver & Worker App · iOS Android · EN ES`)  
 **Verified Baseline Commit:** `df5be9a5b2e0edbf412311391cc2dcde9294a3cc`  
+**Verified DW-D04 Remote Commit:** `7b5774f5a229cd4b7a0e3c1c903728e0dc0b477a`  
 **Requirements Baseline:** Signed HAULIX SRS v1.6 (Requirements Crosswalk Frame `1329:1824`, Appendix C p.24, Handoff Index `1091:3`)  
 **Target Hardware Baseline:** Realme Note 60 (RMX3933), Android 15, 360dp logical width  
 **Reference Design Canvas:** 430 × 932 px (iOS / Android Multi-platform)  
