@@ -1,12 +1,15 @@
 /**
- * HAULIX Customer Mobile App — Phase 03.67
+ * HAULIX Customer Mobile App — Phase 03.68
  * Shared In-Memory Rating Draft Model & Store
  *
  * Implements:
  * - Decoupled mutable RatingDraft from immutable SubmittedReviewSnapshot (GAP-01)
  * - Deterministic fallback fixtures on direct entry (GAP-03)
- * - Explicit QA failure simulation mechanism (GAP-02)
- * - Canonical rating route synchronization (GAP-03)
+ * - Explicit QA failure simulation mechanism with lifecycle clearing (GAP-02, RES-05)
+ * - Flow & booking context isolation (RES-02)
+ * - Rating validation & duplicate submission protection (RES-04)
+ * - Safe hook lifecycle without render-phase mutation (RES-06)
+ * - Explicit frontend rating eligibility state (RES-01)
  * - Pure in-memory architecture without private data persistence or URL leakage
  */
 
@@ -49,8 +52,10 @@ export const DEFAULT_FAILED_COMMENT =
   "Great service overall, but delivery was delayed by 30 minutes.";
 
 let currentDraft: RatingDraft = { ...DEFAULT_DRAFT };
-let submittedSnapshot: SubmittedReviewSnapshot | null = null;
+const submittedSnapshotsByBooking = new Map<string, SubmittedReviewSnapshot>();
 let simulateFailureFlag = false;
+let ratingEligibleFlag = true;
+let isSubmittingFlag = false;
 
 const listeners = new Set<(draft: RatingDraft) => void>();
 const snapshotListeners = new Set<(snapshot: SubmittedReviewSnapshot) => void>();
@@ -73,22 +78,44 @@ export const ratingDraftStore = {
     return { ...currentDraft };
   },
 
-  getSubmittedSnapshot(): SubmittedReviewSnapshot {
-    return submittedSnapshot ? { ...submittedSnapshot } : { ...DEFAULT_SUBMITTED_SNAPSHOT };
+  getSubmittedSnapshot(bookingContext?: string): SubmittedReviewSnapshot {
+    const key = bookingContext || currentDraft.bookingContext || "HX-AZ-DEMO-0042";
+    const found = submittedSnapshotsByBooking.get(key);
+    return found ? { ...found } : { ...DEFAULT_SUBMITTED_SNAPSHOT };
   },
 
-  hasSubmittedSnapshot(): boolean {
-    return submittedSnapshot !== null;
+  hasSubmittedSnapshot(bookingContext?: string): boolean {
+    const key = bookingContext || currentDraft.bookingContext || "HX-AZ-DEMO-0042";
+    return submittedSnapshotsByBooking.has(key);
   },
 
-  setSubmittedSnapshot(snapshot: SubmittedReviewSnapshot | null) {
-    submittedSnapshot = snapshot ? Object.freeze({ ...snapshot }) : null;
+  setSubmittedSnapshot(snapshot: SubmittedReviewSnapshot | null, bookingContext?: string) {
+    const key =
+      bookingContext ||
+      snapshot?.bookingContext ||
+      currentDraft.bookingContext ||
+      "HX-AZ-DEMO-0042";
+    if (snapshot) {
+      submittedSnapshotsByBooking.set(key, Object.freeze({ ...snapshot }));
+    } else {
+      submittedSnapshotsByBooking.delete(key);
+    }
     notifySnapshot();
   },
 
-  clearSubmittedSnapshot() {
-    submittedSnapshot = null;
+  clearSubmittedSnapshot(bookingContext?: string) {
+    const key = bookingContext || currentDraft.bookingContext || "HX-AZ-DEMO-0042";
+    submittedSnapshotsByBooking.delete(key);
     notifySnapshot();
+  },
+
+  isRatingEligible(): boolean {
+    return ratingEligibleFlag;
+  },
+
+  setRatingEligible(eligible: boolean) {
+    ratingEligibleFlag = eligible;
+    notify();
   },
 
   setSimulateFailure(simulate: boolean) {
@@ -97,6 +124,18 @@ export const ratingDraftStore = {
 
   getSimulateFailure(): boolean {
     return simulateFailureFlag;
+  },
+
+  clearSimulateFailure() {
+    simulateFailureFlag = false;
+  },
+
+  isSubmitting(): boolean {
+    return isSubmittingFlag;
+  },
+
+  setIsSubmitting(submitting: boolean) {
+    isSubmittingFlag = submitting;
   },
 
   setRating(rating: RatingValue | null) {
@@ -114,14 +153,36 @@ export const ratingDraftStore = {
     notify();
   },
 
+  startNewFlow(bookingContext = "HX-AZ-DEMO-0042", isEligible = true): RatingDraft {
+    currentDraft = {
+      bookingContext,
+      rating: null,
+      comment: "",
+      status: "draft",
+    };
+    ratingEligibleFlag = isEligible;
+    simulateFailureFlag = false;
+    isSubmittingFlag = false;
+    notify();
+    notifySnapshot();
+    return { ...currentDraft };
+  },
+
   submitReview(): RatingDraft {
-    const finalRating = (currentDraft.rating || 5) as RatingValue;
-    submittedSnapshot = Object.freeze({
-      bookingContext: currentDraft.bookingContext || "HX-AZ-DEMO-0042",
+    if (currentDraft.rating === null || currentDraft.rating < 1 || currentDraft.rating > 5) {
+      throw new Error("Cannot submit review: Rating must be selected (between 1 and 5 stars)");
+    }
+
+    const finalRating = currentDraft.rating as RatingValue;
+    const bContext = currentDraft.bookingContext || "HX-AZ-DEMO-0042";
+    const snapshot: SubmittedReviewSnapshot = Object.freeze({
+      bookingContext: bContext,
       rating: finalRating,
       comment: currentDraft.comment,
       submittedAt: new Date().toISOString(),
     });
+
+    submittedSnapshotsByBooking.set(bContext, snapshot);
     currentDraft = { ...currentDraft, status: "sent" };
     notify();
     notifySnapshot();
@@ -140,47 +201,46 @@ export const ratingDraftStore = {
     return { ...currentDraft };
   },
 
-  reset(initialRating: RatingValue | null = null, initialComment = "") {
+  reset(
+    initialRating: RatingValue | null = null,
+    initialComment = "",
+    bookingContext = "HX-AZ-DEMO-0042"
+  ) {
     currentDraft = {
-      bookingContext: "HX-AZ-DEMO-0042",
+      bookingContext,
       rating: initialRating,
       comment: initialComment,
       status: "draft",
     };
-    submittedSnapshot = null;
+    submittedSnapshotsByBooking.clear();
     simulateFailureFlag = false;
+    ratingEligibleFlag = true;
+    isSubmittingFlag = false;
     notify();
     notifySnapshot();
   },
 };
 
-export function useSubmittedSnapshot(): SubmittedReviewSnapshot {
+export function useSubmittedSnapshot(bookingContext?: string): SubmittedReviewSnapshot {
   const [snapshot, setSnapshot] = useState<SubmittedReviewSnapshot>(() =>
-    ratingDraftStore.getSubmittedSnapshot()
+    ratingDraftStore.getSubmittedSnapshot(bookingContext)
   );
 
   useEffect(() => {
-    const listener = (newSnapshot: SubmittedReviewSnapshot) => {
-      setSnapshot(newSnapshot);
+    const listener = () => {
+      setSnapshot(ratingDraftStore.getSubmittedSnapshot(bookingContext));
     };
     snapshotListeners.add(listener);
     return () => {
       snapshotListeners.delete(listener);
     };
-  }, []);
+  }, [bookingContext]);
 
   return snapshot;
 }
 
 export function useRatingDraft(canonicalRating?: RatingValue) {
-  const [draft, setDraft] = useState<RatingDraft>(() => {
-    const existing = ratingDraftStore.getDraft();
-    if (canonicalRating !== undefined && existing.rating !== canonicalRating) {
-      existing.rating = canonicalRating;
-      ratingDraftStore.setRating(canonicalRating);
-    }
-    return existing;
-  });
+  const [draft, setDraft] = useState<RatingDraft>(() => ratingDraftStore.getDraft());
 
   useEffect(() => {
     if (canonicalRating !== undefined && ratingDraftStore.getDraft().rating !== canonicalRating) {
@@ -209,5 +269,9 @@ export function useRatingDraft(canonicalRating?: RatingValue) {
     resetDraft: ratingDraftStore.reset,
     setSimulateFailure: ratingDraftStore.setSimulateFailure,
     getSimulateFailure: ratingDraftStore.getSimulateFailure,
+    clearSimulateFailure: ratingDraftStore.clearSimulateFailure,
+    isRatingEligible: ratingDraftStore.isRatingEligible,
+    setRatingEligible: ratingDraftStore.setRatingEligible,
+    startNewFlow: ratingDraftStore.startNewFlow,
   };
 }

@@ -3,6 +3,7 @@ import { HaulixSafeArea } from "@haulix/ui";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ratingDraftStore } from "../../src/components/completion/ratingDraftStore";
 import {
   W08BookingCard,
   W08Header,
@@ -23,7 +24,12 @@ export default function CompletionReceiptScreen() {
   }, [router]);
 
   const handleRateService = () => {
-    router.push("/completion-rating");
+    // RES-01: Carry represented eligibility context through subsequent navigation
+    if (!ratingDraftStore.isRatingEligible()) {
+      router.push("/completion-rating-locked");
+    } else {
+      router.push("/completion-rating");
+    }
   };
 
   const handleRefundedState = () => {

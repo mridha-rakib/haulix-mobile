@@ -2,13 +2,24 @@ import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
-import { type RatingValue, useRatingDraft } from "../../src/components/completion/ratingDraftStore";
+import {
+  type RatingValue,
+  ratingDraftStore,
+  useRatingDraft,
+} from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRatingScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const { draft, setRating, setComment } = useRatingDraft();
+
+  // RES-01: Ineligible/locked flow redirect protection
+  useEffect(() => {
+    if (!ratingDraftStore.isRatingEligible()) {
+      router.replace("/completion-rating-locked");
+    }
+  }, [router]);
 
   useEffect(() => {
     const onBackPress = () => {

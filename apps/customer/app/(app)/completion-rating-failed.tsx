@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { BackHandler } from "react-native";
 import {
   DEFAULT_FAILED_COMMENT,
+  ratingDraftStore,
   useRatingDraft,
 } from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
@@ -27,6 +28,8 @@ export default function CompletionRatingFailedScreen() {
   }, [router, retryRoute]);
 
   const handlePrimaryPress = () => {
+    // RES-05: Allow successful retry by resetting simulation flag
+    ratingDraftStore.clearSimulateFailure();
     router.push(retryRoute);
   };
 
@@ -39,10 +42,13 @@ export default function CompletionRatingFailedScreen() {
   };
 
   const handleBack = () => {
+    ratingDraftStore.clearSimulateFailure();
     router.push(retryRoute);
   };
 
-  const displayedComment = draft.comment.trim() ? draft.comment : DEFAULT_FAILED_COMMENT;
+  // RES-03: If in an active failed draft session, preserve user's exact draft (including empty comment).
+  // Only fallback to DEFAULT_FAILED_COMMENT for standalone QA fixture without an active failed draft.
+  const displayedComment = draft.status === "failed" ? draft.comment : DEFAULT_FAILED_COMMENT;
 
   return (
     <W08RatingLayout

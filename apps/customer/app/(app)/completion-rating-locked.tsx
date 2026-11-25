@@ -2,11 +2,17 @@ import { useTranslation } from "@haulix/i18n";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
+import { ratingDraftStore } from "../../src/components/completion/ratingDraftStore";
 import { W08RatingLayout } from "../../src/components/completion/W08RatingLayout";
 
 export default function CompletionRatingLockedScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+
+  useEffect(() => {
+    // Explicitly record ineligibility for this demonstration flow
+    ratingDraftStore.setRatingEligible(false);
+  }, []);
 
   useEffect(() => {
     const onBackPress = () => {

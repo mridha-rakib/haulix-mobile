@@ -1,6 +1,6 @@
 import { useTranslation } from "@haulix/i18n";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BackHandler } from "react-native";
 import {
   type RatingValue,
@@ -14,6 +14,7 @@ export default function CompletionRating1Screen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ simulateFailure?: string }>();
   const { draft, setRating, setComment, submitReview, failReview } = useRatingDraft(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const onBackPress = () => {
@@ -51,13 +52,23 @@ export default function CompletionRating1Screen() {
   };
 
   const handlePrimaryPress = () => {
-    const shouldFail = ratingDraftStore.getSimulateFailure() || params.simulateFailure === "1";
-    if (shouldFail) {
-      failReview();
-      router.push("/completion-rating-failed");
-    } else {
-      submitReview();
-      router.push("/completion-rating-sent");
+    if (isSubmitting || ratingDraftStore.isSubmitting()) {
+      return;
+    }
+    setIsSubmitting(true);
+    ratingDraftStore.setIsSubmitting(true);
+    try {
+      const shouldFail = ratingDraftStore.getSimulateFailure() || params.simulateFailure === "1";
+      if (shouldFail) {
+        failReview();
+        router.push("/completion-rating-failed");
+      } else {
+        submitReview();
+        router.push("/completion-rating-sent");
+      }
+    } finally {
+      setIsSubmitting(false);
+      ratingDraftStore.setIsSubmitting(false);
     }
   };
 
