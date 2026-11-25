@@ -21,7 +21,7 @@
 | **DW06** | Helper verification | DW-W02 (Eligibility) | Crew Helper | `1085:207` | `1088:207` | Verified (Submit ➔ DW08, Back to role ➔ DW02) | **DW-D02 (Audited & Verified)** |
 | **DW07** | Driver documents | DW-W02 (Eligibility) | Primary Driver | `1085:254` | `1088:254` | Verified (Submit ➔ DW08, Back ➔ DW05) | **DW-D02 (Audited & Verified)** |
 | **DW08** | Verification status | DW-W02 (Eligibility) | All Applicants | `1085:298` | `1088:298` | Verified (Driver demo ➔ DW09, Helper demo ➔ DW31) | **DW-D02 (Audited & Verified)** |
-| **DW09** | Driver dashboard | DW-W03 (Operational Home) | Primary Driver | `1086:3` | `1088:332` | Verified (Go Online toggle, Active dispatch card) | DW-D03 (Scheduled) |
+| **DW09** | Driver dashboard | DW-W03 (Operational Home) | Primary Driver | `1086:3` | `1088:332` | Verified (Go Online toggle, Active dispatch card) | **DW-D03 (Audited & Verified)** |
 | **DW10** | Job offers | DW-W04 (Offers & Crew) | Primary Driver | `1086:81` | `1088:410` | Verified (Tiered radius offer cards, Accept / Decline) | DW-D04 (Scheduled) |
 | **DW11** | Job details | DW-W04 (Offers & Crew) | Primary Driver | `1086:162` | `1088:491` | Verified (Item breakdown, Cargo sizing, Accept CTA) | DW-D04 (Scheduled) |
 | **DW12** | Offer unavailable | DW-W04 (Offers & Crew) | Primary Driver | `1086:205` | `1088:534` | Verified (Expired / taken by peer, Return to home) | DW-D04 (Scheduled) |
@@ -43,7 +43,7 @@
 | **DW28** | My jobs | DW-W09 (History & Support) | Driver & Helper | `1086:911` | `1088:1240` | Verified (Completed trips, History details, Receipts) | DW-D09 (Scheduled) |
 | **DW29** | Help & support | DW-W09 (History & Support) | Driver & Helper | `1086:962` | `1088:1291` | Verified (FAQ, Safety dispatch, Support tickets) | DW-D09 (Scheduled) |
 | **DW30** | Notifications | DW-W09 (History & Support) | Driver & Helper | `1086:1009` | `1088:1338` | Verified (System alerts, Broadcasts, Reminders) | DW-D09 (Scheduled) |
-| **DW31** | Helper dashboard | DW-W03 (Operational Home) | Crew Helper | `1086:1058` | `1088:1387` | Verified (Helper availability toggle, Invitation feed) | DW-D03 (Scheduled) |
+| **DW31** | Helper dashboard | DW-W03 (Operational Home) | Crew Helper | `1086:1058` | `1088:1387` | Verified (Helper availability toggle, Invitation feed) | **DW-D03 (Audited & Verified)** |
 | **DW32** | Language & security | DW-W09 (Profile & Settings) | Driver & Helper | `1086:1108` | `1088:1437` | Verified (Locale picker, 2FA settings, Password change) | DW-D09 (Scheduled) |
 | **DW33** | Verification needs action | DW-W02 (Eligibility) | All Workers | `1086:1155` | `1088:1484` | Verified (Rejection reason, Resubmit ➔ DW07/DW06) | **DW-D02 (Audited & Verified)** |
 | **DW34** | Connection interrupted | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:1188` | `1088:1517` | Verified (Offline state banner, Local cache, Reconnect) | DW-D05 (Scheduled) |
@@ -51,7 +51,7 @@
 | **DW36** | Personal information | DW-W09 (Profile & Settings) | Primary Driver | `1270:428` | `1270:1379` | Verified (Name, Phone, Email, Address, Tax SSN/EIN) | DW-D09 (Scheduled) |
 | **DW37** | Photo & contact | DW-W09 (Profile & Settings) | Primary Driver | `1270:550` | `1270:1501` | Verified (Profile photo upload overlay, Emergency contact) | DW-D09 (Scheduled) |
 | **DW38** | Documents & vehicle | DW-W02 (Eligibility) | Primary Driver | `1270:665` | `1270:1616` | Verified (DL, Vehicle reg, Insurance status cards ➔ DW07) | **DW-D02 (Audited & Verified)** |
-| **DW39** | Availability settings | DW-W03 (Operational Home) | Primary Driver | `1270:793` | `1270:1744` | Verified (Operating hours, Service radius 10–50 mi) | DW-D03 (Scheduled) |
+| **DW39** | Availability settings | DW-W03 (Operational Home) | Primary Driver | `1270:793` | `1270:1744` | Verified (Operating hours, Service radius 10–50 mi) | **DW-D03 (Audited & Verified)** |
 | **DW40** | Payout account | DW-W08 (Wallet & Cashout) | Driver & Helper | `1270:930` | `1270:1881` | Verified (Stripe Express connect, Bank routing/account) | DW-D08 (Scheduled) |
 | **DW41** | Change password | DW-W09 (Profile & Settings) | Driver & Helper | `1270:1047` | `1270:1998` | Verified (Current pw, New pw, Confirm pw) | DW-D09 (Scheduled) |
 | **DW42** | Notification settings | DW-W09 (Profile & Settings) | Driver & Helper | `1270:1154` | `1270:2105` | Verified (Push toggles, Job offers, Earnings, System) | DW-D09 (Scheduled) |
