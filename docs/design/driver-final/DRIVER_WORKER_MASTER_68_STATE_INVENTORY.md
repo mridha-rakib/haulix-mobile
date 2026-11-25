@@ -6,7 +6,7 @@
 **Figma Canvas URL:** https://www.figma.com/design/meiXxwUNJaDo0a3mhcHBXv/HAULIX-%E2%80%94-UI-UX-Concept--Copy-?node-id=1-3  
 **Authoritative Baseline:** 68 unique canonical states · 136 localized screens (68 English + 68 Spanish)  
 **Requirements Source:** Signed HAULIX SRS v1.6 (Crosswalk Frame `1329:1824`, Handoff Index `1091:3`, UX Audit Board `1317:1805`)  
-**Verified Audit Coverage:** 30 / 68 Canonical States (60 / 136 Localized Variants)
+**Verified Audit Coverage:** 36 / 68 Canonical States (72 / 136 Localized Variants)
 
 ---
 
@@ -30,8 +30,8 @@
 | **DW14** | Helper invitations | DW-W04 (Offers & Crew) | Crew Helper | `1086:268` | `1088:597` | Verified (Incoming crew invites, Accept / Decline) | **DW-D04 (Audited & Verified)** |
 | **DW15** | Review invitation | DW-W04 (Offers & Crew) | Crew Helper | `1086:328` | `1088:657` | Verified (Job scope, Driver profile, Confirm match) | **DW-D04 (Audited & Verified)** |
 | **DW16** | Crew readiness | DW-W04 (Offers & Crew) | Driver & Helper | `1086:365` | `1088:694` | Verified (Mutual confirmation checklist, Departure) | **DW-D04 (Audited & Verified)** |
-| **DW17** | Active job | DW-W05 (Pickup & Nav) | Primary Driver | `1086:405` | `1088:734` | Verified (Turn-by-turn routing, Arrival button) | DW-D05 (Scheduled) |
-| **DW18** | Job messages | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:459` | `1088:788` | Verified (Customer/Crew chat, Voice notes, Media) | DW-D05 (Scheduled) |
+| **DW17** | Active job | DW-W05 (Pickup & Nav) | Primary Driver | `1086:405` | `1088:734` | Verified (Turn-by-turn routing, Arrival button) | **DW-D05 (Audited & Verified)** |
+| **DW18** | Job messages | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:459` | `1088:788` | Verified (Customer/Crew chat, Voice notes, Media) | **DW-D05 (Audited & Verified)** |
 | **DW19** | On-site job progress | DW-W06 (Active Service) | Primary Driver | `1086:512` | `1088:841` | Verified (PIN entry, Item checklist, Scope flag) | DW-D06 (Scheduled) |
 | **DW20** | Additional work approval | DW-W06 (Active Service) | Primary Driver | `1086:562` | `1088:891` | Verified (Extra item price proposal, Customer approval) | DW-D06 (Scheduled) |
 | **DW21** | Completion evidence | DW-W07 (Proof & Dispute) | Primary Driver | `1086:596` | `1088:925` | Verified (2-tile delivery photos, Checklist sign-off) | DW-D07 (Scheduled) |
@@ -47,7 +47,7 @@
 | **DW31** | Helper dashboard | DW-W03 (Operational Home) | Crew Helper | `1086:1058` | `1088:1387` | Verified (Helper availability toggle, Invitation feed) | **DW-D03 (Audited & Verified)** |
 | **DW32** | Language & security | DW-W09 (Profile & Settings) | Driver & Helper | `1086:1108` | `1088:1437` | Verified (Locale picker, 2FA settings, Password change) | DW-D09 (Scheduled) |
 | **DW33** | Verification needs action | DW-W02 (Eligibility) | All Workers | `1086:1155` | `1088:1484` | Verified (Rejection reason, Resubmit ➔ DW07/DW06) | **DW-D02 (Audited & Verified)** |
-| **DW34** | Connection interrupted | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:1188` | `1088:1517` | Verified (Offline state banner, Local cache, Reconnect) | DW-D05 (Scheduled) |
+| **DW34** | Connection interrupted | DW-W05 (Pickup & Nav) | Driver & Helper | `1086:1188` | `1088:1517` | Verified (Offline state banner, Local cache, Reconnect) | **DW-D05 (Audited & Verified)** |
 | **DW35** | Payout history | DW-W08 (Wallet & Cashout) | Driver & Helper | `1086:1215` | `1088:1544` | Verified (Itemized payout logs, Bank settlement dates) | DW-D08 (Scheduled) |
 | **DW36** | Personal information | DW-W09 (Profile & Settings) | Primary Driver | `1270:428` | `1270:1379` | Verified (Name, Phone, Email, Address, Tax SSN/EIN) | DW-D09 (Scheduled) |
 | **DW37** | Photo & contact | DW-W09 (Profile & Settings) | Primary Driver | `1270:550` | `1270:1501` | Verified (Profile photo upload overlay, Emergency contact) | DW-D09 (Scheduled) |
@@ -60,10 +60,10 @@
 | **DW44** | Reset confirmation | DW-W01 (Onboarding) | Returning Users | `1301:611` | `1301:1853` | Verified (Check inbox view, Return to sign in ➔ DW03) | **DW-D01 (Audited & Verified)** |
 | **DW45** | Support request | DW-W09 (History & Support) | Driver & Helper | `1301:662` | `1301:1904` | Verified (Category picker, Description, Attachment upload) | DW-D09 (Scheduled) |
 | **DW46** | Support confirmation | DW-W09 (History & Support) | Driver & Helper | `1301:754` | `1301:1996` | Verified (Ticket ID assigned, Return to home) | DW-D09 (Scheduled) |
-| **DW47** | Message status | DW-W05 (Pickup & Nav) | Driver & Helper | `1301:837` | `1301:2079` | Verified (Read receipt, Delivery state, Network retry) | DW-D05 (Scheduled) |
+| **DW47** | Message status | DW-W05 (Pickup & Nav) | Driver & Helper | `1301:837` | `1301:2079` | Verified (Read receipt, Delivery state, Network retry) | **DW-D05 (Audited & Verified)** |
 | **DW48** | Choose a Helper | DW-W04 (Offers & Crew) | Primary Driver | `1301:920` | `1301:2162` | Verified (Helper search, Favorite crew, Proximity sort) | **DW-D04 (Audited & Verified)** |
 | **DW49** | Invitation pending | DW-W04 (Offers & Crew) | Primary Driver | `1301:1010` | `1301:2252` | Verified (Countdown to Helper response, Cancel invite) | **DW-D04 (Audited & Verified)** |
-| **DW50** | Location and network | DW-W05 (Pickup & Nav) | Driver & Helper | `1301:1097` | `1301:2339` | Verified (GPS permission prompt, Location troubleshooting) | DW-D05 (Scheduled) |
+| **DW50** | Location and network | DW-W05 (Pickup & Nav) | Driver & Helper | `1301:1097` | `1301:2339` | Verified (GPS permission prompt, Location troubleshooting) | **DW-D05 (Audited & Verified)** |
 | **DW51** | Extra work pending | DW-W06 (Active Service) | Driver & Helper | `1301:1190` | `1301:2432` | Verified (Awaiting customer confirmation, Live status) | DW-D06 (Scheduled) |
 | **DW52** | Extra work approved | DW-W06 (Active Service) | Driver & Helper | `1301:1279` | `1301:2521` | Verified (Customer accepted price, Add to trip ledger) | DW-D06 (Scheduled) |
 | **DW53** | Extra work declined | DW-W06 (Active Service) | Driver & Helper | `1301:1362` | `1301:2604` | Verified (Customer rejected scope, Continue original) | DW-D06 (Scheduled) |
@@ -75,7 +75,7 @@
 | **DW59** | Helper account details | DW-W01 (Onboarding) | Crew Helper | `1309:772` | `1309:1495` | Verified (Helper name, Email, Mobile phone, Password) | **DW-D01 (Audited & Verified)** |
 | **DW60** | Helper phone verification | DW-W01 (Onboarding) | Crew Helper | `1309:838` | `1309:1561` | Verified (Helper 6-digit OTP, Continue ➔ DW06) | **DW-D01 (Audited & Verified)** |
 | **DW61** | Phone sign-in verification | DW-W01 (Onboarding) | Returning Users | `1309:896` | `1309:1619` | Verified (Passwordless OTP login for registered crew) | **DW-D01 (Audited & Verified)** |
-| **DW62** | Helper active job | DW-W05 (Pickup & Nav) | Crew Helper | `1309:954` | `1309:1677` | Verified (Passenger navigation, Arrival confirmation) | DW-D05 (Scheduled) |
+| **DW62** | Helper active job | DW-W05 (Pickup & Nav) | Crew Helper | `1309:954` | `1309:1677` | Verified (Passenger navigation, Arrival confirmation) | **DW-D05 (Audited & Verified)** |
 | **DW63** | Helper on-site progress | DW-W06 (Active Service) | Crew Helper | `1309:1052` | `1309:1759` | Verified (Labor task checklist, Carry & loading status) | DW-D06 (Scheduled) |
 | **DW64** | Helper work evidence | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1147` | `1309:1838` | Verified (Co-verify delivery photos, Helper check-off) | DW-D07 (Scheduled) |
 | **DW65** | Helper work submitted | DW-W07 (Proof & Dispute) | Crew Helper | `1309:1243` | `1309:1918` | Verified (Helper completion confirmation, Review window) | DW-D07 (Scheduled) |
