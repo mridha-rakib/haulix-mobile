@@ -66,7 +66,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     appEnv: process.env.EXPO_PUBLIC_APP_ENV ?? "development",
     driverRoleSource: "SERVER_AUTHORITATIVE", // Role assignment always comes from backend
     eas: {
-      projectId: process.env.EAS_PROJECT_ID ?? "946485f7-0af0-4da8-9243-07ef6799b5fd",
+      projectId: process.env.EAS_PROJECT_ID ?? "b3505d80-1384-46fe-a530-e0985c515560",
     },
   },
 });
