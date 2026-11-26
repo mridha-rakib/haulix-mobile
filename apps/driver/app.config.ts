@@ -5,7 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   // ─── Identity ───────────────────────────────────────────────────────────────
   // NOTE: Identifiers below are PROPOSED placeholders, pending ownership confirmation.
-  name: "HAULIX Driver",
+  name: "HAULIX Driver & Worker",
   slug: "haulix-driver",
   version: "1.0.0",
   orientation: "portrait",
@@ -66,7 +66,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     appEnv: process.env.EXPO_PUBLIC_APP_ENV ?? "development",
     driverRoleSource: "SERVER_AUTHORITATIVE", // Role assignment always comes from backend
     eas: {
-      projectId: process.env.EAS_PROJECT_ID ?? "PENDING_REGISTRATION",
+      projectId: process.env.EAS_PROJECT_ID ?? "946485f7-0af0-4da8-9243-07ef6799b5fd",
     },
   },
 });
