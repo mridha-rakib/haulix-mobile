@@ -69,6 +69,25 @@ export default function ProfileScreen() {
               Commercial Insurance Policy: Active ($1,000,000)
             </Text>
           </View>
+
+          <View style={styles.complianceActions}>
+            <Pressable
+              onPress={() => router.push(isDriver ? "/(app)/vehicle-docs" : "/(app)/helper-docs")}
+              style={({ pressed }) => [styles.actionLink, pressed && styles.actionLinkPressed]}
+            >
+              <Text style={styles.actionLinkText}>
+                {isDriver
+                  ? "Manage Documents & Vehicle (DW38) →"
+                  : "Manage Helper Documents (DW56) →"}
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={() => router.push("/(auth)/verification-status")}
+              style={({ pressed }) => [styles.actionLink, pressed && styles.actionLinkPressed]}
+            >
+              <Text style={styles.actionLinkTextSecondary}>View Verification Status (DW08) →</Text>
+            </Pressable>
+          </View>
         </View>
 
         {/* Demo Controls Section */}
@@ -204,6 +223,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing[2],
+  },
+  complianceActions: {
+    marginTop: spacing[3],
+    paddingTop: spacing[3],
+    borderTopWidth: 1,
+    borderTopColor: "#202826",
+    gap: spacing[2],
+  },
+  actionLink: {
+    backgroundColor: "#202826",
+    paddingVertical: spacing[2],
+    paddingHorizontal: spacing[3],
+    borderRadius: radius.md,
+    alignItems: "center",
+  },
+  actionLinkPressed: {
+    opacity: 0.8,
+  },
+  actionLinkText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 13,
+    color: "#BAFF42",
+  },
+  actionLinkTextSecondary: {
+    fontFamily: "Inter_500Medium",
+    fontSize: 12,
+    color: "#ADB8B0",
+    textAlign: "center",
   },
   complianceText: {
     fontFamily: "Inter_400Regular",

@@ -47,8 +47,8 @@ export default function VerifyPhoneScreen() {
     setTimeout(() => {
       loginMock(onboardingDraft.email || "driver@haulix.com", "PRIMARY_DRIVER");
       setLoading(false);
-      router.replace("/(app)/(tabs)");
-    }, 600);
+      router.push("/(auth)/driver-verification");
+    }, 400);
   };
 
   const handleResend = () => {
@@ -61,7 +61,6 @@ export default function VerifyPhoneScreen() {
       <FlowHeader
         title={t("driver.phoneVerification.title")}
         subtitle={t("driver.phoneVerification.subtitle")}
-        step="03 / 03"
         onBack={() => router.back()}
       />
 

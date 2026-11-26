@@ -58,9 +58,7 @@ export function FlowHeader({
           <View style={styles.stepBadge}>
             <Text style={styles.stepText}>{step}</Text>
           </View>
-        ) : (
-          <View style={styles.backPlaceholder} />
-        )}
+        ) : null}
       </View>
 
       {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
@@ -81,26 +79,26 @@ const styles = StyleSheet.create({
     minHeight: 44,
   },
   backButton: {
-    width: 44,
-    height: 44,
+    width: 36,
+    height: 36,
     borderRadius: radius.md,
-    backgroundColor: "rgba(23, 35, 28, 0.6)",
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
   },
   backButtonPressed: {
-    opacity: 0.7,
+    opacity: 0.6,
   },
   backPlaceholder: {
-    width: 44,
+    width: 36,
   },
   title: {
     flex: 1,
     fontFamily: "Inter_700Bold",
-    fontSize: 22,
+    fontSize: 20,
     color: "#F6F8F6",
     textAlign: "left",
-    marginLeft: spacing[2],
+    marginLeft: spacing[1],
   },
   subtitle: {
     fontFamily: "Inter_400Regular",

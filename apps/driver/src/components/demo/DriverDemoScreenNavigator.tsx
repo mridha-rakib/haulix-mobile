@@ -223,6 +223,152 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
     description: "Recuperación de código vencido o no recibido",
   },
 
+  // DW05 Driver Verification (DW-F02)
+  {
+    id: "DW05-EN",
+    name: "DW05 · Driver verification (English)",
+    figmaNode: "1085:154",
+    route: "/(auth)/driver-verification",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Driver intake requirements: Identity, DL, Vehicle Registration, Insurance & Background",
+  },
+  {
+    id: "DW05-ES",
+    name: "DW05 · Verificación de Conductor (Español)",
+    figmaNode: "1088:154",
+    route: "/(auth)/driver-verification",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Requisitos de Conductor: Identidad, Licencia, Registro, Seguro y Antecedentes",
+  },
+
+  // DW06 Helper Verification (DW-F02)
+  {
+    id: "DW06-EN",
+    name: "DW06 · Helper verification (English)",
+    figmaNode: "1085:207",
+    route: "/(auth)/helper-verification",
+    locale: "en",
+    role: "HELPER",
+    description:
+      "Helper intake requirements: Government ID, Selfie & Background check (No vehicle needed)",
+  },
+  {
+    id: "DW06-ES",
+    name: "DW06 · Verificación de Ayudante (Español)",
+    figmaNode: "1088:207",
+    route: "/(auth)/helper-verification",
+    locale: "es",
+    role: "HELPER",
+    description:
+      "Requisitos de Ayudante: Identificación oficial, Foto y Verificación sin vehículo propio",
+  },
+
+  // DW07 Driver Documents Checklist (DW-F02)
+  {
+    id: "DW07-EN",
+    name: "DW07 · Driver documents (English)",
+    figmaNode: "1085:254",
+    route: "/(auth)/driver-documents",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Document upload checklist: DL, Vehicle Registration, Commercial Insurance & Background Consent",
+  },
+  {
+    id: "DW07-ES",
+    name: "DW07 · Documentos de Conductor (Español)",
+    figmaNode: "1088:254",
+    route: "/(auth)/driver-documents",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Lista de documentos de Conductor con carga de archivos y consentimiento",
+  },
+
+  // DW08 Verification Status (DW-F02)
+  {
+    id: "DW08-EN",
+    name: "DW08 · Verification status (English)",
+    figmaNode: "1085:298",
+    route: "/(auth)/verification-status",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description: "Document review status with 24-48h review window and direct dashboard preview",
+  },
+  {
+    id: "DW08-ES",
+    name: "DW08 · Estado de verificación (Español)",
+    figmaNode: "1088:298",
+    route: "/(auth)/verification-status",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Estado de revisión de documentos con tiempo estimado y vista previa de panel",
+  },
+
+  // DW33 Verification Action Required (DW-F02)
+  {
+    id: "DW33-EN",
+    name: "DW33 · Verification needs action (English)",
+    figmaNode: "1086:1155",
+    route: "/(auth)/verification-action",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description: "Attention needed: Rejected/expired document resolution and re-upload flow",
+  },
+  {
+    id: "DW33-ES",
+    name: "DW33 · Acción requerida en verificación (Español)",
+    figmaNode: "1088:1484",
+    route: "/(auth)/verification-action",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Atención requerida: Solución de documentos rechazados o vencidos",
+  },
+
+  // DW38 Documents & Vehicle (DW-F02)
+  {
+    id: "DW38-EN",
+    name: "DW38 · Documents & vehicle (English)",
+    figmaNode: "1270:665",
+    route: "/(app)/vehicle-docs",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "In-app Driver vehicle & compliance hub: DL, Registration, Insurance and Inspection",
+  },
+  {
+    id: "DW38-ES",
+    name: "DW38 · Documentos y vehículo (Español)",
+    figmaNode: "1270:1616",
+    route: "/(app)/vehicle-docs",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Centro de cumplimiento y vehículo en la app para conductores de HAULIX",
+  },
+
+  // DW56 Helper Eligibility & Documents (DW-F02)
+  {
+    id: "DW56-EN",
+    name: "DW56 · Helper eligibility & documents (English)",
+    figmaNode: "1301:1633",
+    route: "/(app)/helper-docs",
+    locale: "en",
+    role: "HELPER",
+    description:
+      "In-app Helper eligibility & documents hub: Government ID, Selfie & Safety training",
+  },
+  {
+    id: "DW56-ES",
+    name: "DW56 · Elegibilidad y documentos de Ayudante (Español)",
+    figmaNode: "1301:2875",
+    route: "/(app)/helper-docs",
+    locale: "es",
+    role: "HELPER",
+    description: "Centro de elegibilidad y documentos de identidad para ayudantes de cuadrilla",
+  },
+
   // 5-Tab Navigation Shell
   {
     id: "TAB-HOME-DRIVER",

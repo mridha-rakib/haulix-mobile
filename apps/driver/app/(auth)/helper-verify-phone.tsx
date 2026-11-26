@@ -28,7 +28,7 @@ export default function HelperVerifyPhoneScreen() {
       setRole("HELPER");
       loginMock(onboardingDraft.email || "helper@haulix.com", "HELPER");
       setLoading(false);
-      router.replace("/(app)/(tabs)");
+      router.push("/(auth)/helper-verification");
     }, 400);
   };
 

@@ -11,11 +11,25 @@ import { useDriverAuthStore } from "../../src/stores/authStore";
 export default function CodeHelpScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
-  const { resetOtpCountdown } = useDriverAuthStore();
+  const { role, resetOtpCountdown } = useDriverAuthStore();
 
   const handleReturn = () => {
     resetOtpCountdown();
-    router.back();
+    if (router.canGoBack()) {
+      router.back();
+    } else if (role === "HELPER") {
+      router.push("/(auth)/helper-verify-phone");
+    } else {
+      router.push("/(auth)/verify-phone");
+    }
+  };
+
+  const handleEditPhone = () => {
+    if (role === "HELPER") {
+      router.push("/(auth)/helper-register");
+    } else {
+      router.push("/(auth)/driver-register");
+    }
   };
 
   return (
@@ -68,7 +82,7 @@ export default function CodeHelpScreen() {
 
         <ActionCtaButton
           label={t("driver.codeIssue.editPhoneCta")}
-          onPress={() => router.push("/(auth)/register")}
+          onPress={handleEditPhone}
           variant="outline"
           size="large"
         />

@@ -34,7 +34,6 @@ export default function RegisterRoleSelectScreen() {
       <FlowHeader
         title={t("driver.roleSelect.headerTitle")}
         subtitle={t("driver.roleSelect.headerSubtitle")}
-        step="01 / 03"
         onBack={() => router.back()}
       />
 

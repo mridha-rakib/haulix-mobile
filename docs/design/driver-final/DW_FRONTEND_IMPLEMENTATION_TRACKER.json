@@ -5,6 +5,8 @@
   "lastUpdated": "2026-11-26T11:05:00Z",
   "totalCanonicalStates": 68,
   "totalBilingualVariants": 136,
+  "cumulativeCanonicalImplemented": 18,
+  "cumulativeBilingualVariants": 36,
   "milestones": {
     "DW-F00": {
       "name": "Engineering Foundation & Design Sync",
@@ -156,20 +158,81 @@
       ]
     },
     "DW-F02": {
-      "name": "Driver Onboarding & Vehicle Verification",
-      "status": "PLANNED",
-      "targetScreens": [
-        "DW05",
-        "DW06",
-        "DW07",
-        "DW08",
-        "DW41",
-        "DW42",
-        "DW45",
-        "DW46",
-        "DW47",
-        "DW48",
-        "DW49"
+      "name": "Eligibility Verification & Documents",
+      "status": "COMPLETED",
+      "canonicalScreensCount": 7,
+      "bilingualVariantsCount": 14,
+      "screens": [
+        {
+          "screenId": "DW05",
+          "screenName": "Driver verification",
+          "route": "/(auth)/driver-verification",
+          "sourceFile": "apps/driver/app/(auth)/driver-verification.tsx",
+          "figmaNodes": { "en": "1085:154", "es": "1088:154" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "DriverChecklistCard", "DisclosureCard", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW06",
+          "screenName": "Helper verification",
+          "route": "/(auth)/helper-verification",
+          "sourceFile": "apps/driver/app/(auth)/helper-verification.tsx",
+          "figmaNodes": { "en": "1085:207", "es": "1088:207" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "HelperChecklistCard", "DisclosureCard", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW07",
+          "screenName": "Driver documents",
+          "route": "/(auth)/driver-documents",
+          "sourceFile": "apps/driver/app/(auth)/driver-documents.tsx",
+          "figmaNodes": { "en": "1085:254", "es": "1088:254" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "DocumentUploadItem", "UploadDropzone", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW08",
+          "screenName": "Verification status",
+          "route": "/(auth)/verification-status",
+          "sourceFile": "apps/driver/app/(auth)/verification-status.tsx",
+          "figmaNodes": { "en": "1085:298", "es": "1088:298" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "ShieldStatusIcon", "StatusBadge", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW33",
+          "screenName": "Verification needs action",
+          "route": "/(auth)/verification-action",
+          "sourceFile": "apps/driver/app/(auth)/verification-action.tsx",
+          "figmaNodes": { "en": "1086:1155", "es": "1088:1484" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "ActionNoticeCard", "FeedbackDetailCard", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW38",
+          "screenName": "Documents & vehicle",
+          "route": "/(app)/vehicle-docs",
+          "sourceFile": "apps/driver/app/(app)/vehicle-docs.tsx",
+          "figmaNodes": { "en": "1270:665", "es": "1270:1616" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "DocumentComplianceRow", "ActionCtaButton"]
+        },
+        {
+          "screenId": "DW56",
+          "screenName": "Helper eligibility & documents",
+          "route": "/(app)/helper-docs",
+          "sourceFile": "apps/driver/app/(app)/helper-docs.tsx",
+          "figmaNodes": { "en": "1301:1633", "es": "1301:2875" },
+          "status": "COMPLETED",
+          "bilingualReady": true,
+          "components": ["FlowHeader", "CalloutBanner", "RequirementNavRow", "ActionCtaButton"]
+        }
       ]
     },
     "DW-F03": {
