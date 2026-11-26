@@ -7,7 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { DriverDemoScreenNavigator } from "../src/components/demo/DriverDemoScreenNavigator";
 import { ErrorBoundary } from "../src/components/ErrorBoundary";
 import { useAppBootstrap } from "../src/hooks/useAppBootstrap";
 
@@ -43,6 +43,7 @@ export default function RootLayout() {
                 animation: "fade",
               }}
             />
+            <DriverDemoScreenNavigator />
           </View>
         </SafeAreaProvider>
       </QueryClientProvider>

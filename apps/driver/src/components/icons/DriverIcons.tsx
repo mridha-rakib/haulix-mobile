@@ -1,0 +1,411 @@
+import { type StyleProp, View, type ViewStyle } from "react-native";
+import Svg, { Circle, Line, Path, Polyline, Rect } from "react-native-svg";
+
+interface IconProps {
+  size?: number;
+  color?: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+/**
+ * Truck icon for Primary Driver role (Figma 1193:995)
+ */
+export function DriverTruckIcon({ size = 28, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="1"
+          y="3"
+          width="15"
+          height="13"
+          rx="2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M16 8H20L23 11V16H16V8Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Circle cx="5.5" cy="18.5" r="2.5" stroke={color} strokeWidth="1.8" />
+        <Circle cx="18.5" cy="18.5" r="2.5" stroke={color} strokeWidth="1.8" />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Users icon for Helper / Crew role (Figma 1193:1013)
+ */
+export function HelperUsersIcon({ size = 28, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Circle
+          cx="9"
+          cy="7"
+          r="4"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Shield icon for Security & Separate Decision notes (Figma 1085:110, 1193:1025)
+ */
+export function ShieldIcon({ size = 24, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M9 12L11 14L15 10"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Clock timer icon for OTP expiration (Figma 1085:146)
+ */
+export function ClockTimerIcon({ size = 24, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
+        <Polyline
+          points="12 6 12 12 16 14"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Back Chevron Icon
+ */
+export function ChevronLeftIcon({ size = 24, color = "#F6F8F6", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M15 18L9 12L15 6"
+          stroke={color}
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Eye visibility icon
+ */
+export function EyeIcon({ size = 20, color = "#8E9E99", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Circle
+          cx="12"
+          cy="12"
+          r="3"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Eye-off hidden icon
+ */
+export function EyeOffIcon({ size = 20, color = "#8E9E99", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M17.94 17.94A10.07 10.07 0 0 1 12 20C5 20 1 12 1 12A24.8 24.8 0 0 1 5.06 6.06L17.94 17.94Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M9.9 4.24A9.12 9.12 0 0 1 12 4C19 4 23 12 23 12A24.6 24.6 0 0 1 19.78 15.78"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Line
+          x1="1"
+          y1="1"
+          x2="23"
+          y2="23"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Checkmark icon
+ */
+export function CheckmarkIcon({ size = 16, color = "#080B0B", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Polyline
+          points="20 6 9 17 4 12"
+          stroke={color}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+// Canonical Aliases
+export const TruckIcon = DriverTruckIcon;
+export const UsersIcon = HelperUsersIcon;
+export const ClockIcon = ClockTimerIcon;
+
+/**
+ * Mail envelope icon
+ */
+export function MailIcon({ size = 20, color = "#8E9E99", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="2"
+          y="4"
+          width="20"
+          height="16"
+          rx="2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M22 6L12 13L2 6"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * Phone icon
+ */
+export function PhoneIcon({ size = 20, color = "#8E9E99", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M22 16.92V19.92C22 20.48 21.54 20.93 20.97 20.92C10.43 20.24 3.76 13.57 3.08 3.03C3.07 2.46 3.52 2 4.08 2H7.08C7.6 2 8.04 2.38 8.1 2.89L8.72 6.78C8.78 7.21 8.57 7.63 8.21 7.87L6.46 9.07C7.61 11.53 9.47 13.39 11.93 14.54L13.13 12.79C13.37 12.43 13.79 12.22 14.22 12.28L18.11 12.9C18.62 12.96 19 13.4 19 13.92V16.92H22Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+// ─── Authoritative 5-Tab Navigation Icons (Figma 1084:26, 1314:320) ─────────────────
+
+export function TabHomeIcon({ active = false, size = 24 }: { active?: boolean; size?: number }) {
+  const color = active ? "#BAFF42" : "#8E9E99";
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M3 9.5L12 2.5L21 9.5V20.5C21 21.0523 20.5523 21.5 20 21.5H4C3.44772 21.5 3 21.0523 3 20.5V9.5Z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M9 21.5V12.5H15V21.5"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function TabJobsIcon({ active = false, size = 24 }: { active?: boolean; size?: number }) {
+  const color = active ? "#BAFF42" : "#8E9E99";
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Rect
+        x="2"
+        y="7"
+        width="20"
+        height="14"
+        rx="2"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function TabEarningsIcon({
+  active = false,
+  size = 24,
+}: {
+  active?: boolean;
+  size?: number;
+}) {
+  const color = active ? "#BAFF42" : "#8E9E99";
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M21 12V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V16"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16 12H22V16H16C14.8954 16 14 15.1046 14 14C14 12.8954 14.8954 12 16 12Z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Circle cx="18" cy="14" r="1" fill={color} />
+    </Svg>
+  );
+}
+
+export function TabMessagesIcon({
+  active = false,
+  size = 24,
+}: {
+  active?: boolean;
+  size?: number;
+}) {
+  const color = active ? "#BAFF42" : "#8E9E99";
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Circle cx="9" cy="10" r="1" fill={color} />
+      <Circle cx="14" cy="10" r="1" fill={color} />
+      <Circle cx="19" cy="10" r="1" fill={color} />
+    </Svg>
+  );
+}
+
+export function TabProfileIcon({ active = false, size = 24 }: { active?: boolean; size?: number }) {
+  const color = active ? "#BAFF42" : "#8E9E99";
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Circle
+        cx="12"
+        cy="7"
+        r="4"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

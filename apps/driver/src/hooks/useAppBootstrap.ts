@@ -4,12 +4,12 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
-import { initI18n } from "@haulix/i18n";
 import { driverLogger } from "@haulix/logger";
 import { type AppBootstrapState, createBootstrapMachine } from "@haulix/utils";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { initDriverI18n } from "../i18n";
 
 const BOOTSTRAP_TIMEOUT_MS = 4000;
 
@@ -40,7 +40,7 @@ export function useAppBootstrap(): BootstrapResult {
 
   useEffect(() => {
     let mounted = true;
-    initI18n("en")
+    initDriverI18n("en")
       .then(() => {
         if (mounted) setI18nReady(true);
       })
