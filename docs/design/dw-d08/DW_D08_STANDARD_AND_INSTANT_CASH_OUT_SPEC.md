@@ -25,8 +25,8 @@ HAULIX provides workers with two distinct mechanisms to disburse accrued availab
 | **Destination Instrument** | Verified Checking/Savings Account (Routing + Account) | Eligible Debit Card (Linked to checking account) |
 | **Platform / Provider Fee** | **$0.00 (Free / No Fee)** | **Provider-Calculated Fee** (Disclosed before consent) |
 | **Figma Canvas Rule** | Canvas `1325:1804`: *"No platform fee · 1-3 business days"* | Canvas `1325:1914`: *"Provider-calculated fee must appear before approval"* |
-| **Minimum Cash Out** | $1.00 | $5.00 |
-| **Daily Transfer Limit** | $5,000 / day | $2,000 / day (or provider-imposed rolling cap) |
+| **Minimum Cash Out** | Subject to backend provider policy | Subject to backend provider policy |
+| **Daily Transfer Limit** | Server-enforced provider limit | Provider / platform risk limit |
 | **Consent Requirement** | Single confirmation tap | Mandatory explicit disclosure & consent of fee & net receipt |
 
 ---
@@ -37,16 +37,15 @@ HAULIX provides workers with two distinct mechanisms to disburse accrued availab
 $$\text{Net Worker Receipt} = \text{Requested Amount} - \text{Disclosed Provider Fee}$$
 
 - **Dynamic Provider Calculation:**
-  - The provider fee is dynamically quoted via Stripe Connect API endpoint (`/v1/payouts/fee_quote`) based on card network rules, currency, and volume tier.
-  - Typical market range: 1.5% with a minimum floor ($0.50) or as dictated by the payment partner.
-  - **Critical Rule:** The app must NEVER hardcode a fee. The fee shown on `DW68` (`1325:1866`) is fetched live from the provider before rendering the confirmation screen.
+  - The provider fee is dynamically quoted via application backend interface (`GET /v1/worker/payouts/fee-quote` backed by Stripe Connect payout configurations) based on card network rules, currency, and destination instrument.
+  - **Critical Rule:** The app must NEVER hardcode a fee percentage or fixed surcharge. The fee shown on `DW68` (`1325:1866`) is fetched live from the backend provider service before rendering the confirmation screen.
 
 #### 2.2 Pre-Consent Disclosure UX (`DW68`)
 - The worker is presented with:
-  1. Transfer Amount: e.g. `$385.20`
-  2. Instant Processing Fee: e.g. `-$5.78` (Itemized line)
-  3. Net Deposited Amount: e.g. `$379.42` (Emphasized lime green total)
-  4. Destination Card: `Visa ending in 9012`
+  1. Transfer Amount: e.g. `$1,280.00` (or selected amount)
+  2. Instant Processing Fee: Itemized deduction line (calculated by provider)
+  3. Net Deposited Amount: Emphasized lime green net receipt total
+  4. Destination Card: `Visa ending in 9012` (or verified debit card)
   5. Estimated Arrival: `Within 30 minutes`
 - Primary CTA: `Confirm & Transfer Now`
 - Secondary CTA: `Cancel & Use Standard Transfer (Free)`
@@ -69,7 +68,7 @@ stateDiagram-v2
     StandardSelected --> SubmittingStandard: Confirm Transfer ($0 fee)
     SubmittingStandard --> CashOutSuccess: Payout Initiated (DW26)
     
-    InstantSelected --> FetchFeeQuote: API /payouts/fee_quote
+    InstantSelected --> FetchFeeQuote: API /v1/worker/payouts/fee-quote
     FetchFeeQuote --> DisplayFeeReview: Render DW68 with Net Amount
     DisplayFeeReview --> SubmittingInstant: Worker Consents & Taps Confirm
     

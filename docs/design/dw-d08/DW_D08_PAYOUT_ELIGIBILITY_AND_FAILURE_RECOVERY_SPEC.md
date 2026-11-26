@@ -26,10 +26,10 @@ Before a Driver or Helper can trigger a Cash Out (`DW25`), the worker account mu
 2. **Gate 2: Active Disbursement Instrument:**
    - At least one verified Direct Deposit bank account or eligible Instant Debit Card attached to the worker profile in `DW40`.
 3. **Gate 3: Balance Availability:**
-   - Worker must have an available balance of at least `$1.00` for standard bank transfers or `$5.00` for instant cash out.
+   - Worker must have an unencumbered available balance meeting provider/platform transfer minimums.
    - Pending earnings subject to customer 24h review hold or active safety investigations are segregated into `PENDING_REVIEW` and cannot be cashed out.
 4. **Gate 4: Platform Security & Risk Screening:**
-   - Account free from temporary financial freezes (e.g. suspicious payout destination change within the last 24 hours triggers a fraud velocity delay).
+   - Account free from temporary financial freezes (e.g. suspicious payout destination change within the last 24 hours triggers risk delay).
 
 ---
 
@@ -43,7 +43,7 @@ When a payout cannot be executed, the system routes the worker to `DW54` (`1301:
 | `ERR_PAYOUT_CARD_EXPIRED` | Instant Debit Card Expired / Inactive | Debit card expired or replaced by issuing bank | Update card details in `OV-02` | "Your debit card has expired or is no longer active." |
 | `ERR_PAYOUT_INSTANT_UNSUPPORTED` | Card Not Eligible for Instant Transfer | Issuing bank does not participate in Visa Direct / Mastercard Send | Switch to Standard Bank ACH (`DW67`) | "Your card issuing bank does not support instant transfers." |
 | `ERR_PAYOUT_KYC_DOCUMENT_NEEDED` | Stripe Compliance Hold | Stripe requested additional proof of address / tax verification | Complete ID verification in `DW40` / Web Portal | "Additional identity verification is required by our payments partner." |
-| `ERR_PAYOUT_VELOCITY_LIMIT` | Daily Limit Exceeded | Worker exceeded 24h instant payout maximum ($2,000) | Wait 24h or use Standard Transfer (`DW67`) | "You have reached your daily instant cash-out limit." |
+| `ERR_PAYOUT_VELOCITY_LIMIT` | Daily Limit Exceeded | Worker exceeded 24h instant payout maximum | Wait 24h or use Standard Transfer (`DW67`) | "You have reached your daily instant cash-out limit." |
 
 ---
 

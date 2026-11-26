@@ -61,12 +61,14 @@ $$\text{Total Worker Earnings Pool} = \text{Worker Subtotal Pool} + \text{Worker
 ##### Model B: Driver + Helper Crew (2 Workers)
 When a Helper ($H$) participates on the dispatch assignment:
 - **Subtotal Share:**
-  - Standard Dispatch Contract: Equal subtotal split between assigned crew members unless customized by contract agreement.
+  - 65% of the pre-tax, pre-tip booking subtotal is allocated to the total Worker Compensation Pool, while 35% is retained by the HAULIX platform.
+  - Allocation between Primary Driver and Helper is determined by dispatch contract parameters, vehicle provision, and crew assignment terms (do NOT assume an unverified 50/50 base subtotal split).
   - $\text{Driver Subtotal Share} = \text{Worker Subtotal Pool} \times \omega_D$
   - $\text{Helper Subtotal Share} = \text{Worker Subtotal Pool} \times \omega_H$
-  - Where $\omega_D + \omega_H = 1.00$ (default $\omega_D = 0.50$, $\omega_H = 0.50$).
+  - Where $\omega_D + \omega_H = 1.00$ (determined by server-side crew contract, not hardcoded locally).
 - **Tip Share:**
   - Authoritative Rule (`1086:755`): *"100% workers · default equal split"*.
+  - Gratuities are 100% pass-through to workers with zero platform withholding.
   - $\text{Driver Tip} = \text{Customer Tip} \times 0.50$
   - $\text{Helper Tip} = \text{Customer Tip} \times 0.50$
 
@@ -75,10 +77,12 @@ When a Helper ($H$) participates on the dispatch assignment:
 ### 3. Screen-by-Screen Ledger UX Audit
 
 #### 3.1 DW23 · Earnings Overview (`1086:670` / `1088:999`)
-- **Primary Metrics:**
-  - Available for Cash Out: Large high-contrast display (`$385.20` on canvas).
-  - Weekly Total: Summary metric card (`$1,240.50`).
-  - Completed Jobs Count: Weekly throughput counter (`18 jobs`).
+- **Primary Metrics (Reconciled to Live Canvas Nodes):**
+  - Available for Cash Out: Large high-contrast display (`$1,280.00` DEMO on canvas `1086:670`).
+  - Completed Jobs Count: Throughput counter (`5 completed jobs` on canvas `1086:670`).
+  - Pending Earnings: Segregated balance (`Separate ledger` / 24-hour review hold).
+  - Tip Allocation: Explicit policy callout (`100% to workers`).
+  - Note: Earlier handoff documentation claiming speculative values of `$385.20` or `18 jobs` is superseded by live canvas values.
 - **Primary Action:**
   - `Cash Out Now` primary CTA (`1086:720`), navigating to `DW25` (`1086:765`).
   - `View Breakdown & Payouts` secondary CTA (`1086:722`), navigating to `DW24` (`1086:728`).
