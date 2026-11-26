@@ -1,52 +1,54 @@
-import { radius, spacing } from "@haulix/design-tokens";
 import { useRouter } from "expo-router";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ClockIcon, ShieldIcon, TruckIcon } from "../../src/components/icons/DriverIcons";
-import { ActionCtaButton } from "../../src/components/ui/ActionCtaButton";
+import Svg, { Defs, LinearGradient, Path, Stop } from "react-native-svg";
+import {
+  WelcomeCalendarIcon,
+  WelcomeCoinsIcon,
+  WelcomeTruckIcon,
+} from "../../src/components/icons/DriverIcons";
 import { useDriverTranslation } from "../../src/i18n";
 
 const HERO_IMG = require("../../assets/welcome/hero-worker-truck.png");
+const HAULIX_MARK = require("../../assets/branding/haulix-h-mark.png");
 
 export default function WelcomeScreen() {
   const router = useRouter();
-  const { t, currentLocale, toggleLanguage } = useDriverTranslation();
+  const { t, toggleLanguage } = useDriverTranslation();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* Top Header Bar with Logo and Language Toggle */}
-        <View style={styles.topHeader}>
-          <View style={styles.logoRow}>
-            <Text style={styles.brandLogo}>HAULIX</Text>
-            <View style={styles.proBadge}>
-              <Text style={styles.proBadgeText}>PRO</Text>
-            </View>
-          </View>
-          <Pressable
-            onPress={toggleLanguage}
-            style={({ pressed }) => [styles.langToggle, pressed && styles.langTogglePressed]}
-          >
-            <Text style={styles.langToggleText}>
-              {currentLocale === "en" ? "ESPAÑOL" : "ENGLISH"}
-            </Text>
-          </Pressable>
+    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
+      {/* Upper-left diagonal lime flare decoration matching Figma */}
+      <Svg width={180} height={140} style={styles.topGlow} viewBox="0 0 180 140" fill="none">
+        <Defs>
+          <LinearGradient id="limeGlow" x1="0" y1="0" x2="1" y2="1">
+            <Stop offset="0" stopColor="#BAFF42" stopOpacity="0.75" />
+            <Stop offset="0.3" stopColor="#4A8818" stopOpacity="0.4" />
+            <Stop offset="0.7" stopColor="#152B10" stopOpacity="0.1" />
+            <Stop offset="1" stopColor="#080B0B" stopOpacity="0" />
+          </LinearGradient>
+          <LinearGradient id="glowBorder" x1="0" y1="0" x2="1" y2="1">
+            <Stop offset="0" stopColor="#BAFF42" stopOpacity="0.65" />
+            <Stop offset="0.5" stopColor="#55991A" stopOpacity="0.25" />
+            <Stop offset="1" stopColor="#152B10" stopOpacity="0" />
+          </LinearGradient>
+        </Defs>
+        <Path d="M0 0 L180 0 Q95 55 0 140 Z" fill="url(#limeGlow)" />
+        <Path d="M180 0 Q95 55 0 140" stroke="url(#glowBorder)" strokeWidth="1.2" fill="none" />
+      </Svg>
+
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+        {/* Centered HAULIX Brand Logo (Figma 1085:3 / 1088:3) */}
+        <View style={styles.brandRow}>
+          <Image source={HAULIX_MARK} style={styles.brandMark} resizeMode="contain" />
+          <Text style={styles.brandText}>HAULIX</Text>
         </View>
 
-        {/* Hero Visual Banner matching Figma 1085:3 / 1088:3 */}
-        <View style={styles.heroContainer}>
-          <Image source={HERO_IMG} style={styles.heroImage} resizeMode="cover" />
-          <View style={styles.heroOverlay} />
-          <View style={styles.heroTag}>
-            <Text style={styles.heroTagText}>
-              {currentLocale === "en"
-                ? "ARIZONA DRIVER & HELPER CREW"
-                : "EQUIPO DE CONDUCTORES Y AYUDANTES"}
-            </Text>
-          </View>
-        </View>
-
-        {/* Headline & Mission Subtitle */}
+        {/* Headline & Mission Description (Placed Above Benefit Cards) */}
         <View style={styles.headlineBlock}>
           <Text style={styles.mainHeadline}>{t("driver.welcome.headline")}</Text>
           <Text style={styles.subHeadline}>{t("driver.welcome.subtitle")}</Text>
@@ -55,51 +57,71 @@ export default function WelcomeScreen() {
         {/* 3 Figma Benefit Cards */}
         <View style={styles.cardsRow}>
           <View style={styles.card}>
-            <View style={styles.cardIconWrap}>
-              <TruckIcon size={20} color="#BAFF42" />
-            </View>
+            <WelcomeTruckIcon size={22} color="#BAFF42" />
             <Text style={styles.cardTitle}>{t("driver.welcome.card1Title")}</Text>
             <Text style={styles.cardSubtitle}>{t("driver.welcome.card1Subtitle")}</Text>
           </View>
 
           <View style={styles.card}>
-            <View style={styles.cardIconWrap}>
-              <ShieldIcon size={20} color="#BAFF42" />
-            </View>
+            <WelcomeCoinsIcon size={22} color="#BAFF42" />
             <Text style={styles.cardTitle}>{t("driver.welcome.card2Title")}</Text>
             <Text style={styles.cardSubtitle}>{t("driver.welcome.card2Subtitle")}</Text>
           </View>
 
           <View style={styles.card}>
-            <View style={styles.cardIconWrap}>
-              <ClockIcon size={20} color="#BAFF42" />
-            </View>
+            <WelcomeCalendarIcon size={22} color="#BAFF42" />
             <Text style={styles.cardTitle}>{t("driver.welcome.card3Title")}</Text>
             <Text style={styles.cardSubtitle}>{t("driver.welcome.card3Subtitle")}</Text>
           </View>
         </View>
 
-        {/* Action CTAs */}
-        <View style={styles.actionContainer}>
-          <ActionCtaButton
-            label={t("driver.welcome.getStarted")}
-            onPress={() => router.push("/(auth)/register")}
-            variant="primary"
-            size="large"
-          />
-          <View style={{ height: spacing[3] }} />
-          <ActionCtaButton
-            label={t("driver.welcome.signIn")}
-            onPress={() => router.push("/(auth)/sign-in")}
-            variant="outline"
-            size="large"
-          />
+        {/* Full-width Hero Visual placed directly below cards */}
+        <View style={styles.heroContainer}>
+          <Image source={HERO_IMG} style={styles.heroImage} resizeMode="cover" />
         </View>
 
-        {/* Platform footer indicator */}
-        <View style={styles.footerInfo}>
-          <Text style={styles.footerText}>{t("driver.welcome.languageToggle")}</Text>
+        {/* 4 Carousel Dots (1 Active Lime Pill + 3 Inactive Grey Dots) */}
+        <View style={styles.carouselRow}>
+          <View style={[styles.dot, styles.dotActive]} />
+          <View style={styles.dot} />
+          <View style={styles.dot} />
+          <View style={styles.dot} />
         </View>
+
+        {/* Primary & Secondary Pill Action Buttons */}
+        <View style={styles.actionContainer}>
+          <Pressable
+            onPress={() => router.push("/(auth)/register")}
+            accessibilityRole="button"
+            accessibilityLabel={t("driver.welcome.getStarted")}
+            style={{ width: "100%" }}
+          >
+            <View style={styles.primaryButton}>
+              <Text style={styles.primaryButtonText}>{t("driver.welcome.getStarted")}</Text>
+            </View>
+          </Pressable>
+
+          <Pressable
+            onPress={() => router.push("/(auth)/sign-in")}
+            accessibilityRole="button"
+            accessibilityLabel={t("driver.welcome.signIn")}
+            style={{ width: "100%" }}
+          >
+            <View style={styles.secondaryButton}>
+              <Text style={styles.secondaryButtonText}>{t("driver.welcome.signIn")}</Text>
+            </View>
+          </Pressable>
+        </View>
+
+        {/* Footer with language switch and platform indicator */}
+        <Pressable
+          onPress={toggleLanguage}
+          style={styles.footerWrap}
+          accessibilityRole="button"
+          accessibilityLabel="Toggle Language"
+        >
+          <Text style={styles.footerText}>{t("driver.welcome.languageToggle")}</Text>
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
@@ -109,158 +131,181 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#080B0B",
+    position: "relative",
+  },
+  topGlow: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 0,
   },
   scrollContent: {
-    paddingHorizontal: spacing[4],
-    paddingTop: spacing[2],
-    paddingBottom: spacing[8],
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 16,
+    alignItems: "center",
   },
-  topHeader: {
+  brandRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: spacing[3],
+    justifyContent: "center",
+    marginTop: 4,
+    marginBottom: 12,
+    zIndex: 1,
   },
-  logoRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing[2],
+  brandMark: {
+    width: 24,
+    height: 24.5,
+    tintColor: "#BAFF42",
   },
-  brandLogo: {
+  brandText: {
     fontFamily: "Inter_700Bold",
-    fontSize: 22,
+    fontSize: 21,
     letterSpacing: 2,
-    color: "#BAFF42",
+    color: "#FFFFFF",
+    marginLeft: 7,
   },
-  proBadge: {
-    backgroundColor: "#1E2523",
+  headlineBlock: {
+    alignItems: "center",
+    marginBottom: 12,
+    paddingHorizontal: 8,
+    zIndex: 1,
+  },
+  mainHeadline: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 26,
+    lineHeight: 31,
+    color: "#FFFFFF",
+    textAlign: "center",
+    letterSpacing: -0.5,
+    marginBottom: 6,
+  },
+  subHeadline: {
+    fontFamily: "Inter_400Regular",
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#9CA8A2",
+    textAlign: "center",
+    maxWidth: 310,
+  },
+  cardsRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 10,
+    width: "100%",
+    zIndex: 1,
+  },
+  card: {
+    flex: 1,
+    backgroundColor: "#131917",
     borderWidth: 1,
-    borderColor: "#35403B",
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: radius.sm,
+    borderColor: "#232C28",
+    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 4,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  proBadgeText: {
+  cardTitle: {
     fontFamily: "Inter_600SemiBold",
-    fontSize: 10,
-    color: "#F6F8F6",
-    letterSpacing: 1,
+    fontSize: 12,
+    color: "#FFFFFF",
+    marginTop: 5,
+    textAlign: "center",
   },
-  langToggle: {
-    paddingHorizontal: spacing[3],
-    paddingVertical: spacing[1.5],
-    borderRadius: radius.full,
-    backgroundColor: "#151A19",
-    borderWidth: 1,
-    borderColor: "#35403B",
-  },
-  langTogglePressed: {
-    borderColor: "#BAFF42",
-    backgroundColor: "#1E2523",
-  },
-  langToggleText: {
+  cardSubtitle: {
     fontFamily: "Inter_600SemiBold",
-    fontSize: 11,
-    color: "#BAFF42",
-    letterSpacing: 0.5,
+    fontSize: 12,
+    color: "#FFFFFF",
+    marginTop: 1,
+    textAlign: "center",
   },
   heroContainer: {
     width: "100%",
     height: 190,
-    borderRadius: radius.xl,
     overflow: "hidden",
     position: "relative",
-    borderWidth: 1,
-    borderColor: "#2B3532",
-    marginBottom: spacing[4],
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1,
   },
   heroImage: {
     width: "100%",
     height: "100%",
   },
-  heroOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: "rgba(8, 11, 11, 0.35)",
-  },
-  heroTag: {
-    position: "absolute",
-    bottom: spacing[3],
-    left: spacing[3],
-    backgroundColor: "rgba(10, 15, 13, 0.85)",
-    paddingHorizontal: spacing[2.5],
-    paddingVertical: spacing[1],
-    borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: "rgba(186, 255, 66, 0.3)",
-  },
-  heroTagText: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 10,
-    color: "#BAFF42",
-    letterSpacing: 0.5,
-  },
-  headlineBlock: {
-    marginBottom: spacing[4],
-  },
-  mainHeadline: {
-    fontFamily: "Inter_700Bold",
-    fontSize: 28,
-    lineHeight: 34,
-    color: "#F6F8F6",
-    marginBottom: spacing[2],
-  },
-  subHeadline: {
-    fontFamily: "Inter_400Regular",
-    fontSize: 14,
-    lineHeight: 20,
-    color: "#ADB8B0",
-  },
-  cardsRow: {
+  carouselRow: {
     flexDirection: "row",
-    gap: spacing[2],
-    marginBottom: spacing[6],
-  },
-  card: {
-    flex: 1,
-    backgroundColor: "#151A19",
-    borderWidth: 1,
-    borderColor: "#2B3532",
-    borderRadius: radius.lg,
-    padding: spacing[3],
-    alignItems: "center",
-  },
-  cardIconWrap: {
-    width: 36,
-    height: 36,
-    borderRadius: radius.md,
-    backgroundColor: "#1F2825",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing[2],
+    gap: 6,
+    marginTop: 8,
+    marginBottom: 12,
+    zIndex: 1,
   },
-  cardTitle: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 12,
-    color: "#F6F8F6",
-    textAlign: "center",
+  dot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: "#35403B",
   },
-  cardSubtitle: {
-    fontFamily: "Inter_400Regular",
-    fontSize: 10,
-    color: "#8E9E99",
-    textAlign: "center",
-    marginTop: 2,
+  dotActive: {
+    width: 18,
+    backgroundColor: "#BAFF42",
   },
   actionContainer: {
-    marginBottom: spacing[4],
+    width: "100%",
+    zIndex: 1,
   },
-  footerInfo: {
+  primaryButton: {
+    width: "100%",
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "#BAFF42",
     alignItems: "center",
-    paddingVertical: spacing[2],
+    justifyContent: "center",
+    marginBottom: 10,
+    overflow: "hidden",
+  },
+  primaryPressed: {
+    backgroundColor: "#A8EB35",
+  },
+  primaryButtonText: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 16,
+    color: "#080B0B",
+  },
+  secondaryButton: {
+    width: "100%",
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "#0D1110",
+    borderWidth: 1.5,
+    borderColor: "#35403B",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+    overflow: "hidden",
+  },
+  secondaryPressed: {
+    borderColor: "#BAFF42",
+    backgroundColor: "#161D1A",
+  },
+  secondaryButtonText: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 16,
+    color: "#FFFFFF",
+  },
+  footerWrap: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1,
   },
   footerText: {
     fontFamily: "Inter_400Regular",
-    fontSize: 11,
+    fontSize: 11.5,
     color: "#687771",
+    textAlign: "center",
   },
 });

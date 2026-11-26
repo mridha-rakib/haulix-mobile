@@ -1,5 +1,5 @@
 import { type StyleProp, View, type ViewStyle } from "react-native";
-import Svg, { Circle, Line, Path, Polyline, Rect } from "react-native-svg";
+import Svg, { Circle, Ellipse, Line, Path, Polyline, Rect } from "react-native-svg";
 
 interface IconProps {
   size?: number;
@@ -233,6 +233,103 @@ export function CheckmarkIcon({ size = 16, color = "#080B0B", style }: IconProps
 export const TruckIcon = DriverTruckIcon;
 export const UsersIcon = HelperUsersIcon;
 export const ClockIcon = ClockTimerIcon;
+
+/**
+ * DW01 Welcome Card 1 Icon: Delivery Truck (Figma 1085:3)
+ */
+export function WelcomeTruckIcon({ size = 22, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="2"
+          y="5"
+          width="13"
+          height="10"
+          rx="1.5"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M15 8H18.5L21.5 11.5V15H15V8Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Circle cx="6" cy="18" r="2" stroke={color} strokeWidth="1.8" />
+        <Circle cx="18" cy="18" r="2" stroke={color} strokeWidth="1.8" />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * DW01 Welcome Card 2 Icon: Track Earnings Coins (Figma 1085:3)
+ */
+export function WelcomeCoinsIcon({ size = 22, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        {/* Left coin */}
+        <Ellipse cx="8.5" cy="7.5" rx="5" ry="2.2" stroke={color} strokeWidth="1.8" />
+        <Path
+          d="M3.5 7.5V12C3.5 13.2 5.7 14.2 8.5 14.2C11.3 14.2 13.5 13.2 13.5 12V7.5"
+          stroke={color}
+          strokeWidth="1.8"
+        />
+        {/* Right overlapping coin */}
+        <Ellipse cx="14.5" cy="10.5" rx="5" ry="2.2" stroke={color} strokeWidth="1.8" />
+        <Path
+          d="M9.5 10.5V15C9.5 16.2 11.7 17.2 14.5 17.2C17.3 17.2 19.5 16.2 19.5 15V10.5"
+          stroke={color}
+          strokeWidth="1.8"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+/**
+ * DW01 Welcome Card 3 Icon: Get Paid Fast Calendar (Figma 1085:3)
+ */
+export function WelcomeCalendarIcon({ size = 22, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke={color} strokeWidth="1.8" />
+        <Line
+          x1="8"
+          y1="2.5"
+          x2="8"
+          y2="5.5"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <Line
+          x1="16"
+          y1="2.5"
+          x2="16"
+          y2="5.5"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <Line x1="3" y1="9" x2="21" y2="9" stroke={color} strokeWidth="1.5" />
+        <Polyline
+          points="8 14 11 17 16 12"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
 
 /**
  * Mail envelope icon

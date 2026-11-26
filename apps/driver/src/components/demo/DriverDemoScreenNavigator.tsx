@@ -299,14 +299,13 @@ export function DriverDemoScreenNavigator() {
 
   return (
     <>
+      {/* Invisible QA touch-target to prevent obstructing Figma comparison screenshots */}
       <Pressable
         onPress={() => setIsOpen(true)}
-        style={[styles.floatingPill, { top: Math.max(insets.top + 6, 12) }]}
+        style={[styles.floatingPill, { top: insets.top }]}
         accessibilityRole="button"
         accessibilityLabel="Open QA Navigator"
-      >
-        <Text style={styles.pillText}>QA ▾</Text>
-      </Pressable>
+      />
 
       <Modal visible={isOpen} animationType="slide" transparent>
         <View style={styles.modalOverlay}>
@@ -357,17 +356,11 @@ export function DriverDemoScreenNavigator() {
 const styles = StyleSheet.create({
   floatingPill: {
     position: "absolute",
-    right: 14,
-    backgroundColor: "#BAFF42",
-    paddingHorizontal: 12,
-    paddingVertical: 5,
-    borderRadius: radius.full,
+    right: 0,
+    width: 64,
+    height: 50,
+    backgroundColor: "transparent",
     zIndex: 9999,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.35,
-    shadowRadius: 4,
-    elevation: 8,
   },
   pillText: {
     fontFamily: "Inter_700Bold",
