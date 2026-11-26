@@ -31,7 +31,7 @@
 | **DW-D07** | Completion Evidence, Proof & Review Window | `DW21–DW22`, `DW64–DW65` | `bbd213f03e03a5362fcc727133306fd126a482c9` | Verified & Accepted |
 | **DW-D08** | Worker Ledger, Cash Out & Payout Processing | `DW23–DW26`, `DW35`, `DW40`, `DW54`, `DW67–DW68` | `e4350d062d8bf2ab2f144356cd1eaa848d1590c3` | Verified & Accepted |
 | **DW-D09** | Profile Settings, History & Safety Support | `DW27–DW30`, `DW32`, `DW36–DW37`, `DW41–DW42`, `DW45–DW46`, `DW55`, `DW57` | `33ae77469ebe1929bfbdfdeebff0d8af5c7f4def` | Verified & Accepted |
-| **DW-FINAL** | Consolidated Design Reconciliation & Implementation Handoff | All 68 States (136 Screens + 14 Overlays) | Current HEAD | Submitted for Acceptance |
+| **DW-FINAL** | Consolidated Design Reconciliation & Implementation Handoff | All 68 States (136 Screens + 14 Overlays) | `21c43f9796a57aed1fe0aa1aa914ea675de430d6` | Submitted for Acceptance |
 
 ---
 

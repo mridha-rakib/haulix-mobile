@@ -6,6 +6,7 @@
 **Authoritative Figma File:** `meiXxwUNJaDo0a3mhcHBXv`  
 **Target Viewport Baseline:** 360dp logical width (Realme Note 60 / RMX3933, Android 15)  
 **Primary Verification Date:** November 2026  
+**Verified Delivery Commit:** `21c43f9796a57aed1fe0aa1aa914ea675de430d6`  
 **Final Acceptance Classification:** `CONDITIONALLY_READY_FOR_MOCK_FRONTEND`  
 
 ---
