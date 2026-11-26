@@ -13,14 +13,17 @@ import { FlowHeader } from "../../src/components/ui/FlowHeader";
 import { InfoCard } from "../../src/components/ui/InfoCard";
 import { useDriverTranslation } from "../../src/i18n";
 import { useDriverAuthStore } from "../../src/stores/authStore";
+import { useDocumentStore } from "../../src/stores/documentStore";
 
 export default function HelperVerificationScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
   const { setRole } = useDriverAuthStore();
+  const { submitForReview } = useDocumentStore();
 
   const handleSubmit = () => {
     setRole("HELPER");
+    submitForReview("HELPER");
     router.push("/(auth)/verification-status");
   };
 

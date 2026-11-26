@@ -82,6 +82,14 @@ export default function ProfileScreen() {
               </Text>
             </Pressable>
             <Pressable
+              onPress={() => router.push("/(app)/availability-settings")}
+              style={({ pressed }) => [styles.actionLink, pressed && styles.actionLinkPressed]}
+            >
+              <Text style={styles.actionLinkTextSecondary}>
+                Availability & Shift Settings (DW39) →
+              </Text>
+            </Pressable>
+            <Pressable
               onPress={() => router.push("/(auth)/verification-status")}
               style={({ pressed }) => [styles.actionLink, pressed && styles.actionLinkPressed]}
             >

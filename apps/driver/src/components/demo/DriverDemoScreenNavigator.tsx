@@ -6,6 +6,8 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDriverTranslation } from "../../i18n";
 import { useDriverAuthStore } from "../../stores/authStore";
+import { useAvailabilityStore } from "../../stores/availabilityStore";
+import { useDriverDocumentStore, type VerificationScenario } from "../../stores/documentStore";
 
 export interface DemoScreenItem {
   id: string;
@@ -18,6 +20,67 @@ export interface DemoScreenItem {
 }
 
 export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
+  // DW09 Driver Dashboard (DW-F03)
+  {
+    id: "DW09-EN",
+    name: "DW09 · Driver dashboard (English)",
+    figmaNode: "1086:3",
+    route: "/(app)/(tabs)",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Operational Home: Active job offers, Arizona routing, availability switch & rating",
+  },
+  {
+    id: "DW09-ES",
+    name: "DW09 · Inicio del conductor (Español)",
+    figmaNode: "1088:332",
+    route: "/(app)/(tabs)",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Panel operativo de conductor con ofertas de trabajo activas y control de disponibilidad",
+  },
+
+  // DW31 Helper Dashboard (DW-F03)
+  {
+    id: "DW31-EN",
+    name: "DW31 · Helper dashboard (English)",
+    figmaNode: "1086:1058",
+    route: "/(app)/(tabs)",
+    locale: "en",
+    role: "HELPER",
+    description: "Helper Home: Crew job invitations, assignment preview, helper earnings ledger",
+  },
+  {
+    id: "DW31-ES",
+    name: "DW31 · Inicio del ayudante (Español)",
+    figmaNode: "1088:1387",
+    route: "/(app)/(tabs)",
+    locale: "es",
+    role: "HELPER",
+    description: "Panel operativo de ayudante con invitaciones de cuadrilla y ganancias",
+  },
+
+  // DW39 Availability Settings (DW-F03)
+  {
+    id: "DW39-EN",
+    name: "DW39 · Availability settings (English)",
+    figmaNode: "1270:793",
+    route: "/(app)/availability-settings",
+    locale: "en",
+    description: "Operational hours, active days selection, service radius & vacation pause",
+  },
+  {
+    id: "DW39-ES",
+    name: "DW39 · Disponibilidad (Español)",
+    figmaNode: "1270:1744",
+    route: "/(app)/availability-settings",
+    locale: "es",
+    description:
+      "Configuración de horarios laborales, días activos, radio de servicio y modo vacaciones",
+  },
+
   // DW01 Welcome
   {
     id: "DW01-EN",
@@ -430,6 +493,9 @@ export function DriverDemoScreenNavigator() {
   const insets = useSafeAreaInsets();
   const { currentLocale, toggleLanguage, setLanguage } = useDriverTranslation();
   const { role, setRole, loginMock, logout } = useDriverAuthStore();
+  const { setScenario, resetDocuments, driver, helper } = useDriverDocumentStore();
+  const { driverStatus, helperStatus, toggleDriverStatus, toggleHelperStatus, resetAvailability } =
+    useAvailabilityStore();
 
   const handleSelectScreen = async (item: DemoScreenItem) => {
     if (item.locale !== currentLocale) {
@@ -447,9 +513,18 @@ export function DriverDemoScreenNavigator() {
 
   const handleResetDemoState = () => {
     logout();
+    resetDocuments();
+    resetAvailability();
     setRole("PRIMARY_DRIVER");
     setIsOpen(false);
     router.replace("/(auth)/welcome");
+  };
+
+  const handleSetScenario = (
+    scenario: VerificationScenario,
+    targetRole: "PRIMARY_DRIVER" | "HELPER"
+  ) => {
+    setScenario(scenario, targetRole);
   };
 
   const filteredScreens = DRIVER_DEMO_SCREENS.filter((screen) => {
@@ -520,8 +595,84 @@ export function DriverDemoScreenNavigator() {
               </Pressable>
 
               <Pressable onPress={handleResetDemoState} style={styles.resetChip}>
-                <Text style={styles.resetChipText}>↺ Reset</Text>
+                <Text style={styles.resetChipText}>↺ Reset All</Text>
               </Pressable>
+            </View>
+
+            {/* Scenario and Availability Matrix */}
+            <View style={styles.scenarioMatrix}>
+              {/* Driver Verification Scenarios */}
+              <View style={styles.scenarioSection}>
+                <Text style={styles.scenarioLabel}>Driver Verif ({driver.scenario}):</Text>
+                <View style={styles.pillRow}>
+                  {(
+                    ["INITIAL", "PENDING", "ACTION_REQUIRED", "APPROVED"] as VerificationScenario[]
+                  ).map((sc) => (
+                    <Pressable
+                      key={`d-${sc}`}
+                      onPress={() => handleSetScenario(sc, "PRIMARY_DRIVER")}
+                      style={[styles.miniPill, driver.scenario === sc && styles.miniPillActive]}
+                    >
+                      <Text
+                        style={[
+                          styles.miniPillText,
+                          driver.scenario === sc && styles.miniPillTextActive,
+                        ]}
+                      >
+                        {sc === "ACTION_REQUIRED" ? "ACTION" : sc}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+
+              {/* Helper Verification Scenarios */}
+              <View style={styles.scenarioSection}>
+                <Text style={styles.scenarioLabel}>Helper Verif ({helper.scenario}):</Text>
+                <View style={styles.pillRow}>
+                  {(
+                    ["INITIAL", "PENDING", "ACTION_REQUIRED", "APPROVED"] as VerificationScenario[]
+                  ).map((sc) => (
+                    <Pressable
+                      key={`h-${sc}`}
+                      onPress={() => handleSetScenario(sc, "HELPER")}
+                      style={[styles.miniPill, helper.scenario === sc && styles.miniPillActive]}
+                    >
+                      <Text
+                        style={[
+                          styles.miniPillText,
+                          helper.scenario === sc && styles.miniPillTextActive,
+                        ]}
+                      >
+                        {sc === "ACTION_REQUIRED" ? "ACTION" : sc}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+
+              {/* Live Availability Toggle */}
+              <View style={styles.availabilityRow}>
+                <Pressable
+                  onPress={toggleDriverStatus}
+                  style={[
+                    styles.availPill,
+                    driverStatus === "ONLINE" ? styles.availOnline : styles.availOffline,
+                  ]}
+                >
+                  <Text style={styles.availText}>Driver: {driverStatus}</Text>
+                </Pressable>
+
+                <Pressable
+                  onPress={toggleHelperStatus}
+                  style={[
+                    styles.availPill,
+                    helperStatus === "ONLINE" ? styles.availOnline : styles.availOffline,
+                  ]}
+                >
+                  <Text style={styles.availText}>Helper: {helperStatus}</Text>
+                </Pressable>
+              </View>
             </View>
 
             {/* Search Input */}
@@ -688,6 +839,74 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_600SemiBold",
     fontSize: 11,
     color: "#FF8080",
+  },
+  scenarioMatrix: {
+    backgroundColor: "#151B19",
+    borderRadius: radius.md,
+    padding: 8,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#2B3532",
+    gap: 6,
+  },
+  scenarioSection: {
+    gap: 4,
+  },
+  scenarioLabel: {
+    fontFamily: "Inter_500Medium",
+    fontSize: 10,
+    color: "#ADB8B0",
+  },
+  pillRow: {
+    flexDirection: "row",
+    gap: 4,
+  },
+  miniPill: {
+    flex: 1,
+    backgroundColor: "#1E2523",
+    paddingVertical: 4,
+    borderRadius: radius.sm,
+    borderWidth: 1,
+    borderColor: "#35403B",
+    alignItems: "center",
+  },
+  miniPillActive: {
+    backgroundColor: "rgba(186, 255, 66, 0.15)",
+    borderColor: "#BAFF42",
+  },
+  miniPillText: {
+    fontFamily: "Inter_500Medium",
+    fontSize: 9,
+    color: "#ADB8B0",
+  },
+  miniPillTextActive: {
+    color: "#BAFF42",
+    fontFamily: "Inter_700Bold",
+  },
+  availabilityRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginTop: 2,
+  },
+  availPill: {
+    flex: 1,
+    paddingVertical: 5,
+    borderRadius: radius.sm,
+    borderWidth: 1,
+    alignItems: "center",
+  },
+  availOnline: {
+    backgroundColor: "rgba(186, 255, 66, 0.12)",
+    borderColor: "#BAFF42",
+  },
+  availOffline: {
+    backgroundColor: "rgba(255, 128, 128, 0.12)",
+    borderColor: "#FF8080",
+  },
+  availText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 10,
+    color: "#F6F8F6",
   },
   searchBox: {
     flexDirection: "row",

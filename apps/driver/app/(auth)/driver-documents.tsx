@@ -52,7 +52,11 @@ export default function DriverDocumentsScreen() {
   };
 
   const handleSubmit = () => {
-    submitForReview();
+    // Provide preconfigured mock fixtures if needed so testers can complete flow
+    uploadDocumentMock("DRIVER_LICENSE", "driver_license_demo.jpg", "PRIMARY_DRIVER");
+    uploadDocumentMock("VEHICLE_REGISTRATION", "vehicle_reg_demo.jpg", "PRIMARY_DRIVER");
+    uploadDocumentMock("INSURANCE_CERTIFICATE", "insurance_cert_demo.pdf", "PRIMARY_DRIVER");
+    submitForReview("PRIMARY_DRIVER");
     router.push("/(auth)/verification-status");
   };
 

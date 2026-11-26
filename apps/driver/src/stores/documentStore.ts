@@ -16,6 +16,8 @@ export type DocumentReviewStatus =
   | "NEEDS_UPDATE"
   | "REJECTED";
 
+export type DemoWorkerRole = "PRIMARY_DRIVER" | "HELPER";
+
 export interface MockDocument {
   id: DocumentType;
   titleKey: string;
@@ -24,7 +26,7 @@ export interface MockDocument {
   fileName?: string;
   uploadedAt?: string;
   rejectionReason?: string;
-  requiredForRoles: ("PRIMARY_DRIVER" | "HELPER")[];
+  requiredForRoles: DemoWorkerRole[];
 }
 
 export type VerificationFlowState =
@@ -34,21 +36,15 @@ export type VerificationFlowState =
   | "ACTION_REQUIRED"
   | "APPROVED";
 
-interface DocumentState {
+export type VerificationScenario = "INITIAL" | "PENDING" | "ACTION_REQUIRED" | "APPROVED";
+
+export interface RoleDocumentCollection {
   documents: Record<DocumentType, MockDocument>;
   overallStatus: VerificationFlowState;
-  selectedDocForUpload: DocumentType | null;
-
-  // Actions
-  uploadDocumentMock: (docType: DocumentType, fileName?: string) => void;
-  removeDocumentMock: (docType: DocumentType) => void;
-  submitForReview: () => void;
-  setScenario: (scenario: "INITIAL" | "PENDING" | "ACTION_REQUIRED" | "APPROVED") => void;
-  setSelectedDoc: (docType: DocumentType | null) => void;
-  resetDocuments: () => void;
+  scenario: VerificationScenario;
 }
 
-const INITIAL_DOCS: Record<DocumentType, MockDocument> = {
+const createInitialDriverDocs = (): Record<DocumentType, MockDocument> => ({
   DRIVER_LICENSE: {
     id: "DRIVER_LICENSE",
     titleKey: "driver.documentsVehicle.licenseTitle",
@@ -89,6 +85,54 @@ const INITIAL_DOCS: Record<DocumentType, MockDocument> = {
     id: "IDENTITY_SELFIE",
     titleKey: "driver.helperDocuments.selfieTitle",
     descriptionKey: "driver.helperDocuments.selfieSub",
+    status: "NOT_UPLOADED",
+    requiredForRoles: ["PRIMARY_DRIVER"],
+  },
+  BACKGROUND_CHECK: {
+    id: "BACKGROUND_CHECK",
+    titleKey: "driver.helperDocuments.backgroundTitle",
+    descriptionKey: "driver.helperDocuments.backgroundSub",
+    status: "VERIFIED",
+    uploadedAt: "2026-11-21",
+    requiredForRoles: ["PRIMARY_DRIVER"],
+  },
+});
+
+const createInitialHelperDocs = (): Record<DocumentType, MockDocument> => ({
+  DRIVER_LICENSE: {
+    id: "DRIVER_LICENSE",
+    titleKey: "driver.documentsVehicle.licenseTitle",
+    descriptionKey: "driver.documentsVehicle.licenseSub",
+    status: "NOT_UPLOADED",
+    requiredForRoles: ["HELPER"],
+  },
+  GOVERNMENT_ID: {
+    id: "GOVERNMENT_ID",
+    titleKey: "driver.documentsVehicle.govIdTitle",
+    descriptionKey: "driver.documentsVehicle.govIdSub",
+    status: "VERIFIED",
+    fileName: "helper_gov_id_scan.png",
+    uploadedAt: "2026-11-20",
+    requiredForRoles: ["HELPER"],
+  },
+  INSURANCE_CERTIFICATE: {
+    id: "INSURANCE_CERTIFICATE",
+    titleKey: "driver.documentsVehicle.insuranceTitle",
+    descriptionKey: "driver.documentsVehicle.insuranceSub",
+    status: "NOT_UPLOADED",
+    requiredForRoles: ["HELPER"],
+  },
+  VEHICLE_REGISTRATION: {
+    id: "VEHICLE_REGISTRATION",
+    titleKey: "driver.documentsVehicle.registrationTitle",
+    descriptionKey: "driver.documentsVehicle.registrationSub",
+    status: "NOT_UPLOADED",
+    requiredForRoles: ["HELPER"],
+  },
+  IDENTITY_SELFIE: {
+    id: "IDENTITY_SELFIE",
+    titleKey: "driver.helperDocuments.selfieTitle",
+    descriptionKey: "driver.helperDocuments.selfieSub",
     status: "VERIFIED",
     fileName: "live_selfie_match.jpg",
     uploadedAt: "2026-11-22",
@@ -100,103 +144,281 @@ const INITIAL_DOCS: Record<DocumentType, MockDocument> = {
     descriptionKey: "driver.helperDocuments.backgroundSub",
     status: "VERIFIED",
     uploadedAt: "2026-11-21",
-    requiredForRoles: ["PRIMARY_DRIVER", "HELPER"],
+    requiredForRoles: ["HELPER"],
   },
-};
+});
 
-export const useDocumentStore = create<DocumentState>((set) => ({
-  documents: INITIAL_DOCS,
-  overallStatus: "CHECKLIST",
-  selectedDocForUpload: "DRIVER_LICENSE",
+interface DocumentStoreState {
+  // Role-isolated states
+  driver: RoleDocumentCollection;
+  helper: RoleDocumentCollection;
+  selectedDocForUpload: DocumentType | null;
 
-  uploadDocumentMock: (docType, fileName = "document_upload_demo.jpg") =>
-    set((state) => ({
-      documents: {
-        ...state.documents,
-        [docType]: {
-          ...state.documents[docType],
-          status: "UPLOADED",
-          fileName,
-          uploadedAt: new Date().toISOString().slice(0, 10),
-          rejectionReason: undefined,
-        },
-      },
-    })),
+  // Backward compatible properties for active role
+  documents: Record<DocumentType, MockDocument>;
+  overallStatus: VerificationFlowState;
 
-  removeDocumentMock: (docType) =>
-    set((state) => ({
-      documents: {
-        ...state.documents,
-        [docType]: {
-          ...state.documents[docType],
-          status: "NOT_UPLOADED",
-          fileName: undefined,
-        },
-      },
-    })),
+  // Actions
+  uploadDocumentMock: (
+    docType: DocumentType,
+    fileName?: string,
+    targetRole?: DemoWorkerRole
+  ) => void;
+  removeDocumentMock: (docType: DocumentType, targetRole?: DemoWorkerRole) => void;
+  submitForReview: (targetRole?: DemoWorkerRole) => void;
+  setScenario: (scenario: VerificationScenario, targetRole?: DemoWorkerRole | "BOTH") => void;
+  setSelectedDoc: (docType: DocumentType | null) => void;
+  resetDocuments: () => void;
+  clearRejection: (docType: DocumentType, targetRole?: DemoWorkerRole) => void;
+  getRoleDocuments: (role: DemoWorkerRole) => Record<DocumentType, MockDocument>;
+  getRoleStatus: (role: DemoWorkerRole) => VerificationFlowState;
+}
 
-  submitForReview: () =>
-    set((state) => {
-      const updatedDocs = { ...state.documents };
-      for (const key of Object.keys(updatedDocs) as DocumentType[]) {
-        if (updatedDocs[key].status === "UPLOADED") {
-          updatedDocs[key].status = "PENDING_REVIEW";
+export const useDocumentStore = create<DocumentStoreState>((set, get) => {
+  const initialDriver: RoleDocumentCollection = {
+    documents: createInitialDriverDocs(),
+    overallStatus: "CHECKLIST",
+    scenario: "INITIAL",
+  };
+
+  const initialHelper: RoleDocumentCollection = {
+    documents: createInitialHelperDocs(),
+    overallStatus: "CHECKLIST",
+    scenario: "INITIAL",
+  };
+
+  return {
+    driver: initialDriver,
+    helper: initialHelper,
+    selectedDocForUpload: "DRIVER_LICENSE",
+    documents: initialDriver.documents,
+    overallStatus: initialDriver.overallStatus,
+
+    getRoleDocuments: (role) =>
+      role === "PRIMARY_DRIVER" ? get().driver.documents : get().helper.documents,
+
+    getRoleStatus: (role) =>
+      role === "PRIMARY_DRIVER" ? get().driver.overallStatus : get().helper.overallStatus,
+
+    uploadDocumentMock: (
+      docType,
+      fileName = "document_upload_demo.jpg",
+      targetRole = "PRIMARY_DRIVER"
+    ) =>
+      set((state) => {
+        const isDriver = targetRole === "PRIMARY_DRIVER";
+        const targetCollection = isDriver ? { ...state.driver } : { ...state.helper };
+        const updatedDocs = {
+          ...targetCollection.documents,
+          [docType]: {
+            ...targetCollection.documents[docType],
+            status: "UPLOADED" as DocumentReviewStatus,
+            fileName,
+            uploadedAt: new Date().toISOString().slice(0, 10),
+            rejectionReason: undefined,
+          },
+        };
+
+        const updatedCollection: RoleDocumentCollection = {
+          ...targetCollection,
+          documents: updatedDocs,
+        };
+
+        return isDriver
+          ? {
+              driver: updatedCollection,
+              documents: updatedDocs,
+            }
+          : {
+              helper: updatedCollection,
+            };
+      }),
+
+    removeDocumentMock: (docType, targetRole = "PRIMARY_DRIVER") =>
+      set((state) => {
+        const isDriver = targetRole === "PRIMARY_DRIVER";
+        const targetCollection = isDriver ? { ...state.driver } : { ...state.helper };
+        const updatedDocs = {
+          ...targetCollection.documents,
+          [docType]: {
+            ...targetCollection.documents[docType],
+            status: "NOT_UPLOADED" as DocumentReviewStatus,
+            fileName: undefined,
+          },
+        };
+
+        const updatedCollection: RoleDocumentCollection = {
+          ...targetCollection,
+          documents: updatedDocs,
+        };
+
+        return isDriver
+          ? {
+              driver: updatedCollection,
+              documents: updatedDocs,
+            }
+          : {
+              helper: updatedCollection,
+            };
+      }),
+
+    clearRejection: (docType, targetRole = "PRIMARY_DRIVER") =>
+      set((state) => {
+        const isDriver = targetRole === "PRIMARY_DRIVER";
+        const targetCollection = isDriver ? { ...state.driver } : { ...state.helper };
+        const currentDoc = targetCollection.documents[docType];
+        if (!currentDoc) return {};
+
+        const updatedDocs = {
+          ...targetCollection.documents,
+          [docType]: {
+            ...currentDoc,
+            rejectionReason: undefined,
+            status: "UPLOADED" as DocumentReviewStatus,
+          },
+        };
+
+        const updatedCollection: RoleDocumentCollection = {
+          ...targetCollection,
+          documents: updatedDocs,
+        };
+
+        return isDriver
+          ? {
+              driver: updatedCollection,
+              documents: updatedDocs,
+            }
+          : {
+              helper: updatedCollection,
+            };
+      }),
+
+    submitForReview: (targetRole = "PRIMARY_DRIVER") =>
+      set((state) => {
+        const isDriver = targetRole === "PRIMARY_DRIVER";
+        const targetCollection = isDriver ? { ...state.driver } : { ...state.helper };
+        const updatedDocs = { ...targetCollection.documents };
+
+        for (const key of Object.keys(updatedDocs) as DocumentType[]) {
+          if (updatedDocs[key].status === "UPLOADED") {
+            updatedDocs[key] = {
+              ...updatedDocs[key],
+              status: "PENDING_REVIEW",
+            };
+          }
         }
-      }
-      return {
-        documents: updatedDocs,
-        overallStatus: "PENDING",
+
+        const updatedCollection: RoleDocumentCollection = {
+          ...targetCollection,
+          documents: updatedDocs,
+          overallStatus: "PENDING",
+          scenario: "PENDING",
+        };
+
+        return isDriver
+          ? {
+              driver: updatedCollection,
+              documents: updatedDocs,
+              overallStatus: "PENDING",
+            }
+          : {
+              helper: updatedCollection,
+            };
+      }),
+
+    setScenario: (scenario, targetRole = "BOTH") =>
+      set((state) => {
+        const updateRoleScenario = (role: DemoWorkerRole): RoleDocumentCollection => {
+          const freshDocs =
+            role === "PRIMARY_DRIVER" ? createInitialDriverDocs() : createInitialHelperDocs();
+
+          switch (scenario) {
+            case "ACTION_REQUIRED":
+              return {
+                overallStatus: "ACTION_REQUIRED",
+                scenario: "ACTION_REQUIRED",
+                documents: {
+                  ...freshDocs,
+                  GOVERNMENT_ID: {
+                    ...freshDocs.GOVERNMENT_ID,
+                    status: "REJECTED",
+                    rejectionReason: "Image unclear or expired",
+                  },
+                },
+              };
+            case "APPROVED":
+              return {
+                overallStatus: "APPROVED",
+                scenario: "APPROVED",
+                documents: {
+                  ...freshDocs,
+                  INSURANCE_CERTIFICATE: { ...freshDocs.INSURANCE_CERTIFICATE, status: "VERIFIED" },
+                  VEHICLE_REGISTRATION: { ...freshDocs.VEHICLE_REGISTRATION, status: "VERIFIED" },
+                  DRIVER_LICENSE: { ...freshDocs.DRIVER_LICENSE, status: "VERIFIED" },
+                  GOVERNMENT_ID: { ...freshDocs.GOVERNMENT_ID, status: "VERIFIED" },
+                  BACKGROUND_CHECK: { ...freshDocs.BACKGROUND_CHECK, status: "VERIFIED" },
+                },
+              };
+            case "PENDING":
+              return {
+                overallStatus: "PENDING",
+                scenario: "PENDING",
+                documents: {
+                  ...freshDocs,
+                  INSURANCE_CERTIFICATE: {
+                    ...freshDocs.INSURANCE_CERTIFICATE,
+                    status: "PENDING_REVIEW",
+                  },
+                  VEHICLE_REGISTRATION: {
+                    ...freshDocs.VEHICLE_REGISTRATION,
+                    status: "PENDING_REVIEW",
+                  },
+                },
+              };
+            default:
+              return {
+                overallStatus: "CHECKLIST",
+                scenario: "INITIAL",
+                documents: freshDocs,
+              };
+          }
+        };
+
+        const newDriver =
+          targetRole === "HELPER" ? state.driver : updateRoleScenario("PRIMARY_DRIVER");
+        const newHelper =
+          targetRole === "PRIMARY_DRIVER" ? state.helper : updateRoleScenario("HELPER");
+
+        return {
+          driver: newDriver,
+          helper: newHelper,
+          documents: newDriver.documents,
+          overallStatus: newDriver.overallStatus,
+        };
+      }),
+
+    setSelectedDoc: (docType) => set({ selectedDocForUpload: docType }),
+
+    resetDocuments: () => {
+      const freshDriver: RoleDocumentCollection = {
+        documents: createInitialDriverDocs(),
+        overallStatus: "CHECKLIST",
+        scenario: "INITIAL",
       };
-    }),
+      const freshHelper: RoleDocumentCollection = {
+        documents: createInitialHelperDocs(),
+        overallStatus: "CHECKLIST",
+        scenario: "INITIAL",
+      };
+      set({
+        driver: freshDriver,
+        helper: freshHelper,
+        documents: freshDriver.documents,
+        overallStatus: freshDriver.overallStatus,
+        selectedDocForUpload: "DRIVER_LICENSE",
+      });
+    },
+  };
+});
 
-  setScenario: (scenario) =>
-    set(() => {
-      switch (scenario) {
-        case "ACTION_REQUIRED":
-          return {
-            overallStatus: "ACTION_REQUIRED",
-            documents: {
-              ...INITIAL_DOCS,
-              GOVERNMENT_ID: {
-                ...INITIAL_DOCS.GOVERNMENT_ID,
-                status: "REJECTED",
-                rejectionReason: "Image unclear or expired",
-              },
-            },
-          };
-        case "APPROVED":
-          return {
-            overallStatus: "APPROVED",
-            documents: {
-              ...INITIAL_DOCS,
-              INSURANCE_CERTIFICATE: { ...INITIAL_DOCS.INSURANCE_CERTIFICATE, status: "VERIFIED" },
-              VEHICLE_REGISTRATION: { ...INITIAL_DOCS.VEHICLE_REGISTRATION, status: "VERIFIED" },
-            },
-          };
-        case "PENDING":
-          return {
-            overallStatus: "PENDING",
-            documents: {
-              ...INITIAL_DOCS,
-              INSURANCE_CERTIFICATE: {
-                ...INITIAL_DOCS.INSURANCE_CERTIFICATE,
-                status: "PENDING_REVIEW",
-              },
-            },
-          };
-        default:
-          return {
-            overallStatus: "CHECKLIST",
-            documents: INITIAL_DOCS,
-          };
-      }
-    }),
-
-  setSelectedDoc: (docType) => set({ selectedDocForUpload: docType }),
-
-  resetDocuments: () =>
-    set({
-      documents: INITIAL_DOCS,
-      overallStatus: "CHECKLIST",
-    }),
-}));
+export const useDriverDocumentStore = useDocumentStore;
