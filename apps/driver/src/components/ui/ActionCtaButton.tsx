@@ -1,10 +1,11 @@
-import { radius, spacing } from "@haulix/design-tokens";
+import { spacing } from "@haulix/design-tokens";
 import {
   ActivityIndicator,
   Pressable,
   type StyleProp,
   StyleSheet,
   Text,
+  View,
   type ViewStyle,
 } from "react-native";
 
@@ -27,45 +28,25 @@ export function ActionCtaButton({
   loading = false,
   style,
 }: ActionCtaButtonProps) {
-  const getButtonStyle = (pressed: boolean) => {
-    switch (variant) {
-      case "outline":
-        return [
-          styles.baseButton,
-          styles.outlineButton,
-          size === "large" && styles.largeButton,
-          pressed && styles.outlinePressed,
-          disabled && styles.disabled,
-          style,
-        ];
-      case "secondary":
-        return [
-          styles.baseButton,
-          styles.secondaryButton,
-          size === "large" && styles.largeButton,
-          pressed && styles.secondaryPressed,
-          disabled && styles.disabled,
-          style,
-        ];
-      case "ghost":
-        return [
-          styles.baseButton,
-          styles.ghostButton,
-          size === "large" && styles.largeButton,
-          pressed && styles.ghostPressed,
-          disabled && styles.disabled,
-          style,
-        ];
-      default:
-        return [
-          styles.baseButton,
-          styles.primaryButton,
-          size === "large" && styles.largeButton,
-          pressed && styles.primaryPressed,
-          disabled && styles.disabled,
-          style,
-        ];
-    }
+  const getButtonBgStyle = (pressed: boolean) => {
+    const variantMap: Record<string, { base: ViewStyle; pressed: ViewStyle }> = {
+      outline: { base: styles.outlineButton, pressed: styles.outlinePressed },
+      secondary: { base: styles.secondaryButton, pressed: styles.secondaryPressed },
+      ghost: { base: styles.ghostButton, pressed: styles.ghostPressed },
+      primary: { base: styles.primaryButton, pressed: styles.primaryPressed },
+    };
+
+    const currentVariant = variantMap[variant] || variantMap.primary;
+
+    return [
+      styles.baseButton,
+      currentVariant.base,
+      size === "large" ? styles.largeButton : null,
+      size === "small" ? styles.smallButton : null,
+      pressed ? currentVariant.pressed : null,
+      disabled ? styles.disabled : null,
+      style,
+    ].filter(Boolean) as StyleProp<ViewStyle>;
   };
 
   const getTextStyle = () => {
@@ -85,15 +66,19 @@ export function ActionCtaButton({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
-      style={({ pressed }) => getButtonStyle(pressed)}
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled: disabled || loading }}
+      style={{ width: "100%" }}
     >
-      {loading ? (
-        <ActivityIndicator size="small" color={variant === "primary" ? "#080B0B" : "#BAFF42"} />
-      ) : (
-        <Text style={[styles.baseText, getTextStyle()]}>{label}</Text>
+      {({ pressed }) => (
+        <View style={getButtonBgStyle(pressed)}>
+          {loading ? (
+            <ActivityIndicator size="small" color={variant === "primary" ? "#080B0B" : "#BAFF42"} />
+          ) : (
+            <Text style={[styles.baseText, getTextStyle()]}>{label}</Text>
+          )}
+        </View>
       )}
     </Pressable>
   );
@@ -102,15 +87,20 @@ export function ActionCtaButton({
 const styles = StyleSheet.create({
   baseButton: {
     height: 52,
-    borderRadius: radius.xl,
+    borderRadius: 26,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: spacing[4],
+    overflow: "hidden",
   },
   largeButton: {
     height: 56,
-    borderRadius: radius["2xl"],
+    borderRadius: 28,
+  },
+  smallButton: {
+    height: 44,
+    borderRadius: 22,
   },
   primaryButton: {
     backgroundColor: "#BAFF42",
@@ -119,12 +109,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#A8EB35",
   },
   secondaryButton: {
-    backgroundColor: "#1E2523",
-    borderWidth: 1,
+    backgroundColor: "#0D1110",
+    borderWidth: 1.5,
     borderColor: "#35403B",
   },
   secondaryPressed: {
-    backgroundColor: "#28322F",
+    backgroundColor: "#161D1A",
     borderColor: "#BAFF42",
   },
   outlineButton: {
@@ -146,18 +136,18 @@ const styles = StyleSheet.create({
     opacity: 0.45,
   },
   baseText: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 15,
+    fontFamily: "Inter_700Bold",
+    fontSize: 16,
     letterSpacing: 0.2,
   },
   primaryText: {
     color: "#080B0B",
   },
   secondaryText: {
-    color: "#F6F8F6",
+    color: "#FFFFFF",
   },
   outlineText: {
-    color: "#F6F8F6",
+    color: "#FFFFFF",
   },
   ghostText: {
     color: "#ADB8B0",

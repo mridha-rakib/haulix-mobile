@@ -18,16 +18,13 @@ export default function ForgotPasswordScreen() {
   const [loading, setLoading] = useState(false);
 
   const handleSend = () => {
-    if (!inputVal.trim()) {
-      setError(t("driver.forgotPassword.validationRequired"));
-      return;
-    }
-
+    const targetEmail = inputVal.trim() || "driver.demo@haulix.com";
+    setInputVal(targetEmail);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       router.push("/(auth)/reset-confirmation");
-    }, 600);
+    }, 400);
   };
 
   return (
@@ -80,6 +77,15 @@ export default function ForgotPasswordScreen() {
           variant="primary"
           size="large"
           loading={loading}
+        />
+
+        <View style={{ height: spacing[3] }} />
+
+        <ActionCtaButton
+          label={t("driver.checkInbox.backToSignIn")}
+          onPress={() => router.push("/(auth)/sign-in")}
+          variant="outline"
+          size="large"
         />
       </ScrollView>
     </SafeAreaView>

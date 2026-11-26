@@ -21,8 +21,10 @@ export default function ResetConfirmationScreen() {
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <View style={styles.iconCircle}>
-          <MailIcon size={36} color="#BAFF42" />
+        <View style={styles.iconCircleContainer}>
+          <View style={styles.iconCircle}>
+            <MailIcon size={36} color="#BAFF42" />
+          </View>
         </View>
 
         <View style={styles.statusBox}>
@@ -57,7 +59,11 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: spacing[4],
     paddingBottom: spacing[8],
+  },
+  iconCircleContainer: {
     alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
   iconCircle: {
     width: 72,

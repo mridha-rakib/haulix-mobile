@@ -30,27 +30,26 @@ export function RoleCard({
       accessibilityRole="radio"
       accessibilityState={{ selected: isSelected }}
     >
-      {/* Top Header Row with Icon, Tag and Radio Indicator */}
+      {/* Top Header Row with Icon, Title/Tag column, and Radio Indicator */}
       <View style={styles.headerRow}>
-        <View style={styles.roleIconWrap}>
-          {isDriver ? (
-            <DriverTruckIcon size={26} color="#BAFF42" />
-          ) : (
-            <HelperUsersIcon size={26} color="#BAFF42" />
-          )}
-        </View>
-
-        <View style={styles.tagWrap}>
-          <Text style={styles.tagText}>{tag}</Text>
+        <View style={styles.iconAndTitle}>
+          <View style={styles.roleIconWrap}>
+            {isDriver ? (
+              <DriverTruckIcon size={24} color="#BAFF42" />
+            ) : (
+              <HelperUsersIcon size={24} color="#BAFF42" />
+            )}
+          </View>
+          <View style={styles.titleColumn}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.tagText}>{tag}</Text>
+          </View>
         </View>
 
         <View style={[styles.radioCircle, isSelected && styles.radioCircleSelected]}>
           {isSelected && <CheckmarkIcon size={12} color="#080B0B" />}
         </View>
       </View>
-
-      {/* Role Title */}
-      <Text style={styles.title}>{title}</Text>
 
       {/* Description */}
       <Text style={styles.description}>{description}</Text>
@@ -74,61 +73,49 @@ const styles = StyleSheet.create({
     marginBottom: spacing[3],
   },
   cardSelected: {
-    backgroundColor: "#222827",
+    backgroundColor: "#131917",
     borderWidth: 2,
     borderColor: "#BAFF42",
   },
   cardUnselected: {
-    backgroundColor: "#151A19",
+    backgroundColor: "#111514",
     borderWidth: 1,
-    borderColor: "#35403B",
+    borderColor: "#232C28",
   },
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: spacing[3],
+    marginBottom: spacing[2.5],
+  },
+  iconAndTitle: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing[3],
   },
   roleIconWrap: {
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: "#1E2523",
+    backgroundColor: "#1C2421",
     alignItems: "center",
     justifyContent: "center",
   },
-  tagWrap: {
-    backgroundColor: "#1A221E",
-    paddingHorizontal: spacing[2],
-    paddingVertical: 2,
-    borderRadius: radius.sm,
-    borderWidth: 1,
-    borderColor: "#2B3532",
-  },
-  tagText: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 9,
-    color: "#BAFF42",
-    letterSpacing: 0.5,
-  },
-  radioCircle: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    borderWidth: 1.5,
-    borderColor: "#687771",
-    alignItems: "center",
+  titleColumn: {
     justifyContent: "center",
-  },
-  radioCircleSelected: {
-    backgroundColor: "#BAFF42",
-    borderColor: "#BAFF42",
   },
   title: {
     fontFamily: "Inter_700Bold",
     fontSize: 18,
-    color: "#F6F8F6",
-    marginBottom: spacing[1],
+    color: "#FFFFFF",
+    marginBottom: 2,
+  },
+  tagText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 10,
+    color: "#BAFF42",
+    letterSpacing: 0.5,
+    textTransform: "uppercase",
   },
   description: {
     fontFamily: "Inter_400Regular",
@@ -154,5 +141,19 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_500Medium",
     fontSize: 11,
     color: "#F6F8F6",
+  },
+  radioCircle: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 1.5,
+    borderColor: "#35403B",
+    backgroundColor: "#151A19",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  radioCircleSelected: {
+    backgroundColor: "#BAFF42",
+    borderColor: "#BAFF42",
   },
 });

@@ -63,6 +63,15 @@ export default function CodeHelpScreen() {
           variant="outline"
           size="large"
         />
+
+        <View style={{ height: spacing[3] }} />
+
+        <ActionCtaButton
+          label={t("driver.codeIssue.editPhoneCta")}
+          onPress={() => router.push("/(auth)/register")}
+          variant="outline"
+          size="large"
+        />
       </ScrollView>
     </SafeAreaView>
   );

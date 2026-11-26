@@ -1,4 +1,4 @@
-import { radius, spacing } from "@haulix/design-tokens";
+import { spacing } from "@haulix/design-tokens";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -22,32 +22,14 @@ export default function SignInScreen() {
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = () => {
-    let hasError = false;
-    if (!identifier.trim()) {
-      setErrorIdentifier(t("driver.signIn.validationEmailRequired"));
-      hasError = true;
-    } else {
-      setErrorIdentifier(undefined);
-    }
-
-    if (!password) {
-      setErrorPassword(t("driver.signIn.validationPasswordRequired"));
-      hasError = true;
-    } else if (password.length < 8) {
-      setErrorPassword(t("driver.signIn.validationPasswordLength"));
-      hasError = true;
-    } else {
-      setErrorPassword(undefined);
-    }
-
-    if (hasError) return;
-
+    // Instant mock sign-in for preview testing without backend requirement
+    const loginIdentifier = identifier.trim() || "driver@haulix.com";
     setLoading(true);
     setTimeout(() => {
-      loginMock(identifier, "PRIMARY_DRIVER");
+      loginMock(loginIdentifier, "PRIMARY_DRIVER");
       setLoading(false);
       router.replace("/(app)/(tabs)");
-    }, 600);
+    }, 400);
   };
 
   return (
@@ -63,10 +45,7 @@ export default function SignInScreen() {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.welcomeCard}>
-          <Text style={styles.welcomeTitle}>{t("driver.signIn.welcomeBack")}</Text>
-          <Text style={styles.welcomeSubtitle}>HAULIX Driver & Helper Network</Text>
-        </View>
+        <Text style={styles.welcomeHeadline}>{t("driver.signIn.welcomeBack")}</Text>
 
         <HaulixFormField
           label={t("driver.signIn.emailOrPhone")}
@@ -109,7 +88,7 @@ export default function SignInScreen() {
           label={t("driver.signIn.submit")}
           onPress={handleSignIn}
           variant="primary"
-          size="large"
+          size="default"
           loading={loading}
         />
 
@@ -122,25 +101,13 @@ export default function SignInScreen() {
         <ActionCtaButton
           label={t("driver.signIn.continueWithPhone")}
           onPress={() => router.push("/(auth)/phone-sign-in")}
-          variant="outline"
-          size="large"
+          variant="secondary"
+          size="default"
         />
 
-        <View style={{ height: spacing[4] }} />
+        <View style={{ height: spacing[5] }} />
 
-        <InfoCard
-          title="Account Security"
-          body={t("driver.signIn.securityNote")}
-          variant="neutral"
-        />
-
-        <View style={{ height: spacing[4] }} />
-
-        <Pressable onPress={() => router.push("/(auth)/register")} style={styles.registerLink}>
-          <Text style={styles.registerLinkText}>
-            Don't have an account? <Text style={styles.registerHighlight}>Create Account</Text>
-          </Text>
-        </Pressable>
+        <InfoCard title="" body={t("driver.signIn.securityNote")} variant="neutral" />
       </ScrollView>
     </SafeAreaView>
   );
@@ -153,26 +120,14 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: spacing[4],
-    paddingBottom: spacing[8],
+    paddingBottom: spacing[6],
   },
-  welcomeCard: {
-    backgroundColor: "#151A19",
-    borderWidth: 1,
-    borderColor: "#2B3532",
-    borderRadius: radius.lg,
-    padding: spacing[3],
-    marginBottom: spacing[4],
-  },
-  welcomeTitle: {
+  welcomeHeadline: {
     fontFamily: "Inter_700Bold",
-    fontSize: 18,
-    color: "#F6F8F6",
-  },
-  welcomeSubtitle: {
-    fontFamily: "Inter_400Regular",
-    fontSize: 12,
-    color: "#ADB8B0",
-    marginTop: 2,
+    fontSize: 26,
+    color: "#FFFFFF",
+    marginTop: spacing[2],
+    marginBottom: spacing[5],
   },
   forgotRow: {
     alignItems: "flex-end",
@@ -186,7 +141,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   forgotText: {
-    fontFamily: "Inter_500Medium",
+    fontFamily: "Inter_600SemiBold",
     fontSize: 13,
     color: "#BAFF42",
   },
@@ -205,19 +160,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: "#687771",
     marginHorizontal: spacing[3],
-  },
-  registerLink: {
-    alignItems: "center",
-    paddingVertical: spacing[2],
-  },
-  registerLinkText: {
-    fontFamily: "Inter_400Regular",
-    fontSize: 13,
-    color: "#ADB8B0",
-  },
-  registerHighlight: {
-    fontFamily: "Inter_600SemiBold",
-    color: "#BAFF42",
-    textDecorationLine: "underline",
   },
 });

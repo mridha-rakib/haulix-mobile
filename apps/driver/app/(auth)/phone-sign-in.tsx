@@ -1,7 +1,7 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActionCtaButton } from "../../src/components/ui/ActionCtaButton";
 import { FlowHeader } from "../../src/components/ui/FlowHeader";
@@ -68,7 +68,16 @@ export default function PhoneSignInScreen() {
           error={error}
         />
 
-        <View style={{ height: spacing[5] }} />
+        <View style={{ height: spacing[4] }} />
+
+        <Pressable
+          onPress={() => router.push("/(auth)/code-help")}
+          style={({ pressed }) => [styles.helpLink, pressed && styles.helpLinkPressed]}
+        >
+          <Text style={styles.helpLinkText}>{t("driver.phoneVerification.expiredRecovery")}</Text>
+        </Pressable>
+
+        <View style={{ height: spacing[4] }} />
 
         <InfoCard
           title={t("driver.phoneSignIn.demoNavTitle")}
@@ -90,6 +99,15 @@ export default function PhoneSignInScreen() {
         <ActionCtaButton
           label={t("driver.phoneSignIn.previewHelperCta")}
           onPress={handlePreviewHelper}
+          variant="outline"
+          size="large"
+        />
+
+        <View style={{ height: spacing[3] }} />
+
+        <ActionCtaButton
+          label={t("driver.checkInbox.backToSignIn")}
+          onPress={() => router.push("/(auth)/sign-in")}
           variant="outline"
           size="large"
         />
@@ -126,5 +144,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#ADB8B0",
     lineHeight: 16,
+  },
+  helpLink: {
+    alignItems: "center",
+    paddingVertical: spacing[1.5],
+  },
+  helpLinkPressed: {
+    opacity: 0.7,
+  },
+  helpLinkText: {
+    fontFamily: "Inter_500Medium",
+    fontSize: 13,
+    color: "#ADB8B0",
+    textDecorationLine: "underline",
   },
 });

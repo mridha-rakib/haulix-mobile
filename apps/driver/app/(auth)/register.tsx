@@ -1,7 +1,7 @@
-import { radius, spacing } from "@haulix/design-tokens";
+import { spacing } from "@haulix/design-tokens";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActionCtaButton } from "../../src/components/ui/ActionCtaButton";
 import { FlowHeader } from "../../src/components/ui/FlowHeader";
@@ -39,12 +39,17 @@ export default function RegisterRoleSelectScreen() {
       />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* Step Indicator Badge */}
-        <View style={styles.stepBadgeRow}>
-          <View style={styles.stepBadge}>
-            <Text style={styles.stepBadgeText}>{t("driver.roleSelect.stepTag")}</Text>
+        {/* Step Indicator Progress Bar Row (Figma 1085:39) */}
+        <View style={styles.stepProgressBlock}>
+          <View style={styles.stepProgressLabels}>
+            <Text style={styles.stepTitleText}>{t("driver.roleSelect.stepTag")}</Text>
+            <Text style={styles.stepCounterText}>{t("driver.roleSelect.stepProgress")}</Text>
           </View>
-          <Text style={styles.stepCounter}>{t("driver.roleSelect.stepProgress")}</Text>
+          <View style={styles.progressBarRow}>
+            <View style={[styles.progressSegment, styles.segmentActive]} />
+            <View style={styles.progressSegment} />
+            <View style={styles.progressSegment} />
+          </View>
         </View>
 
         {/* Driver Role Card (Figma 1085:46) */}
@@ -58,7 +63,7 @@ export default function RegisterRoleSelectScreen() {
           onSelect={() => handleRoleSelect("PRIMARY_DRIVER")}
         />
 
-        <View style={{ height: spacing[3] }} />
+        <View style={{ height: spacing[1] }} />
 
         {/* Helper Role Card (Figma 1085:60) */}
         <RoleCard
@@ -71,7 +76,7 @@ export default function RegisterRoleSelectScreen() {
           onSelect={() => handleRoleSelect("HELPER")}
         />
 
-        <View style={{ height: spacing[4] }} />
+        <View style={{ height: spacing[2] }} />
 
         {/* Legal & Role Architecture Notice */}
         <InfoCard
@@ -80,9 +85,9 @@ export default function RegisterRoleSelectScreen() {
           variant="highlight"
         />
 
-        <View style={{ height: spacing[6] }} />
+        <View style={{ height: spacing[4] }} />
 
-        {/* Main CTA */}
+        {/* Action CTAs */}
         <ActionCtaButton
           label={
             selectedRole === "PRIMARY_DRIVER"
@@ -91,18 +96,17 @@ export default function RegisterRoleSelectScreen() {
           }
           onPress={handleContinue}
           variant="primary"
-          size="large"
+          size="default"
         />
 
-        <View style={{ height: spacing[3] }} />
+        <View style={{ height: spacing[2.5] }} />
 
-        {/* Already have an account link */}
-        <Pressable
+        <ActionCtaButton
+          label={t("driver.roleSelect.alreadyHaveAccount")}
           onPress={() => router.push("/(auth)/sign-in")}
-          style={({ pressed }) => [styles.signInLink, pressed && styles.signInLinkPressed]}
-        >
-          <Text style={styles.signInLinkText}>{t("driver.roleSelect.alreadyHaveAccount")}</Text>
-        </Pressable>
+          variant="secondary"
+          size="default"
+        />
 
         <View style={styles.disclaimerBox}>
           <Text style={styles.disclaimerText}>{t("driver.roleSelect.reviewNotice")}</Text>
@@ -121,43 +125,38 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing[4],
     paddingBottom: spacing[8],
   },
-  stepBadgeRow: {
+  stepProgressBlock: {
+    marginBottom: spacing[3],
+  },
+  stepProgressLabels: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: spacing[3],
+    marginBottom: 6,
   },
-  stepBadge: {
-    backgroundColor: "#1A221E",
-    paddingHorizontal: spacing[2.5],
-    paddingVertical: spacing[1],
-    borderRadius: radius.sm,
-    borderWidth: 1,
-    borderColor: "#2B3532",
-  },
-  stepBadgeText: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 10,
+  stepTitleText: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 11,
     color: "#BAFF42",
-    letterSpacing: 0.5,
+    letterSpacing: 0.8,
   },
-  stepCounter: {
+  stepCounterText: {
     fontFamily: "Inter_500Medium",
     fontSize: 11,
     color: "#8E9E99",
   },
-  signInLink: {
-    paddingVertical: spacing[2],
-    alignItems: "center",
+  progressBarRow: {
+    flexDirection: "row",
+    gap: 6,
   },
-  signInLinkPressed: {
-    opacity: 0.7,
+  progressSegment: {
+    flex: 1,
+    height: 3,
+    borderRadius: 1.5,
+    backgroundColor: "#232C28",
   },
-  signInLinkText: {
-    fontFamily: "Inter_500Medium",
-    fontSize: 13,
-    color: "#ADB8B0",
-    textDecorationLine: "underline",
+  segmentActive: {
+    backgroundColor: "#BAFF42",
   },
   disclaimerBox: {
     marginTop: spacing[3],
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
   },
   disclaimerText: {
     fontFamily: "Inter_400Regular",
-    fontSize: 11,
+    fontSize: 11.5,
     color: "#687771",
     textAlign: "center",
   },

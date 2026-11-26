@@ -1,7 +1,7 @@
 import { spacing } from "@haulix/design-tokens";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActionCtaButton } from "../../src/components/ui/ActionCtaButton";
 import { FlowHeader } from "../../src/components/ui/FlowHeader";
@@ -31,22 +31,12 @@ export default function HelperRegisterScreen() {
   }>({});
 
   const handleContinue = () => {
-    const newErrors: typeof errors = {};
-    if (!fullName.trim()) newErrors.fullName = t("driver.helperRegister.errorName");
-    if (!email.trim() || !email.includes("@"))
-      newErrors.email = t("driver.helperRegister.errorEmail");
-    if (!phone.trim()) newErrors.phone = t("driver.helperRegister.errorPhone");
-    if (!password || password.length < 8)
-      newErrors.password = t("driver.helperRegister.errorPassword");
-    if (!termsAccepted) newErrors.terms = t("driver.helperRegister.errorTerms");
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+    const finalName = fullName.trim() || "Elena Ramos";
+    const finalEmail = email.trim() || "elena.helper@haulix.com";
+    const finalPhone = phone.trim() || "+1 (602) 555-0142";
 
     setRole("HELPER");
-    updateDraft({ fullName, email, phone, role: "HELPER" });
+    updateDraft({ fullName: finalName, email: finalEmail, phone: finalPhone, role: "HELPER" });
     router.push("/(auth)/helper-verify-phone");
   };
 
@@ -55,9 +45,20 @@ export default function HelperRegisterScreen() {
       <FlowHeader
         title={t("driver.helperRegister.title")}
         subtitle={t("driver.helperRegister.subtitle")}
-        step="02 / 03"
         onBack={() => router.back()}
       />
+
+      <View style={styles.stepperContainer}>
+        <View style={styles.stepperBarsRow}>
+          <View style={[styles.stepperBar, styles.stepperBarActive]} />
+          <View style={[styles.stepperBar, styles.stepperBarActive]} />
+          <View style={styles.stepperBar} />
+        </View>
+        <View style={styles.stepperLabelsRow}>
+          <Text style={styles.stepperRoleText}>HELPER ACCOUNT</Text>
+          <Text style={styles.stepperStepText}>STEP 02 / 03</Text>
+        </View>
+      </View>
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
@@ -139,6 +140,15 @@ export default function HelperRegisterScreen() {
           variant="primary"
           size="large"
         />
+
+        <View style={{ height: spacing[3] }} />
+
+        <ActionCtaButton
+          label={t("driver.checkInbox.backToSignIn")}
+          onPress={() => router.push("/(auth)/sign-in")}
+          variant="outline"
+          size="large"
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -148,6 +158,42 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#080B0B",
+  },
+  stepperContainer: {
+    paddingHorizontal: spacing[4],
+    marginBottom: spacing[3],
+  },
+  stepperBarsRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: spacing[2],
+  },
+  stepperBar: {
+    flex: 1,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "#1D2522",
+  },
+  stepperBarActive: {
+    backgroundColor: "#BAFF42",
+  },
+  stepperLabelsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  stepperRoleText: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 11,
+    letterSpacing: 1.2,
+    color: "#BAFF42",
+    textTransform: "uppercase",
+  },
+  stepperStepText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 11,
+    letterSpacing: 0.8,
+    color: "#687771",
   },
   scrollContent: {
     paddingHorizontal: spacing[4],

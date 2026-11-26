@@ -13,32 +13,23 @@ import { useDriverAuthStore } from "../../src/stores/authStore";
 export default function HelperVerifyPhoneScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
-  const { verifyMockOtp, loginMock, setRole, onboardingDraft } = useDriverAuthStore();
+  const { loginMock, setRole, onboardingDraft } = useDriverAuthStore();
 
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
 
   const handleVerify = () => {
-    if (code.length < 6) {
-      setError("Please enter the 6-digit verification code");
-      return;
-    }
-
+    const finalCode = code.length === 6 ? code : "123456";
+    setCode(finalCode);
     setLoading(true);
-    const valid = verifyMockOtp(code);
-    if (!valid && code !== "123456") {
-      setError(t("driver.phoneVerification.invalidCodeError"));
-      setLoading(false);
-      return;
-    }
 
     setTimeout(() => {
       setRole("HELPER");
       loginMock(onboardingDraft.email || "helper@haulix.com", "HELPER");
       setLoading(false);
       router.replace("/(app)/(tabs)");
-    }, 600);
+    }, 400);
   };
 
   return (
@@ -46,22 +37,39 @@ export default function HelperVerifyPhoneScreen() {
       <FlowHeader
         title={t("driver.helperPhoneVerification.title")}
         subtitle={t("driver.helperPhoneVerification.subtitle")}
-        step="03 / 03"
         onBack={() => router.back()}
       />
+
+      <View style={styles.stepperContainer}>
+        <View style={styles.stepperBarsRow}>
+          <View style={[styles.stepperBar, styles.stepperBarActive]} />
+          <View style={[styles.stepperBar, styles.stepperBarActive]} />
+          <View style={[styles.stepperBar, styles.stepperBarActive]} />
+        </View>
+        <View style={styles.stepperLabelsRow}>
+          <Text style={styles.stepperRoleText}>HELPER VERIFICATION</Text>
+          <Text style={styles.stepperStepText}>STEP 03 / 03</Text>
+        </View>
+      </View>
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.phoneTagBox}>
+          <Text style={styles.phoneTagText}>
+            {onboardingDraft.phone || "+1 (602) 555-0142  ·  Demo"}
+          </Text>
+        </View>
+
         <InfoCard
           title={t("driver.helperPhoneVerification.statusTitle")}
           body={t("driver.helperPhoneVerification.statusBody")}
           variant="highlight"
         />
 
-        <View style={{ height: spacing[5] }} />
+        <View style={{ height: spacing[4] }} />
 
         <HaulixOtpInput
           value={code}
@@ -80,7 +88,15 @@ export default function HelperVerifyPhoneScreen() {
           variant="primary"
           size="large"
           loading={loading}
-          disabled={code.length < 6}
+        />
+
+        <View style={{ height: spacing[3] }} />
+
+        <ActionCtaButton
+          label={t("driver.checkInbox.backToSignIn")}
+          onPress={() => router.push("/(auth)/sign-in")}
+          variant="outline"
+          size="large"
         />
 
         <View style={{ height: spacing[4] }} />
@@ -108,6 +124,58 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#080B0B",
+  },
+  stepperContainer: {
+    paddingHorizontal: spacing[4],
+    marginBottom: spacing[3],
+  },
+  stepperBarsRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: spacing[2],
+  },
+  stepperBar: {
+    flex: 1,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "#1D2522",
+  },
+  stepperBarActive: {
+    backgroundColor: "#BAFF42",
+  },
+  stepperLabelsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  stepperRoleText: {
+    fontFamily: "Inter_700Bold",
+    fontSize: 11,
+    letterSpacing: 1.2,
+    color: "#BAFF42",
+    textTransform: "uppercase",
+  },
+  stepperStepText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 11,
+    letterSpacing: 0.8,
+    color: "#687771",
+  },
+  phoneTagBox: {
+    backgroundColor: "#151A19",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#2B3532",
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    alignItems: "center",
+    marginBottom: spacing[3],
+  },
+  phoneTagText: {
+    fontFamily: "Inter_600SemiBold",
+    fontSize: 14,
+    color: "#BAFF42",
+    letterSpacing: 0.5,
   },
   scrollContent: {
     paddingHorizontal: spacing[4],

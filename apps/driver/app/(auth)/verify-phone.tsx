@@ -73,8 +73,8 @@ export default function VerifyPhoneScreen() {
         <View style={styles.phoneTagBox}>
           <Text style={styles.phoneTagText}>
             {onboardingDraft.phone
-              ? `${onboardingDraft.phone}  ·  Verification`
-              : t("driver.phoneVerification.phoneDemoTag")}
+              ? `${onboardingDraft.phone}  ·  Demo`
+              : "+1 (602) 555-0142  ·  Demo"}
           </Text>
         </View>
 
@@ -105,16 +105,28 @@ export default function VerifyPhoneScreen() {
           )}
         </View>
 
+        <InfoCard title={t("driver.phoneVerification.codeExpires")} body="" variant="neutral" />
+
+        <View style={{ height: spacing[5] }} />
+
         <ActionCtaButton
           label={t("driver.phoneVerification.verifyAndContinue")}
           onPress={handleVerify}
           variant="primary"
-          size="large"
+          size="default"
           loading={loading}
-          disabled={code.length < 6}
         />
 
-        <View style={{ height: spacing[4] }} />
+        <View style={{ height: spacing[2.5] }} />
+
+        <ActionCtaButton
+          label="Back to sign in"
+          onPress={() => router.push("/(auth)/sign-in")}
+          variant="secondary"
+          size="default"
+        />
+
+        <View style={{ height: spacing[3] }} />
 
         {/* Code Issue Link (DW66 navigation) */}
         <Pressable
@@ -123,14 +135,6 @@ export default function VerifyPhoneScreen() {
         >
           <Text style={styles.helpLinkText}>{t("driver.phoneVerification.expiredRecovery")}</Text>
         </Pressable>
-
-        <View style={{ height: spacing[4] }} />
-
-        <InfoCard
-          title="Security Information"
-          body={t("driver.phoneVerification.codeExpires")}
-          variant="neutral"
-        />
       </ScrollView>
     </SafeAreaView>
   );

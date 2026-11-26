@@ -33,6 +33,46 @@ describe("HAULIX Driver & Worker — DW-F00 / DW-F01 Milestone Verification", ()
       expect(tabs).toEqual(["home", "jobs", "earnings", "messages", "profile"]);
       expect(driverTranslationsEn.driver.tabs.messages).toBe("Messages");
     });
+
+    it("has complete translation coverage for all 11 DW-W01 screens in EN and ES", () => {
+      // DW43: Reset password
+      expect(driverTranslationsEn.driver.forgotPassword.title).toBe("Reset password");
+      expect(driverTranslationsEs.driver.forgotPassword.title).toBe("Restablecer contraseña");
+
+      // DW44: Check inbox
+      expect(driverTranslationsEn.driver.checkInbox.title).toBe("Check your inbox");
+      expect(driverTranslationsEs.driver.checkInbox.title).toBe("Revisa tu bandeja de entrada");
+
+      // DW58: Driver account details
+      expect(driverTranslationsEn.driver.driverRegister.title).toBe("Driver account details");
+      expect(driverTranslationsEs.driver.driverRegister.title).toBe(
+        "Detalles de cuenta de Conductor"
+      );
+
+      // DW59: Helper account details
+      expect(driverTranslationsEn.driver.helperRegister.title).toBe("Helper account details");
+      expect(driverTranslationsEs.driver.helperRegister.title).toBe(
+        "Detalles de cuenta de Ayudante"
+      );
+
+      // DW60: Helper phone verification
+      expect(driverTranslationsEn.driver.helperPhoneVerification.title).toBe(
+        "Helper phone verification"
+      );
+      expect(driverTranslationsEs.driver.helperPhoneVerification.title).toBe(
+        "Verificación de Ayudante"
+      );
+
+      // DW61: Phone sign-in verification
+      expect(driverTranslationsEn.driver.phoneSignIn.title).toBe("Phone sign-in verification");
+      expect(driverTranslationsEs.driver.phoneSignIn.title).toBe("Inicio de sesión por teléfono");
+
+      // DW66: Code issue
+      expect(driverTranslationsEn.driver.codeIssue.title).toBe("Verification code issue");
+      expect(driverTranslationsEs.driver.codeIssue.title).toBe(
+        "Problema con código de verificación"
+      );
+    });
   });
 
   describe("DW-F01: Auth State Store & Role Intake Operations", () => {
