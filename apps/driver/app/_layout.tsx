@@ -13,16 +13,40 @@ import { ErrorBoundary } from "../src/components/ErrorBoundary";
 import { useAppBootstrap } from "../src/hooks/useAppBootstrap";
 import { changeLocale } from "../src/i18n";
 
+import { useDriverAuthStore } from "../src/stores/authStore";
+import { useDispatchCrewStore } from "../src/stores/dispatchCrewStore";
+
 // Keep splash screen visible while loading resources
 SplashScreen.preventAutoHideAsync();
 
-function LocaleWatcher() {
-  const params = useGlobalSearchParams<{ lang?: string }>();
+function DemoParamsWatcher() {
+  const params = useGlobalSearchParams<{
+    lang?: string;
+    role?: string;
+    scenario?: string;
+    clean?: string;
+  }>();
+  const setRole = useDriverAuthStore((s) => s.setRole);
+  const setCleanMode = useDriverAuthStore((s) => s.setCleanMode);
+  const setScenario = useDispatchCrewStore((s) => s.setScenario);
+
   useEffect(() => {
     if (params.lang === "es" || params.lang === "en") {
       changeLocale(params.lang);
     }
-  }, [params.lang]);
+    if (params.role === "PRIMARY_DRIVER" || params.role === "HELPER") {
+      setRole(params.role);
+    }
+    if (params.scenario) {
+      setScenario(params.scenario as Parameters<typeof setScenario>[0]);
+    }
+    if (params.clean === "1") {
+      setCleanMode(true);
+    } else if (params.clean === "0") {
+      setCleanMode(false);
+    }
+  }, [params.lang, params.role, params.scenario, params.clean, setRole, setCleanMode, setScenario]);
+
   return null;
 }
 
@@ -55,7 +79,7 @@ export default function RootLayout() {
                 animation: "fade",
               }}
             />
-            <LocaleWatcher />
+            <DemoParamsWatcher />
             <DriverDemoScreenNavigator />
           </View>
         </SafeAreaProvider>

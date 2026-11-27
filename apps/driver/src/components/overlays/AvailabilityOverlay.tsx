@@ -3,6 +3,7 @@ import { type Href, useRouter } from "expo-router";
 import { Modal, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDriverTranslation } from "../../i18n";
+import { useDriverAuthStore } from "../../stores/authStore";
 import { useAvailabilityStore } from "../../stores/availabilityStore";
 
 interface AvailabilityOverlayProps {
@@ -18,8 +19,11 @@ export function AvailabilityOverlay({
 }: AvailabilityOverlayProps) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { t } = useDriverTranslation();
-  const { preferences } = useAvailabilityStore();
+  const { t, currentLocale } = useDriverTranslation();
+  const { role } = useDriverAuthStore();
+  const { getRolePreferences } = useAvailabilityStore();
+
+  const preferences = getRolePreferences(role);
 
   const handleOpenSettings = () => {
     onClose();
@@ -29,6 +33,17 @@ export function AvailabilityOverlay({
       router.push("/(app)/availability-settings" as Href);
     }
   };
+
+  const isEs = currentLocale === "es";
+  const hoursPrefix = isEs ? "Horario" : "Hours";
+  const radiusPrefix = isEs ? "Radio de servicio" : "Service radius";
+  const milesSuffix = isEs ? "millas" : "miles";
+  const shiftPrefix = isEs ? "Turno preferido" : "Preferred shift";
+  const shiftVal = isEs
+    ? preferences.preferredShift === "Flexible"
+      ? "Flexible"
+      : "Turno diurno"
+    : preferences.preferredShift;
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
@@ -51,14 +66,12 @@ export function AvailabilityOverlay({
               {/* Preferences Summary Card (Figma OV05) */}
               <View style={styles.summaryCard}>
                 <Text style={styles.summaryRow}>
-                  {`Hours · ${preferences.startHour} – ${preferences.endHour}`}
+                  {`${hoursPrefix} · ${preferences.startHour} – ${preferences.endHour}`}
                 </Text>
                 <Text style={styles.summaryRow}>
-                  {`Service radius · ${preferences.serviceRadiusMiles} miles`}
+                  {`${radiusPrefix} · ${preferences.serviceRadiusMiles} ${milesSuffix}`}
                 </Text>
-                <Text style={styles.summaryRow}>
-                  {`Preferred shift · ${preferences.preferredShift}`}
-                </Text>
+                <Text style={styles.summaryRow}>{`${shiftPrefix} · ${shiftVal}`}</Text>
               </View>
 
               {/* Disclaimer */}
@@ -146,9 +159,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing[3],
     alignItems: "center",
     justifyContent: "center",
-  },
-  ctaPressed: {
-    opacity: 0.85,
   },
   primaryCtaText: {
     fontFamily: "Inter_700Bold",

@@ -14,7 +14,13 @@ import { ActionCtaButton } from "../../src/components/ui/ActionCtaButton";
 import { FlowHeader } from "../../src/components/ui/FlowHeader";
 import { useDriverTranslation } from "../../src/i18n";
 import { useDriverAuthStore } from "../../src/stores/authStore";
-import { useAvailabilityStore } from "../../src/stores/availabilityStore";
+import {
+  type AvailabilityPreferences,
+  useAvailabilityStore,
+} from "../../src/stores/availabilityStore";
+
+const DAY_KEYS_EN = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DAY_KEYS_ES = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"];
 
 export default function AvailabilitySettingsScreen() {
   const router = useRouter();
@@ -25,31 +31,56 @@ export default function AvailabilitySettingsScreen() {
     helperStatus,
     setDriverStatus,
     setHelperStatus,
-    preferences,
-    toggleWorkingDay,
-    setVacationMode,
-    savePreferences,
+    getRolePreferences,
+    saveRolePreferences,
   } = useAvailabilityStore();
 
   const isDriver = role === "PRIMARY_DRIVER";
-  const isOnline = isDriver ? driverStatus === "ONLINE" : helperStatus === "ONLINE";
+  const initialOnline = isDriver ? driverStatus === "ONLINE" : helperStatus === "ONLINE";
+  const initialPreferences = getRolePreferences(role);
 
+  // Local draft state — allows cancellation / back navigation without unwanted mutation
+  const [draftOnline, setDraftOnline] = useState<boolean>(initialOnline);
+  const [draftPreferences, setDraftPreferences] = useState<AvailabilityPreferences>({
+    ...initialPreferences,
+  });
   const [savedFeedback, setSavedFeedback] = useState(false);
 
   const handleToggleOnline = (value: boolean) => {
-    const nextStatus = value ? "ONLINE" : "OFFLINE";
+    setDraftOnline(value);
+    if (value && draftPreferences.vacationMode) {
+      setDraftPreferences((prev) => ({ ...prev, vacationMode: false }));
+    }
+  };
+
+  const handleToggleDay = (day: string) => {
+    setDraftPreferences((prev) => {
+      const exists = prev.workingDays.includes(day);
+      const updatedDays = exists
+        ? prev.workingDays.filter((d) => d !== day)
+        : [...prev.workingDays, day];
+      return { ...prev, workingDays: updatedDays };
+    });
+  };
+
+  const handleToggleVacation = (value: boolean) => {
+    setDraftPreferences((prev) => ({ ...prev, vacationMode: value }));
+    if (value) {
+      setDraftOnline(false);
+    }
+  };
+
+  const handleSave = () => {
+    // Commit draft to isolated role preferences in store
+    saveRolePreferences(role, draftPreferences);
+
+    const nextStatus = draftOnline ? "ONLINE" : "OFFLINE";
     if (isDriver) {
       setDriverStatus(nextStatus);
     } else {
       setHelperStatus(nextStatus);
     }
-  };
 
-  const handleSave = () => {
-    savePreferences({
-      workingDays: preferences.workingDays,
-      vacationMode: preferences.vacationMode,
-    });
     setSavedFeedback(true);
     setTimeout(() => {
       setSavedFeedback(false);
@@ -57,9 +88,7 @@ export default function AvailabilitySettingsScreen() {
     }, 600);
   };
 
-  const dayKeysEn = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const dayKeysEs = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"];
-  const displayDays = currentLocale === "es" ? dayKeysEs : dayKeysEn;
+  const displayDays = currentLocale === "es" ? DAY_KEYS_ES : DAY_KEYS_EN;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -86,10 +115,10 @@ export default function AvailabilitySettingsScreen() {
             </View>
           </View>
           <Switch
-            value={isOnline}
+            value={draftOnline}
             onValueChange={handleToggleOnline}
             trackColor={{ false: "#232C28", true: "#BAFF42" }}
-            thumbColor={isOnline ? "#080B0B" : "#8E9E99"}
+            thumbColor={draftOnline ? "#080B0B" : "#8E9E99"}
           />
         </View>
 
@@ -99,13 +128,13 @@ export default function AvailabilitySettingsScreen() {
           <Text style={styles.cardSubtitle}>{t("driver.availabilitySettings.workingDaysSub")}</Text>
 
           <View style={styles.daysRow}>
-            {dayKeysEn.map((dayEn, index) => {
+            {DAY_KEYS_EN.map((dayEn, index) => {
               const label = displayDays[index];
-              const isSelected = preferences.workingDays.includes(dayEn);
+              const isSelected = draftPreferences.workingDays.includes(dayEn);
               return (
                 <Pressable
                   key={dayEn}
-                  onPress={() => toggleWorkingDay(dayEn)}
+                  onPress={() => handleToggleDay(dayEn)}
                   style={[styles.dayPill, isSelected && styles.dayPillActive]}
                   accessibilityRole="button"
                   accessibilityLabel={`Toggle ${dayEn}`}
@@ -129,7 +158,7 @@ export default function AvailabilitySettingsScreen() {
                 {t("driver.availabilitySettings.startTimeLabel")}
               </Text>
               <View style={styles.hourPicker}>
-                <Text style={styles.hourValue}>{preferences.startHour}</Text>
+                <Text style={styles.hourValue}>{draftPreferences.startHour}</Text>
                 <ChevronDownIcon size={14} color="#ADB8B0" />
               </View>
             </View>
@@ -137,7 +166,7 @@ export default function AvailabilitySettingsScreen() {
             <View style={styles.hourCard}>
               <Text style={styles.hourLabel}>{t("driver.availabilitySettings.endTimeLabel")}</Text>
               <View style={styles.hourPicker}>
-                <Text style={styles.hourValue}>{preferences.endHour}</Text>
+                <Text style={styles.hourValue}>{draftPreferences.endHour}</Text>
                 <ChevronDownIcon size={14} color="#ADB8B0" />
               </View>
             </View>
@@ -159,7 +188,11 @@ export default function AvailabilitySettingsScreen() {
               </Text>
             </View>
           </View>
-          <Text style={styles.settingValueText}>{`${preferences.serviceRadiusMiles} mi`}</Text>
+          <Text style={styles.settingValueText}>
+            {currentLocale === "es"
+              ? `${draftPreferences.serviceRadiusMiles} mi`
+              : `${draftPreferences.serviceRadiusMiles} mi`}
+          </Text>
         </View>
 
         {/* Section 5: Preferred Shift (Figma 1270:793) */}
@@ -178,7 +211,7 @@ export default function AvailabilitySettingsScreen() {
             </View>
           </View>
           <Text style={styles.settingValueText}>
-            {currentLocale === "es" ? "Día" : preferences.preferredShift}
+            {currentLocale === "es" ? "Turno diurno" : draftPreferences.preferredShift}
           </Text>
         </View>
 
@@ -198,10 +231,10 @@ export default function AvailabilitySettingsScreen() {
             </View>
           </View>
           <Switch
-            value={preferences.vacationMode}
-            onValueChange={(val) => setVacationMode(val)}
+            value={draftPreferences.vacationMode}
+            onValueChange={handleToggleVacation}
             trackColor={{ false: "#232C28", true: "#BAFF42" }}
-            thumbColor={preferences.vacationMode ? "#080B0B" : "#8E9E99"}
+            thumbColor={draftPreferences.vacationMode ? "#080B0B" : "#8E9E99"}
           />
         </View>
 

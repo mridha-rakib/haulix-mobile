@@ -681,3 +681,149 @@ export function CalendarIcon({ size = 20, color = "#BAFF42", style }: IconProps)
     </View>
   );
 }
+
+export function SofaIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M20 9V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V9"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M2 11C2 9.89543 2.89543 9 4 9H20C21.1046 9 22 9.89543 22 11V17H2V11Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M4 17V19M20 17V19"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function BoxIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M21 16V8L12 3L3 8V16L12 21L21 16Z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M3.27 6.96L12 12.01L20.73 6.96M12 22.08V12"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function WalletIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="2"
+          y="5"
+          width="20"
+          height="14"
+          rx="2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Line x1="2" y1="10" x2="22" y2="10" stroke={color} strokeWidth="1.8" />
+        <Circle cx="16" cy="14" r="1.5" fill={color} />
+      </Svg>
+    </View>
+  );
+}
+
+export function BellIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M18 8A6 6 0 0 0 6 8C6 15 3 17 3 17H21S18 15 18 8"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M13.73 21A2 2 0 0 1 10.27 21"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function BriefcaseIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="2"
+          y="7"
+          width="20"
+          height="14"
+          rx="2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M16 7V5C16 3.89543 15.1046 3 14 3H10C8.89543 3 8 3.89543 8 5V7"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Line x1="2" y1="12" x2="22" y2="12" stroke={color} strokeWidth="1.8" />
+      </Svg>
+    </View>
+  );
+}
+
+export function InfoIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
+        <Line
+          x1="12"
+          y1="16"
+          x2="12"
+          y2="12"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <Circle cx="12" cy="8" r="1" fill={color} />
+      </Svg>
+    </View>
+  );
+}

@@ -34,8 +34,10 @@ interface DriverAuthState {
   pendingPhone: string;
   otpCountdown: number;
   lastResetEmail: string;
+  isCleanMode: boolean;
 
   // Actions
+  setCleanMode: (clean: boolean) => void;
   setRole: (role: DriverRole) => void;
   updateDraft: (partial: Partial<OnboardingDraft>) => void;
   setPendingPhone: (phone: string) => void;
@@ -91,6 +93,9 @@ export const useDriverAuthStore = create<DriverAuthState>((set, get) => ({
   pendingPhone: "+1 (602) 555-0142",
   otpCountdown: 30,
   lastResetEmail: "name@example.com",
+  isCleanMode: false,
+
+  setCleanMode: (clean) => set({ isCleanMode: clean }),
 
   setRole: (role) =>
     set((state) => ({

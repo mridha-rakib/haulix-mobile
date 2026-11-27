@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDriverTranslation } from "../../i18n";
 import { useDriverAuthStore } from "../../stores/authStore";
 import { useAvailabilityStore } from "../../stores/availabilityStore";
+import { useDispatchCrewStore } from "../../stores/dispatchCrewStore";
 import { useDriverDocumentStore, type VerificationScenario } from "../../stores/documentStore";
 
 export interface DemoScreenItem {
@@ -79,6 +80,194 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
     locale: "es",
     description:
       "Configuración de horarios laborales, días activos, radio de servicio y modo vacaciones",
+  },
+
+  // DW10 Job Offers (DW-F04)
+  {
+    id: "DW10-EN",
+    name: "DW10 · Job offers (English)",
+    figmaNode: "1086:81",
+    route: "/(app)/job-offers",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Driver dispatch offer radar: Tiered radius offer cards, New badges & route details",
+  },
+  {
+    id: "DW10-ES",
+    name: "DW10 · Ofertas de trabajo (Español)",
+    figmaNode: "1088:410",
+    route: "/(app)/job-offers",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Radar de ofertas de trabajo con tarjetas de radio, insignias y detalles de ruta",
+  },
+
+  // DW11 Job Details (DW-F04)
+  {
+    id: "DW11-EN",
+    name: "DW11 · Job details (English)",
+    figmaNode: "1086:162",
+    route: "/(app)/job-details",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Detailed job review: Service items breakdown, cargo sizing, schedule and crew needs",
+  },
+  {
+    id: "DW11-ES",
+    name: "DW11 · Detalles del trabajo (Español)",
+    figmaNode: "1088:491",
+    route: "/(app)/job-details",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Revisión detallada del trabajo: Artículos, horario, estimación y necesidades de equipo",
+  },
+
+  // DW12 Offer Unavailable (DW-F04)
+  {
+    id: "DW12-EN",
+    name: "DW12 · Offer unavailable (English)",
+    figmaNode: "1086:205",
+    route: "/(app)/offer-unavailable",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description: "Expired or peer-accepted job state with return to offers and dashboard recovery",
+  },
+  {
+    id: "DW12-ES",
+    name: "DW12 · Oferta no disponible (Español)",
+    figmaNode: "1088:534",
+    route: "/(app)/offer-unavailable",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Oferta vencida o tomada por otro conductor con opciones de retorno",
+  },
+
+  // DW13 Invite a Helper (DW-F04)
+  {
+    id: "DW13-EN",
+    name: "DW13 · Invite a Helper (English)",
+    figmaNode: "1086:231",
+    route: "/(app)/invite-helper",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description: "Driver crew invitation hub: Search verified helpers or continue solo",
+  },
+  {
+    id: "DW13-ES",
+    name: "DW13 · Invitar a un ayudante (Español)",
+    figmaNode: "1088:560",
+    route: "/(app)/invite-helper",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Invitación de equipo opcional para conductores: Selección de ayudante o trabajo individual",
+  },
+
+  // DW14 Helper Invitations (DW-F04)
+  {
+    id: "DW14-EN",
+    name: "DW14 · Helper invitations (English)",
+    figmaNode: "1086:268",
+    route: "/(app)/helper-invitations",
+    locale: "en",
+    role: "HELPER",
+    description: "Helper invitation inbox: Incoming crew invitations, individual decision notice",
+  },
+  {
+    id: "DW14-ES",
+    name: "DW14 · Invitaciones de ayudante (Español)",
+    figmaNode: "1088:597",
+    route: "/(app)/helper-invitations",
+    locale: "es",
+    role: "HELPER",
+    description: "Bandeja de invitaciones para ayudantes con aviso de decisión individual",
+  },
+
+  // DW15 Review Invitation (DW-F04)
+  {
+    id: "DW15-EN",
+    name: "DW15 · Review invitation (English)",
+    figmaNode: "1086:328",
+    route: "/(app)/review-invitation",
+    locale: "en",
+    role: "HELPER",
+    description:
+      "Helper invitation review: Trip scope, helper earnings share & accept/decline actions",
+  },
+  {
+    id: "DW15-ES",
+    name: "DW15 · Revisar invitación (Español)",
+    figmaNode: "1088:657",
+    route: "/(app)/review-invitation",
+    locale: "es",
+    role: "HELPER",
+    description:
+      "Revisión de invitación por el ayudante: Alcance, ganancias individuales y aceptación",
+  },
+
+  // DW16 Crew Readiness (DW-F04)
+  {
+    id: "DW16-EN",
+    name: "DW16 · Crew readiness (English)",
+    figmaNode: "1086:365",
+    route: "/(app)/crew-readiness",
+    locale: "en",
+    description: "Mutual confirmation status: Driver accepted, helper response and readiness check",
+  },
+  {
+    id: "DW16-ES",
+    name: "DW16 · Preparación del equipo (Español)",
+    figmaNode: "1088:694",
+    route: "/(app)/crew-readiness",
+    locale: "es",
+    description:
+      "Estado de confirmación mutua: Conductor aceptado, respuesta del ayudante y equipo listo",
+  },
+
+  // DW48 Choose a Helper (DW-F04)
+  {
+    id: "DW48-EN",
+    name: "DW48 · Choose a Helper (English)",
+    figmaNode: "1301:920",
+    route: "/(app)/choose-helper",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Candidate list for Driver crew invitation: Helper rating, proximity & eligibility",
+  },
+  {
+    id: "DW48-ES",
+    name: "DW48 · Elegir ayudante (Español)",
+    figmaNode: "1301:2162",
+    route: "/(app)/choose-helper",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Lista de candidatos a ayudante para el conductor: Calificación y proximidad",
+  },
+
+  // DW49 Invitation Pending (DW-F04)
+  {
+    id: "DW49-EN",
+    name: "DW49 · Invitation pending (English)",
+    figmaNode: "1301:1010",
+    route: "/(app)/invitation-pending",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Pending invitation wait state: Independent response notice and crew readiness link",
+  },
+  {
+    id: "DW49-ES",
+    name: "DW49 · Invitación pendiente (Español)",
+    figmaNode: "1301:2252",
+    route: "/(app)/invitation-pending",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Espera de respuesta del ayudante: Aviso de aceptación independiente y preparación",
   },
 
   // DW01 Welcome
@@ -492,10 +681,12 @@ export function DriverDemoScreenNavigator() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { currentLocale, toggleLanguage, setLanguage } = useDriverTranslation();
-  const { role, setRole, loginMock, logout } = useDriverAuthStore();
+  const { role, setRole, loginMock, logout, isCleanMode, setCleanMode } = useDriverAuthStore();
   const { setScenario, resetDocuments, driver, helper } = useDriverDocumentStore();
   const { driverStatus, helperStatus, toggleDriverStatus, toggleHelperStatus, resetAvailability } =
     useAvailabilityStore();
+  const { setScenario: setDispatchScenario, resetDispatchCrew } = useDispatchCrewStore();
+  const [dispatchScenario, setDispatchScenarioState] = useState<string>("AVAILABLE");
 
   const handleSelectScreen = async (item: DemoScreenItem) => {
     if (item.locale !== currentLocale) {
@@ -515,7 +706,9 @@ export function DriverDemoScreenNavigator() {
     logout();
     resetDocuments();
     resetAvailability();
+    resetDispatchCrew();
     setRole("PRIMARY_DRIVER");
+    setCleanMode(false);
     setIsOpen(false);
     router.replace("/(auth)/welcome");
   };
@@ -525,6 +718,21 @@ export function DriverDemoScreenNavigator() {
     targetRole: "PRIMARY_DRIVER" | "HELPER"
   ) => {
     setScenario(scenario, targetRole);
+  };
+
+  const handleDispatchScenario = (
+    sc:
+      | "AVAILABLE"
+      | "EXPIRED"
+      | "ACCEPTED"
+      | "PENDING_INVITE"
+      | "ACCEPTED_INVITE"
+      | "DECLINED_INVITE"
+      | "CREW_INCOMPLETE"
+      | "CREW_READY"
+  ) => {
+    setDispatchScenarioState(sc);
+    setDispatchScenario(sc);
   };
 
   const filteredScreens = DRIVER_DEMO_SCREENS.filter((screen) => {
@@ -540,20 +748,29 @@ export function DriverDemoScreenNavigator() {
 
   return (
     <>
-      {/* Non-obstructive edge-docked trigger with pointerEvents="box-none" */}
-      <View style={styles.floatingWrapper} pointerEvents="box-none">
+      {/* Non-obstructive edge-docked trigger or invisible trigger for clean mode */}
+      {isCleanMode ? (
         <Pressable
-          onPress={() => (isMinimized ? setIsMinimized(false) : setIsOpen(true))}
-          onLongPress={() => setIsMinimized(!isMinimized)}
-          style={[styles.floatingDock, isMinimized && styles.floatingDockMinimized]}
-          accessibilityRole="button"
-          accessibilityLabel="Open QA Navigator"
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
-          <View style={styles.qaDot} />
-          {!isMinimized && <Text style={styles.qaDockText}>QA</Text>}
-        </Pressable>
-      </View>
+          onLongPress={() => setCleanMode(false)}
+          onPress={() => setIsOpen(true)}
+          style={styles.invisibleTrigger}
+          accessibilityLabel="Open QA Navigator (Clean Mode Active)"
+        />
+      ) : (
+        <View style={styles.floatingWrapper} pointerEvents="box-none">
+          <Pressable
+            onPress={() => (isMinimized ? setIsMinimized(false) : setIsOpen(true))}
+            onLongPress={() => setIsMinimized(!isMinimized)}
+            style={[styles.floatingDock, isMinimized && styles.floatingDockMinimized]}
+            accessibilityRole="button"
+            accessibilityLabel="Open QA Navigator"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <View style={styles.qaDot} />
+            {!isMinimized && <Text style={styles.qaDockText}>QA</Text>}
+          </Pressable>
+        </View>
+      )}
 
       <Modal
         visible={isOpen}
@@ -591,6 +808,15 @@ export function DriverDemoScreenNavigator() {
               >
                 <Text style={styles.controlChipText}>
                   Role: {role === "PRIMARY_DRIVER" ? "Driver (Vehicle)" : "Helper (Crew)"}
+                </Text>
+              </Pressable>
+
+              <Pressable
+                onPress={() => setCleanMode(!isCleanMode)}
+                style={[styles.controlChip, isCleanMode ? styles.chipActive : null]}
+              >
+                <Text style={styles.controlChipText}>
+                  {isCleanMode ? "Clean Mode: ON" : "Clean Mode: OFF"}
                 </Text>
               </Pressable>
 
@@ -673,6 +899,40 @@ export function DriverDemoScreenNavigator() {
                   <Text style={styles.availText}>Helper: {helperStatus}</Text>
                 </Pressable>
               </View>
+
+              {/* DW-F04 Dispatch & Crew Scenarios */}
+              <View style={styles.scenarioSection}>
+                <Text style={styles.scenarioLabel}>Dispatch & Crew ({dispatchScenario}):</Text>
+                <View style={styles.pillRow}>
+                  {(
+                    [
+                      "AVAILABLE",
+                      "EXPIRED",
+                      "ACCEPTED",
+                      "PENDING_INVITE",
+                      "ACCEPTED_INVITE",
+                      "DECLINED_INVITE",
+                      "CREW_INCOMPLETE",
+                      "CREW_READY",
+                    ] as const
+                  ).map((sc) => (
+                    <Pressable
+                      key={`dc-${sc}`}
+                      onPress={() => handleDispatchScenario(sc)}
+                      style={[styles.miniPill, dispatchScenario === sc && styles.miniPillActive]}
+                    >
+                      <Text
+                        style={[
+                          styles.miniPillText,
+                          dispatchScenario === sc && styles.miniPillTextActive,
+                        ]}
+                      >
+                        {sc}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
             </View>
 
             {/* Search Input */}
@@ -730,6 +990,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    zIndex: 9999,
+  },
+  invisibleTrigger: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 44,
+    height: 44,
     zIndex: 9999,
   },
   floatingDock: {
