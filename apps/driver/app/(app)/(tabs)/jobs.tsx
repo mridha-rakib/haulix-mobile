@@ -5,24 +5,24 @@ import { HelperInvitationsContent } from "../helper-invitations";
 import { JobOffersContent } from "../job-offers";
 
 export default function JobsTabScreen() {
-	const { role } = useDriverAuthStore();
-	const isHelper = role === "HELPER";
+  const { role } = useDriverAuthStore();
+  const isHelper = role === "HELPER";
 
-	return (
-		<SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
-			<View style={styles.container}>
-				{isHelper ? <HelperInvitationsContent /> : <JobOffersContent />}
-			</View>
-		</SafeAreaView>
-	);
+  return (
+    <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+      <View style={styles.container}>
+        {isHelper ? <HelperInvitationsContent /> : <JobOffersContent />}
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-	safeArea: {
-		flex: 1,
-		backgroundColor: "#080B0B",
-	},
-	container: {
-		flex: 1,
-	},
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#080B0B",
+  },
+  container: {
+    flex: 1,
+  },
 });
