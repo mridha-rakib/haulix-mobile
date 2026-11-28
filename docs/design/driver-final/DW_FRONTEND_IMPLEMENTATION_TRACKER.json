@@ -218,7 +218,20 @@
         "100% test pass rate across 12 test suites (219 unit tests passing)",
         "Zero TypeScript errors and clean Android Metro hermes bytecode bundling"
       ],
-      "releaseRecommendation": "READY_FOR_PREVIEW_APK",
+      "releaseRecommendation": "PREVIEW_APK_BUILT_AND_VERIFIED",
+      "previewApkBuild": {
+        "status": "COMPLETED",
+        "buildId": "8d8eb396-b507-4689-8c74-2fa8c6d46dd8",
+        "account": "rakib_android",
+        "project": "@rakib_android/haulix-driver",
+        "projectId": "b3505d80-1384-46fe-a530-e0985c515560",
+        "profile": "preview",
+        "artifactUrl": "https://expo.dev/artifacts/eas/boxtMsjJUgrFDaETJZN7tL1_ESPduLO_jO76oEnjEbk.apk",
+        "localApkPath": "docs/qa/driver/dw-final/haulix-driver-preview.apk",
+        "apkSizeBytes": 102223341,
+        "hardwareInstallStatus": "SUCCESS",
+        "hardwareTarget": "Realme Note 60 (0B04731X200003BB), Android 15"
+      },
       "physicalDeviceTarget": "Realme Note 60 (RMX3938), Android 15, 360dp logical viewport",
       "hardwareScreenshotsCount": 212,
       "userDrivenJourneysExecuted": 20,

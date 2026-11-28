@@ -30,8 +30,25 @@
     "hermesBytecodeBundle": "5.3MB (1,872 modules bundled)",
     "userDrivenHardwareJourneysTotal": 20,
     "userDrivenHardwareJourneysPassed": 20,
-    "releaseRecommendation": "READY_FOR_PREVIEW_APK",
-    "cloudBuildStatus": "HOLD_FOR_PROJECT_OWNER_AUTHORIZATION"
+    "releaseRecommendation": "PREVIEW_APK_BUILT_AND_VERIFIED",
+    "cloudBuildStatus": "COMPLETED",
+    "easBuild": {
+      "buildId": "8d8eb396-b507-4689-8c74-2fa8c6d46dd8",
+      "account": "rakib_android",
+      "project": "@rakib_android/haulix-driver",
+      "projectId": "b3505d80-1384-46fe-a530-e0985c515560",
+      "profile": "preview",
+      "platform": "android",
+      "status": "FINISHED",
+      "buildDurationSeconds": 808,
+      "artifactUrl": "https://expo.dev/artifacts/eas/boxtMsjJUgrFDaETJZN7tL1_ESPduLO_jO76oEnjEbk.apk",
+      "dashboardUrl": "https://expo.dev/accounts/rakib_android/projects/haulix-driver/builds/8d8eb396-b507-4689-8c74-2fa8c6d46dd8",
+      "localApkPath": "docs/qa/driver/dw-final/haulix-driver-preview.apk",
+      "apkSizeBytes": 102223341,
+      "hardwareInstallStatus": "SUCCESS",
+      "hardwareTarget": "Realme Note 60 (0B04731X200003BB), Android 15",
+      "standaloneLaunchEvidence": "docs/qa/driver/dw-final/screenshots/standalone_launch.png"
+    }
   },
   "deliverables": [
     "docs/qa/driver/dw-final/DW_FINAL_FRONTEND_QA_REPORT.md",

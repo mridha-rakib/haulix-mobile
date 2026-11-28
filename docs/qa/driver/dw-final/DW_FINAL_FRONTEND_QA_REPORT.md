@@ -18,7 +18,7 @@ It verifies the targeted resolution of all visual, navigation, state management,
 - **100% Fresh Hardware Evidence:** 150 individual physical device screenshots captured directly on Realme Note 60 hardware.
 - **100% User Journey Success:** 20 comprehensive user-driven hardware journeys executed and verified on device.
 - **100% Engineering Gates Pass:** TypeScript (0 errors across app & monorepo), Biome (0 errors), Jest (12/12 suites, 221/221 tests passing), Android Hermes Export (1,872 modules, 5.3MB HBC).
-- **Release Status:** **READY_FOR_PREVIEW_APK** (Awaiting project-owner review before triggering EAS Cloud APK build).
+- **Release Status:** **PREVIEW_APK_BUILT_AND_VERIFIED** (EAS Cloud Build finished; APK downloaded, installed on Realme Note 60 hardware, and verified running).
 
 ---
 

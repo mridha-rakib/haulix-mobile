@@ -10,12 +10,12 @@
 
 ## 1. Formal Release Recommendation
 
-> ### **RELEASE RECOMMENDATION: READY_FOR_PREVIEW_APK**
+> ### **RELEASE RECOMMENDATION: PREVIEW_APK_BUILT_AND_VERIFIED**
 >
 > The HAULIX Driver & Worker frontend codebase satisfies all visual fidelity, navigation accessibility, state management, financial integrity, and hardware verification criteria.
 > All 68 canonical screens (136 bilingual variants) and 7 supporting overlays (14 bilingual variants) are fully implemented, verified on physical Realme Note 60 hardware, and pass 100% of engineering quality gates.
 >
-> **IMPORTANT CONSTRAINT:** Per project owner instructions, **no EAS Cloud build (`eas build`) has been triggered**. The application is packaged, exported, and fully prepared, awaiting project-owner review and authorization before generating the preview APK artifact.
+> **PREVIEW APK STATUS:** Following explicit project-owner instruction ("Build the driver apk"), the standalone Android preview APK was built via EAS Cloud, downloaded locally, installed directly to the Realme Note 60 test hardware via ADB, and verified running in standalone release mode.
 
 ---
 
@@ -58,9 +58,23 @@ The targeted DW-FINAL closure successfully resolved all deficiencies identified 
 
 ---
 
-## 4. Next Steps for Preview APK Generation
+## 4. Standalone Preview APK Generation & Verification
 
-Upon project-owner approval of this delivery:
-1. Authorize execution of `eas build --platform android --profile preview`.
-2. Download generated standalone `.apk` artifact from Expo Application Services.
-3. Install preview build onto test devices via `adb install` for field testing.
+Following explicit project owner authorization, the standalone preview APK was built via EAS Cloud:
+
+| Property | Value |
+|---|---|
+| **EAS Build ID** | `8d8eb396-b507-4689-8c74-2fa8c6d46dd8` |
+| **EAS Account / Project** | `rakib_android` / `@rakib_android/haulix-driver` |
+| **Project ID** | `b3505d80-1384-46fe-a530-e0985c515560` |
+| **Build Profile** | `preview` (standalone APK, Gradle release variant) |
+| **Platform** | Android (`com.haulix.driver`) |
+| **Build Status** | **FINISHED** (Duration: 808s / ~13.5 min) |
+| **EAS Dashboard URL** | [Expo Build Dashboard](https://expo.dev/accounts/rakib_android/projects/haulix-driver/builds/8d8eb396-b507-4689-8c74-2fa8c6d46dd8) |
+| **Public APK Artifact URL** | [Download Preview APK](https://expo.dev/artifacts/eas/boxtMsjJUgrFDaETJZN7tL1_ESPduLO_jO76oEnjEbk.apk) |
+| **Local Artifact Path** | `docs/qa/driver/dw-final/haulix-driver-preview.apk` |
+| **APK File Size** | 102,223,341 bytes (~97.5 MB) |
+| **Hardware Installation** | `adb install -r docs/qa/driver/dw-final/haulix-driver-preview.apk` → **`Success`** |
+| **Device Target** | Realme Note 60 (`0B04731X200003BB`), Android 15 |
+| **Standalone Launch Verification** | Verified running cleanly: `com.haulix.driver/.MainActivity` |
+| **Launch Evidence** | `docs/qa/driver/dw-final/screenshots/standalone_launch.png` |
