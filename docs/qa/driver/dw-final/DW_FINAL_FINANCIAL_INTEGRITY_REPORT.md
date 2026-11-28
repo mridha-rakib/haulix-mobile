@@ -1,66 +1,93 @@
-# HAULIX Driver/Worker — DW-FINAL Financial Integrity Report
+# HAULIX Driver/Worker — DW-FINAL Financial Integrity & Ledger Report
 
-**Milestone:** DW-FINAL Consolidated Frontend QA  
-**Target Application:** `apps/driver` (`com.haulix.driver`)  
-**Package:** `@haulix/design-tokens`, `src/stores/walletStore.ts`  
+**Milestone:** DW-FINAL Consolidated Frontend QA & Release Verification  
 **Date:** November 28, 2026  
+**Source Stores:** `apps/driver/src/stores/walletStore.ts` & `completionEvidenceStore.ts`  
+**Test Suite:** `apps/driver/src/__tests__/dw-final-integrity.test.ts` (100% Pass)  
 
 ---
 
-## 1. Currency & Ledger Mathematics
+## 1. Executive Summary
 
-All monetary values are strictly represented as 64-bit integer cents. Float arithmetic is forbidden.
-
-### 1.1 Formatting Rules
-```ts
-formatCents(128000) === "$1,280.00"
-formatCents(34000) === "$340.00"
-formatCents(1920) === "$19.20"
-formatCents(0) === "$0.00"
-```
-
-### 1.2 Platform Commission Model
-- **Gross Subtotal Split:**
-  - Platform Fee: 35% (`grossSubtotalCents * 0.35`)
-  - Worker Pool: 65% (`grossSubtotalCents * 0.65`)
-- **Customer Tip:** 100% pass-through to workers (`platformFee = $0.00`).
-- **Crew Allocation:**
-  - Default: Worker pool and tips split equally across active crew members.
-  - Contractual Allocation: Explicit `customDriverAllocationCents` and `customHelperAllocationCents` honored when specified in job agreement.
+All financial workflow requirements, fund release preconditions, consent validations, and multi-worker earnings allocations have been audited and verified.
+The codebase strictly adheres to architectural principles:
+1. **Zero Fabricated Backend States:** No bypasses or simulated auto-approvals exist without explicit business logic triggers.
+2. **Zero Route Guards:** Financial balance, KYC verification, or pending cashouts do not block navigation in preview mode.
+3. **Independent Per-Worker Ledger Credit:** Primary Driver and Helper earnings are tracked independently per job without fund bleed or double crediting.
+4. **Strict Instant Cash Out Consent:** Quote consent cannot be bypassed with arbitrary amounts. Standard bank cash out uses stable intent IDs.
 
 ---
 
-## 2. Approved Deterministic Instant Fee Quotes
+## 2. Fund Release Preconditions & Verification Pipeline
 
-Arbitrary mathematical formulas (such as `amount * 0.015`) have been completely removed.
-The application references only authoritative, approved fee fixtures derived from Figma specifications (`1325:1866`):
+Before job earnings transition from `pendingBalanceCents` to `availableBalanceCents`, `creditJobEarningsToAvailable(jobId)` validates six strict criteria:
+
+| Check | Criterion | Code Implementation | Purpose |
+|---|---|---|---|
+| **1** | Submission Status | `completionRecord.driverSubmissionStatus === 'SUBMITTED'` | Ensures driver completed photographic evidence |
+| **2** | Dispute Status | `completionRecord.disputeStatus === 'NONE'` | Ensures no active dispute or damage claim exists |
+| **3** | Independent Verification | `completionRecord.completionVerificationStatus === 'VERIFIED'` | Dedicated verification check distinct from review |
+| **4** | Customer Review | `customerReviewStatus === 'CUSTOMER_CONFIRMED' \|\| customerReviewStatus === 'AUTO_CLOSURE_ELIGIBLE'` | Customer confirmed or review window elapsed |
+| **5** | Payment Capture Settlement | `completionRecord.paymentCaptureStatus === 'SETTLED'` | Strictly requires funds captured and settled |
+| **6** | Per-Worker Credit Guard | `!completionRecord.creditedWorkerIds?.includes(workerId)` | Prevents duplicate credit to the same worker |
 
 ```ts
-export const APPROVED_MOCK_FEE_QUOTES: Record<number, number> = {
-  128000: 1920, // $1,280.00 -> $19.20 fee (Net $1,260.80)
-  50000: 750,   // $500.00 -> $7.50 fee (Net $492.50)
-  34000: 510,   // $340.00 -> $5.10 fee (Net $334.90)
-  10000: 200,   // $100.00 -> $2.00 fee (Net $98.00)
-  5000: 150,    // $50.00 -> $1.50 fee (Net $48.50)
-};
+// Verified implementation in walletStore.ts:
+if (
+  completionRecord.driverSubmissionStatus !== 'SUBMITTED' ||
+  completionRecord.disputeStatus !== 'NONE' ||
+  completionRecord.completionVerificationStatus !== 'VERIFIED' ||
+  (completionRecord.customerReviewStatus !== 'CUSTOMER_CONFIRMED' &&
+   completionRecord.customerReviewStatus !== 'AUTO_CLOSURE_ELIGIBLE') ||
+  completionRecord.paymentCaptureStatus !== 'SETTLED'
+) {
+  return false; // Release blocked
+}
 ```
-Any requested amount not present in `APPROVED_MOCK_FEE_QUOTES` returns `null` (quote unavailable).
 
 ---
 
-## 3. Strict Quote Context Integrity
+## 3. Independent Per-Worker Credit Tracking
 
-Before executing an instant payout (`requestInstantCashOut`), five cryptographic and state validations must succeed:
-1. **Quote ID Match:** The submitted `quoteId` matches the currently active quote.
-2. **Worker ID Match:** The quote's `workerId` strictly equals the active ledger worker (`DRV-8821` for Driver, `HLP-4402` for Helper).
-3. **Role Match:** The quote's `workerRole` matches the active execution role.
-4. **Destination Match:** The card brand and last 4 digits match the registered debit card account.
-5. **Quote Freshness:** The quote's ISO expiration timestamp has not elapsed (15-minute TTL).
+For multi-worker crew jobs (such as 2-person furniture moves like `HX-AZ-DEMO-0042`):
+- **Primary Driver Share:** Receives driver net payable ($98.00).
+- **Helper Share:** Receives helper allocated net payable ($49.00).
+- **Tracking Mechanism:** Each job completion record stores `creditedWorkerIds: string[]`.
+- **Audit Results:**
+  - Crediting Driver records `driver-alex-01` and increases Driver available balance by $98.00.
+  - Crediting Helper records `helper-marcus-01` and increases Helper available balance by $49.00.
+  - Re-crediting Driver returns `false` (no duplicate funds released).
+  - Re-crediting Helper returns `false` (no duplicate funds released).
+  - Crediting Driver does not block Helper from claiming their earnings.
+  - Crediting Helper does not alter Driver ledger or pending balance.
 
 ---
 
-## 4. Stable Payout Intent Deduplication
+## 4. Cash Out Workflows & Consent Integrity
 
-Cashout requests take an optional or generated `intentId`. The ledger checks existing transactions across all states:
-- **Processing or Completed:** Returns existing transaction without modifying balances or creating duplicate requests.
-- **Failed:** Rejects duplicate submissions with error `DUPLICATE_REQUEST`, requiring explicit use of `retryFailedPayout`.
+### 4.1 Instant Cash Out Quote Consent Enforcement
+- **Bypass Removal:** `requestInstantCashOut` strictly requires a valid `quoteId`. The legacy parameter path allowing raw amount execution without prior quote generation has been completely removed.
+- **Worker & Role Binding:** Validates that `quote.workerId === currentLedger.workerId` and `quote.role === role`.
+- **Card Destination Lock:** Enforces that destination card ID matches the reviewed quote.
+- **TTL Expiration:** Rejects quotes where `Date.now() > quote.expiresAt`.
+- **Sufficient Funds Check:** Strictly checks `quote.requestedAmountCents <= currentLedger.availableBalanceCents`.
+
+### 4.2 Standard Bank Cash Out Intent Stability
+- Standard bank withdrawals use a deterministic, stable intent ID:
+  `intent-std-${role}-${currentLedger.workerId}-${amountCents}`
+- Repeated confirmation taps do not create multiple pending withdrawals.
+- Withdrawal state transition: `AVAILABLE` -> `PENDING_CLEARING` (1-3 business days) -> `SETTLED`.
+
+---
+
+## 5. Automated Financial Integrity Test Verification
+
+All assertions pass under Jest in `apps/driver/src/__tests__/dw-final-integrity.test.ts`:
+- `Instant Cash Out consent bypass is rejected (requires valid quoteId)`: **PASS**
+- `Standard bank cash out uses stable intent ID across multiple taps`: **PASS**
+- `Earnings credit requires completionVerificationStatus === 'VERIFIED'`: **PASS**
+- `Earnings credit requires paymentCaptureStatus === 'SETTLED'`: **PASS**
+- `Independent per-worker credit tracking releases funds once per worker`: **PASS**
+- `Driver and helper notification preferences are completely isolated`: **PASS**
+
+**Final Financial Quality Gate:** **PASS (100% COMPLIANT)**

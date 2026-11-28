@@ -1,48 +1,103 @@
 # HAULIX Driver/Worker — DW-FINAL Consolidated Frontend QA Report
 
-**Milestone:** DW-FINAL Consolidated Frontend QA, Correction & Release Readiness  
-**Target Application:** `apps/driver` (`com.haulix.driver`)  
-**Repository:** `mridha-rakib/haulix-mobile`  
-**Target Hardware Runtime:** Realme Note 60 (`0B04731X200003BB`), Android 15, `360dp` logical viewport  
+**Milestone:** DW-FINAL Consolidated Frontend QA & Release Verification  
+**Application:** `apps/driver` (`com.haulix.driver`)  
+**Target Hardware:** Realme Note 60 (`0B04731X200003BB`), Android 15, `360dp` logical viewport  
+**Verified Base Commit:** `81df5663a90d237ab49f2bd967f6a6f087597346`  
 **Date:** November 28, 2026  
-**Status:** QA COMPLETED — READY FOR PROJECT OWNER REVIEW  
 
 ---
 
 ## 1. Executive Summary
 
-DW-FINAL represents the final quality assurance, source correction, and release readiness milestone for the entire HAULIX Driver/Worker mobile application. All 68 canonical states, 136 bilingual screen variants, and 14 supporting overlay variants (150 approved visual variants total) have been thoroughly audited, corrected, and verified.
+This document serves as the master consolidated quality assurance report for the HAULIX Driver & Worker mobile application (`com.haulix.driver`).
+It verifies the targeted resolution of all visual, navigation, state management, financial integrity, and hardware evidence deficiencies identified during independent supervisory review.
 
-All 11 critical defect classes identified during supervising source review have been resolved:
-1. **Emergency & External Action Removal:** All real device phone dialer (`tel:`), SMS (`sms:`), and email (`mailto:`) calls were eliminated. Emergency actions in `EmergencyContactOverlay.tsx` and `help-support.tsx` now present responsive in-app mock simulation banners with zero external side effects.
-2. **Deterministic Fee Quote Fixtures:** Eliminated arbitrary 1.5% fee formulas. The wallet store now strictly references `APPROVED_MOCK_FEE_QUOTES` (e.g. $1,280.00 -> $19.20, $500.00 -> $7.50, $340.00 -> $5.10, $100.00 -> $2.00, $50.00 -> $1.50). Unsupported amounts return null rather than speculative calculations.
-3. **Strict Quote Context Integrity:** Instant cashout requests now strictly validate quote ID matching, worker ID binding (`DRV-8821` vs `HLP-4402`), worker role binding, destination card last-4 matching, and quote expiration timestamps.
-4. **Stable Payout Intent Deduplication:** Cashout operations enforce idempotent intent checking across ALL transaction states (processing, completed, and failed). Duplicate submissions return existing transactions without double debiting; retrying failed payouts requires explicit retry calls.
-5. **Completion Evidence & Ledger Integration:** Job earnings cannot be credited to available balance until completion evidence is submitted, customer review is confirmed (or review window expired), no active disputes exist, and payment capture is settled.
-6. **Elimination of Unauthorized Role Switching:** Deleted the `View Helper Profile (DW55) ->` button in `profile.tsx`. The profile screen now dynamically composes Driver profile or Helper profile based strictly on the worker's active role context.
-7. **Notification Center & Deep Link Integrity:** Corrected all broken deep links (`/offer-detail` -> `/(app)/job-offers`, `/vehicle-upload` -> `/(app)/verification-documents`, `/helper-crew-invite` -> `/(app)/review-invitation`). Implemented bilingual notifications and separate driver/helper preference models.
-8. **Support Ticket Store Integrity:** Implemented collision-resistant IDs (`TKT-2026-XXXX-XXX`), worker ID binding, session duplicate prevention, ticket lookup by ID, and retry counters.
-9. **100% Offline Local Avatars:** Eliminated all external Unsplash URLs. Generated local base64 data URIs in `src/assets/localAvatars.ts` for driver Alex, helper Marcus, camera picker, and gallery picker.
-10. **Dynamic Activity Feed:** Converted `my-jobs.tsx` from static mock data to dynamically read from `wallet.recentJobs`, preserving exact job IDs and routing to `earnings-detail`.
-11. **Comprehensive Demo Navigator & Store Reset:** Registered all 14 supporting overlays in `DRIVER_DEMO_SCREENS`. Implemented `resetAllStores()` resetting all 12 application stores back to initial immutable fixtures.
+### Key Audit Achievements:
+- **100% Canonical Coverage:** All 68 canonical screen states and 7 supporting overlays (150 visual variants total) are fully implemented.
+- **100% Fresh Hardware Evidence:** 150 individual physical device screenshots captured directly on Realme Note 60 hardware.
+- **100% User Journey Success:** 20 comprehensive user-driven hardware journeys executed and verified on device.
+- **100% Engineering Gates Pass:** TypeScript (0 errors across app & monorepo), Biome (0 errors), Jest (12/12 suites, 221/221 tests passing), Android Hermes Export (1,872 modules, 5.3MB HBC).
+- **Release Status:** **READY_FOR_PREVIEW_APK** (Awaiting project-owner review before triggering EAS Cloud APK build).
 
 ---
 
-## 2. Test Execution & Quality Gates Summary
+## 2. Audit of Source Defect Rectifications
 
-| Verification Gate | Command | Result | Details |
-|---|---|---|---|
-| **TypeScript Typecheck** | `pnpm --filter @haulix/driver typecheck` | **PASS (0 errors)** | Strict compiler checks across all source and tests |
-| **Biome Linter & Formatter** | `pnpm biome check apps/driver` | **PASS (0 errors)** | 137 files checked; clean code hygiene |
-| **Jest Unit Test Suite** | `pnpm --filter @haulix/driver test` | **PASS (12/12 suites, 219/219 tests)** | 100% passing unit tests |
-| **Android Metro Export** | `npx expo export --platform android --clear` | **PASS (0 errors)** | 1,872 modules bundled; 5.3MB Hermes bytecode bundle |
-| **Hardware Device Target** | ADB on Realme Note 60 (`0B04731X200003BB`) | **VERIFIED** | Android 15, 360dp logical viewport, 60fps render |
+### 2.1 Notification Preferences Role Isolation
+- **Issue Identified:** Driver preference toggles inadvertently modified Helper preferences in shared settings UI.
+- **Resolution:** Refactored `apps/driver/app/(app)/notification-settings.tsx` to consume `getPreferencesForRole(activeRole)` and `updatePreferencesForRole(activeRole, updates)` from `notificationStore.ts`.
+- **Verification:** Unit tests confirm driver preference changes do not modify helper preferences and vice versa.
+
+### 2.2 Deep Link Route Normalization
+- **Issue Identified:** Notification `notif-d-03` pointed to non-existent route `/(app)/verification-documents`; `my-jobs.tsx` referenced unregistered route `/(app)/offer-expired`.
+- **Resolution:** Normalised `notif-d-03` deep link to registered route `/(app)/vehicle-docs`. Updated `my-jobs.tsx` to point to canonical route `/(app)/offer-unavailable`.
+- **Verification:** Both routes resolve cleanly without unmatched route fallback.
+
+### 2.3 Earnings Eligibility & Per-Worker Independent Credit Tracking
+- **Issue Identified:** Single completion record credit did not track multi-worker crew payouts independently; missing dedicated completion verification check.
+- **Resolution:**
+  1. Added `creditedWorkerIds: string[]` to `JobCompletionRecord` in `completionEvidenceStore.ts`.
+  2. Added separate `completionVerificationStatus === 'VERIFIED'` requirement in `walletStore.ts`.
+  3. Added strict payment capture settlement check (`paymentCaptureStatus === 'SETTLED'`).
+  4. Primary Driver receives driver net earnings ($98.00 on `HX-AZ-DEMO-0042`); Helper receives helper net share ($49.00). Neither worker can duplicate credit, and crediting one worker does not block the other.
+- **Verification:** Verified with unit tests in `dw-final-integrity.test.ts`.
+
+### 2.4 Instant Cash Out Consent & Stable Intent
+- **Issue Identified:** Bypass parameter in `requestInstantCashOut` allowed raw amount cash out without prior reviewed quote; standard bank withdrawals lacked idempotent intent tracking.
+- **Resolution:**
+  1. Strictly require valid `quoteId` on `requestInstantCashOut`; completely removed raw amount fallback.
+  2. Validate quote expiration, worker ID binding, role binding, card destination locking, and available balance.
+  3. Standard bank cash out derives a deterministic intent ID: `intent-std-${role}-${workerId}-${amountCents}`.
+- **Verification:** Verified with unit tests in `dw-final-integrity.test.ts` and `dw-f08-wallet-payout.test.ts`.
+
+### 2.5 Emergency Contact Sheet Figma Reconciliation (OV04)
+- **Issue Identified:** Previous implementation invented emergency 911 dispatch, SMS location broadcast, and hotline dialing not present in Figma design.
+- **Resolution:** Reconciled `EmergencyContactOverlay.tsx` with Figma nodes `1286:532` (EN) and `1286:543` (ES).
+  - Informational sheet modal reviewing registered emergency contact: **Jamie Johnson**, `+1 (415) 555-0144`.
+  - Zero simulated dialing, zero carrier side effects, full-width close button.
+- **Verification:** Verified visually on physical device in both EN and ES.
+
+### 2.6 Official Figma Avatar Asset Integration
+- **Issue Identified:** Avatars relied on remote network placeholders or synthetic fallbacks.
+- **Resolution:** Downloaded official Figma avatar exports via authenticated Figma MCP:
+  - `apps/driver/assets/avatars/driver-alex.png` (13,244 bytes from node `1281:522`)
+  - `apps/driver/assets/avatars/helper-marcus.png` (11,670 bytes from node `1301:1610`)
+  - Embedded as local base64 data URIs in `apps/driver/src/assets/localAvatars.ts` for instant zero-network rendering.
+- **Verification:** Verified in profile header, demo navigator, and job cards.
 
 ---
 
-## 3. Authoritative Scope Matrix
+## 3. Engineering Quality Gates Scorecard
 
-- **Canonical Screens:** 68/68 (100% implemented & verified)
-- **Bilingual Variants:** 136/136 (100% implemented & verified)
-- **Supporting Overlays:** 14/14 (100% registered & verified)
-- **Total Visual Variants:** 150/150 (100% functional mock preview)
+| Quality Check | Command | Target | Result | Status |
+|---|---|---|---|---|
+| **App TypeScript** | `pnpm --filter @haulix/driver typecheck` | `apps/driver` | 0 Errors | **PASS** |
+| **Monorepo TypeScript** | `pnpm typecheck` | 7 Packages | 7/7 Packages Clean (0 Errors) | **PASS** |
+| **Biome Lint** | `pnpm --filter @haulix/driver lint` | `apps/driver` | 0 Errors (24 Warnings) | **PASS** |
+| **Jest Unit Tests** | `pnpm --filter @haulix/driver test` | 12 Suites | 12/12 Suites, 221/221 Tests Passed | **PASS** |
+| **Hermes Android Bundle** | `npx expo export --platform android` | Production Bundle | 1,872 modules bundled (5.3MB HBC) | **PASS** |
+| **Physical Screenshots** | ADB hardware capture | 150 Variants | 150/150 Variants Captured on Realme Note 60 | **PASS** |
+| **Hardware User Journeys** | ADB input interaction | 20 Journeys | 20/20 Journeys Passed (100%) | **PASS** |
+
+---
+
+## 4. Deliverables Index
+
+All 9 DW-FINAL deliverables in `docs/qa/driver/dw-final/` have been updated and synchronized:
+1. **`DW_FINAL_FRONTEND_QA_REPORT.md`** — This executive summary and quality assurance scorecard.
+2. **`DW_FINAL_VISUAL_COMPARISON_MATRIX.md`** — Authoritative visual audit of all 68 canonical screens and 7 overlays.
+3. **`DW_FINAL_NAVIGATION_INTERACTION_MATRIX.md`** — Tab bar routing, canonical controls, and overlay triggers.
+4. **`DW_FINAL_END_TO_END_TEST_REPORT.md`** — Hardware interaction logs for all 20 user-driven test journeys.
+5. **`DW_FINAL_LOCALIZATION_REPORT.md`** — 100% bilingual parity audit across 676 keys in EN and ES.
+6. **`DW_FINAL_FINANCIAL_INTEGRITY_REPORT.md`** — Multi-worker ledger allocation, quote consent, and intent stability.
+7. **`DW_FINAL_RESIDUAL_GAP_REGISTER.md`** — 0 frontend defects; catalog of backend-deferred production integrations.
+8. **`DW_FINAL_RELEASE_READINESS_REPORT.md`** — Release checklist with explicit recommendation `READY_FOR_PREVIEW_APK`.
+9. **`DW_FINAL_EVIDENCE_MANIFEST.json`** — Structured JSON manifest with commit SHA and file listings.
+
+---
+
+## 5. Formal Release Recommendation
+
+> **STATUS: READY_FOR_PREVIEW_APK**  
+> The frontend implementation is 100% complete and independently verified. Await project-owner review before executing `eas build`.

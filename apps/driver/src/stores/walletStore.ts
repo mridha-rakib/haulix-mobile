@@ -138,7 +138,7 @@ export interface WalletStoreState {
   ) => PayoutOperationResult;
   requestInstantCashOut: (
     role: WorkerRole,
-    quoteIdOrAmount: string | number,
+    quoteId: string,
     customIntentId?: string
   ) => PayoutOperationResult;
   simulatePayoutFailure: (role: WorkerRole, transactionId: string, reason?: string) => void;
@@ -153,7 +153,7 @@ export interface WalletStoreState {
     details: { cardBrand: string; last4: string; expiry: string }
   ) => void;
   setJobDisputeHold: (jobId: string, isHeld: boolean) => void;
-  creditJobEarningsToAvailable: (jobId: string) => boolean;
+  creditJobEarningsToAvailable: (jobId: string, role?: WorkerRole) => boolean;
   resetWalletStore: () => void;
 }
 
@@ -576,7 +576,8 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
       };
     }
 
-    const intentId = customIntentId || `intent-${role}-${amountCents}-${Date.now()}`;
+    const intentId =
+      customIntentId || `intent-std-${role}-${currentLedger.workerId}-${amountCents}`;
 
     // Stable Payout Intent Check across ALL transaction states (processing, completed, failed)
     const existingIntent = currentLedger.transactions.find((tx) => tx.intentId === intentId);
@@ -631,31 +632,20 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
 
   requestInstantCashOut: (
     role: WorkerRole,
-    quoteIdOrAmount: string | number,
+    quoteId: string,
     customIntentId?: string
   ): PayoutOperationResult => {
-    let quote = get().activeQuote;
+    const quote = get().activeQuote;
     const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
 
-    // Section 3.3: Enforce Quote Context Integrity
-    if (typeof quoteIdOrAmount === "string") {
-      if (!quote || quote.quoteId !== quoteIdOrAmount) {
-        return {
-          success: false,
-          error: "INVALID_QUOTE",
-          errorMessage: "The fee quote is invalid or has expired. Please review a new quote.",
-        };
-      }
-    } else {
-      quote = get().getInstantFeeQuote(role, quoteIdOrAmount);
-      if (!quote) {
-        return {
-          success: false,
-          error: "INVALID_QUOTE",
-          errorMessage: "No valid fee quote available for this amount.",
-        };
-      }
+    // Section 2.C: Require previously reviewed valid mock quote. Remove consent-bypass path.
+    if (!quote || !quoteId || quote.quoteId !== quoteId) {
+      return {
+        success: false,
+        error: "INVALID_QUOTE",
+        errorMessage: "A previously reviewed, valid fee quote is required for instant cash out.",
+      };
     }
 
     // Validate worker ID and role binding
@@ -944,10 +934,11 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     });
   },
 
-  creditJobEarningsToAvailable: (jobId: string): boolean => {
-    const { activeRole } = get();
-    const ledgerKey = activeRole === "driver" ? "driverLedger" : "helperLedger";
+  creditJobEarningsToAvailable: (jobId: string, targetRole?: WorkerRole): boolean => {
+    const role = targetRole || get().activeRole;
+    const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
+    const workerId = currentLedger.workerId;
 
     const jobIndex = currentLedger.recentJobs.findIndex((j) => j.jobId === jobId);
     if (jobIndex === -1) return false;
@@ -958,34 +949,39 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
       return false;
     }
 
-    // Section 3.5: Verify completion record conditions from completionEvidenceStore
+    // Section 2.B: Verify completion record conditions from completionEvidenceStore
     const evidenceStore = useCompletionEvidenceStore.getState();
     const completionRecord = evidenceStore.getCompletionRecord(jobId);
     if (completionRecord) {
       // 1. Evidence must be submitted
-      if (completionRecord.driverSubmissionStatus !== "SUBMITTED") {
+      if (role === "driver" && completionRecord.driverSubmissionStatus !== "SUBMITTED") {
+        return false;
+      }
+      if (role === "helper" && completionRecord.helperSubmissionStatus === "FAILED") {
         return false;
       }
       // 2. Unresolved disputes block ledger credit
       if (completionRecord.disputeStatus !== "NONE") {
         return false;
       }
-      // 3. Review condition: Customer confirmed or review window elapsed
+      // 3. Explicit completion verification state must be VERIFIED
+      if (completionRecord.completionVerificationStatus !== "VERIFIED") {
+        return false;
+      }
+      // 4. Review condition: Customer confirmed or auto-closure eligible
       if (
         completionRecord.customerReviewStatus !== "CUSTOMER_CONFIRMED" &&
         completionRecord.customerReviewStatus !== "AUTO_CLOSURE_ELIGIBLE"
       ) {
         return false;
       }
-      // 4. Payment settlement condition
-      if (
-        completionRecord.paymentCaptureStatus !== "SETTLED" &&
-        completionRecord.paymentCaptureStatus !== "CAPTURE_SUCCESS"
-      ) {
+      // 5. Payment settlement condition (settled required; capture success alone does not release funds)
+      if (completionRecord.paymentCaptureStatus !== "SETTLED") {
         return false;
       }
-      // 5. Must not be already credited
-      if (completionRecord.earningsEligibility === "CREDITED") {
+      // 6. Track credit identity per job, worker, and earnings record:
+      // Prevent double crediting to this worker without blocking the second entitled worker
+      if (completionRecord.creditedWorkerIds?.includes(workerId)) {
         return false;
       }
     }
@@ -1008,7 +1004,7 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     });
 
     if (completionRecord) {
-      evidenceStore.setEarningsEligibility(jobId, "CREDITED");
+      evidenceStore.recordWorkerCredit(jobId, workerId);
     }
 
     return true;

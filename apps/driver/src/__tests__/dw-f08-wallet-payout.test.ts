@@ -114,7 +114,8 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       const store = useWalletStore.getState();
       store.setActiveRole("driver");
 
-      const res = store.requestInstantCashOut("driver", 128000);
+      const quote = store.getInstantFeeQuote(128000)!;
+      const res = store.requestInstantCashOut("driver", quote.quoteId);
       expect(res.success).toBe(true);
       const tx = res.transaction!;
       expect(tx.feeCents).toBe(1920);

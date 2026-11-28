@@ -1461,19 +1461,21 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
   // OV-04 Emergency Contact Information Overlay (DW-F09)
   {
     id: "OV04-EN",
-    name: "OV-04 · Emergency assistance preview (English)",
+    name: "OV-04 · Emergency contact preview (English)",
     figmaNode: "1286:532",
     route: "/(app)/help-support?overlay=ov04",
     locale: "en",
-    description: "Urgent safety modal: Call 911, HAULIX Safety line, GPS sharing & contact dial",
+    description:
+      "Informational sheet modal: Review registered emergency contact name and phone with zero external dialing",
   },
   {
     id: "OV04-ES",
-    name: "OV-04 · Asistencia de emergencia (Español)",
+    name: "OV-04 · Vista previa contacto de emergencia (Español)",
     figmaNode: "1286:543",
     route: "/(app)/help-support?overlay=ov04",
     locale: "es",
-    description: "Modal de seguridad urgente: Llamar 911, despacho de seguridad HAULIX y GPS",
+    description:
+      "Modal informativo: Revisar nombre y teléfono del contacto de emergencia registrado sin marcación externa",
   },
 
   // OV-05 Availability Preferences Overlay (DW-F03)

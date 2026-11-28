@@ -4,12 +4,22 @@ import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from "react-nat
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "../../src/components/icons/DriverIcons";
 import { useDriverTranslation } from "../../src/i18n";
-import { useNotificationStore } from "../../src/stores/notificationStore";
+import {
+  type NotificationPreferences,
+  useNotificationStore,
+} from "../../src/stores/notificationStore";
+import { useWalletStore } from "../../src/stores/walletStore";
 
 export default function NotificationSettingsScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
-  const { preferences, updatePreferences } = useNotificationStore();
+  const { activeRole } = useWalletStore();
+  const { getPreferencesForRole, updatePreferencesForRole } = useNotificationStore();
+  const preferences = getPreferencesForRole(activeRole);
+
+  const handleToggle = (key: keyof NotificationPreferences, val: boolean) => {
+    updatePreferencesForRole(activeRole, { [key]: val });
+  };
 
   const handleBack = () => {
     if (router.canGoBack()) {
@@ -51,7 +61,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.pushOffers}
-              onValueChange={(val) => updatePreferences({ pushOffers: val })}
+              onValueChange={(val) => handleToggle("pushOffers", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.pushOffers ? "#0B0F0E" : "#8E9E99"}
             />
@@ -67,7 +77,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.pushMessages}
-              onValueChange={(val) => updatePreferences({ pushMessages: val })}
+              onValueChange={(val) => handleToggle("pushMessages", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.pushMessages ? "#0B0F0E" : "#8E9E99"}
             />
@@ -83,7 +93,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.pushPayouts}
-              onValueChange={(val) => updatePreferences({ pushPayouts: val })}
+              onValueChange={(val) => handleToggle("pushPayouts", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.pushPayouts ? "#0B0F0E" : "#8E9E99"}
             />
@@ -104,7 +114,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.smsAlerts}
-              onValueChange={(val) => updatePreferences({ smsAlerts: val })}
+              onValueChange={(val) => handleToggle("smsAlerts", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.smsAlerts ? "#0B0F0E" : "#8E9E99"}
             />
@@ -124,7 +134,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.emailSummaries}
-              onValueChange={(val) => updatePreferences({ emailSummaries: val })}
+              onValueChange={(val) => handleToggle("emailSummaries", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.emailSummaries ? "#0B0F0E" : "#8E9E99"}
             />
@@ -144,7 +154,7 @@ export default function NotificationSettingsScreen() {
             </View>
             <Switch
               value={preferences.soundHaptics}
-              onValueChange={(val) => updatePreferences({ soundHaptics: val })}
+              onValueChange={(val) => handleToggle("soundHaptics", val)}
               trackColor={{ false: "#1C2A23", true: "#BAFF42" }}
               thumbColor={preferences.soundHaptics ? "#0B0F0E" : "#8E9E99"}
             />

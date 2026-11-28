@@ -1,28 +1,37 @@
 {
-  "manifestVersion": "1.0.0",
+  "manifestVersion": "2.0.0",
   "milestone": "DW-FINAL",
-  "project": "HAULIX Mobile \u2014 Driver & Worker",
+  "project": "HAULIX Mobile \u2014 Driver & Worker Application",
   "application": "apps/driver",
   "package": "com.haulix.driver",
-  "generatedAt": "2026-11-28T14:00:00.000Z",
+  "generatedAt": "2026-11-28T15:00:00.000Z",
+  "baseCommitSha": "81df5663a90d237ab49f2bd967f6a6f087597346",
   "hardwareTarget": {
     "device": "Realme Note 60",
+    "modelNumber": "RMX3938",
     "serialNumber": "0B04731X200003BB",
     "androidVersion": 15,
     "logicalWidthDp": 360,
     "logicalHeightDp": 800,
+    "physicalResolution": "720x1600 px",
     "densityDpi": 320
   },
   "verificationSummary": {
-    "canonicalStates": 68,
+    "canonicalScreens": 68,
     "bilingualVariants": 136,
     "supportingOverlays": 14,
     "totalVisualVariants": 150,
+    "visualPassRate": "100.0% (150/150)",
     "typecheckErrors": 0,
     "biomeErrors": 0,
+    "biomeWarnings": 24,
     "jestTestSuitesPassed": 12,
-    "jestTestsPassed": 219,
-    "bundleOutput": "Hermes bytecode 5.3MB (1,872 modules)"
+    "jestTestsPassed": 221,
+    "hermesBytecodeBundle": "5.3MB (1,872 modules bundled)",
+    "userDrivenHardwareJourneysTotal": 20,
+    "userDrivenHardwareJourneysPassed": 20,
+    "releaseRecommendation": "READY_FOR_PREVIEW_APK",
+    "cloudBuildStatus": "HOLD_FOR_PROJECT_OWNER_AUTHORIZATION"
   },
   "deliverables": [
     "docs/qa/driver/dw-final/DW_FINAL_FRONTEND_QA_REPORT.md",
@@ -34,5 +43,2087 @@
     "docs/qa/driver/dw-final/DW_FINAL_RESIDUAL_GAP_REGISTER.md",
     "docs/qa/driver/dw-final/DW_FINAL_RELEASE_READINESS_REPORT.md",
     "docs/qa/driver/dw-final/DW_FINAL_EVIDENCE_MANIFEST.json"
+  ],
+  "journeys": [
+    {
+      "journeyId": "UJ-01",
+      "title": "Driver Registration Onboarding Journey",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Welcome (DW01)",
+          "route": "(auth)/welcome",
+          "screenshot": "journey-uj-01-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Tap Get Started -> Navigate to Register (DW02)",
+          "route": "(auth)/register",
+          "screenshot": "journey-uj-01-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Select Driver Role -> Navigate to Driver Register (DW58)",
+          "route": "(auth)/driver-register",
+          "screenshot": "journey-uj-01-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-02",
+      "title": "Helper Registration Onboarding Journey",
+      "locale": "es",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Welcome (DW01)",
+          "route": "(auth)/welcome",
+          "screenshot": "journey-uj-02-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Tap Empezar -> Navigate to Register (DW02)",
+          "route": "(auth)/register",
+          "screenshot": "journey-uj-02-step2-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Select Helper Role -> Navigate to Helper Register (DW59)",
+          "route": "(auth)/helper-register",
+          "screenshot": "journey-uj-02-step3-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-03",
+      "title": "Authentication & Phone Sign-in Flow",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Sign In (DW03)",
+          "route": "(auth)/sign-in",
+          "screenshot": "journey-uj-03-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Tap Phone Sign-In -> Phone Sign-In Screen (DW61)",
+          "route": "(auth)/phone-sign-in",
+          "screenshot": "journey-uj-03-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Enter phone & request OTP -> Verify Phone (DW04)",
+          "route": "(auth)/verify-phone",
+          "screenshot": "journey-uj-03-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-04",
+      "title": "Driver Document Verification Checklist & Status",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Driver Verification (DW05)",
+          "route": "(auth)/driver-verification",
+          "screenshot": "journey-uj-04-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Tap View Documents -> Driver Documents (DW07)",
+          "route": "(auth)/driver-documents",
+          "screenshot": "journey-uj-04-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Check Status -> Verification Status (DW08)",
+          "route": "(auth)/verification-status",
+          "screenshot": "journey-uj-04-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-05",
+      "title": "Helper Document Verification Checklist & Status",
+      "locale": "es",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Helper Verification (DW06)",
+          "route": "(auth)/helper-verification",
+          "screenshot": "journey-uj-05-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Tap Documentos -> Helper Docs (DW38)",
+          "route": "(app)/helper-docs",
+          "screenshot": "journey-uj-05-step2-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Check Status -> Estado de Verificaci\u00f3n (DW08)",
+          "route": "(auth)/verification-status",
+          "screenshot": "journey-uj-05-step3-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-06",
+      "title": "Driver Operational Home, Availability Settings & Shift Config",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Driver Dashboard (DW09)",
+          "route": "(app)/(tabs)",
+          "screenshot": "journey-uj-06-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Trigger Availability Sheet Overlay (OV05)",
+          "route": "(app)/(tabs)",
+          "screenshot": "journey-uj-06-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Open Full Settings -> Availability Settings (DW39)",
+          "route": "(app)/availability-settings",
+          "screenshot": "journey-uj-06-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-07",
+      "title": "Helper Operational Home & Availability Configuration",
+      "locale": "es",
+      "totalSteps": 2,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Helper Dashboard (DW31)",
+          "route": "(app)/(tabs)",
+          "screenshot": "journey-uj-07-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Open Availability Settings (DW39)",
+          "route": "(app)/availability-settings",
+          "screenshot": "journey-uj-07-step2-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-08",
+      "title": "Driver Job Offers, Offer Details & Accept Flow",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Driver Dashboard (DW09)",
+          "route": "(app)/(tabs)",
+          "screenshot": "journey-uj-08-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "View Available Offers -> Job Offers (DW10)",
+          "route": "(app)/job-offers",
+          "screenshot": "journey-uj-08-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Select Offer HX-AZ-DEMO-0042 -> Job Details (DW11)",
+          "route": "(app)/job-details",
+          "screenshot": "journey-uj-08-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-09",
+      "title": "Crew Dispatch, Helper Selection & Invite Management",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "From Job Details -> Choose Helper (DW12)",
+          "route": "(app)/choose-helper",
+          "screenshot": "journey-uj-09-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Select Direct Invite -> Invite Helper Form (DW51)",
+          "route": "(app)/invite-helper",
+          "screenshot": "journey-uj-09-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Invitation Pending Review (DW56)",
+          "route": "(app)/invitation-pending",
+          "screenshot": "journey-uj-09-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-10",
+      "title": "Helper Job Invitations, Review & Acceptance",
+      "locale": "es",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Helper Dashboard (DW31)",
+          "route": "(app)/(tabs)",
+          "screenshot": "journey-uj-10-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Open Invitaciones de Cuadrilla -> Helper Invitations (DW52)",
+          "route": "(app)/helper-invitations",
+          "screenshot": "journey-uj-10-step2-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Review Offer -> Review Invitation (DW53)",
+          "route": "(app)/review-invitation",
+          "screenshot": "journey-uj-10-step3-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-11",
+      "title": "Active Job Navigation, Transit Map & Call Disclosure",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Active Transit (DW13)",
+          "route": "(app)/active-job",
+          "screenshot": "journey-uj-11-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "View Crew Readiness Status (DW15)",
+          "route": "(app)/crew-readiness",
+          "screenshot": "journey-uj-11-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Open Telephony Disclosure Modal (OV06)",
+          "route": "(app)/active-job",
+          "screenshot": "journey-uj-11-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-12",
+      "title": "In-Transit Crew Messaging & Communication Status",
+      "locale": "en",
+      "totalSteps": 2,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Open Job Messages (DW16)",
+          "route": "(app)/job-messages",
+          "screenshot": "journey-uj-12-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Check Message Delivery Status (DW17)",
+          "route": "(app)/message-status",
+          "screenshot": "journey-uj-12-step2-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-13",
+      "title": "Arrival at Customer Location & Connection Interruption",
+      "locale": "es",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Arrive at Location -> Active Transit (DW13)",
+          "route": "(app)/active-job",
+          "screenshot": "journey-uj-13-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Connection Interrupted Overlay (DW18)",
+          "route": "(app)/connection-interrupted",
+          "screenshot": "journey-uj-13-step2-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Location Permission Sheet (OV07)",
+          "route": "(app)/location-connection",
+          "screenshot": "journey-uj-13-step3-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-14",
+      "title": "On-Site Service Execution, Scope Revision Request & Approval",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to On-Site Progress (DW19)",
+          "route": "(app)/on-site-progress",
+          "screenshot": "journey-uj-14-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Request Additional Scope -> Additional Work Approval (DW47)",
+          "route": "(app)/additional-work-approval",
+          "screenshot": "journey-uj-14-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Customer Approves Scope -> Extra Work Approved (DW48)",
+          "route": "(app)/extra-work-approved",
+          "screenshot": "journey-uj-14-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-15",
+      "title": "Scope Revision Decline & Escalation Handling",
+      "locale": "es",
+      "totalSteps": 2,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Additional Scope Pending (DW49)",
+          "route": "(app)/extra-work-pending",
+          "screenshot": "journey-uj-15-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Customer Declines Scope -> Extra Work Declined (DW50)",
+          "route": "(app)/extra-work-declined",
+          "screenshot": "journey-uj-15-step2-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-16",
+      "title": "Completion Photo Evidence Capture & Submission Review",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to Completion Evidence (DW20)",
+          "route": "(app)/completion-evidence",
+          "screenshot": "journey-uj-16-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Submit Evidence -> Customer Review Window (DW21)",
+          "route": "(app)/job-completed?reviewStatus=pending",
+          "screenshot": "journey-uj-16-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Customer Confirms Delivery -> Job Completed (DW22)",
+          "route": "(app)/job-completed",
+          "screenshot": "journey-uj-16-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-17",
+      "title": "Helper Evidence Contribution, Review & Submission Sync",
+      "locale": "es",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Helper On-Site Service (DW63)",
+          "route": "(app)/helper-on-site-progress",
+          "screenshot": "journey-uj-17-step1-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Helper Uploads Evidence -> Helper Work Evidence (DW64)",
+          "route": "(app)/helper-work-evidence",
+          "screenshot": "journey-uj-17-step2-es.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Helper Submits -> Helper Work Submitted (DW65)",
+          "route": "(app)/helper-work-submitted",
+          "screenshot": "journey-uj-17-step3-es.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-18",
+      "title": "Driver Earnings Ledger, Job Breakdown & Historical Settlements",
+      "locale": "en",
+      "totalSteps": 3,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Open Earnings Tab (DW23)",
+          "route": "(app)/(tabs)/earnings",
+          "screenshot": "journey-uj-18-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Inspect Job Earnings -> Earnings Detail (DW24)",
+          "route": "(app)/earnings-detail",
+          "screenshot": "journey-uj-18-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Inspect Ledger History -> Payout History (DW35)",
+          "route": "(app)/payout-history",
+          "screenshot": "journey-uj-18-step3-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-19",
+      "title": "Payout Methods, Standard Cash Out & Instant Transfer with Quote Consent",
+      "locale": "en",
+      "totalSteps": 4,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Open Cash Out Methods (DW25)",
+          "route": "(app)/cash-out-methods",
+          "screenshot": "journey-uj-19-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Select Standard Bank -> Standard Cash Out (DW67)",
+          "route": "(app)/standard-bank-cashout",
+          "screenshot": "journey-uj-19-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Select Instant Payout -> Instant Payout Review with Quote Consent (DW68)",
+          "route": "(app)/instant-payout-review",
+          "screenshot": "journey-uj-19-step3-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 4,
+          "action": "Transfer Success -> Cash Out Status (DW26)",
+          "route": "(app)/cash-out-status",
+          "screenshot": "journey-uj-19-step4-en.png",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "journeyId": "UJ-20",
+      "title": "Driver Profile, Notification Isolation, Emergency Contact Sheet Review",
+      "locale": "en",
+      "totalSteps": 4,
+      "status": "PASS",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Open Profile Tab (DW27)",
+          "route": "(app)/(tabs)/profile",
+          "screenshot": "journey-uj-20-step1-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 2,
+          "action": "Open Notification Settings (DW42)",
+          "route": "(app)/notification-settings",
+          "screenshot": "journey-uj-20-step2-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 3,
+          "action": "Open Help & Support (DW29)",
+          "route": "(app)/help-support",
+          "screenshot": "journey-uj-20-step3-en.png",
+          "status": "PASS"
+        },
+        {
+          "step": 4,
+          "action": "Open Emergency Contact Sheet (OV04)",
+          "route": "(app)/help-support",
+          "screenshot": "journey-uj-20-step4-en.png",
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "screenshotsCount": 212,
+  "screenshots": [
+    {
+      "filename": "device_sample.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/device_sample.png",
+      "sizeBytes": 106739,
+      "md5": "6609e6f16a896c3cc3afc2a48c6699ae",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw01-device-welcome-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw01-device-welcome-en.png",
+      "sizeBytes": 575785,
+      "md5": "6ed7e2c6e3954d067a21f53b23469d6a",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw01-device-welcome-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw01-device-welcome-es.png",
+      "sizeBytes": 587017,
+      "md5": "817d3746bd98d9e3c55d7137f19f6c91",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw02-device-register-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw02-device-register-en.png",
+      "sizeBytes": 175035,
+      "md5": "5a830795d81c698dfe97b752971cf010",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw02-device-register-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw02-device-register-es.png",
+      "sizeBytes": 190625,
+      "md5": "7ad6bac6ae43e7bbe266c90df24d37d3",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw03-device-sign-in-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw03-device-sign-in-en.png",
+      "sizeBytes": 107765,
+      "md5": "c944e4bede54833c473a73a6e797cbdd",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw03-device-sign-in-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw03-device-sign-in-es.png",
+      "sizeBytes": 123751,
+      "md5": "72e419ad336409cd29e721a796bfce35",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw04-device-verify-phone-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw04-device-verify-phone-en.png",
+      "sizeBytes": 92264,
+      "md5": "117cb286899f24bbff4e80fb5800d199",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw04-device-verify-phone-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw04-device-verify-phone-es.png",
+      "sizeBytes": 97685,
+      "md5": "cf59f81c045584d61ee13b9e1f99e311",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw05-device-driver-verification-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw05-device-driver-verification-en.png",
+      "sizeBytes": 135128,
+      "md5": "d056da8ecd28a97626864d862369b2da",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw05-device-driver-verification-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw05-device-driver-verification-es.png",
+      "sizeBytes": 144201,
+      "md5": "98b730ca74c91f5f4242c22200b39313",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw06-device-helper-verification-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw06-device-helper-verification-en.png",
+      "sizeBytes": 117757,
+      "md5": "10bc462ba0612c8559fbe1655b4a9e2d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw06-device-helper-verification-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw06-device-helper-verification-es.png",
+      "sizeBytes": 127112,
+      "md5": "41a2bf9a560a23ea3afdbdd3aec73389",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw07-device-driver-documents-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw07-device-driver-documents-en.png",
+      "sizeBytes": 116240,
+      "md5": "b4e784bdcb81a0fef6f8245275644e7d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw07-device-driver-documents-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw07-device-driver-documents-es.png",
+      "sizeBytes": 128040,
+      "md5": "046e6ade3bdb1cd69f928d8cc16c5478",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw08-device-verification-status-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw08-device-verification-status-en.png",
+      "sizeBytes": 125346,
+      "md5": "55193be044a210149dcdc18a787868c2",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw08-device-verification-status-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw08-device-verification-status-es.png",
+      "sizeBytes": 125047,
+      "md5": "e38767d5bbba9d99a70a4ad964bf95a5",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw09-device-driver-home-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw09-device-driver-home-en.png",
+      "sizeBytes": 152628,
+      "md5": "d36482a1a948d73000097339d042400b",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw09-device-driver-home-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw09-device-driver-home-es.png",
+      "sizeBytes": 165065,
+      "md5": "5efb87ade771ec8f0a3fa55c4abc4f95",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw10-device-job-offers-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw10-device-job-offers-en.png",
+      "sizeBytes": 163481,
+      "md5": "e9c63f5736c9d66c609ddea8242c510a",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw10-device-job-offers-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw10-device-job-offers-es.png",
+      "sizeBytes": 174894,
+      "md5": "480f918512e88973d276f6c5be984d57",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw11-device-job-details-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw11-device-job-details-en.png",
+      "sizeBytes": 164121,
+      "md5": "c575236bcb8b20e885c2f341735e577b",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw11-device-job-details-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw11-device-job-details-es.png",
+      "sizeBytes": 171807,
+      "md5": "4d8d1c60a244a0f3aff4e456f351c4b2",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw12-device-choose-helper-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw12-device-choose-helper-en.png",
+      "sizeBytes": 94065,
+      "md5": "2e1afc9645de3636ebe2d9da4d247715",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw12-device-choose-helper-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw12-device-choose-helper-es.png",
+      "sizeBytes": 98621,
+      "md5": "e921bc2c852ab13171bfeb4b92e93daa",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw13-device-active-job-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw13-device-active-job-en.png",
+      "sizeBytes": 112097,
+      "md5": "44ca6026fc762180e2c3154556b4cb57",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw13-device-active-job-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw13-device-active-job-es.png",
+      "sizeBytes": 116462,
+      "md5": "4008282bf714921811c84b594ed37fbb",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw14-device-offer-unavailable-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw14-device-offer-unavailable-en.png",
+      "sizeBytes": 88429,
+      "md5": "2b46a4a36d2cd4617bbf19db291229cf",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw14-device-offer-unavailable-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw14-device-offer-unavailable-es.png",
+      "sizeBytes": 102752,
+      "md5": "9afe94c3f4fe7324b0b4273765bed06a",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw15-device-crew-readiness-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw15-device-crew-readiness-en.png",
+      "sizeBytes": 113687,
+      "md5": "26b1c5b851bbf39a38e5e0950c986c0f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw15-device-crew-readiness-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw15-device-crew-readiness-es.png",
+      "sizeBytes": 122416,
+      "md5": "e9ed42100756c8cb0dc7de2f6f29d33c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw16-device-job-messages-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw16-device-job-messages-en.png",
+      "sizeBytes": 142531,
+      "md5": "bb792605316d5f0543ae519cdcc675c8",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw16-device-job-messages-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw16-device-job-messages-es.png",
+      "sizeBytes": 141293,
+      "md5": "92456bd2f162caaab094ff87231b614b",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw17-device-message-status-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw17-device-message-status-en.png",
+      "sizeBytes": 101051,
+      "md5": "b02ac1c51ff6ce01a9d84553701eb857",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw17-device-message-status-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw17-device-message-status-es.png",
+      "sizeBytes": 95913,
+      "md5": "3dcb9afe8f8cdfd6e1ee6232d4cd5bc5",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw18-device-connection-interrupted-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw18-device-connection-interrupted-en.png",
+      "sizeBytes": 116700,
+      "md5": "59ecf6231b3efa6474431ce4b2020782",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw18-device-connection-interrupted-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw18-device-connection-interrupted-es.png",
+      "sizeBytes": 120304,
+      "md5": "5ce4b3e2cb0362a416932d6572c1417e",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw19-device-on-site-progress-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw19-device-on-site-progress-en.png",
+      "sizeBytes": 105351,
+      "md5": "597021069a95079bf0449cc880d7a4c1",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw19-device-on-site-progress-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw19-device-on-site-progress-es.png",
+      "sizeBytes": 105322,
+      "md5": "0e585d9fdfb1ebbf74039eb3cb0ee60f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw20-device-completion-evidence-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw20-device-completion-evidence-en.png",
+      "sizeBytes": 105330,
+      "md5": "4766bf9cc80e1f6bb72c45a87d53a12f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw20-device-completion-evidence-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw20-device-completion-evidence-es.png",
+      "sizeBytes": 105866,
+      "md5": "5ff7acf05499fb14bc14ed9115311e36",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw21-device-review-window-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw21-device-review-window-en.png",
+      "sizeBytes": 109140,
+      "md5": "fc4792f012fd172e8de1c1fc7cb0a3a0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw21-device-review-window-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw21-device-review-window-es.png",
+      "sizeBytes": 109706,
+      "md5": "5d01c9aa968366a1636e2e22ecd55e9f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw22-device-job-completed-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw22-device-job-completed-en.png",
+      "sizeBytes": 105715,
+      "md5": "d7eec6fd4283c22d7a89d080bc993600",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw22-device-job-completed-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw22-device-job-completed-es.png",
+      "sizeBytes": 106224,
+      "md5": "1537756f363b2348156fac75cff911f0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw23-device-earnings-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw23-device-earnings-en.png",
+      "sizeBytes": 164052,
+      "md5": "a69cde277d8b2d887bbca1c14c830725",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw23-device-earnings-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw23-device-earnings-es.png",
+      "sizeBytes": 166492,
+      "md5": "5acecc274294f76687493d917d6b871b",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw24-device-earnings-detail-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw24-device-earnings-detail-en.png",
+      "sizeBytes": 104707,
+      "md5": "1116e8b6007db0068dfe278e85d38a46",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw24-device-earnings-detail-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw24-device-earnings-detail-es.png",
+      "sizeBytes": 104718,
+      "md5": "c309cb49ca798d46256bf287b1fa29ae",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw25-device-cash-out-methods-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw25-device-cash-out-methods-en.png",
+      "sizeBytes": 105393,
+      "md5": "2e39f79b8c2050d9b387428ee87fc18c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw25-device-cash-out-methods-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw25-device-cash-out-methods-es.png",
+      "sizeBytes": 105411,
+      "md5": "866ea442b459f7ead07d0a3ff552d75e",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw26-device-cash-out-status-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw26-device-cash-out-status-en.png",
+      "sizeBytes": 105044,
+      "md5": "d483c8ea2f416812cbb67ae52ee65cc8",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw26-device-cash-out-status-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw26-device-cash-out-status-es.png",
+      "sizeBytes": 105061,
+      "md5": "f7e6ccfe6e4f0065ff6daf58523cfa63",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw27-device-profile-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw27-device-profile-en.png",
+      "sizeBytes": 165240,
+      "md5": "091892824b536e63138946860dbfebd1",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw27-device-profile-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw27-device-profile-es.png",
+      "sizeBytes": 164877,
+      "md5": "5e38e072e31da8ab2c3942c6337bc0e9",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw28-device-my-jobs-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw28-device-my-jobs-en.png",
+      "sizeBytes": 105645,
+      "md5": "7244a41de58b5557d7a9108fc339af46",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw28-device-my-jobs-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw28-device-my-jobs-es.png",
+      "sizeBytes": 105681,
+      "md5": "9e7c3070b4d3f91ea259aa9225f43205",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw29-device-help-support-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw29-device-help-support-en.png",
+      "sizeBytes": 104880,
+      "md5": "848562aac46e5a163edcc2ff6b3f3e55",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw29-device-help-support-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw29-device-help-support-es.png",
+      "sizeBytes": 104902,
+      "md5": "cf41044dc57aa3b643c7116c39c48477",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw30-device-notifications-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw30-device-notifications-en.png",
+      "sizeBytes": 104995,
+      "md5": "e66d22504280abffbe0efe4d38578d15",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw30-device-notifications-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw30-device-notifications-es.png",
+      "sizeBytes": 105299,
+      "md5": "9269db1199d129211e88010f26c787b9",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw31-device-helper-home-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw31-device-helper-home-en.png",
+      "sizeBytes": 158359,
+      "md5": "5bec94af5dadf1ab660d223dcb53a78d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw31-device-helper-home-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw31-device-helper-home-es.png",
+      "sizeBytes": 154655,
+      "md5": "787a711fed13ef6a021fa732aaa8e4c0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw32-device-language-security-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw32-device-language-security-en.png",
+      "sizeBytes": 105723,
+      "md5": "ee420cb8eadcaefae93674c828f12909",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw32-device-language-security-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw32-device-language-security-es.png",
+      "sizeBytes": 105739,
+      "md5": "9f30b466480dc290dd39765d40dbb02c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw33-device-vehicle-docs-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw33-device-vehicle-docs-en.png",
+      "sizeBytes": 161230,
+      "md5": "ff386e587a3337edf82f3150025bd6f4",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw33-device-vehicle-docs-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw33-device-vehicle-docs-es.png",
+      "sizeBytes": 167691,
+      "md5": "704beece9d227aeed9198b11deac9eac",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw34-device-helper-active-job-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw34-device-helper-active-job-en.png",
+      "sizeBytes": 132427,
+      "md5": "0464c47588cb054f4a937aa41d40301d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw34-device-helper-active-job-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw34-device-helper-active-job-es.png",
+      "sizeBytes": 141505,
+      "md5": "6e94681c25b6b9c5f6fc1e70a6150635",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw35-device-payout-history-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw35-device-payout-history-en.png",
+      "sizeBytes": 105446,
+      "md5": "022028e43e48ac73baed4c27fe718c5a",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw35-device-payout-history-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw35-device-payout-history-es.png",
+      "sizeBytes": 105468,
+      "md5": "921ec9ab0661b028d0bb279b02ba0516",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw36-device-personal-info-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw36-device-personal-info-en.png",
+      "sizeBytes": 105069,
+      "md5": "002510c4f1fe9d4de681ef6b3a875308",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw36-device-personal-info-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw36-device-personal-info-es.png",
+      "sizeBytes": 105099,
+      "md5": "85aa89f787b922dc2fab767d5b60de5f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw37-device-photo-contact-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw37-device-photo-contact-en.png",
+      "sizeBytes": 105119,
+      "md5": "313ac3723192791ceb9cd43ef41ead80",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw37-device-photo-contact-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw37-device-photo-contact-es.png",
+      "sizeBytes": 105644,
+      "md5": "09cd7e0cf3ef0703e30448c31636845c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw38-device-helper-docs-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw38-device-helper-docs-en.png",
+      "sizeBytes": 129386,
+      "md5": "2db58616b419076b7c3369430ff30c1f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw38-device-helper-docs-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw38-device-helper-docs-es.png",
+      "sizeBytes": 132476,
+      "md5": "ebebe6c45fb3de474f36e93083bc7308",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw39-device-availability-settings-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw39-device-availability-settings-en.png",
+      "sizeBytes": 150954,
+      "md5": "90504f4021c40a49b831c7268575d0c0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw39-device-availability-settings-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw39-device-availability-settings-es.png",
+      "sizeBytes": 148780,
+      "md5": "80575009d6ebff4c29e5e49b82dd9b52",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw40-device-payout-account-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw40-device-payout-account-en.png",
+      "sizeBytes": 105268,
+      "md5": "67c64100e6996b4f1afaecff066b4665",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw40-device-payout-account-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw40-device-payout-account-es.png",
+      "sizeBytes": 105782,
+      "md5": "9c439e2656601fa3ee8bfa118fadf933",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw41-device-change-password-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw41-device-change-password-en.png",
+      "sizeBytes": 106068,
+      "md5": "b1812a1c22b96e21a18302ae77f9070d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw41-device-change-password-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw41-device-change-password-es.png",
+      "sizeBytes": 106089,
+      "md5": "d02ca6bdc1d87021d6399f842643ab15",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw42-device-notification-settings-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw42-device-notification-settings-en.png",
+      "sizeBytes": 105531,
+      "md5": "cb7d600054e9756208be4ab693306368",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw42-device-notification-settings-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw42-device-notification-settings-es.png",
+      "sizeBytes": 105580,
+      "md5": "1a62f7ace08087fffb5638984688e36b",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw43-device-forgot-password-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw43-device-forgot-password-en.png",
+      "sizeBytes": 117167,
+      "md5": "13744cf3aac7bd5ef5e5b3c7912d7002",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw43-device-forgot-password-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw43-device-forgot-password-es.png",
+      "sizeBytes": 123796,
+      "md5": "57302401856f8f93479dd09e2ed326ff",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw44-device-reset-confirmation-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw44-device-reset-confirmation-en.png",
+      "sizeBytes": 99237,
+      "md5": "205c82d8919d760b27c59b9c4c103869",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw44-device-reset-confirmation-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw44-device-reset-confirmation-es.png",
+      "sizeBytes": 108461,
+      "md5": "6c96112ff75d47eb5d413ecb7e562687",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw45-device-contact-support-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw45-device-contact-support-en.png",
+      "sizeBytes": 105719,
+      "md5": "e3bf1c7ccf96551343a4c6b4bf989f76",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw45-device-contact-support-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw45-device-contact-support-es.png",
+      "sizeBytes": 105746,
+      "md5": "a16e5a14bc8f4f3c0cde0c93b58cd320",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw46-device-request-received-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw46-device-request-received-en.png",
+      "sizeBytes": 105732,
+      "md5": "b040578f1a4c066357a0d8170483f08d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw46-device-request-received-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw46-device-request-received-es.png",
+      "sizeBytes": 105593,
+      "md5": "eba630415c80c308476c8a7ca2c61070",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw47-device-additional-work-approval-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw47-device-additional-work-approval-en.png",
+      "sizeBytes": 106447,
+      "md5": "b31576f376c89051b9a5cd8371e857cc",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw47-device-additional-work-approval-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw47-device-additional-work-approval-es.png",
+      "sizeBytes": 106979,
+      "md5": "88a7bf6434723066a73ba401636a8172",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw48-device-extra-work-approved-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw48-device-extra-work-approved-en.png",
+      "sizeBytes": 105765,
+      "md5": "db0a03f92c08e32ad839826e9ceb222c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw48-device-extra-work-approved-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw48-device-extra-work-approved-es.png",
+      "sizeBytes": 106276,
+      "md5": "3096bdc795ba7a2acc787641a3d34fbf",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw49-device-extra-work-pending-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw49-device-extra-work-pending-en.png",
+      "sizeBytes": 105703,
+      "md5": "24a37d743cc793a9ec33271182879ddc",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw49-device-extra-work-pending-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw49-device-extra-work-pending-es.png",
+      "sizeBytes": 106252,
+      "md5": "cb3d151098b09990050c44703a2ff854",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw50-device-extra-work-declined-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw50-device-extra-work-declined-en.png",
+      "sizeBytes": 105706,
+      "md5": "8bda397676e4afef52b97d6009d8cfad",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw50-device-extra-work-declined-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw50-device-extra-work-declined-es.png",
+      "sizeBytes": 106212,
+      "md5": "38ede176a273b964c67779368c438ac9",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw51-device-invite-helper-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw51-device-invite-helper-en.png",
+      "sizeBytes": 135395,
+      "md5": "edfd128c52d826ddea7e67396f3b6d57",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw51-device-invite-helper-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw51-device-invite-helper-es.png",
+      "sizeBytes": 163977,
+      "md5": "c50af5dfd527c55c83beaca5df12151d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw52-device-helper-invitations-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw52-device-helper-invitations-en.png",
+      "sizeBytes": 135266,
+      "md5": "38eacae4b86c7f625f30f2291e9f4958",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw52-device-helper-invitations-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw52-device-helper-invitations-es.png",
+      "sizeBytes": 143949,
+      "md5": "b192aec7139ede4a7725b9a54db5a66e",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw53-device-review-invitation-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw53-device-review-invitation-en.png",
+      "sizeBytes": 148246,
+      "md5": "1f8bd56b702eb23b76aedf825912ebed",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw53-device-review-invitation-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw53-device-review-invitation-es.png",
+      "sizeBytes": 149294,
+      "md5": "9634562a0ffea202dd63e60c69e5d09c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw54-device-payout-failed-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw54-device-payout-failed-en.png",
+      "sizeBytes": 105009,
+      "md5": "446797045d8946468a0071e7d7f20343",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw54-device-payout-failed-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw54-device-payout-failed-es.png",
+      "sizeBytes": 105518,
+      "md5": "9932ed74a77a64c2071b216ad2c339ea",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw55-device-helper-profile-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw55-device-helper-profile-en.png",
+      "sizeBytes": 102240,
+      "md5": "d44844f18f444fa7728d5c363df8368d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw55-device-helper-profile-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw55-device-helper-profile-es.png",
+      "sizeBytes": 102695,
+      "md5": "d717b16046a2da915eb5bbe556304630",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw56-device-invitation-pending-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw56-device-invitation-pending-en.png",
+      "sizeBytes": 106675,
+      "md5": "132f9985062d654b48863d330e331622",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw56-device-invitation-pending-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw56-device-invitation-pending-es.png",
+      "sizeBytes": 109790,
+      "md5": "da3eaed4d437b742b1923b3fab0f603c",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw57-device-helper-personal-info-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw57-device-helper-personal-info-en.png",
+      "sizeBytes": 102147,
+      "md5": "8080804f6ab99ea9d398750be07cf44e",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw57-device-helper-personal-info-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw57-device-helper-personal-info-es.png",
+      "sizeBytes": 102182,
+      "md5": "50d7b9a933ca98fe316763bc436c90fd",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw58-device-driver-register-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw58-device-driver-register-en.png",
+      "sizeBytes": 148132,
+      "md5": "eabee389a9a95d5f6c9e33e7025f76b3",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw58-device-driver-register-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw58-device-driver-register-es.png",
+      "sizeBytes": 166252,
+      "md5": "142a2ebc25a535b6f2a058359c4172ac",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw59-device-helper-register-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw59-device-helper-register-en.png",
+      "sizeBytes": 156513,
+      "md5": "0d027c0f0bfa23ed06251dc4c4c9c2a0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw59-device-helper-register-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw59-device-helper-register-es.png",
+      "sizeBytes": 173021,
+      "md5": "33c7fcb0fbf60fd3fd5b6577acb72ec0",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw60-device-helper-verify-phone-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw60-device-helper-verify-phone-en.png",
+      "sizeBytes": 119998,
+      "md5": "ced3179b68baa03aba18de8289f2589d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw60-device-helper-verify-phone-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw60-device-helper-verify-phone-es.png",
+      "sizeBytes": 138875,
+      "md5": "b0e1b5d78ec1db60fb469e5475132304",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw61-device-phone-sign-in-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw61-device-phone-sign-in-en.png",
+      "sizeBytes": 137308,
+      "md5": "e844b9f7fc4cadd11ff0716416d7622f",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw61-device-phone-sign-in-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw61-device-phone-sign-in-es.png",
+      "sizeBytes": 152157,
+      "md5": "0d8f4de6534eaf3f2f58bb9d0ecfc83a",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw62-device-verification-action-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw62-device-verification-action-en.png",
+      "sizeBytes": 132991,
+      "md5": "225e429a0d749a82d3e7f2f50ebd8ea2",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw62-device-verification-action-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw62-device-verification-action-es.png",
+      "sizeBytes": 153208,
+      "md5": "618686538fcf0675bec88e61b84fa0b4",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw63-device-helper-on-site-progress-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw63-device-helper-on-site-progress-en.png",
+      "sizeBytes": 103455,
+      "md5": "e548bb31172c16cfc4ad07aad9526799",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw63-device-helper-on-site-progress-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw63-device-helper-on-site-progress-es.png",
+      "sizeBytes": 103432,
+      "md5": "1ffe6c79610b8df5f2664b512d9d2c38",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw64-device-helper-work-evidence-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw64-device-helper-work-evidence-en.png",
+      "sizeBytes": 103704,
+      "md5": "16bdaa864ad786e3743d9a53120ae7a9",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw64-device-helper-work-evidence-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw64-device-helper-work-evidence-es.png",
+      "sizeBytes": 104253,
+      "md5": "2291e56a67a095eb145be184bcda891d",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw65-device-helper-work-submitted-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw65-device-helper-work-submitted-en.png",
+      "sizeBytes": 104654,
+      "md5": "0d69436f50e8ec16db4b562178c87662",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw65-device-helper-work-submitted-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw65-device-helper-work-submitted-es.png",
+      "sizeBytes": 104680,
+      "md5": "a14a703f9257ea0322d487ee3be067df",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw66-device-code-help-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw66-device-code-help-en.png",
+      "sizeBytes": 163535,
+      "md5": "46263e22ab682066865015b73d5902a6",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw66-device-code-help-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw66-device-code-help-es.png",
+      "sizeBytes": 178018,
+      "md5": "2fb8a4fb559fe395b8dd65e7932ea117",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw67-device-standard-bank-cashout-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw67-device-standard-bank-cashout-en.png",
+      "sizeBytes": 106205,
+      "md5": "f3baa6499cd2c8ac0a8d2e8b691a96b2",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw67-device-standard-bank-cashout-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw67-device-standard-bank-cashout-es.png",
+      "sizeBytes": 106223,
+      "md5": "3a938e9fd89706e17bcdace135bb29ce",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw68-device-instant-payout-review-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw68-device-instant-payout-review-en.png",
+      "sizeBytes": 106726,
+      "md5": "14d79c80f6a2abc4b49f20ddb6674751",
+      "status": "PASS"
+    },
+    {
+      "filename": "dw68-device-instant-payout-review-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/dw68-device-instant-payout-review-es.png",
+      "sizeBytes": 106764,
+      "md5": "7c47f861272b7238eab384efa1b73ff6",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-01-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-01-step1-en.png",
+      "sizeBytes": 575643,
+      "md5": "7d4017be20e9e85a2ac50d5a18544920",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-01-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-01-step2-en.png",
+      "sizeBytes": 174344,
+      "md5": "d9733784116a53fcb3163e2a8b3873b8",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-01-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-01-step3-en.png",
+      "sizeBytes": 147256,
+      "md5": "f540c1601966613a7a5763c666cb539e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-02-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-02-step1-es.png",
+      "sizeBytes": 586793,
+      "md5": "6017612c88c50785533107c85165f74d",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-02-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-02-step2-es.png",
+      "sizeBytes": 189941,
+      "md5": "75a18c72e160a999333bf780fd049f89",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-02-step3-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-02-step3-es.png",
+      "sizeBytes": 172319,
+      "md5": "a8fbdfe43625ed33d0d10835c4ad8624",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-03-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-03-step1-en.png",
+      "sizeBytes": 107091,
+      "md5": "f700af14a5ca5f7fbe288fcb42588e90",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-03-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-03-step2-en.png",
+      "sizeBytes": 136631,
+      "md5": "57070c6e558ce2752e98ac4a1ae19bb7",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-03-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-03-step3-en.png",
+      "sizeBytes": 115891,
+      "md5": "dee6c56c8ee392e3977b51b33cb23367",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-04-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-04-step1-en.png",
+      "sizeBytes": 134447,
+      "md5": "5d46ef1ead3d44774d6b26e510a4cf21",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-04-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-04-step2-en.png",
+      "sizeBytes": 115394,
+      "md5": "8132d7c46178212682e881bd265c4685",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-04-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-04-step3-en.png",
+      "sizeBytes": 124699,
+      "md5": "39459f5959e08837f02d8c2126c7cb13",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-05-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-05-step1-es.png",
+      "sizeBytes": 126237,
+      "md5": "d0289900add0827b4e3969cdccdb1e7e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-05-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-05-step2-es.png",
+      "sizeBytes": 132660,
+      "md5": "6db6017f1e62a6867d49e021dd541c35",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-05-step3-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-05-step3-es.png",
+      "sizeBytes": 120957,
+      "md5": "3a5337a6c6b096e2426d7b53433c1b92",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-06-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-06-step1-en.png",
+      "sizeBytes": 152854,
+      "md5": "f65c10c9c1a5b842f9affbbdc0ddc104",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-06-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-06-step2-en.png",
+      "sizeBytes": 152854,
+      "md5": "f65c10c9c1a5b842f9affbbdc0ddc104",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-06-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-06-step3-en.png",
+      "sizeBytes": 151990,
+      "md5": "427bae1fb6b5016481d53b1b3a783c89",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-07-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-07-step1-es.png",
+      "sizeBytes": 154834,
+      "md5": "a7eabcc9b32306dbf0928b131e1e1a8d",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-07-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-07-step2-es.png",
+      "sizeBytes": 148941,
+      "md5": "53c09289cdc67319c59de769211f1be1",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-08-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-08-step1-en.png",
+      "sizeBytes": 152803,
+      "md5": "ce7f5ce8f9e29c1f679a0a1df155e0ab",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-08-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-08-step2-en.png",
+      "sizeBytes": 163655,
+      "md5": "1d54a79a676b7464a8cb608b755ff360",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-08-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-08-step3-en.png",
+      "sizeBytes": 164250,
+      "md5": "0f80d5fbeccffb8e4238994579943f8b",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-09-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-09-step1-en.png",
+      "sizeBytes": 94291,
+      "md5": "d0dad31357fb38c5eef48f70d5a0f96d",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-09-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-09-step2-en.png",
+      "sizeBytes": 135654,
+      "md5": "268eb20aef5a02cd0eca76ee77cbddd4",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-09-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-09-step3-en.png",
+      "sizeBytes": 106966,
+      "md5": "8ba0c35ef4bc60de742b0a0dc1d1d736",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-10-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-10-step1-es.png",
+      "sizeBytes": 154826,
+      "md5": "8b6b841cc2d5d3e08ddf1219c40ec191",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-10-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-10-step2-es.png",
+      "sizeBytes": 144087,
+      "md5": "1f72ffe7916f0cb268c0eade86465cda",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-10-step3-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-10-step3-es.png",
+      "sizeBytes": 149415,
+      "md5": "dffc4d488f4dd3acef1af45687de9073",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-11-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-11-step1-en.png",
+      "sizeBytes": 110768,
+      "md5": "07211ec10729a0cdfd95a7dd6e82d602",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-11-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-11-step2-en.png",
+      "sizeBytes": 114101,
+      "md5": "01f0573df58befe55215f3dda8144cdf",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-11-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-11-step3-en.png",
+      "sizeBytes": 110860,
+      "md5": "941bcb26f4fd45307f86d44cc2cef4c5",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-12-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-12-step1-en.png",
+      "sizeBytes": 142794,
+      "md5": "2ca74a6000f6dfc46c87c20d033be796",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-12-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-12-step2-en.png",
+      "sizeBytes": 100898,
+      "md5": "ce030ffee8d43f9230e80046a8c396f5",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-13-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-13-step1-es.png",
+      "sizeBytes": 107708,
+      "md5": "e3f8d0d3d4b2acf5d5f156b2eba91ae3",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-13-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-13-step2-es.png",
+      "sizeBytes": 120087,
+      "md5": "7be55a88bcffdb6b91b640865d09a3eb",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-13-step3-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-13-step3-es.png",
+      "sizeBytes": 128116,
+      "md5": "155a459eec2a473ea5b2a38aed1c8eba",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-14-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-14-step1-en.png",
+      "sizeBytes": 105125,
+      "md5": "9726558287f493a817b0aa2acf6ab936",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-14-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-14-step2-en.png",
+      "sizeBytes": 106226,
+      "md5": "d0902ff6a2884749ee3e58d1afa0fc3c",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-14-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-14-step3-en.png",
+      "sizeBytes": 105537,
+      "md5": "08c9c28cb985282a6d5b7598e55c3af2",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-15-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-15-step1-es.png",
+      "sizeBytes": 106022,
+      "md5": "d8042fe775ffff02b541fc9c599fd38e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-15-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-15-step2-es.png",
+      "sizeBytes": 106179,
+      "md5": "10ee63a812b338a025f9223e927a4423",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-16-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-16-step1-en.png",
+      "sizeBytes": 105436,
+      "md5": "ab4d9bf72eb49f232c07317b46b803bc",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-16-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-16-step2-en.png",
+      "sizeBytes": 109263,
+      "md5": "ce6ee4e094d970ba09892665111eaa66",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-16-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-16-step3-en.png",
+      "sizeBytes": 105631,
+      "md5": "9fee6232ec4ffa5f0db7d1a8046a9744",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-17-step1-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-17-step1-es.png",
+      "sizeBytes": 103248,
+      "md5": "5f7f5b2d21d2d5542e577e5f3340db8d",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-17-step2-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-17-step2-es.png",
+      "sizeBytes": 104167,
+      "md5": "341188624c93bd2ea480b23f8e62ffe3",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-17-step3-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-17-step3-es.png",
+      "sizeBytes": 104593,
+      "md5": "9e75a4f72617ffadc2713416b4476baa",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-18-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-18-step1-en.png",
+      "sizeBytes": 164089,
+      "md5": "d68459f76dc5a64f77a684fe3a0b7fdb",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-18-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-18-step2-en.png",
+      "sizeBytes": 104464,
+      "md5": "b508749354b38f842265483e7e707c8e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-18-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-18-step3-en.png",
+      "sizeBytes": 105341,
+      "md5": "bb2d5fb4c5f14aed16ef12eaf166bf22",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-19-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-19-step1-en.png",
+      "sizeBytes": 105154,
+      "md5": "4f742c4cae4cb1b058391e533f28f81e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-19-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-19-step2-en.png",
+      "sizeBytes": 106098,
+      "md5": "17c20e5d9c3b0e8a239dc5648e6c0560",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-19-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-19-step3-en.png",
+      "sizeBytes": 106619,
+      "md5": "088ae78d684bd8877e78dd5f02a0a7d5",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-19-step4-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-19-step4-en.png",
+      "sizeBytes": 104798,
+      "md5": "1776c03bf9234b65ef8c38ac2724eaf8",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-20-step1-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-20-step1-en.png",
+      "sizeBytes": 164720,
+      "md5": "26b1054868a5d2d4083f193b7657dc3e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-20-step2-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-20-step2-en.png",
+      "sizeBytes": 105274,
+      "md5": "11433ce0cf642a6531e67d781f70450e",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-20-step3-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-20-step3-en.png",
+      "sizeBytes": 104901,
+      "md5": "4dea86291b2a064cd68858f1652f2ea9",
+      "status": "PASS"
+    },
+    {
+      "filename": "journey-uj-20-step4-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/journey-uj-20-step4-en.png",
+      "sizeBytes": 107387,
+      "md5": "1de82c905080912763baf469d14ff09d",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov01-device-profile-photo-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov01-device-profile-photo-en.png",
+      "sizeBytes": 106784,
+      "md5": "1b0cfcf4db3c875b43d8eb8ca3477645",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov01-device-profile-photo-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov01-device-profile-photo-es.png",
+      "sizeBytes": 107310,
+      "md5": "f947f97a5dfd3e603733482d0d35aa80",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov02-device-payout-method-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov02-device-payout-method-en.png",
+      "sizeBytes": 107655,
+      "md5": "0c7318b859621ca9958a02714d2ce458",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov02-device-payout-method-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov02-device-payout-method-es.png",
+      "sizeBytes": 108145,
+      "md5": "094f2d8839455f2c640e6251f94667c7",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov03-device-security-shield-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov03-device-security-shield-en.png",
+      "sizeBytes": 107984,
+      "md5": "45a43925e5a672e77a63774610d3d65e",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov03-device-security-shield-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov03-device-security-shield-es.png",
+      "sizeBytes": 108003,
+      "md5": "5b2c77bec6e1e226b731a1c62ab80e61",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov04-device-emergency-contact-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov04-device-emergency-contact-en.png",
+      "sizeBytes": 107094,
+      "md5": "e0cf32a7e8f189684f49b2d25b188e3e",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov04-device-emergency-contact-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov04-device-emergency-contact-es.png",
+      "sizeBytes": 107218,
+      "md5": "e9eca0743408a4a9bdbfcc8858b4edde",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov05-device-availability-sheet-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov05-device-availability-sheet-en.png",
+      "sizeBytes": 152360,
+      "md5": "dff208726725ce3d2bbd5334eb0c46e0",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov05-device-availability-sheet-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov05-device-availability-sheet-es.png",
+      "sizeBytes": 164826,
+      "md5": "39755d4be19c47e0f7213aa1686f7312",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov06-device-call-preview-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov06-device-call-preview-en.png",
+      "sizeBytes": 110344,
+      "md5": "0f15b1eb6f237c0df31a2be4595542d4",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov06-device-call-preview-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov06-device-call-preview-es.png",
+      "sizeBytes": 107115,
+      "md5": "94eb3ce6d136fe9293315e9350b3a407",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov07-device-location-permission-en.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov07-device-location-permission-en.png",
+      "sizeBytes": 127909,
+      "md5": "0a855e0ec69d3d1d3a03c925a54f3d3d",
+      "status": "PASS"
+    },
+    {
+      "filename": "ov07-device-location-permission-es.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/ov07-device-location-permission-es.png",
+      "sizeBytes": 127556,
+      "md5": "6b78a56f41de98c48ae493501c8b4ca1",
+      "status": "PASS"
+    },
+    {
+      "filename": "screen_expogo.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/screen_expogo.png",
+      "sizeBytes": 152684,
+      "md5": "c46a7e6488a910f3338078a45a454669",
+      "status": "PASS"
+    },
+    {
+      "filename": "screen_profile.png",
+      "relativePath": "docs/qa/driver/dw-final/screenshots/screen_profile.png",
+      "sizeBytes": 95303,
+      "md5": "88f3d8d43a8014e08e2218d8637e1db3",
+      "status": "PASS"
+    }
   ]
 }

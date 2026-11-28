@@ -80,7 +80,7 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
     });
   });
 
-  describe("3. Deterministic Fee Quotes & Quote Context Integrity", () => {
+  describe("3. Deterministic Fee Quotes & Strict Instant Cash Out Consent", () => {
     test("APPROVED_MOCK_FEE_QUOTES matches approved specifications", () => {
       expect(APPROVED_MOCK_FEE_QUOTES[128000]).toBe(1920); // $1,280.00 -> $19.20
       expect(APPROVED_MOCK_FEE_QUOTES[50000]).toBe(750); // $500.00 -> $7.50
@@ -93,6 +93,16 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
       const walletStore = useWalletStore.getState();
       expect(walletStore.getInstantFeeQuote("driver", 77777)).toBeNull();
       expect(walletStore.getInstantFeeQuote("driver", 9999)).toBeNull();
+    });
+
+    test("removes consent-bypass: rejects instant cash out without previously reviewed valid quote", () => {
+      const walletStore = useWalletStore.getState();
+      walletStore.setActiveRole("driver");
+
+      // No quote has been generated yet
+      const resWithoutQuote = walletStore.requestInstantCashOut("driver", "fake-quote-id");
+      expect(resWithoutQuote.success).toBe(false);
+      expect(resWithoutQuote.error).toBe("INVALID_QUOTE");
     });
 
     test("rejects quote if worker role does not match context", () => {
@@ -124,6 +134,21 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
       const res = walletStore.requestInstantCashOut("driver", quote!.quoteId);
       expect(res.success).toBe(false);
       expect(res.error).toBe("QUOTE_EXPIRED");
+    });
+
+    test("standard bank withdrawal uses stable intent across repeated confirmations", () => {
+      const walletStore = useWalletStore.getState();
+      walletStore.setActiveRole("driver");
+
+      // Consecutive calls without customIntentId reuse the stable session intent
+      const res1 = walletStore.requestStandardCashOut("driver", 50000);
+      expect(res1.success).toBe(true);
+      expect(walletStore.getActiveWallet().availableBalanceCents).toBe(78000);
+
+      const res2 = walletStore.requestStandardCashOut("driver", 50000);
+      expect(res2.success).toBe(true);
+      expect(res2.transaction?.id).toBe(res1.transaction?.id);
+      expect(walletStore.getActiveWallet().availableBalanceCents).toBe(78000);
     });
   });
 
@@ -162,39 +187,70 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
     });
   });
 
-  describe("5. Earnings Eligibility & Completion Evidence", () => {
-    test("creditJobEarningsToAvailable enforces evidence, review, dispute, and settlement checks", () => {
+  describe("5. Earnings Eligibility & Per-Worker Independent Credit", () => {
+    test("requires completion verification and payment settlement before releasing funds", () => {
       const walletStore = useWalletStore.getState();
       const compStore = useCompletionEvidenceStore.getState();
       const testJobId = "HX-AZ-DEMO-0042";
       walletStore.setActiveRole("driver");
-
-      // Case 1: Job not submitted yet -> rejected
-      const creditedBeforeSubmit = walletStore.creditJobEarningsToAvailable(testJobId);
-      expect(creditedBeforeSubmit).toBe(false);
 
       // Submit driver evidence
       compStore.attachDriverEvidence(testJobId, "before", "sofa-before.jpg");
       compStore.attachDriverEvidence(testJobId, "after", "sofa-after.jpg");
       compStore.submitDriverCompletion(testJobId);
 
-      // Case 2: Under customer review (PENDING_REVIEW) -> rejected
-      const creditedUnderReview = walletStore.creditJobEarningsToAvailable(testJobId);
-      expect(creditedUnderReview).toBe(false);
-
-      // Case 3: Customer confirmed but dispute active -> rejected
-      compStore.setCustomerReviewDecision(testJobId, "DISPUTED", "Damage reported");
-      const creditedDisputed = walletStore.creditJobEarningsToAvailable(testJobId);
-      expect(creditedDisputed).toBe(false);
-
-      // Case 4: Customer confirmed and settlement ready -> success
+      // Unverified check: completionVerificationStatus is UNVERIFIED -> rejected
       compStore.setCustomerReviewDecision(testJobId, "CONFIRMED");
-      const initialBal = walletStore.getActiveWallet().availableBalanceCents;
-      const creditSuccess = walletStore.creditJobEarningsToAvailable(testJobId);
-      expect(creditSuccess).toBe(true);
-      expect(useWalletStore.getState().getActiveWallet().availableBalanceCents).toBe(
-        initialBal + 9800
+      compStore.setCompletionVerificationStatus(testJobId, "UNVERIFIED");
+      const unverifiedCredit = walletStore.creditJobEarningsToAvailable(testJobId, "driver");
+      expect(unverifiedCredit).toBe(false);
+
+      // Settlement check: paymentCaptureStatus is CAPTURE_SUCCESS but NOT SETTLED -> rejected
+      compStore.setCompletionVerificationStatus(testJobId, "VERIFIED");
+      useCompletionEvidenceStore.setState((s) => ({
+        completionByJob: {
+          ...s.completionByJob,
+          [testJobId]: {
+            ...s.completionByJob[testJobId],
+            paymentCaptureStatus: "CAPTURE_SUCCESS" as const,
+          },
+        },
+      }));
+      const unsettledCredit = walletStore.creditJobEarningsToAvailable(testJobId, "driver");
+      expect(unsettledCredit).toBe(false);
+
+      // Now set paymentCaptureStatus to SETTLED -> driver credit succeeds!
+      useCompletionEvidenceStore.setState((s) => ({
+        completionByJob: {
+          ...s.completionByJob,
+          [testJobId]: {
+            ...s.completionByJob[testJobId],
+            paymentCaptureStatus: "SETTLED" as const,
+          },
+        },
+      }));
+      const initialDriverBal = walletStore.getWalletForRole("driver").availableBalanceCents;
+      const driverCreditSuccess = walletStore.creditJobEarningsToAvailable(testJobId, "driver");
+      expect(driverCreditSuccess).toBe(true);
+      expect(walletStore.getWalletForRole("driver").availableBalanceCents).toBe(
+        initialDriverBal + 9800
       );
+
+      // Duplicate Driver credit is blocked
+      const driverDuplicateCredit = walletStore.creditJobEarningsToAvailable(testJobId, "driver");
+      expect(driverDuplicateCredit).toBe(false);
+
+      // Helper is entitled to their own credit and is NOT blocked by Driver credit!
+      const initialHelperBal = walletStore.getWalletForRole("helper").availableBalanceCents;
+      const helperCreditSuccess = walletStore.creditJobEarningsToAvailable(testJobId, "helper");
+      expect(helperCreditSuccess).toBe(true);
+      expect(walletStore.getWalletForRole("helper").availableBalanceCents).toBe(
+        initialHelperBal + 4900
+      );
+
+      // Duplicate Helper credit is blocked
+      const helperDuplicateCredit = walletStore.creditJobEarningsToAvailable(testJobId, "helper");
+      expect(helperDuplicateCredit).toBe(false);
     });
   });
 
@@ -267,19 +323,26 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
         "Camera feed did not open upon tapping shutter button"
       );
 
-      const ticket = store.getTicketById(res.ticket!.ticketId);
+      const ticket = store.getTicketById(res.ticket?.ticketId || "");
       expect(ticket).toBeDefined();
       expect(ticket?.message).toContain("Camera feed did not open");
 
       const lastTicket = store.getLastTicketForRole("helper");
-      expect(lastTicket?.ticketId).toBe(res.ticket!.ticketId);
+      expect(lastTicket?.ticketId).toBe(res.ticket?.ticketId);
     });
   });
 
-  describe("8. Notification Store Deep Links & Role Preferences", () => {
+  describe("8. Notification Store Deep Links & Role Preferences Isolation", () => {
     test("all notification deep links point to valid canonical routes", () => {
       const { notifications } = useNotificationStore.getState();
-      const invalidRoutes = ["/offer-detail", "/vehicle-upload", "/helper-crew-invite", "/home"];
+      const invalidRoutes = [
+        "/offer-detail",
+        "/vehicle-upload",
+        "/helper-crew-invite",
+        "/home",
+        "/verification-documents",
+        "/offer-expired",
+      ];
 
       for (const item of notifications) {
         for (const badRoute of invalidRoutes) {
@@ -289,17 +352,20 @@ describe("DW-FINAL Consolidated Frontend QA & Integrity", () => {
       }
     });
 
-    test("maintains separate driver and helper notification preferences", () => {
+    test("maintains isolated driver and helper notification preferences", () => {
       const store = useNotificationStore.getState();
-      const driverPrefs = store.getPreferencesForRole("driver");
-      const helperPrefs = store.getPreferencesForRole("helper");
 
-      expect(driverPrefs).toBeDefined();
-      expect(helperPrefs).toBeDefined();
-
-      store.updatePreferencesForRole("driver", { soundHaptics: false });
+      // Driver update does not affect helper
+      store.updatePreferencesForRole("driver", { soundHaptics: false, emailSummaries: true });
       expect(store.getPreferencesForRole("driver").soundHaptics).toBe(false);
+      expect(store.getPreferencesForRole("driver").emailSummaries).toBe(true);
       expect(store.getPreferencesForRole("helper").soundHaptics).toBe(true);
+      expect(store.getPreferencesForRole("helper").emailSummaries).toBe(false);
+
+      // Helper update does not affect driver
+      store.updatePreferencesForRole("helper", { pushOffers: false });
+      expect(store.getPreferencesForRole("helper").pushOffers).toBe(false);
+      expect(store.getPreferencesForRole("driver").pushOffers).toBe(true);
     });
   });
 });

@@ -80,6 +80,7 @@ export interface JobCompletionRecord {
   finalEarningsEstimate: number;
   tipsAmount: number;
   isPaidOut: boolean;
+  creditedWorkerIds?: string[];
 }
 
 export const INITIAL_COMPLETION_RECORDS: Record<string, JobCompletionRecord> = {
@@ -204,8 +205,11 @@ export interface CompletionEvidenceState {
     decision: "CONFIRMED" | "DISPUTED",
     disputeReason?: string
   ) => void;
+  setCompletionVerificationStatus: (jobId: string, status: CompletionVerificationStatus) => void;
   setPaymentCaptureOutcome: (jobId: string, outcome: "SUCCESS" | "FAILED") => void;
   setEarningsEligibility: (jobId: string, eligibility: EarningsEligibility) => void;
+  recordWorkerCredit: (jobId: string, workerId: string) => void;
+  isWorkerCredited: (jobId: string, workerId: string) => boolean;
   setMockFailureScenario: (enabled: boolean) => void;
   resetCompletionStore: () => void;
 }
@@ -702,9 +706,10 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
           ...s.completionByJob,
           [targetId]: {
             ...record,
+            completionVerificationStatus: "VERIFIED",
             customerReviewStatus: "CUSTOMER_CONFIRMED",
             disputeStatus: "NONE",
-            paymentCaptureStatus: "CAPTURE_SUCCESS",
+            paymentCaptureStatus: "SETTLED",
             reviewStatus: "CUSTOMER_CONFIRMED",
             earningsEligibility: "ELIGIBLE",
             disputeReason: null,
@@ -712,6 +717,21 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
         },
       });
     }
+  },
+
+  setCompletionVerificationStatus: (jobId, status) => {
+    const s = get();
+    const targetId = jobId || s.activeJobId;
+    const record = s.getCompletionRecord(targetId);
+    set({
+      completionByJob: {
+        ...s.completionByJob,
+        [targetId]: {
+          ...record,
+          completionVerificationStatus: status,
+        },
+      },
+    });
   },
 
   setPaymentCaptureOutcome: (jobId, outcome) => {
@@ -725,8 +745,8 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
         ...s.completionByJob,
         [targetId]: {
           ...record,
-          paymentCaptureStatus: isSuccess ? "CAPTURE_SUCCESS" : "CAPTURE_FAILED",
-          earningsEligibility: isSuccess ? "CREDITED" : "ON_HOLD",
+          paymentCaptureStatus: isSuccess ? "SETTLED" : "CAPTURE_FAILED",
+          earningsEligibility: isSuccess ? "ELIGIBLE" : "ON_HOLD",
         },
       },
     });
@@ -745,6 +765,29 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
         },
       },
     });
+  },
+
+  recordWorkerCredit: (jobId, workerId) => {
+    const s = get();
+    const targetId = jobId || s.activeJobId;
+    const record = s.getCompletionRecord(targetId);
+    const current = record.creditedWorkerIds || [];
+    if (!current.includes(workerId)) {
+      set({
+        completionByJob: {
+          ...s.completionByJob,
+          [targetId]: {
+            ...record,
+            creditedWorkerIds: [...current, workerId],
+          },
+        },
+      });
+    }
+  },
+
+  isWorkerCredited: (jobId, workerId) => {
+    const record = get().getCompletionRecord(jobId);
+    return (record.creditedWorkerIds || []).includes(workerId);
   },
 
   setMockFailureScenario: (enabled) => set({ mockFailureScenario: enabled }),

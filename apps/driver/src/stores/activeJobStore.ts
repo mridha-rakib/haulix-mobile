@@ -65,9 +65,7 @@ export const useActiveJobStore = create<ActiveJobState>((set, get) => ({
 
   setActiveJobId: (jobId) => {
     const s = get();
-    const currentProgress = s.jobProgressByJob[jobId] || {
-      ...DEFAULT_TRANSIT_PROGRESS,
-    };
+    const currentProgress = s.jobProgressByJob[jobId] || { ...DEFAULT_TRANSIT_PROGRESS };
     set({
       activeJobId: jobId,
       driverTransitStatus: currentProgress.driverTransitStatus,

@@ -64,7 +64,7 @@ export default function MyJobsScreen() {
       reason: "Offer countdown timer expired before acceptance",
       dateStr: "Yesterday · 4:30 PM",
       type: "expired",
-      targetRoute: "/(app)/offer-expired",
+      targetRoute: "/(app)/offer-unavailable",
     },
     {
       id: "HX-AZ-OFFER-0009",

@@ -92,7 +92,7 @@ const initialNotifications: NotificationItem[] = [
     timestampEn: "Yesterday",
     timestampEs: "Ayer",
     isRead: true,
-    deepLinkHref: "/(app)/verification-documents",
+    deepLinkHref: "/(app)/vehicle-docs",
   },
   {
     id: "notif-d-04",

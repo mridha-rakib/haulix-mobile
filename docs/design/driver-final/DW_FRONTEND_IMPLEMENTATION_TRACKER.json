@@ -1,8 +1,8 @@
 {
-  "project": "HAULIX Mobile — Driver & Worker Application",
+  "project": "HAULIX Mobile \u2014 Driver & Worker Application",
   "application": "apps/driver",
   "package": "com.haulix.driver",
-  "lastUpdated": "2026-11-28T14:00:00.000Z",
+  "lastUpdated": "2026-11-28T15:00:00.000Z",
   "targetRuntime": "Realme Note 60 (RMX3938), Android 15, 360dp logical viewport",
   "totalCanonicalStates": 68,
   "totalBilingualVariants": 136,
@@ -103,7 +103,7 @@
         {
           "id": "OV07-ES",
           "figmaNode": "1305:735",
-          "title": "Vista previa de permisos de ubicación (ES)"
+          "title": "Vista previa de permisos de ubicaci\u00f3n (ES)"
         }
       ]
     },
@@ -137,7 +137,7 @@
         {
           "id": "OV02-ES",
           "figmaNode": "1282:539",
-          "title": "Modal actualizar método de pago (ES)"
+          "title": "Modal actualizar m\u00e9todo de pago (ES)"
         }
       ]
     },
@@ -217,7 +217,16 @@
         "Complete resetAllStores utility resetting all 12 application stores",
         "100% test pass rate across 12 test suites (219 unit tests passing)",
         "Zero TypeScript errors and clean Android Metro hermes bytecode bundling"
-      ]
+      ],
+      "releaseRecommendation": "READY_FOR_PREVIEW_APK",
+      "physicalDeviceTarget": "Realme Note 60 (RMX3938), Android 15, 360dp logical viewport",
+      "hardwareScreenshotsCount": 212,
+      "userDrivenJourneysExecuted": 20,
+      "userDrivenJourneysPassed": 20,
+      "testSuitesPassed": 12,
+      "testsPassed": 221,
+      "typecheckErrors": 0,
+      "biomeErrors": 0
     }
   },
   "screens": [
