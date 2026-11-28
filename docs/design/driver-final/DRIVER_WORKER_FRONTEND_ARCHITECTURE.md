@@ -1,4 +1,5 @@
 # HAULIX Driver & Worker Mobile App
+
 # Frontend Technical Architecture & Routing Specification
 
 **Application:** `apps/driver`  
@@ -7,7 +8,7 @@
 **Design Tokens:** `@haulix/design-tokens` (Figma token set `Q946h4YBGgyLsjnPtdyQNe`)  
 **Styling Engine:** NativeWind 4.2.7 (Tailwind CSS preset with token mappings)  
 **Framework:** Expo SDK 58.0.23, React Native 0.88.1, Expo Router 58.0.30  
-**Target Hardware Baseline:** Realme Note 60 (RMX3933), Android 15, 360dp logical width  
+**Target Hardware Baseline:** Realme Note 60 (RMX3933), Android 15, 360dp logical width
 
 ---
 

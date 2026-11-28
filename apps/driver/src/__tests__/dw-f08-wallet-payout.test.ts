@@ -79,7 +79,9 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       const store = useWalletStore.getState();
       store.setActiveRole("driver");
 
-      const tx = store.requestStandardCashOut("driver", 50000); // $500.00
+      const res = store.requestStandardCashOut("driver", 50000); // $500.00
+      expect(res.success).toBe(true);
+      const tx = res.transaction!;
       expect(tx.feeCents).toBe(0);
       expect(tx.netCents).toBe(50000);
       expect(tx.method).toBe("standard_bank");
@@ -93,12 +95,12 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
     test("instant fee quote calculates 1.5% with minimum threshold", () => {
       const store = useWalletStore.getState();
       // $1,280.00 * 1.5% = $19.20 (1920 cents)
-      const quote = store.getInstantFeeQuote(128000);
+      const quote = store.getInstantFeeQuote(128000)!;
       expect(quote.feeCents).toBe(1920);
       expect(quote.netCents).toBe(128000 - 1920);
 
       // Low amount minimum fee threshold
-      const lowQuote = store.getInstantFeeQuote(5000); // $50.00
+      const lowQuote = store.getInstantFeeQuote(5000)!; // $50.00
       expect(lowQuote.feeCents).toBe(150); // min $1.50
     });
 
@@ -106,7 +108,9 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       const store = useWalletStore.getState();
       store.setActiveRole("driver");
 
-      const tx = store.requestInstantCashOut("driver", 128000);
+      const res = store.requestInstantCashOut("driver", 128000);
+      expect(res.success).toBe(true);
+      const tx = res.transaction!;
       expect(tx.feeCents).toBe(1920);
       expect(tx.netCents).toBe(128000 - 1920);
       expect(tx.method).toBe("instant_card");
@@ -121,7 +125,8 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       const store = useWalletStore.getState();
       store.setActiveRole("driver");
 
-      const tx = store.requestStandardCashOut("driver", 40000);
+      const res = store.requestStandardCashOut("driver", 40000);
+      const tx = res.transaction!;
       expect(store.getActiveWallet().availableBalanceCents).toBe(88000);
 
       store.simulatePayoutFailure("driver", tx.id, "Invalid routing number");
@@ -138,13 +143,16 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       const store = useWalletStore.getState();
       store.setActiveRole("driver");
 
-      const tx = store.requestStandardCashOut("driver", 40000);
+      const res = store.requestStandardCashOut("driver", 40000);
+      const tx = res.transaction!;
       store.simulatePayoutFailure("driver", tx.id);
       expect(store.getActiveWallet().availableBalanceCents).toBe(128000);
 
-      store.retryFailedPayout("driver", tx.id);
-      const retriedTx = store.getTransactionById(tx.id);
-      expect(retriedTx?.status).toBe("processing");
+      const retryRes = store.retryFailedPayout("driver", tx.id);
+      expect(retryRes.success).toBe(true);
+      const retriedTx = retryRes.transaction!;
+      expect(retriedTx.status).toBe("processing");
+      expect(retriedTx.retryOf).toBe(tx.id);
       expect(store.getActiveWallet().availableBalanceCents).toBe(88000);
     });
   });

@@ -1,9 +1,11 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { type Href, useRouter } from "expo-router";
+import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ChevronLeftIcon } from "../../src/components/icons/DriverIcons";
+import { ChevronLeftIcon, ShieldIcon } from "../../src/components/icons/DriverIcons";
 import { DriverBottomNav } from "../../src/components/navigation/DriverBottomNav";
+import { EmergencyContactOverlay } from "../../src/components/overlays/EmergencyContactOverlay";
 import { useDriverTranslation } from "../../src/i18n";
 import { useActiveJobStore } from "../../src/stores/activeJobStore";
 
@@ -11,6 +13,7 @@ export default function HelperActiveJobScreen() {
   const router = useRouter();
   const { t, currentLocale } = useDriverTranslation();
   const { isHelperArrived, confirmHelperArrival } = useActiveJobStore();
+  const [emergencyVisible, setEmergencyVisible] = useState(false);
 
   const handleArrival = () => {
     confirmHelperArrival();
@@ -32,8 +35,18 @@ export default function HelperActiveJobScreen() {
           >
             <ChevronLeftIcon size={24} color="#F6F8F6" />
           </Pressable>
-          <Text style={styles.title}>{t("driver.helperActiveJob.title")}</Text>
-          <Text style={styles.subtitle}>{t("driver.helperActiveJob.subtitle")}</Text>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.title}>{t("driver.helperActiveJob.title")}</Text>
+            <Text style={styles.subtitle}>{t("driver.helperActiveJob.subtitle")}</Text>
+          </View>
+          <Pressable
+            onPress={() => setEmergencyVisible(true)}
+            style={styles.emergencyShieldBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Emergency assistance"
+          >
+            <ShieldIcon color="#EF4444" size={20} />
+          </Pressable>
         </View>
 
         {/* Card 1: Helper assigned · Demo */}
@@ -100,6 +113,11 @@ export default function HelperActiveJobScreen() {
 
       {/* 5-Tab Bar (Figma DW62: Active Jobs) */}
       <DriverBottomNav activeTab="jobs" />
+      {/* Emergency Assistance Overlay (OV-04) */}
+      <EmergencyContactOverlay
+        visible={emergencyVisible}
+        onClose={() => setEmergencyVisible(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -115,11 +133,23 @@ const styles = StyleSheet.create({
     paddingBottom: spacing[4],
   },
   header: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing[3],
     marginBottom: spacing[3],
   },
+  emergencyShieldBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: radius.full,
+    backgroundColor: "rgba(239, 68, 68, 0.15)",
+    borderWidth: 1,
+    borderColor: "#EF4444",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   backButton: {
-    marginBottom: spacing[2],
-    alignSelf: "flex-start",
+    alignSelf: "center",
   },
   title: {
     fontFamily: "Inter_700Bold",

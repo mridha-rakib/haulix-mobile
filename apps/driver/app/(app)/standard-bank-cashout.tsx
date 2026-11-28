@@ -14,6 +14,7 @@ export default function StandardBankCashOutScreen() {
   const wallet = getActiveWallet();
 
   const [amountStr, setAmountStr] = useState((wallet.availableBalanceCents / 100).toFixed(2));
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleBack = () => {
     if (router.canGoBack()) {
@@ -24,15 +25,23 @@ export default function StandardBankCashOutScreen() {
   };
 
   const handleFullBalance = () => {
+    setErrorMessage(null);
     setAmountStr((wallet.availableBalanceCents / 100).toFixed(2));
   };
 
   const handleConfirmTransfer = () => {
+    setErrorMessage(null);
     const num = Number.parseFloat(amountStr) || 0;
     const amountCents = Math.round(num * 100);
 
-    const tx = requestStandardCashOut(activeRole, amountCents);
-    router.push(`/(app)/cash-out-status?txId=${tx.id}` as Href);
+    const result = requestStandardCashOut(activeRole, amountCents);
+    if (!result.success || !result.transaction) {
+      setErrorMessage(
+        result.errorMessage || "Transfer failed. Please check the amount and try again."
+      );
+      return;
+    }
+    router.push(`/(app)/cash-out-status?txId=${result.transaction.id}` as Href);
   };
 
   const directDeposit = wallet.payoutAccounts.directDeposit;
@@ -102,6 +111,12 @@ export default function StandardBankCashOutScreen() {
             <Text style={styles.feeNoticeText}>{t("driver.standardCashOut.feeFree")}</Text>
           </View>
         </View>
+
+        {errorMessage ? (
+          <View style={styles.errorBanner}>
+            <Text style={styles.errorBannerText}>{errorMessage}</Text>
+          </View>
+        ) : null}
 
         {/* Actions */}
         <View style={styles.actionContainer}>
@@ -262,6 +277,19 @@ const styles = StyleSheet.create({
   feeNoticeText: {
     fontSize: 12,
     color: "#BAFF42",
+    fontWeight: "600",
+  },
+  errorBanner: {
+    backgroundColor: "rgba(239, 68, 68, 0.15)",
+    borderWidth: 1,
+    borderColor: "#EF4444",
+    borderRadius: radius.md,
+    padding: spacing[3],
+    marginBottom: spacing[3],
+  },
+  errorBannerText: {
+    color: "#FCA5A5",
+    fontSize: 13,
     fontWeight: "600",
   },
   actionContainer: {

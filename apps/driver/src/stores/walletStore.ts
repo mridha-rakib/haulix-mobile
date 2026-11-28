@@ -2,12 +2,15 @@ import { create } from "zustand";
 
 export type WorkerRole = "driver" | "helper";
 
-export type PayoutTransactionStatus = "completed" | "processing" | "failed";
+export type PayoutTransactionStatus = "processing" | "unknown" | "completed" | "failed";
 
 export type PayoutMethodType = "standard_bank" | "instant_card";
 
 export interface PayoutTransaction {
   id: string;
+  intentId: string;
+  workerId: string;
+  workerRole: WorkerRole;
   amountCents: number;
   feeCents: number;
   netCents: number;
@@ -15,9 +18,42 @@ export interface PayoutTransaction {
   destination: string;
   referenceId: string;
   status: PayoutTransactionStatus;
+  quoteId?: string;
+  retryOf?: string;
   createdAt: string;
   completedAt?: string;
   failureReason?: string;
+}
+
+export interface InstantFeeQuote {
+  quoteId: string;
+  workerId: string;
+  workerRole: WorkerRole;
+  requestedAmountCents: number;
+  feeAmountCents: number;
+  netAmountCents: number;
+  feeCents: number;
+  netCents: number;
+  payoutMethod: "instant_card";
+  maskedDestination: string;
+  validUntilIso: string;
+  isMockQuote: true;
+}
+
+export type PayoutErrorCode =
+  | "INVALID_AMOUNT"
+  | "INSUFFICIENT_FUNDS"
+  | "AMOUNT_BELOW_FEE"
+  | "INVALID_QUOTE"
+  | "QUOTE_EXPIRED"
+  | "DUPLICATE_INTENT"
+  | "UNAUTHORIZED_ROLE";
+
+export interface PayoutOperationResult {
+  success: boolean;
+  transaction?: PayoutTransaction;
+  error?: PayoutErrorCode;
+  errorMessage?: string;
 }
 
 export interface JobActivityRecord {
@@ -49,6 +85,8 @@ export interface MaskedPayoutAccount {
 }
 
 export interface WorkerLedger {
+  workerId: string;
+  workerRole: WorkerRole;
   availableBalanceCents: number;
   pendingBalanceCents: number;
   reservedBalanceCents: number;
@@ -64,6 +102,7 @@ export interface WalletStoreState {
   driverLedger: WorkerLedger;
   helperLedger: WorkerLedger;
   activeTransactionId: string | null;
+  activeQuote: InstantFeeQuote | null;
 
   // Actions
   setActiveRole: (role: WorkerRole) => void;
@@ -71,11 +110,23 @@ export interface WalletStoreState {
   getWalletForRole: (role: WorkerRole) => WorkerLedger;
   setActiveTransactionId: (id: string | null) => void;
   getTransactionById: (id: string) => PayoutTransaction | undefined;
-  requestStandardCashOut: (role: WorkerRole, amountCents: number) => PayoutTransaction;
-  getInstantFeeQuote: (amountCents: number) => { feeCents: number; netCents: number };
-  requestInstantCashOut: (role: WorkerRole, amountCents: number) => PayoutTransaction;
+  getInstantFeeQuote: (
+    roleOrAmount: WorkerRole | number,
+    maybeAmount?: number
+  ) => InstantFeeQuote | null;
+  requestStandardCashOut: (
+    role: WorkerRole,
+    amountCents: number,
+    customIntentId?: string
+  ) => PayoutOperationResult;
+  requestInstantCashOut: (
+    role: WorkerRole,
+    quoteIdOrAmount: string | number,
+    customIntentId?: string
+  ) => PayoutOperationResult;
   simulatePayoutFailure: (role: WorkerRole, transactionId: string, reason?: string) => void;
-  retryFailedPayout: (role: WorkerRole, transactionId: string) => void;
+  settlePayoutSuccess: (role: WorkerRole, transactionId: string) => void;
+  retryFailedPayout: (role: WorkerRole, transactionId: string) => PayoutOperationResult;
   updateDirectDepositAccount: (
     role: WorkerRole,
     details: { bankName: string; last4: string; routingLast4: string }
@@ -85,6 +136,7 @@ export interface WalletStoreState {
     details: { cardBrand: string; last4: string; expiry: string }
   ) => void;
   setJobDisputeHold: (jobId: string, isHeld: boolean) => void;
+  creditJobEarningsToAvailable: (jobId: string) => boolean;
   resetWalletStore: () => void;
 }
 
@@ -98,21 +150,67 @@ export function formatCents(cents: number): string {
   return `${isNegative ? "-" : ""}$${formattedDollars}.${formattedCents}`;
 }
 
+export interface WorkerCompensationBreakdown {
+  subtotalCents: number;
+  platformFeeCents: number;
+  workerPoolCents: number;
+  tipCents: number;
+  totalNetCents: number;
+  driverCompensationCents: number;
+  helperCompensationCents: number;
+  driverTipCents: number;
+  helperTipCents: number;
+  driverTotalNetCents: number;
+  helperTotalNetCents: number;
+  perWorkerPoolCents?: number;
+  perWorkerTipCents?: number;
+  perWorkerNetCents?: number;
+}
+
 export function calculateFareCommissionBreakdown(
   subtotalCents: number,
   tipCents: number,
-  crewSize: number = 1
-) {
-  // 35% HAULIX platform commission on gross subtotal
+  crewSize: number = 1,
+  customDriverSplitPercent?: number
+): WorkerCompensationBreakdown {
+  // 35% HAULIX platform commission applied strictly to gross subtotal
   const platformFeeCents = Math.round(subtotalCents * 0.35);
-  // 65% worker subtotal share
+  // 65% total worker pool
   const workerPoolCents = subtotalCents - platformFeeCents;
-  // 100% tip pass-through
+  // 100% tip pass-through with zero platform deduction
   const totalNetCents = workerPoolCents + tipCents;
 
-  const perWorkerPoolCents = Math.floor(workerPoolCents / crewSize);
-  const perWorkerTipCents = Math.floor(tipCents / crewSize);
-  const perWorkerNetCents = perWorkerPoolCents + perWorkerTipCents;
+  if (crewSize <= 1) {
+    return {
+      subtotalCents,
+      platformFeeCents,
+      workerPoolCents,
+      tipCents,
+      totalNetCents,
+      driverCompensationCents: workerPoolCents,
+      helperCompensationCents: 0,
+      driverTipCents: tipCents,
+      helperTipCents: 0,
+      driverTotalNetCents: totalNetCents,
+      helperTotalNetCents: 0,
+      perWorkerPoolCents: workerPoolCents,
+      perWorkerTipCents: tipCents,
+      perWorkerNetCents: totalNetCents,
+    };
+  }
+
+  // Multi-worker crew: respect signed role distribution if provided, or default balanced allocation
+  const driverSharePct = customDriverSplitPercent !== undefined ? customDriverSplitPercent : 0.6;
+  const _helperSharePct = 1 - driverSharePct;
+
+  const driverCompensationCents = Math.round(workerPoolCents * driverSharePct);
+  const helperCompensationCents = workerPoolCents - driverCompensationCents;
+
+  const driverTipCents = Math.floor(tipCents / 2);
+  const helperTipCents = tipCents - driverTipCents;
+
+  const perWorkerPool = Math.floor(workerPoolCents / crewSize);
+  const perWorkerTip = Math.floor(tipCents / crewSize);
 
   return {
     subtotalCents,
@@ -120,14 +218,22 @@ export function calculateFareCommissionBreakdown(
     workerPoolCents,
     tipCents,
     totalNetCents,
-    perWorkerPoolCents,
-    perWorkerTipCents,
-    perWorkerNetCents,
+    driverCompensationCents,
+    helperCompensationCents,
+    driverTipCents,
+    helperTipCents,
+    driverTotalNetCents: driverCompensationCents + driverTipCents,
+    helperTotalNetCents: helperCompensationCents + helperTipCents,
+    perWorkerPoolCents: perWorkerPool,
+    perWorkerTipCents: perWorkerTip,
+    perWorkerNetCents: perWorkerPool + perWorkerTip,
   };
 }
 
 const INITIAL_DRIVER_LEDGER: WorkerLedger = {
-  availableBalanceCents: 128000, // $1,280.00
+  workerId: "driver-alex",
+  workerRole: "driver",
+  availableBalanceCents: 128000, // $1,280.00 (Figma 1086:670)
   pendingBalanceCents: 12000, // $120.00
   reservedBalanceCents: 0,
   paidOutTotalCents: 345000, // $3,450.00
@@ -148,6 +254,9 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
   transactions: [
     {
       id: "tx-po-01",
+      intentId: "intent-po-01",
+      workerId: "driver-alex",
+      workerRole: "driver",
       amountCents: 64000,
       feeCents: 960,
       netCents: 63040,
@@ -160,6 +269,9 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
     },
     {
       id: "tx-po-02",
+      intentId: "intent-po-02",
+      workerId: "driver-alex",
+      workerRole: "driver",
       amountCents: 45000,
       feeCents: 0,
       netCents: 45000,
@@ -172,6 +284,9 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
     },
     {
       id: "tx-po-03",
+      intentId: "intent-po-03",
+      workerId: "driver-alex",
+      workerRole: "driver",
       amountCents: 85000,
       feeCents: 0,
       netCents: 85000,
@@ -249,7 +364,9 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
 };
 
 const INITIAL_HELPER_LEDGER: WorkerLedger = {
-  availableBalanceCents: 34000, // $340.00
+  workerId: "helper-a",
+  workerRole: "helper",
+  availableBalanceCents: 34000, // $340.00 (Figma 1086:1049)
   pendingBalanceCents: 4900, // $49.00
   reservedBalanceCents: 0,
   paidOutTotalCents: 85000, // $850.00
@@ -270,6 +387,9 @@ const INITIAL_HELPER_LEDGER: WorkerLedger = {
   transactions: [
     {
       id: "tx-hlp-01",
+      intentId: "intent-hlp-01",
+      workerId: "helper-a",
+      workerRole: "helper",
       amountCents: 25000,
       feeCents: 0,
       netCents: 25000,
@@ -327,8 +447,18 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
   driverLedger: INITIAL_DRIVER_LEDGER,
   helperLedger: INITIAL_HELPER_LEDGER,
   activeTransactionId: "tx-po-01",
+  activeQuote: null,
 
-  setActiveRole: (role: WorkerRole) => set({ activeRole: role }),
+  setActiveRole: (role: WorkerRole) => {
+    const s = get();
+    if (s.activeRole !== role) {
+      set({
+        activeRole: role,
+        activeTransactionId: role === "driver" ? "tx-po-01" : "tx-hlp-01",
+        activeQuote: null,
+      });
+    }
+  },
 
   getActiveWallet: () => {
     const { activeRole, driverLedger, helperLedger } = get();
@@ -343,27 +473,112 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
   setActiveTransactionId: (id: string | null) => set({ activeTransactionId: id }),
 
   getTransactionById: (id: string) => {
-    const { driverLedger, helperLedger } = get();
-    return (
-      driverLedger.transactions.find((tx) => tx.id === id) ||
-      helperLedger.transactions.find((tx) => tx.id === id)
-    );
+    const { activeRole, driverLedger, helperLedger } = get();
+    // Strict isolation: only search active worker's transactions
+    const ledger = activeRole === "driver" ? driverLedger : helperLedger;
+    return ledger.transactions.find((tx) => tx.id === id);
   },
 
-  requestStandardCashOut: (role: WorkerRole, amountCents: number) => {
+  getInstantFeeQuote: (roleOrAmount: WorkerRole | number, maybeAmount?: number) => {
+    let role: WorkerRole = get().activeRole;
+    let amountCents: number = 0;
+    if (typeof roleOrAmount === "number") {
+      amountCents = roleOrAmount;
+    } else {
+      role = roleOrAmount;
+      amountCents = maybeAmount ?? 0;
+    }
+    const ledger = get().getWalletForRole(role);
+    if (amountCents <= 0 || !Number.isInteger(amountCents) || !Number.isFinite(amountCents)) {
+      return null;
+    }
+    if (amountCents > ledger.availableBalanceCents) {
+      return null;
+    }
+
+    // Deterministic mock quote values:
+    // For canonical driver balance $1,280.00: fee is exactly $19.20 (1920 cents), net $1,260.80 (Figma 1325:1866)
+    let feeAmountCents: number;
+    if (amountCents === 128000) {
+      feeAmountCents = 1920;
+    } else if (amountCents === 34000) {
+      feeAmountCents = 510;
+    } else {
+      feeAmountCents = Math.max(150, Math.round(amountCents * 0.015));
+    }
+
+    const netAmountCents = amountCents - feeAmountCents;
+    if (netAmountCents <= 0) return null;
+
+    const quote: InstantFeeQuote = {
+      quoteId: `quote-${role}-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`,
+      workerId: ledger.workerId,
+      workerRole: role,
+      requestedAmountCents: amountCents,
+      feeAmountCents,
+      netAmountCents,
+      feeCents: feeAmountCents,
+      netCents: netAmountCents,
+      payoutMethod: "instant_card",
+      maskedDestination: `${ledger.payoutAccounts.instantDebitCard.cardBrand} ····${ledger.payoutAccounts.instantDebitCard.last4}`,
+      validUntilIso: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+      isMockQuote: true,
+    };
+
+    set({ activeQuote: quote });
+    return quote;
+  },
+
+  requestStandardCashOut: (
+    role: WorkerRole,
+    amountCents: number,
+    customIntentId?: string
+  ): PayoutOperationResult => {
     const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
 
-    const safeAmount = Math.min(Math.max(0, amountCents), currentLedger.availableBalanceCents);
-    const txId = `tx-${Date.now()}`;
+    // Validation
+    if (amountCents <= 0 || !Number.isInteger(amountCents) || !Number.isFinite(amountCents)) {
+      return {
+        success: false,
+        error: "INVALID_AMOUNT",
+        errorMessage: "Please enter a valid amount greater than $0.00",
+      };
+    }
+
+    if (amountCents > currentLedger.availableBalanceCents) {
+      return {
+        success: false,
+        error: "INSUFFICIENT_FUNDS",
+        errorMessage: "Requested amount exceeds your available balance",
+      };
+    }
+
+    const intentId = customIntentId || `intent-${role}-${amountCents}-${Date.now()}`;
+
+    // Prevent duplicate active pending reservations
+    const existingIntent = currentLedger.transactions.find(
+      (tx) => tx.intentId === intentId && tx.status === "processing"
+    );
+    if (existingIntent) {
+      return {
+        success: true,
+        transaction: existingIntent,
+      };
+    }
+
+    const txId = `tx-std-${Date.now()}`;
     const refNum = Math.floor(1000 + Math.random() * 9000);
     const referenceId = `TX-PO-2026-${refNum}`;
 
     const newTx: PayoutTransaction = {
       id: txId,
-      amountCents: safeAmount,
+      intentId,
+      workerId: currentLedger.workerId,
+      workerRole: role,
+      amountCents,
       feeCents: 0,
-      netCents: safeAmount,
+      netCents: amountCents,
       method: "standard_bank",
       destination: `${currentLedger.payoutAccounts.directDeposit.bankName} ····${currentLedger.payoutAccounts.directDeposit.last4}`,
       referenceId,
@@ -374,57 +589,110 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     set({
       [ledgerKey]: {
         ...currentLedger,
-        availableBalanceCents: currentLedger.availableBalanceCents - safeAmount,
-        reservedBalanceCents: currentLedger.reservedBalanceCents + safeAmount,
+        availableBalanceCents: currentLedger.availableBalanceCents - amountCents,
+        reservedBalanceCents: currentLedger.reservedBalanceCents + amountCents,
         transactions: [newTx, ...currentLedger.transactions],
       },
       activeTransactionId: txId,
     });
 
-    return newTx;
+    return { success: true, transaction: newTx };
   },
 
-  getInstantFeeQuote: (amountCents: number) => {
-    // 1.5% fee with min $1.50 (150 cents)
-    const feeCents = Math.max(150, Math.round(amountCents * 0.015));
-    const netCents = Math.max(0, amountCents - feeCents);
-    return { feeCents, netCents };
-  },
-
-  requestInstantCashOut: (role: WorkerRole, amountCents: number) => {
+  requestInstantCashOut: (
+    role: WorkerRole,
+    quoteIdOrAmount: string | number,
+    customIntentId?: string
+  ): PayoutOperationResult => {
+    let quote = get().activeQuote;
+    if (typeof quoteIdOrAmount === "number") {
+      quote = get().getInstantFeeQuote(role, quoteIdOrAmount);
+    } else if (!quote || quote.quoteId !== quoteIdOrAmount) {
+      if (get().activeQuote?.quoteId === quoteIdOrAmount) {
+        quote = get().activeQuote;
+      }
+    }
     const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
 
-    const safeAmount = Math.min(Math.max(0, amountCents), currentLedger.availableBalanceCents);
-    const { feeCents, netCents } = get().getInstantFeeQuote(safeAmount);
+    if (!quote || (typeof quoteIdOrAmount === "string" && quote.quoteId !== quoteIdOrAmount)) {
+      return {
+        success: false,
+        error: "INVALID_QUOTE",
+        errorMessage: "The fee quote is invalid or has expired. Please review a new quote.",
+      };
+    }
 
-    const txId = `tx-${Date.now()}`;
+    if (new Date(quote.validUntilIso).getTime() <= Date.now()) {
+      return {
+        success: false,
+        error: "QUOTE_EXPIRED",
+        errorMessage: "This fee quote has expired. Please review a new quote.",
+      };
+    }
+
+    const amountCents = quote.requestedAmountCents;
+    if (amountCents > currentLedger.availableBalanceCents) {
+      return {
+        success: false,
+        error: "INSUFFICIENT_FUNDS",
+        errorMessage: "Requested amount exceeds your available balance",
+      };
+    }
+
+    if (amountCents <= quote.feeAmountCents) {
+      return {
+        success: false,
+        error: "AMOUNT_BELOW_FEE",
+        errorMessage: "Requested amount is too low to cover the processing fee",
+      };
+    }
+
+    const intentId = customIntentId || `intent-${role}-${amountCents}-${Date.now()}`;
+
+    // Prevent duplicate pending intent
+    const existingIntent = currentLedger.transactions.find(
+      (tx) => tx.intentId === intentId && tx.status === "processing"
+    );
+    if (existingIntent) {
+      return {
+        success: true,
+        transaction: existingIntent,
+      };
+    }
+
+    const txId = `tx-inst-${Date.now()}`;
     const refNum = Math.floor(1000 + Math.random() * 9000);
     const referenceId = `TX-PO-2026-${refNum}`;
 
     const newTx: PayoutTransaction = {
       id: txId,
-      amountCents: safeAmount,
-      feeCents,
-      netCents,
+      intentId,
+      workerId: currentLedger.workerId,
+      workerRole: role,
+      amountCents,
+      feeCents: quote.feeAmountCents,
+      netCents: quote.netAmountCents,
       method: "instant_card",
-      destination: `${currentLedger.payoutAccounts.instantDebitCard.cardBrand} ····${currentLedger.payoutAccounts.instantDebitCard.last4}`,
+      destination: quote.maskedDestination,
       referenceId,
       status: "processing",
+      quoteId: quote.quoteId,
       createdAt: new Date().toISOString(),
     };
 
     set({
       [ledgerKey]: {
         ...currentLedger,
-        availableBalanceCents: currentLedger.availableBalanceCents - safeAmount,
-        reservedBalanceCents: currentLedger.reservedBalanceCents + safeAmount,
+        availableBalanceCents: currentLedger.availableBalanceCents - amountCents,
+        reservedBalanceCents: currentLedger.reservedBalanceCents + amountCents,
         transactions: [newTx, ...currentLedger.transactions],
       },
       activeTransactionId: txId,
+      activeQuote: null,
     });
 
-    return newTx;
+    return { success: true, transaction: newTx };
   },
 
   simulatePayoutFailure: (role: WorkerRole, transactionId: string, reason?: string) => {
@@ -432,20 +700,23 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     const currentLedger = get()[ledgerKey];
     const tx = currentLedger.transactions.find((t) => t.id === transactionId);
 
-    if (!tx || tx.status === "failed") return;
+    // Completed transactions cannot be changed to failed; already failed transactions cannot double-refund
+    if (!tx || tx.status === "completed" || tx.status === "failed") {
+      return;
+    }
 
     const updatedTransactions = currentLedger.transactions.map((t) => {
       if (t.id === transactionId) {
         return {
           ...t,
-          status: "failed" as PayoutTransactionStatus,
+          status: "failed" as const,
           failureReason: reason || "Bank transfer declined: Invalid routing or closed account",
         };
       }
       return t;
     });
 
-    // Refund reserved balance back to available balance
+    // Refund reserved balance back to available balance exactly once
     set({
       [ledgerKey]: {
         ...currentLedger,
@@ -456,24 +727,21 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     });
   },
 
-  retryFailedPayout: (role: WorkerRole, transactionId: string) => {
+  settlePayoutSuccess: (role: WorkerRole, transactionId: string) => {
     const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
     const tx = currentLedger.transactions.find((t) => t.id === transactionId);
 
-    if (tx?.status !== "failed") return;
-
-    if (currentLedger.availableBalanceCents < tx.amountCents) {
-      return; // Cannot retry if insufficient funds
+    if (tx?.status !== "processing") {
+      return;
     }
 
     const updatedTransactions = currentLedger.transactions.map((t) => {
       if (t.id === transactionId) {
         return {
           ...t,
-          status: "processing" as PayoutTransactionStatus,
-          failureReason: undefined,
-          createdAt: new Date().toISOString(),
+          status: "completed" as const,
+          completedAt: new Date().toISOString(),
         };
       }
       return t;
@@ -482,12 +750,66 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     set({
       [ledgerKey]: {
         ...currentLedger,
-        availableBalanceCents: currentLedger.availableBalanceCents - tx.amountCents,
-        reservedBalanceCents: currentLedger.reservedBalanceCents + tx.amountCents,
+        reservedBalanceCents: Math.max(0, currentLedger.reservedBalanceCents - tx.amountCents),
+        paidOutTotalCents: currentLedger.paidOutTotalCents + tx.netCents,
         transactions: updatedTransactions,
       },
-      activeTransactionId: transactionId,
     });
+  },
+
+  retryFailedPayout: (role: WorkerRole, transactionId: string): PayoutOperationResult => {
+    const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
+    const currentLedger = get()[ledgerKey];
+    const failedTx = currentLedger.transactions.find((t) => t.id === transactionId);
+
+    if (failedTx?.status !== "failed") {
+      return {
+        success: false,
+        error: "INVALID_AMOUNT",
+        errorMessage: "Only failed transactions can be retried",
+      };
+    }
+
+    if (currentLedger.availableBalanceCents < failedTx.amountCents) {
+      return {
+        success: false,
+        error: "INSUFFICIENT_FUNDS",
+        errorMessage: "Available balance is insufficient to re-attempt this payout",
+      };
+    }
+
+    // Create a new linked retry attempt preserving the historical failed record!
+    const retryTxId = `tx-retry-${Date.now()}`;
+    const refNum = Math.floor(1000 + Math.random() * 9000);
+    const referenceId = `TX-PO-2026-${refNum}`;
+
+    const retryTx: PayoutTransaction = {
+      id: retryTxId,
+      intentId: `retry-intent-${failedTx.id}-${Date.now()}`,
+      workerId: currentLedger.workerId,
+      workerRole: role,
+      amountCents: failedTx.amountCents,
+      feeCents: failedTx.feeCents,
+      netCents: failedTx.netCents,
+      method: failedTx.method,
+      destination: failedTx.destination,
+      referenceId,
+      status: "processing",
+      retryOf: failedTx.id,
+      createdAt: new Date().toISOString(),
+    };
+
+    set({
+      [ledgerKey]: {
+        ...currentLedger,
+        availableBalanceCents: currentLedger.availableBalanceCents - failedTx.amountCents,
+        reservedBalanceCents: currentLedger.reservedBalanceCents + failedTx.amountCents,
+        transactions: [retryTx, ...currentLedger.transactions],
+      },
+      activeTransactionId: retryTxId,
+    });
+
+    return { success: true, transaction: retryTx };
   },
 
   updateDirectDepositAccount: (
@@ -559,12 +881,47 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     });
   },
 
+  creditJobEarningsToAvailable: (jobId: string): boolean => {
+    const { activeRole } = get();
+    const ledgerKey = activeRole === "driver" ? "driverLedger" : "helperLedger";
+    const currentLedger = get()[ledgerKey];
+
+    const jobIndex = currentLedger.recentJobs.findIndex((j) => j.jobId === jobId);
+    if (jobIndex === -1) return false;
+
+    const job = currentLedger.recentJobs[jobIndex];
+    // Cannot credit if in dispute hold or already available
+    if (job.status !== "pending_review") {
+      return false;
+    }
+
+    const updatedJob: JobActivityRecord = {
+      ...job,
+      status: "available",
+    };
+
+    const updatedRecentJobs = [...currentLedger.recentJobs];
+    updatedRecentJobs[jobIndex] = updatedJob;
+
+    set({
+      [ledgerKey]: {
+        ...currentLedger,
+        availableBalanceCents: currentLedger.availableBalanceCents + job.netPayableCents,
+        pendingBalanceCents: Math.max(0, currentLedger.pendingBalanceCents - job.netPayableCents),
+        recentJobs: updatedRecentJobs,
+      },
+    });
+
+    return true;
+  },
+
   resetWalletStore: () => {
     set({
       activeRole: "driver",
       driverLedger: INITIAL_DRIVER_LEDGER,
       helperLedger: INITIAL_HELPER_LEDGER,
       activeTransactionId: "tx-po-01",
+      activeQuote: null,
     });
   },
 }));

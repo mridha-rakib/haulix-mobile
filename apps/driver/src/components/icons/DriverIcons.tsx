@@ -1143,6 +1143,110 @@ export function CreditCardIcon({ size = 20, color = "#BAFF42", style }: IconProp
   );
 }
 
+export function LockIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect x="3" y="11" width="18" height="11" rx="2" stroke={color} strokeWidth="1.8" />
+        <Path d="M7 11V7a5 5 0 0 1 10 0v4" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+      </Svg>
+    </View>
+  );
+}
+
+export function GlobeIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
+        <Line x1="2" y1="12" x2="22" y2="12" stroke={color} strokeWidth="1.8" />
+        <Path
+          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+          stroke={color}
+          strokeWidth="1.8"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function LogOutIcon({ size = 20, color = "#EF4444", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Polyline
+          points="16 17 21 12 16 7"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Line
+          x1="21"
+          y1="12"
+          x2="9"
+          y2="12"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function TrashIcon({ size = 20, color = "#EF4444", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Polyline
+          points="3 6 5 6 21 6"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function HeadphonesIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M3 18v-6a9 9 0 0 1 18 0v6"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+          stroke={color}
+          strokeWidth="1.8"
+        />
+      </Svg>
+    </View>
+  );
+}
+
 export function ZapIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
   return (
     <View style={style}>

@@ -1,9 +1,9 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { useDriverTranslation } from "../../i18n";
 import { useWalletStore } from "../../stores/walletStore";
-import { ShieldCheckIcon } from "../icons/DriverIcons";
+import { BankIcon, CreditCardIcon, ShieldCheckIcon } from "../icons/DriverIcons";
 
 export interface PayoutMethodOverlayProps {
   visible: boolean;
@@ -13,29 +13,15 @@ export interface PayoutMethodOverlayProps {
 
 export function PayoutMethodOverlay({ visible, onClose, onSave }: PayoutMethodOverlayProps) {
   const { t } = useDriverTranslation();
-  const { activeRole, updateDirectDepositAccount, updateInstantDebitCard } = useWalletStore();
-  const [selectedType, setSelectedType] = useState<"bank" | "card">("bank");
+  const { getActiveWallet } = useWalletStore();
+  const wallet = getActiveWallet();
 
-  const [routingNumber, setRoutingNumber] = useState("1024");
-  const [accountNumber, setAccountNumber] = useState("4109");
-  const [cardNumber, setCardNumber] = useState("9012");
-  const [expiry, setExpiry] = useState("08/28");
-  const [cvv, setCvv] = useState("123");
+  const [selectedMethod, setSelectedMethod] = useState<"bank" | "card">("bank");
+
+  const directDeposit = wallet.payoutAccounts.directDeposit;
+  const debitCard = wallet.payoutAccounts.instantDebitCard;
 
   const handleSave = () => {
-    if (selectedType === "bank") {
-      updateDirectDepositAccount(activeRole, {
-        bankName: "Chase Bank",
-        last4: accountNumber.slice(-4) || "4109",
-        routingLast4: routingNumber.slice(-4) || "1024",
-      });
-    } else {
-      updateInstantDebitCard(activeRole, {
-        cardBrand: "Visa",
-        last4: cardNumber.slice(-4) || "9012",
-        expiry: expiry || "08/28",
-      });
-    }
     if (onSave) onSave();
     onClose();
   };
@@ -49,114 +35,70 @@ export function PayoutMethodOverlay({ visible, onClose, onSave }: PayoutMethodOv
           <Text style={styles.title}>{t("driver.payoutMethodOverlay.title")}</Text>
           <Text style={styles.subtitle}>{t("driver.payoutMethodOverlay.subtitle")}</Text>
 
-          {/* Type Toggle */}
-          <View style={styles.typeSelector}>
+          {/* Instrument Selector Cards */}
+          <View style={styles.optionList}>
+            {/* Bank Direct Deposit Option */}
             <Pressable
-              style={[styles.typeOption, selectedType === "bank" && styles.typeOptionActive]}
-              onPress={() => setSelectedType("bank")}
-              accessibilityRole="button"
+              style={[styles.optionCard, selectedMethod === "bank" && styles.optionCardActive]}
+              onPress={() => setSelectedMethod("bank")}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: selectedMethod === "bank" }}
+              accessibilityLabel={`${t("driver.payoutMethodOverlay.bankOption")}, ${directDeposit.bankName} ending in ${directDeposit.last4}`}
             >
-              <Text
-                style={[
-                  styles.typeOptionText,
-                  selectedType === "bank" && styles.typeOptionTextActive,
-                ]}
+              <View style={styles.optionLeft}>
+                <View style={styles.iconWrap}>
+                  <BankIcon color="#BAFF42" size={20} />
+                </View>
+                <View style={styles.optionTexts}>
+                  <Text style={styles.optionTitle}>
+                    {t("driver.payoutMethodOverlay.bankOption")}
+                  </Text>
+                  <Text style={styles.optionSub}>
+                    {directDeposit.bankName} · Checking ending in {directDeposit.last4}
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={[styles.radioCircle, selectedMethod === "bank" && styles.radioCircleActive]}
               >
-                {t("driver.payoutMethodOverlay.bankOption")}
-              </Text>
+                {selectedMethod === "bank" ? <View style={styles.radioDot} /> : null}
+              </View>
             </Pressable>
 
+            {/* Instant Debit Card Option */}
             <Pressable
-              style={[styles.typeOption, selectedType === "card" && styles.typeOptionActive]}
-              onPress={() => setSelectedType("card")}
-              accessibilityRole="button"
+              style={[styles.optionCard, selectedMethod === "card" && styles.optionCardActive]}
+              onPress={() => setSelectedMethod("card")}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: selectedMethod === "card" }}
+              accessibilityLabel={`${t("driver.payoutMethodOverlay.cardOption")}, ${debitCard.cardBrand} ending in ${debitCard.last4}`}
             >
-              <Text
-                style={[
-                  styles.typeOptionText,
-                  selectedType === "card" && styles.typeOptionTextActive,
-                ]}
+              <View style={styles.optionLeft}>
+                <View style={styles.iconWrap}>
+                  <CreditCardIcon color="#BAFF42" size={20} />
+                </View>
+                <View style={styles.optionTexts}>
+                  <Text style={styles.optionTitle}>
+                    {t("driver.payoutMethodOverlay.cardOption")}
+                  </Text>
+                  <Text style={styles.optionSub}>
+                    {debitCard.cardBrand} ending in {debitCard.last4} · Exp {debitCard.expiry}
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={[styles.radioCircle, selectedMethod === "card" && styles.radioCircleActive]}
               >
-                {t("driver.payoutMethodOverlay.cardOption")}
-              </Text>
+                {selectedMethod === "card" ? <View style={styles.radioDot} /> : null}
+              </View>
             </Pressable>
           </View>
 
-          {/* Input Fields */}
-          {selectedType === "bank" ? (
-            <View style={styles.formSection}>
-              <View style={styles.inputGroup}>
-                <Text style={styles.inputLabel}>Routing Number</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={t("driver.payoutMethodOverlay.routingPlaceholder")}
-                  placeholderTextColor="#5C6E66"
-                  value={routingNumber}
-                  onChangeText={setRoutingNumber}
-                  keyboardType="numeric"
-                  maxLength={9}
-                />
-              </View>
-
-              <View style={styles.inputGroup}>
-                <Text style={styles.inputLabel}>Account Number</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={t("driver.payoutMethodOverlay.accountPlaceholder")}
-                  placeholderTextColor="#5C6E66"
-                  value={accountNumber}
-                  onChangeText={setAccountNumber}
-                  keyboardType="numeric"
-                />
-              </View>
-            </View>
-          ) : (
-            <View style={styles.formSection}>
-              <View style={styles.inputGroup}>
-                <Text style={styles.inputLabel}>Card Number</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={t("driver.payoutMethodOverlay.cardPlaceholder")}
-                  placeholderTextColor="#5C6E66"
-                  value={cardNumber}
-                  onChangeText={setCardNumber}
-                  keyboardType="numeric"
-                  maxLength={19}
-                />
-              </View>
-
-              <View style={styles.rowInputs}>
-                <View style={[styles.inputGroup, { flex: 1 }]}>
-                  <Text style={styles.inputLabel}>Expiry</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder={t("driver.payoutMethodOverlay.expPlaceholder")}
-                    placeholderTextColor="#5C6E66"
-                    value={expiry}
-                    onChangeText={setExpiry}
-                    maxLength={5}
-                  />
-                </View>
-                <View style={[styles.inputGroup, { flex: 1 }]}>
-                  <Text style={styles.inputLabel}>CVV</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder={t("driver.payoutMethodOverlay.cvvPlaceholder")}
-                    placeholderTextColor="#5C6E66"
-                    value={cvv}
-                    onChangeText={setCvv}
-                    keyboardType="numeric"
-                    maxLength={4}
-                    secureTextEntry
-                  />
-                </View>
-              </View>
-            </View>
-          )}
-
-          {/* Security Notice */}
+          {/* Masked Instrument Disclosure */}
           <View style={styles.securityBox}>
-            <ShieldCheckIcon color="#8E9E99" size={16} />
+            <ShieldCheckIcon color="#BAFF42" size={16} />
             <Text style={styles.securityText}>
               {t("driver.payoutMethodOverlay.securityNotice")}
             </Text>
@@ -228,58 +170,69 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginBottom: spacing[4],
   },
-  typeSelector: {
+  optionList: {
+    gap: spacing[3],
+    marginBottom: spacing[4],
+  },
+  optionCard: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: "#16201B",
     borderRadius: radius.lg,
-    padding: 4,
-    marginBottom: spacing[4],
+    padding: spacing[3],
     borderWidth: 1,
     borderColor: "#24342C",
   },
-  typeOption: {
-    flex: 1,
-    paddingVertical: 10,
-    alignItems: "center",
-    borderRadius: radius.md,
+  optionCardActive: {
+    borderColor: "#BAFF42",
+    backgroundColor: "#19261F",
   },
-  typeOptionActive: {
-    backgroundColor: "#23332A",
-  },
-  typeOptionText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#8E9E99",
-  },
-  typeOptionTextActive: {
-    color: "#BAFF42",
-    fontWeight: "700",
-  },
-  formSection: {
-    marginBottom: spacing[4],
-    gap: spacing[3],
-  },
-  inputGroup: {},
-  rowInputs: {
+  optionLeft: {
     flexDirection: "row",
-    gap: spacing[3],
+    alignItems: "center",
+    flex: 1,
   },
-  inputLabel: {
-    fontSize: 12,
-    fontWeight: "600",
-    color: "#8E9E99",
-    marginBottom: 6,
+  iconWrap: {
+    width: 40,
+    height: 40,
+    borderRadius: radius.full,
+    backgroundColor: "#1E2E25",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: spacing[3],
   },
-  input: {
-    backgroundColor: "#16201B",
-    borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: "#24342C",
-    paddingHorizontal: spacing[3],
-    paddingVertical: 10,
-    color: "#FFFFFF",
+  optionTexts: {
+    flex: 1,
+  },
+  optionTitle: {
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "700",
+    color: "#FFFFFF",
+  },
+  optionSub: {
+    fontSize: 12,
+    color: "#8E9E99",
+    marginTop: 2,
+  },
+  radioCircle: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 2,
+    borderColor: "#5C6E66",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: spacing[2],
+  },
+  radioCircleActive: {
+    borderColor: "#BAFF42",
+  },
+  radioDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#BAFF42",
   },
   securityBox: {
     flexDirection: "row",

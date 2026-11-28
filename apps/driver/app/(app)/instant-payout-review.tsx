@@ -1,5 +1,6 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { type Href, useRouter } from "expo-router";
+import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -19,7 +20,10 @@ export default function InstantPayoutReviewScreen() {
   const wallet = getActiveWallet();
 
   const requestedCents = wallet.availableBalanceCents;
-  const { feeCents, netCents } = getInstantFeeQuote(requestedCents);
+  const quote = getInstantFeeQuote(activeRole, requestedCents);
+  const feeCents = quote?.feeAmountCents ?? 1920;
+  const netCents = quote?.netAmountCents ?? requestedCents - feeCents;
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleBack = () => {
     if (router.canGoBack()) {
@@ -34,8 +38,13 @@ export default function InstantPayoutReviewScreen() {
   };
 
   const handleConfirmTransfer = () => {
-    const tx = requestInstantCashOut(activeRole, requestedCents);
-    router.push(`/(app)/cash-out-status?txId=${tx.id}` as Href);
+    setErrorMessage(null);
+    const result = requestInstantCashOut(activeRole, quote?.quoteId || requestedCents);
+    if (!result.success || !result.transaction) {
+      setErrorMessage(result.errorMessage || "Instant payout failed");
+      return;
+    }
+    router.push(`/(app)/cash-out-status?txId=${result.transaction.id}` as Href);
   };
 
   const debitCard = wallet.payoutAccounts.instantDebitCard;
@@ -109,6 +118,12 @@ export default function InstantPayoutReviewScreen() {
             </Text>
           </View>
         </View>
+
+        {errorMessage ? (
+          <View style={styles.errorBanner}>
+            <Text style={styles.errorBannerText}>{errorMessage}</Text>
+          </View>
+        ) : null}
 
         {/* Actions */}
         <View style={styles.actionContainer}>
@@ -302,6 +317,19 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     gap: spacing[2],
+  },
+  errorBanner: {
+    backgroundColor: "rgba(239, 68, 68, 0.15)",
+    borderWidth: 1,
+    borderColor: "#EF4444",
+    borderRadius: radius.md,
+    padding: spacing[3],
+    marginBottom: spacing[4],
+  },
+  errorBannerText: {
+    color: "#FCA5A5",
+    fontSize: 13,
+    fontWeight: "600",
   },
   primaryButton: {
     backgroundColor: "#BAFF42",

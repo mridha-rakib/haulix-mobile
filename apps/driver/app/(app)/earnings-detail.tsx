@@ -1,22 +1,38 @@
 import { radius, spacing } from "@haulix/design-tokens";
-import { type Href, useRouter } from "expo-router";
+import { type Href, useLocalSearchParams, useRouter } from "expo-router";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
+  AlertTriangleIcon,
   ArrowLeftIcon,
   ClockTimerIcon,
   InfoIcon,
   StarIcon,
 } from "../../src/components/icons/DriverIcons";
 import { useDriverTranslation } from "../../src/i18n";
-import { calculateFareCommissionBreakdown, formatCents } from "../../src/stores/walletStore";
+import {
+  calculateFareCommissionBreakdown,
+  formatCents,
+  useWalletStore,
+} from "../../src/stores/walletStore";
 
 export default function EarningsDetailScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
+  const params = useLocalSearchParams<{ jobId?: string }>();
+  const { getActiveWallet } = useWalletStore();
+  const wallet = getActiveWallet();
 
-  // Demo calculation on active job: $120.00 gross subtotal, $20.00 tip
-  const breakdown = calculateFareCommissionBreakdown(12000, 2000, 1);
+  // Find job in recentJobs or fallback
+  const jobRecord = params.jobId
+    ? wallet.recentJobs.find((j) => j.jobId === params.jobId)
+    : wallet.recentJobs[0];
+
+  const subtotalCents = jobRecord ? jobRecord.subtotalCents : 12000;
+  const tipCents = jobRecord ? jobRecord.tipCents : 2000;
+  const isDisputeHeld = jobRecord?.status === "dispute_hold";
+
+  const breakdown = calculateFareCommissionBreakdown(subtotalCents, tipCents, 1);
 
   const handleBack = () => {
     if (router.canGoBack()) {
@@ -93,14 +109,21 @@ export default function EarningsDetailScreen() {
         </View>
 
         {/* Review & Settlement Status */}
-        <View style={styles.statusCard}>
+        <View style={[styles.statusCard, isDisputeHeld && styles.disputeCard]}>
           <View style={styles.statusHeaderRow}>
-            <ClockTimerIcon color="#BAFF42" size={18} />
-            <Text style={styles.statusTitle}>{t("driver.earningsDetail.statusLabel")}</Text>
+            {isDisputeHeld ? (
+              <AlertTriangleIcon color="#EF4444" size={18} />
+            ) : (
+              <ClockTimerIcon color="#BAFF42" size={18} />
+            )}
+            <Text style={[styles.statusTitle, isDisputeHeld && styles.disputeTitle]}>
+              {isDisputeHeld ? "Dispute Hold Active" : t("driver.earningsDetail.statusLabel")}
+            </Text>
           </View>
           <Text style={styles.statusBody}>
-            Held under 24-hour review window. Direct deposit and instant cash-out will be unlocked
-            upon final customer review completion.
+            {isDisputeHeld
+              ? "This payout is temporarily held for customer review / dispute resolution. Support will contact you if additional documentation is required."
+              : "Held under 24-hour review window. Direct deposit and instant cash-out will be unlocked upon final customer review completion."}
           </Text>
         </View>
 
@@ -300,6 +323,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#8E9E99",
     lineHeight: 16,
+  },
+  disputeCard: {
+    borderColor: "#EF4444",
+    backgroundColor: "rgba(239, 68, 68, 0.08)",
+  },
+  disputeTitle: {
+    color: "#EF4444",
   },
   actionContainer: {
     gap: spacing[2],

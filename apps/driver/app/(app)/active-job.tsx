@@ -1,10 +1,17 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { type Href, useRouter } from "expo-router";
+import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Circle, Line, Path } from "react-native-svg";
-import { FileTextIcon, MessageSquareIcon, PhoneIcon } from "../../src/components/icons/DriverIcons";
+import {
+  FileTextIcon,
+  MessageSquareIcon,
+  PhoneIcon,
+  ShieldIcon,
+} from "../../src/components/icons/DriverIcons";
 import { CallPreviewOverlay } from "../../src/components/overlays/CallPreviewOverlay";
+import { EmergencyContactOverlay } from "../../src/components/overlays/EmergencyContactOverlay";
 import { useDriverTranslation } from "../../src/i18n";
 import { useActiveJobStore } from "../../src/stores/activeJobStore";
 
@@ -12,6 +19,7 @@ export default function ActiveJobScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
   const { isDriverArrived, confirmDriverArrival, setCallModalOpen } = useActiveJobStore();
+  const [emergencyVisible, setEmergencyVisible] = useState(false);
 
   const handleArrival = () => {
     confirmDriverArrival();
@@ -35,8 +43,18 @@ export default function ActiveJobScreen() {
             <Text style={styles.title}>{t("driver.activeJob.title")}</Text>
             <Text style={styles.subtitle}>{t("driver.activeJob.subtitle")}</Text>
           </View>
-          <View style={styles.badgeWrap}>
-            <Text style={styles.badgeText}>{t("driver.activeJob.badgeEnRoute")}</Text>
+          <View style={styles.headerRightRow}>
+            <Pressable
+              onPress={() => setEmergencyVisible(true)}
+              style={styles.emergencyShieldBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Emergency assistance"
+            >
+              <ShieldIcon color="#EF4444" size={20} />
+            </Pressable>
+            <View style={styles.badgeWrap}>
+              <Text style={styles.badgeText}>{t("driver.activeJob.badgeEnRoute")}</Text>
+            </View>
           </View>
         </View>
 
@@ -190,6 +208,12 @@ export default function ActiveJobScreen() {
 
       {/* Call Preview Overlay (OV-06) */}
       <CallPreviewOverlay />
+
+      {/* Emergency Assistance Overlay (OV-04) */}
+      <EmergencyContactOverlay
+        visible={emergencyVisible}
+        onClose={() => setEmergencyVisible(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -223,6 +247,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#ADB8B0",
     marginTop: 2,
+  },
+  headerRightRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing[2],
+  },
+  emergencyShieldBtn: {
+    width: 32,
+    height: 32,
+    borderRadius: radius.full,
+    backgroundColor: "rgba(239, 68, 68, 0.15)",
+    borderWidth: 1,
+    borderColor: "#EF4444",
+    justifyContent: "center",
+    alignItems: "center",
   },
   badgeWrap: {
     backgroundColor: "#BAFF42",

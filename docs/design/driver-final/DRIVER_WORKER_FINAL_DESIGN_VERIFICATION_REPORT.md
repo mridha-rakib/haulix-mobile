@@ -1,4 +1,5 @@
 # HAULIX Driver & Worker Mobile App
+
 # Final Design Verification & Implementation Handoff Report (DW-FINAL)
 
 **Application:** `apps/driver` (`com.haulix.driver`)  
@@ -7,7 +8,7 @@
 **Target Viewport Baseline:** 360dp logical width (Realme Note 60 / RMX3933, Android 15)  
 **Primary Verification Date:** November 2026  
 **Verified Delivery Commit:** `21c43f9796a57aed1fe0aa1aa914ea675de430d6`  
-**Final Acceptance Classification:** `CONDITIONALLY_READY_FOR_MOCK_FRONTEND`  
+**Final Acceptance Classification:** `CONDITIONALLY_READY_FOR_MOCK_FRONTEND`
 
 ---
 
@@ -18,6 +19,7 @@ Phase **DW-FINAL** concludes the comprehensive design audit, cross-application r
 Across the nine preceding audit milestones (DW-D01 through DW-D09), all 68 canonical functional states and their 136 localized screens (68 English + 68 Spanish), along with 14 supporting prototype overlays (7 bilingual pairs), have been systematically audited, visually inspected, and synchronized with platform policies.
 
 ### Deliverables Package in `docs/design/driver-final/`
+
 1. [DRIVER_WORKER_FINAL_DESIGN_VERIFICATION_REPORT.md](file:///C:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/design/driver-final/DRIVER_WORKER_FINAL_DESIGN_VERIFICATION_REPORT.md) — This document.
 2. [DRIVER_WORKER_IMPLEMENTATION_REGISTRY.json](file:///C:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/design/driver-final/DRIVER_WORKER_IMPLEMENTATION_REGISTRY.json) — Complete 68-state machine-readable registry with Figma node IDs, viewport dimensions, route mappings, component tokens, and policy rules.
 3. [DRIVER_WORKER_MASTER_68_STATE_INVENTORY.md](file:///C:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/design/driver-final/DRIVER_WORKER_MASTER_68_STATE_INVENTORY.md) — Master inventory of all 68 canonical states.
@@ -48,6 +50,7 @@ Across the nine preceding audit milestones (DW-D01 through DW-D09), all 68 canon
 ## 3. Live Canvas Verification & Reconciliations
 
 ### 3.1 DW21 English Text Layer Correction
+
 - **Discrepancy:** On `DW21_EN` (`1086:596`), text node `1086:632` previously lacked the 24-hour customer review rule present on Spanish counterpart `1088:961`.
 - **Canvas Action:** Mutated node `1086:632` via `use_figma` Plugin API to:
   `"Completion is subject to required evidence,\nvalid timestamps and server verification.\nCustomer 24-hour review rules apply separately."`
@@ -57,6 +60,7 @@ Across the nine preceding audit milestones (DW-D01 through DW-D09), all 68 canon
   - Reference: [dw21-completion-evidence-es-1088-925.png](file:///C:/Users/rakib_bro/sta-projects/haulix/haulix-mobile/docs/design/driver-final/screenshots/dw21-completion-evidence-es-1088-925.png)
 
 ### 3.2 DW23 Live Metric Values
+
 - Verified actual text nodes on `DW23_EN` (`1086:670`):
   - Available for Cash Out: `$1,280.00` DEMO
   - Completed Jobs: `5` completed jobs
@@ -65,6 +69,7 @@ Across the nine preceding audit milestones (DW-D01 through DW-D09), all 68 canon
 - Speculative numbers from prior handoffs (e.g. `$385.20`, 18 jobs) are formally superseded.
 
 ### 3.3 Financial Policy Truths Reconciled
+
 - **65/35 Platform Commission Rule:** Applies exclusively to the pre-tax, pre-tip booking subtotal between Worker Compensation Pool (65%) and HAULIX Platform (35%).
 - **Crew Base Allocation:** Driver vs Helper division of the 65% subtotal is governed by dispatch contract terms and vehicle provision; it is NOT hardcoded to a 50/50 split.
 - **Tip Pass-Through Rule:** 100% pass-through with default equal division across participating workers (`1086:755`).
@@ -77,6 +82,7 @@ Across the nine preceding audit milestones (DW-D01 through DW-D09), all 68 canon
 **Classification:** `CONDITIONALLY_READY_FOR_MOCK_FRONTEND`
 
 ### Conditions for Advancing to React Native Implementation:
+
 1. **P1 Blocker:** Execution of Phase **DW-F00** to create `apps/driver/app.json` with Android package `com.haulix.driver` and scheme `haulix-driver`.
 2. **P2 Architectural:** Implementation of the unified 5-tab navigation shell conforming to Master Frame `1084:26` with runtime role guarding (`useAuthStore`).
 3. **P2 External Governance:** Archival of the signed physical SRS v1.6 contract PDF when released by project management.

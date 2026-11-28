@@ -36,7 +36,7 @@ export default function JobCompletedScreen() {
   };
 
   const handleMyJobs = () => {
-    router.push("/(app)/(tabs)/jobs" as Href);
+    router.push("/(app)/my-jobs" as Href);
   };
 
   return (

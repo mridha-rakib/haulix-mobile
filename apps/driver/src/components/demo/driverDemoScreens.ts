@@ -1177,6 +1177,305 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
     description: "Modal de actualización de método de pago: pestañas cuenta/tarjeta y aviso Stripe",
   },
 
+  // DW27 Profile & Documents (DW-F09)
+  {
+    id: "DW27-EN",
+    name: "DW27 · Profile & Documents (English)",
+    figmaNode: "1086:840",
+    route: "/(app)/(tabs)/profile",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description: "Driver hub: Personal info, vehicle & operations, security, support, and sign out",
+  },
+  {
+    id: "DW27-ES",
+    name: "DW27 · Perfil y Documentos (Español)",
+    figmaNode: "1088:1169",
+    route: "/(app)/(tabs)/profile",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Perfil del conductor: Información personal, vehículo, seguridad y soporte",
+  },
+
+  // DW55 Helper Profile (DW-F09)
+  {
+    id: "DW55-EN",
+    name: "DW55 · Helper profile (English)",
+    figmaNode: "1301:1534",
+    route: "/(app)/helper-profile",
+    locale: "en",
+    role: "HELPER",
+    description:
+      "Helper hub: Personal info, eligibility, availability, payout account, and support",
+  },
+  {
+    id: "DW55-ES",
+    name: "DW55 · Perfil de Ayudante (Español)",
+    figmaNode: "1301:2776",
+    route: "/(app)/helper-profile",
+    locale: "es",
+    role: "HELPER",
+    description: "Perfil del ayudante: Información personal, elegibilidad, turnos y cuenta de pago",
+  },
+
+  // DW28 My Jobs (DW-F09)
+  {
+    id: "DW28-EN",
+    name: "DW28 · My jobs (English)",
+    figmaNode: "1086:911",
+    route: "/(app)/my-jobs",
+    locale: "en",
+    description: "Shift history: Completed & paid vs cancelled/expired tabs with route summaries",
+  },
+  {
+    id: "DW28-ES",
+    name: "DW28 · Mis Trabajos (Español)",
+    figmaNode: "1088:1240",
+    route: "/(app)/my-jobs",
+    locale: "es",
+    description: "Historial de trabajos: Pestañas completados y pasados con enlaces a resúmenes",
+  },
+
+  // DW29 Help & Support (DW-F09)
+  {
+    id: "DW29-EN",
+    name: "DW29 · Help & support (English)",
+    figmaNode: "1086:962",
+    route: "/(app)/help-support",
+    locale: "en",
+    description: "Support center: 24/7 emergency dispatch banner, topic browsing & dispatcher CTA",
+  },
+  {
+    id: "DW29-ES",
+    name: "DW29 · Ayuda y Soporte (Español)",
+    figmaNode: "1088:1291",
+    route: "/(app)/help-support",
+    locale: "es",
+    description:
+      "Centro de ayuda: Banner de emergencia 24/7, temas de soporte y llamada a despacho",
+  },
+
+  // DW30 Notifications (DW-F09)
+  {
+    id: "DW30-EN",
+    name: "DW30 · Notifications (English)",
+    figmaNode: "1086:1009",
+    route: "/(app)/notifications",
+    locale: "en",
+    description: "Alert feed: Dispatches, payouts, system messages, unread indicators & deep links",
+  },
+  {
+    id: "DW30-ES",
+    name: "DW30 · Notificaciones (Español)",
+    figmaNode: "1088:1338",
+    route: "/(app)/notifications",
+    locale: "es",
+    description: "Feed de alertas: Despachos, pagos, mensajes del sistema y filtros por categoría",
+  },
+
+  // DW32 Language & Security (DW-F09)
+  {
+    id: "DW32-EN",
+    name: "DW32 · Language & security (English)",
+    figmaNode: "1086:1108",
+    route: "/(app)/language-security",
+    locale: "en",
+    description: "Settings: Live EN/ES toggle, password change, 2FA status & protection overview",
+  },
+  {
+    id: "DW32-ES",
+    name: "DW32 · Idioma y Seguridad (Español)",
+    figmaNode: "1088:1437",
+    route: "/(app)/language-security",
+    locale: "es",
+    description: "Configuración: Selector de idioma EN/ES, contraseña, 2FA y escudo de seguridad",
+  },
+
+  // DW36 Personal Information (DW-F09)
+  {
+    id: "DW36-EN",
+    name: "DW36 · Personal information (English)",
+    figmaNode: "1270:428",
+    route: "/(app)/personal-info",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Driver profile details: Legal name, contact, home address & IRS 1099 tax ID notice",
+  },
+  {
+    id: "DW36-ES",
+    name: "DW36 · Información Personal (Español)",
+    figmaNode: "1270:1379",
+    route: "/(app)/personal-info",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Detalles del conductor: Nombre legal, contacto, dirección y nota fiscal 1099",
+  },
+
+  // DW57 Helper Personal Information (DW-F09)
+  {
+    id: "DW57-EN",
+    name: "DW57 · Helper personal info (English)",
+    figmaNode: "1302:696",
+    route: "/(app)/helper-personal-info",
+    locale: "en",
+    role: "HELPER",
+    description: "Helper profile details: Legal name, phone, email, address & SSN/ITIN tax ID",
+  },
+  {
+    id: "DW57-ES",
+    name: "DW57 · Información Personal del Ayudante (Español)",
+    figmaNode: "1302:787",
+    route: "/(app)/helper-personal-info",
+    locale: "es",
+    role: "HELPER",
+    description: "Detalles del ayudante: Nombre legal, teléfono, correo, dirección y RFC/ITIN",
+  },
+
+  // DW37 Photo & Contact (DW-F09)
+  {
+    id: "DW37-EN",
+    name: "DW37 · Photo & contact (English)",
+    figmaNode: "1270:550",
+    route: "/(app)/photo-contact",
+    locale: "en",
+    description: "Avatar preview with change photo CTA & designated emergency contact editor",
+  },
+  {
+    id: "DW37-ES",
+    name: "DW37 · Foto y Contacto (Español)",
+    figmaNode: "1270:1501",
+    route: "/(app)/photo-contact",
+    locale: "es",
+    description: "Foto de perfil con botón de cambio y editor de contacto de emergencia",
+  },
+
+  // DW41 Change Password (DW-F09)
+  {
+    id: "DW41-EN",
+    name: "DW41 · Change password (English)",
+    figmaNode: "1270:1047",
+    route: "/(app)/change-password",
+    locale: "en",
+    description: "Password security: Current/new/confirm inputs, eye toggles & requirements list",
+  },
+  {
+    id: "DW41-ES",
+    name: "DW41 · Cambiar Contraseña (Español)",
+    figmaNode: "1270:1998",
+    route: "/(app)/change-password",
+    locale: "es",
+    description: "Seguridad de contraseña: Ver/ocultar contraseña y requisitos de complejidad",
+  },
+
+  // DW42 Notification Settings (DW-F09)
+  {
+    id: "DW42-EN",
+    name: "DW42 · Notification settings (English)",
+    figmaNode: "1270:1154",
+    route: "/(app)/notification-settings",
+    locale: "en",
+    description: "Preference toggles: Push offers, messages, payouts, SMS alerts & sound feedback",
+  },
+  {
+    id: "DW42-ES",
+    name: "DW42 · Configuración de Notificaciones (Español)",
+    figmaNode: "1270:2105",
+    route: "/(app)/notification-settings",
+    locale: "es",
+    description: "Preferencias de alertas: Ofertas push, mensajes, retiros, SMS y sonidos",
+  },
+
+  // DW45 Contact Support (DW-F09)
+  {
+    id: "DW45-EN",
+    name: "DW45 · Contact support (English)",
+    figmaNode: "1301:662",
+    route: "/(app)/contact-support",
+    locale: "en",
+    description: "Support submission: Category selector, optional Job ID input & detailed message",
+  },
+  {
+    id: "DW45-ES",
+    name: "DW45 · Contactar Soporte (Español)",
+    figmaNode: "1301:1904",
+    route: "/(app)/contact-support",
+    locale: "es",
+    description: "Envío de solicitud: Selector de categoría, ID de trabajo opcional y mensaje",
+  },
+
+  // DW46 Request Received (DW-F09)
+  {
+    id: "DW46-EN",
+    name: "DW46 · Request received (English)",
+    figmaNode: "1301:754",
+    route: "/(app)/request-received",
+    locale: "en",
+    description: "Ticket confirmation: Generated support ticket badge, SLA notice & return CTAs",
+  },
+  {
+    id: "DW46-ES",
+    name: "DW46 · Solicitud Recibida (Español)",
+    figmaNode: "1301:1996",
+    route: "/(app)/request-received",
+    locale: "es",
+    description: "Confirmación de ticket: Número de ticket generado, aviso de tiempo y retorno",
+  },
+
+  // OV-01 Profile Photo Overlay (DW-F09)
+  {
+    id: "OV01-EN",
+    name: "OV-01 · Profile photo update preview (English)",
+    figmaNode: "1281:519",
+    route: "/(app)/photo-contact?overlay=ov01",
+    locale: "en",
+    description: "Bottom sheet modal: Camera, Gallery & Remove options for profile avatar",
+  },
+  {
+    id: "OV01-ES",
+    name: "OV-01 · Vista previa actualizar foto de perfil (Español)",
+    figmaNode: "1282:518",
+    route: "/(app)/photo-contact?overlay=ov01",
+    locale: "es",
+    description: "Modal inferior: Opciones de cámara, galería y eliminar foto de perfil",
+  },
+
+  // OV-03 Account Protection Overlay (DW-F09)
+  {
+    id: "OV03-EN",
+    name: "OV-03 · Account protection preview (English)",
+    figmaNode: "1282:549",
+    route: "/(app)/language-security?overlay=ov03",
+    locale: "en",
+    description: "Security shield modal: Device binding, 2FA enforcement & payout lock explanation",
+  },
+  {
+    id: "OV03-ES",
+    name: "OV-03 · Vista previa protección de cuenta (Español)",
+    figmaNode: "1282:559",
+    route: "/(app)/language-security?overlay=ov03",
+    locale: "es",
+    description: "Modal de escudo de seguridad: Vinculación de dispositivo, 2FA y bloqueo de pagos",
+  },
+
+  // OV-04 Emergency Contact Information Overlay (DW-F09)
+  {
+    id: "OV04-EN",
+    name: "OV-04 · Emergency assistance preview (English)",
+    figmaNode: "1286:532",
+    route: "/(app)/help-support?overlay=ov04",
+    locale: "en",
+    description: "Urgent safety modal: Call 911, HAULIX Safety line, GPS sharing & contact dial",
+  },
+  {
+    id: "OV04-ES",
+    name: "OV-04 · Asistencia de emergencia (Español)",
+    figmaNode: "1286:543",
+    route: "/(app)/help-support?overlay=ov04",
+    locale: "es",
+    description: "Modal de seguridad urgente: Llamar 911, despacho de seguridad HAULIX y GPS",
+  },
+
   // 5-Tab Navigation Shell
   {
     id: "TAB-HOME-DRIVER",

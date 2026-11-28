@@ -1,10 +1,11 @@
 # HAULIX Driver & Worker Mobile App
+
 # Phase DW-F00 Foundation & Monorepo Handoff Specification
 
 **Application:** `apps/driver` (`com.haulix.driver`)  
 **Monorepo Location:** `c:\Users\rakib_bro\sta-projects\haulix\haulix-mobile\apps\driver`  
 **Execution Phase:** DW-F00 (Engineering Implementation Milestone 0)  
-**Acceptance Classification:** Pre-requisite for React Native Screen Implementation  
+**Acceptance Classification:** Pre-requisite for React Native Screen Implementation
 
 ---
 
@@ -17,6 +18,7 @@ Phase DW-F00 establishes the technical runtime foundation for `apps/driver` with
 ## 2. Mandatory Engineering Actions
 
 ### 2.1 Action 1: Create Authoritative `apps/driver/app.json`
+
 `apps/driver` currently lacks an `app.json` manifest. Before running Expo commands or EAS builds, create `apps/driver/app.json`:
 
 ```json
@@ -75,6 +77,7 @@ Phase DW-F00 establishes the technical runtime foundation for `apps/driver` with
 ```
 
 ### 2.2 Action 2: Configure NativeWind Preset & Token Invariants
+
 Ensure `apps/driver/tailwind.config.js` extends the authoritative `@haulix/design-tokens/tailwind-preset`:
 
 ```javascript
@@ -83,25 +86,29 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}",
-    "../../packages/ui/src/**/*.{js,jsx,ts,tsx}"
+    "../../packages/ui/src/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [require("@haulix/design-tokens/tailwind-preset")],
   theme: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };
 ```
 
 ### 2.3 Action 3: Establish Root Layout & Providers
+
 Mount in `apps/driver/app/_layout.tsx`:
+
 1. `QueryClientProvider` (TanStack Query)
 2. `SafeAreaProvider` (`react-native-safe-area-context`)
 3. `ErrorBoundary` from `src/components/ErrorBoundary.tsx`
 4. Global dark background `#151A19` (`bg-surface`)
 
 ### 2.4 Action 4: Build Authoritative 5-Tab Navigator Shell
+
 Construct `apps/driver/app/(app)/(tabs)/_layout.tsx` implementing the 5 tabs matching Figma Master Frame `1084:26` and Icon Set `1314:320`:
+
 - **Tab 1: Home** (Dynamic Driver `DW09` vs Helper `DW31`)
 - **Tab 2: Jobs** (`DW10` Offers & Invitations)
 - **Tab 3: Active** (`DW17` Live Transit & Dispatch)
@@ -111,7 +118,9 @@ Construct `apps/driver/app/(app)/(tabs)/_layout.tsx` implementing the 5 tabs mat
 ---
 
 ## 3. Monorepo Quality Gate Checklist
+
 Before marking DW-F00 complete, the engineering team must verify:
+
 - [ ] `apps/driver/app.json` exists and validates with Expo CLI.
 - [ ] `pnpm --filter @haulix/driver check` (Biome linting & formatting passes).
 - [ ] `pnpm --filter @haulix/driver typecheck` (TypeScript compiler passes with zero errors).
