@@ -993,6 +993,190 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
     description: "Centro de elegibilidad y documentos de identidad para ayudantes de cuadrilla",
   },
 
+  // DW-F08 Worker Wallet, Ledger & Cash Out
+  // DW23 Earnings Overview
+  {
+    id: "DW23-EN",
+    name: "DW23 · Earnings overview (English)",
+    figmaNode: "1086:670",
+    route: "/(app)/(tabs)/earnings",
+    locale: "en",
+    description: "Earnings overview: Available balance, completed jobs, pending ledger & activity",
+  },
+  {
+    id: "DW23-ES",
+    name: "DW23 · Vista general de ganancias (Español)",
+    figmaNode: "1088:999",
+    route: "/(app)/(tabs)/earnings",
+    locale: "es",
+    description: "Vista de balance disponible, trabajos completados y actividad de ingresos",
+  },
+
+  // DW24 Worker Earnings Detail
+  {
+    id: "DW24-EN",
+    name: "DW24 · Worker earnings detail (English)",
+    figmaNode: "1086:728",
+    route: "/(app)/earnings-detail",
+    locale: "en",
+    description: "Detailed fare breakdown: 35% commission, 65% worker share, 100% tip pass-through",
+  },
+  {
+    id: "DW24-ES",
+    name: "DW24 · Detalle de ganancias del trabajador (Español)",
+    figmaNode: "1088:1057",
+    route: "/(app)/earnings-detail",
+    locale: "es",
+    description: "Desglose de tarifa: 35% comisión, 65% trabajador, 100% propinas directas",
+  },
+
+  // DW25 Cash Out Methods
+  {
+    id: "DW25-EN",
+    name: "DW25 · Cash Out methods (English)",
+    figmaNode: "1086:765",
+    route: "/(app)/cash-out-methods",
+    locale: "en",
+    description: "Velocity options: Instant Cash Out (fee) vs Standard Bank Transfer (free)",
+  },
+  {
+    id: "DW25-ES",
+    name: "DW25 · Métodos de retiro (Español)",
+    figmaNode: "1088:1094",
+    route: "/(app)/cash-out-methods",
+    locale: "es",
+    description:
+      "Opciones de retiro: Retiro instantáneo vs Transferencia bancaria estándar gratuita",
+  },
+
+  // DW26 Cash Out Status
+  {
+    id: "DW26-EN",
+    name: "DW26 · Cash Out status (English)",
+    figmaNode: "1086:802",
+    route: "/(app)/cash-out-status",
+    locale: "en",
+    description: "Disbursement queued: Processing badge, net amount, destination & reference ID",
+  },
+  {
+    id: "DW26-ES",
+    name: "DW26 · Estado del retiro (Español)",
+    figmaNode: "1088:1131",
+    route: "/(app)/cash-out-status",
+    locale: "es",
+    description: "Estado de transferencia: En proceso, monto neto, destino y referencia",
+  },
+
+  // DW35 Payout History
+  {
+    id: "DW35-EN",
+    name: "DW35 · Payout history (English)",
+    figmaNode: "1086:1215",
+    route: "/(app)/payout-history",
+    locale: "en",
+    description:
+      "Disbursement ledger: Filter chips, status badges, failure links & export statement",
+  },
+  {
+    id: "DW35-ES",
+    name: "DW35 · Historial de pagos (Español)",
+    figmaNode: "1088:1544",
+    route: "/(app)/payout-history",
+    locale: "es",
+    description: "Historial de transferencias con filtros por estado y opciones de exportación",
+  },
+
+  // DW40 Payout Account
+  {
+    id: "DW40-EN",
+    name: "DW40 · Payout account (English)",
+    figmaNode: "1270:930",
+    route: "/(app)/payout-account",
+    locale: "en",
+    description: "Payout destinations: Direct Deposit account, Instant debit card & update modal",
+  },
+  {
+    id: "DW40-ES",
+    name: "DW40 · Cuenta de pago (Español)",
+    figmaNode: "1270:1881",
+    route: "/(app)/payout-account",
+    locale: "es",
+    description: "Cuentas bancarias vinculadas, tarjeta de débito y modal de actualización",
+  },
+
+  // DW54 Payout Failed
+  {
+    id: "DW54-EN",
+    name: "DW54 · Payout failed (English)",
+    figmaNode: "1301:1445",
+    route: "/(app)/payout-failed",
+    locale: "en",
+    description: "Declined transfer: Reason card, funds restored notice, retry & update CTAs",
+  },
+  {
+    id: "DW54-ES",
+    name: "DW54 · Error en el pago (Español)",
+    figmaNode: "1301:2687",
+    route: "/(app)/payout-failed",
+    locale: "es",
+    description:
+      "Transferencia bancaria rechazada: Motivo, fondos devueltos y opciones de reintento",
+  },
+
+  // DW67 Standard Bank Cash Out
+  {
+    id: "DW67-EN",
+    name: "DW67 · Standard bank Cash Out (English)",
+    figmaNode: "1325:1804",
+    route: "/(app)/standard-bank-cashout",
+    locale: "en",
+    description: "Free ACH withdrawal: Amount input, full balance shortcut & $0 fee guarantee",
+  },
+  {
+    id: "DW67-ES",
+    name: "DW67 · Retiro bancario estándar (Español)",
+    figmaNode: "1325:1938",
+    route: "/(app)/standard-bank-cashout",
+    locale: "es",
+    description: "Retiro bancario sin cargo: Entrada de monto, botón de saldo total y confirmación",
+  },
+
+  // DW68 Instant Fee & Payout Review
+  {
+    id: "DW68-EN",
+    name: "DW68 · Instant fee & payout review (English)",
+    figmaNode: "1325:1866",
+    route: "/(app)/instant-payout-review",
+    locale: "en",
+    description: "Instant disbursement: Live provider fee deduction, net deposit & speed guarantee",
+  },
+  {
+    id: "DW68-ES",
+    name: "DW68 · Revisión de tarifa y retiro instantáneo (Español)",
+    figmaNode: "1325:2000",
+    route: "/(app)/instant-payout-review",
+    locale: "es",
+    description: "Retiro instantáneo: Tarifa calculada, monto neto depositado y confirmación",
+  },
+
+  // OV-02 Payout Account Update Overlay
+  {
+    id: "OV02-EN",
+    name: "OV-02 · Update payout method overlay (English)",
+    figmaNode: "1282:529",
+    route: "/(app)/payout-account?overlay=ov02",
+    locale: "en",
+    description: "Sheet overlay: Bank account vs debit card tabs, secure inputs & PCI note",
+  },
+  {
+    id: "OV02-ES",
+    name: "OV-02 · Modal actualizar método de pago (Español)",
+    figmaNode: "1282:539",
+    route: "/(app)/payout-account?overlay=ov02",
+    locale: "es",
+    description: "Modal de actualización de método de pago: pestañas cuenta/tarjeta y aviso Stripe",
+  },
+
   // 5-Tab Navigation Shell
   {
     id: "TAB-HOME-DRIVER",

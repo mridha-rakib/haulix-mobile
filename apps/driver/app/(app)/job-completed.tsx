@@ -18,6 +18,19 @@ export default function JobCompletedScreen() {
   const { activeJobId, getCompletionRecord } = useCompletionEvidenceStore();
   const record = getCompletionRecord(activeJobId);
 
+  const isDispute = record.disputeStatus === "DISPUTE_HOLD";
+  const isConfirmed = record.customerReviewStatus === "CUSTOMER_CONFIRMED";
+
+  const bannerText = isDispute
+    ? t("driver.jobCompleted.disputeNoticeBanner")
+    : isConfirmed
+      ? t("driver.jobCompleted.confirmedNoticeBanner")
+      : t("driver.jobCompleted.payoutPendingNotice");
+
+  const badgeText = isDispute
+    ? t("driver.jobCompleted.disputeHoldBadge")
+    : t("driver.jobCompleted.badgeEvidenceReceived");
+
   const handleViewEarnings = () => {
     router.push("/(app)/(tabs)/earnings" as Href);
   };
@@ -31,13 +44,13 @@ export default function JobCompletedScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Success Celebration Header */}
         <View style={styles.heroSection}>
-          <View style={styles.badgeCircle}>
-            <CheckmarkIcon color="#0B0F0E" size={32} />
+          <View style={[styles.badgeCircle, isDispute && styles.badgeCircleDispute]}>
+            <CheckmarkIcon color={isDispute ? "#FF5C5C" : "#0B0F0E"} size={32} />
           </View>
 
-          <View style={styles.badgePill}>
-            <Text style={styles.badgePillText}>
-              {t("driver.jobCompleted.badgeEvidenceReceived")}
+          <View style={[styles.badgePill, isDispute && styles.badgePillDispute]}>
+            <Text style={[styles.badgePillText, isDispute && styles.badgePillTextDispute]}>
+              {badgeText}
             </Text>
           </View>
 
@@ -45,13 +58,24 @@ export default function JobCompletedScreen() {
           <Text style={styles.subtitle}>{t("driver.jobCompleted.subtitle")}</Text>
         </View>
 
-        {/* Notice Banner: Evidence received · final payout pending */}
-        <View style={styles.pendingNoticeBanner}>
-          <ClockTimerIcon color="#BAFF42" size={18} />
-          <Text style={styles.pendingNoticeText}>
-            {t("driver.jobCompleted.payoutPendingNotice")}
+        {/* Notice Banner */}
+        <View style={[styles.pendingNoticeBanner, isDispute && styles.pendingNoticeBannerDispute]}>
+          <ClockTimerIcon color={isDispute ? "#FF5C5C" : "#BAFF42"} size={18} />
+          <Text style={[styles.pendingNoticeText, isDispute && styles.pendingNoticeTextDispute]}>
+            {bannerText}
           </Text>
         </View>
+
+        {/* Dispute Details Card if in DISPUTE_HOLD */}
+        {isDispute ? (
+          <View style={styles.disputeCard}>
+            <View style={styles.disputeHeaderRow}>
+              <InfoIcon color="#FF5C5C" size={18} />
+              <Text style={styles.disputeHeaderTitle}>{t("driver.jobCompleted.disputeTitle")}</Text>
+            </View>
+            <Text style={styles.disputeBodyText}>{t("driver.jobCompleted.disputeDesc")}</Text>
+          </View>
+        ) : null}
 
         {/* Card 1: Earnings Calculation */}
         <View style={styles.card}>
@@ -89,7 +113,9 @@ export default function JobCompletedScreen() {
         <View style={styles.reviewWindowCard}>
           <View style={styles.reviewHeaderRow}>
             <InfoIcon color="#BAFF42" size={18} />
-            <Text style={styles.reviewHeaderTitle}>24-Hour Review Window Policy</Text>
+            <Text style={styles.reviewHeaderTitle}>
+              {t("driver.jobCompleted.reviewPolicyHeader")}
+            </Text>
           </View>
           <Text style={styles.reviewBodyText}>{t("driver.jobCompleted.reviewWindowNotice")}</Text>
           <View style={styles.nonPaymentBox}>
@@ -146,6 +172,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: spacing[3],
   },
+  badgeCircleDispute: {
+    backgroundColor: "#331616",
+  },
   badgePill: {
     backgroundColor: "#192E24",
     borderWidth: 1,
@@ -155,11 +184,18 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
     marginBottom: spacing[2],
   },
+  badgePillDispute: {
+    backgroundColor: "#331616",
+    borderColor: "#7A2E2E",
+  },
   badgePillText: {
     fontSize: 12,
     fontWeight: "800",
     letterSpacing: 0.8,
     color: "#BAFF42",
+  },
+  badgePillTextDispute: {
+    color: "#FF5C5C",
   },
   title: {
     fontSize: 26,
@@ -187,11 +223,42 @@ const styles = StyleSheet.create({
     marginBottom: spacing[4],
     gap: spacing[2],
   },
+  pendingNoticeBannerDispute: {
+    backgroundColor: "#2A1414",
+    borderColor: "#662828",
+  },
   pendingNoticeText: {
     fontSize: 13,
     fontWeight: "700",
     color: "#BAFF42",
     textAlign: "center",
+  },
+  pendingNoticeTextDispute: {
+    color: "#FF5C5C",
+  },
+  disputeCard: {
+    backgroundColor: "#1D1313",
+    borderWidth: 1,
+    borderColor: "#552323",
+    borderRadius: radius.xl,
+    padding: spacing[4],
+    marginBottom: spacing[4],
+  },
+  disputeHeaderRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing[2],
+    marginBottom: spacing[2],
+  },
+  disputeHeaderTitle: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#FF5C5C",
+  },
+  disputeBodyText: {
+    fontSize: 13,
+    color: "#D1A5A5",
+    lineHeight: 18,
   },
   card: {
     backgroundColor: "#151A19",

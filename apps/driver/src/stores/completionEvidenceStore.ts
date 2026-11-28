@@ -4,6 +4,28 @@ export type EvidenceCategory = "before" | "after" | "taskPhoto1" | "taskPhoto2";
 
 export type EvidenceSubmissionStatus = "DRAFT" | "READY" | "SUBMITTING" | "SUBMITTED" | "FAILED";
 
+export type CompletionVerificationStatus = "UNVERIFIED" | "VERIFIED" | "REJECTED";
+
+export type CustomerReviewStatus =
+  | "PENDING_REVIEW"
+  | "CUSTOMER_CONFIRMED"
+  | "AUTO_CLOSURE_ELIGIBLE"
+  | "DISPUTED";
+
+export type DisputeStatus = "NONE" | "DISPUTE_HOLD" | "UNDER_ARBITRATION" | "RESOLVED";
+
+export type PaymentCaptureStatus =
+  | "PENDING"
+  | "CAPTURE_SUCCESS"
+  | "CAPTURE_FAILED"
+  | "REAUTH_REQUIRED"
+  | "SETTLED";
+
+export type EarningsEligibility = "PENDING" | "ELIGIBLE" | "ON_HOLD" | "CREDITED";
+
+export type WorkerPayoutStatus = "UNPAID" | "RESERVED" | "PROCESSING" | "PAID_OUT" | "FAILED";
+
+// Backwards-compatible union for existing tests and components
 export type CompletionReviewStatus =
   | "EVIDENCE_SUBMITTED"
   | "REVIEW_PENDING"
@@ -29,6 +51,7 @@ export interface EvidenceItem {
 
 export interface JobCompletionRecord {
   jobId: string;
+  submissionId: string;
   driverEvidence: {
     before: EvidenceItem | null;
     after: EvidenceItem | null;
@@ -37,11 +60,22 @@ export interface JobCompletionRecord {
     taskPhoto1: EvidenceItem | null;
     taskPhoto2: EvidenceItem | null;
   };
+
+  // Independent typed state dimensions
   driverSubmissionStatus: EvidenceSubmissionStatus;
   helperSubmissionStatus: EvidenceSubmissionStatus;
+  completionVerificationStatus: CompletionVerificationStatus;
+  customerReviewStatus: CustomerReviewStatus;
+  disputeStatus: DisputeStatus;
+  paymentCaptureStatus: PaymentCaptureStatus;
+  earningsEligibility: EarningsEligibility;
+  workerPayoutStatus: WorkerPayoutStatus;
+
+  // Legacy / unified status accessor
   reviewStatus: CompletionReviewStatus;
+
   submittedAt: string | null;
-  reviewWindowExpiresAt: string | null;
+  reviewWindowExpiresAt: string | null; // Machine-readable ISO mock timestamp
   disputeReason: string | null;
   finalEarningsEstimate: number;
   tipsAmount: number;
@@ -51,6 +85,7 @@ export interface JobCompletionRecord {
 export const INITIAL_COMPLETION_RECORDS: Record<string, JobCompletionRecord> = {
   "HX-AZ-DEMO-0042": {
     jobId: "HX-AZ-DEMO-0042",
+    submissionId: "sub-HX-AZ-DEMO-0042-init",
     driverEvidence: {
       before: {
         id: "ev-driver-before-001",
@@ -105,9 +140,15 @@ export const INITIAL_COMPLETION_RECORDS: Record<string, JobCompletionRecord> = {
     },
     driverSubmissionStatus: "READY",
     helperSubmissionStatus: "DRAFT",
+    completionVerificationStatus: "UNVERIFIED",
+    customerReviewStatus: "PENDING_REVIEW",
+    disputeStatus: "NONE",
+    paymentCaptureStatus: "PENDING",
+    earningsEligibility: "PENDING",
+    workerPayoutStatus: "UNPAID",
     reviewStatus: "REVIEW_PENDING",
     submittedAt: null,
-    reviewWindowExpiresAt: "24 hours after customer delivery notice",
+    reviewWindowExpiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
     disputeReason: null,
     finalEarningsEstimate: 142.5,
     tipsAmount: 20.0,
@@ -139,14 +180,31 @@ export interface CompletionEvidenceState {
     labelEs?: string
   ) => void;
   removeHelperEvidence: (jobId: string, category: "taskPhoto1" | "taskPhoto2") => void;
+
   submitDriverCompletion: (jobId?: string) => {
     success: boolean;
     error?: string;
   };
-  submitHelperWork: (jobId?: string) => { success: boolean; error?: string };
-  retryDriverSubmission: (jobId?: string) => { success: boolean };
-  retryHelperSubmission: (jobId?: string) => { success: boolean };
+  submitHelperWork: (jobId?: string) => {
+    success: boolean;
+    error?: string;
+  };
+  retryDriverSubmission: (jobId?: string) => {
+    success: boolean;
+    error?: string;
+  };
+  retryHelperSubmission: (jobId?: string) => {
+    success: boolean;
+    error?: string;
+  };
+
   setReviewStatus: (jobId: string, status: CompletionReviewStatus) => void;
+  setCustomerReviewDecision: (
+    jobId: string,
+    decision: "CONFIRMED" | "DISPUTED",
+    disputeReason?: string
+  ) => void;
+  setPaymentCaptureOutcome: (jobId: string, outcome: "SUCCESS" | "FAILED") => void;
   setMockFailureScenario: (enabled: boolean) => void;
   resetCompletionStore: () => void;
 }
@@ -164,10 +222,17 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     if (!s.completionByJob[targetId]) {
       const fallback: JobCompletionRecord = {
         jobId: targetId,
+        submissionId: `sub-${targetId}-init`,
         driverEvidence: { before: null, after: null },
         helperEvidence: { taskPhoto1: null, taskPhoto2: null },
         driverSubmissionStatus: "DRAFT",
         helperSubmissionStatus: "DRAFT",
+        completionVerificationStatus: "UNVERIFIED",
+        customerReviewStatus: "PENDING_REVIEW",
+        disputeStatus: "NONE",
+        paymentCaptureStatus: "PENDING",
+        earningsEligibility: "PENDING",
+        workerPayoutStatus: "UNPAID",
         reviewStatus: "EVIDENCE_SUBMITTED",
         submittedAt: null,
         reviewWindowExpiresAt: null,
@@ -191,6 +256,11 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const s = get();
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
+
+    // Do not mutate submitted evidence silently
+    if (record.driverSubmissionStatus === "SUBMITTED") {
+      return;
+    }
 
     const defaultUri =
       category === "before"
@@ -249,6 +319,10 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
 
+    if (record.driverSubmissionStatus === "SUBMITTED") {
+      return;
+    }
+
     const updatedDriverEvidence = {
       ...record.driverEvidence,
       [category]: null,
@@ -270,6 +344,10 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const s = get();
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
+
+    if (record.helperSubmissionStatus === "SUBMITTED") {
+      return;
+    }
 
     const defaultUri =
       category === "taskPhoto1"
@@ -325,6 +403,10 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
 
+    if (record.helperSubmissionStatus === "SUBMITTED") {
+      return;
+    }
+
     const updatedHelperEvidence = {
       ...record.helperEvidence,
       [category]: null,
@@ -349,6 +431,11 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const s = get();
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
+
+    // Idempotency: If already submitted, preserve original submission timestamp and record
+    if (record.driverSubmissionStatus === "SUBMITTED") {
+      return { success: true };
+    }
 
     // Required evidence validation: Both before and after photos are mandatory for Driver
     if (!record.driverEvidence.before || !record.driverEvidence.after) {
@@ -375,16 +462,26 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
       };
     }
 
-    // Successful submission: transitions to SUBMITTED and marks review window open
-    const updated: JobCompletionRecord = {
-      ...record,
-      driverSubmissionStatus: "SUBMITTED",
-      reviewStatus: "REVIEW_PENDING",
-      submittedAt: new Date().toLocaleTimeString([], {
+    // Successful submission: deterministic timestamps and 24h review expiry
+    const submissionTimestamp =
+      record.submittedAt ||
+      new Date().toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
-      }),
-      reviewWindowExpiresAt: "24 hours",
+      });
+
+    const expiresAtIso =
+      record.reviewWindowExpiresAt || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+
+    const updated: JobCompletionRecord = {
+      ...record,
+      submissionId: record.submissionId || `sub-${targetId}-drv-${Date.now()}`,
+      driverSubmissionStatus: "SUBMITTED",
+      completionVerificationStatus: "VERIFIED",
+      customerReviewStatus: "PENDING_REVIEW",
+      reviewStatus: "REVIEW_PENDING",
+      submittedAt: submissionTimestamp,
+      reviewWindowExpiresAt: expiresAtIso,
     };
 
     set({
@@ -401,6 +498,11 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const s = get();
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
+
+    // Idempotency: If already submitted, preserve original submission
+    if (record.helperSubmissionStatus === "SUBMITTED") {
+      return { success: true };
+    }
 
     // Helper requirement: At least one task labor photo
     if (!record.helperEvidence.taskPhoto1 && !record.helperEvidence.taskPhoto2) {
@@ -426,8 +528,6 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
       };
     }
 
-    // Helper submission marks helperSubmissionStatus as SUBMITTED,
-    // without prematurely completing the overall driver job!
     const updated: JobCompletionRecord = {
       ...record,
       helperSubmissionStatus: "SUBMITTED",
@@ -448,18 +548,36 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
 
+    // Strictly validate requirements upon retry
     if (!record.driverEvidence.before || !record.driverEvidence.after) {
-      return { success: false };
+      return {
+        success: false,
+        error: "MISSING_REQUIRED_EVIDENCE",
+      };
     }
+
+    // Respect simulated failure condition
+    if (s.mockFailureScenario) {
+      return {
+        success: false,
+        error: "SIMULATED_NETWORK_FAILURE",
+      };
+    }
+
+    const submissionTimestamp =
+      record.submittedAt ||
+      new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
     const updated: JobCompletionRecord = {
       ...record,
       driverSubmissionStatus: "SUBMITTED",
+      completionVerificationStatus: "VERIFIED",
+      customerReviewStatus: "PENDING_REVIEW",
       reviewStatus: "REVIEW_PENDING",
-      submittedAt: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
+      submittedAt: submissionTimestamp,
     };
 
     set({
@@ -476,6 +594,22 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const s = get();
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
+
+    // Strictly validate helper requirements upon retry
+    if (!record.helperEvidence.taskPhoto1 && !record.helperEvidence.taskPhoto2) {
+      return {
+        success: false,
+        error: "MISSING_HELPER_EVIDENCE",
+      };
+    }
+
+    // Respect simulated failure condition
+    if (s.mockFailureScenario) {
+      return {
+        success: false,
+        error: "SIMULATED_NETWORK_FAILURE",
+      };
+    }
 
     const updated: JobCompletionRecord = {
       ...record,
@@ -497,12 +631,101 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
     const targetId = jobId || s.activeJobId;
     const record = s.getCompletionRecord(targetId);
 
+    let customerReview: CustomerReviewStatus = "PENDING_REVIEW";
+    let dispute: DisputeStatus = "NONE";
+    let paymentCapture: PaymentCaptureStatus = "PENDING";
+    let earningsElig: EarningsEligibility = "PENDING";
+    let workerPayout: WorkerPayoutStatus = "UNPAID";
+
+    if (status === "DISPUTE_HOLD") {
+      customerReview = "DISPUTED";
+      dispute = "DISPUTE_HOLD";
+      earningsElig = "ON_HOLD";
+    } else if (status === "CUSTOMER_CONFIRMED") {
+      customerReview = "CUSTOMER_CONFIRMED";
+      paymentCapture = "CAPTURE_SUCCESS";
+      earningsElig = "ELIGIBLE";
+    } else if (status === "AUTO_CLOSURE_ELIGIBLE") {
+      customerReview = "AUTO_CLOSURE_ELIGIBLE";
+      paymentCapture = "CAPTURE_SUCCESS";
+      earningsElig = "ELIGIBLE";
+    } else if (status === "PAYMENT_SETTLED") {
+      customerReview = "CUSTOMER_CONFIRMED";
+      paymentCapture = "SETTLED";
+      earningsElig = "CREDITED";
+    } else if (status === "WORKER_PAYOUT_PENDING") {
+      earningsElig = "CREDITED";
+      workerPayout = "PROCESSING";
+    }
+
+    const updated: JobCompletionRecord = {
+      ...record,
+      reviewStatus: status,
+      customerReviewStatus: customerReview,
+      disputeStatus: dispute,
+      paymentCaptureStatus: paymentCapture,
+      earningsEligibility: earningsElig,
+      workerPayoutStatus: workerPayout,
+    };
+
+    set({
+      completionByJob: {
+        ...s.completionByJob,
+        [targetId]: updated,
+      },
+    });
+  },
+
+  setCustomerReviewDecision: (jobId, decision, disputeReason) => {
+    const s = get();
+    const targetId = jobId || s.activeJobId;
+    const record = s.getCompletionRecord(targetId);
+
+    if (decision === "DISPUTED") {
+      set({
+        completionByJob: {
+          ...s.completionByJob,
+          [targetId]: {
+            ...record,
+            customerReviewStatus: "DISPUTED",
+            disputeStatus: "DISPUTE_HOLD",
+            reviewStatus: "DISPUTE_HOLD",
+            earningsEligibility: "ON_HOLD",
+            disputeReason: disputeReason || "Customer flagged incomplete placement",
+          },
+        },
+      });
+    } else {
+      set({
+        completionByJob: {
+          ...s.completionByJob,
+          [targetId]: {
+            ...record,
+            customerReviewStatus: "CUSTOMER_CONFIRMED",
+            disputeStatus: "NONE",
+            paymentCaptureStatus: "CAPTURE_SUCCESS",
+            reviewStatus: "CUSTOMER_CONFIRMED",
+            earningsEligibility: "ELIGIBLE",
+            disputeReason: null,
+          },
+        },
+      });
+    }
+  },
+
+  setPaymentCaptureOutcome: (jobId, outcome) => {
+    const s = get();
+    const targetId = jobId || s.activeJobId;
+    const record = s.getCompletionRecord(targetId);
+
+    const isSuccess = outcome === "SUCCESS";
     set({
       completionByJob: {
         ...s.completionByJob,
         [targetId]: {
           ...record,
-          reviewStatus: status,
+          paymentCaptureStatus: isSuccess ? "CAPTURE_SUCCESS" : "CAPTURE_FAILED",
+          earningsEligibility: isSuccess ? "CREDITED" : "ON_HOLD",
         },
       },
     });
@@ -510,10 +733,11 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
 
   setMockFailureScenario: (enabled) => set({ mockFailureScenario: enabled }),
 
-  resetCompletionStore: () =>
+  resetCompletionStore: () => {
     set({
       activeJobId: "HX-AZ-DEMO-0042",
       completionByJob: JSON.parse(JSON.stringify(INITIAL_COMPLETION_RECORDS)),
       mockFailureScenario: false,
-    }),
+    });
+  },
 }));

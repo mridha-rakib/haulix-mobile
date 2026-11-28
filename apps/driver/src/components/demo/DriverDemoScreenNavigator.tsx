@@ -11,6 +11,7 @@ import { useCompletionEvidenceStore } from "../../stores/completionEvidenceStore
 import { useDispatchCrewStore } from "../../stores/dispatchCrewStore";
 import { useDriverDocumentStore, type VerificationScenario } from "../../stores/documentStore";
 import { useServiceProgressStore } from "../../stores/serviceProgressStore";
+import { useWalletStore } from "../../stores/walletStore";
 
 import { type DemoScreenItem, DRIVER_DEMO_SCREENS } from "./driverDemoScreens";
 
@@ -439,6 +440,69 @@ export function DriverDemoScreenNavigator() {
                     >
                       Dispute Hold
                     </Text>
+                  </Pressable>
+                </View>
+              </View>
+
+              {/* DW-F08 Wallet & Cash Out Scenarios */}
+              <View style={styles.scenarioSection}>
+                <Text style={styles.scenarioLabel}>DW-F08 Wallet & Cash Out:</Text>
+                <View style={styles.pillRow}>
+                  <Pressable
+                    onPress={() => useWalletStore.getState().setActiveRole("driver")}
+                    style={[
+                      styles.miniPill,
+                      useWalletStore.getState().activeRole === "driver" && styles.miniPillActive,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.miniPillText,
+                        useWalletStore.getState().activeRole === "driver" &&
+                          styles.miniPillTextActive,
+                      ]}
+                    >
+                      Driver Ledger ($1,280)
+                    </Text>
+                  </Pressable>
+
+                  <Pressable
+                    onPress={() => useWalletStore.getState().setActiveRole("helper")}
+                    style={[
+                      styles.miniPill,
+                      useWalletStore.getState().activeRole === "helper" && styles.miniPillActive,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.miniPillText,
+                        useWalletStore.getState().activeRole === "helper" &&
+                          styles.miniPillTextActive,
+                      ]}
+                    >
+                      Helper Ledger ($340)
+                    </Text>
+                  </Pressable>
+
+                  <Pressable
+                    onPress={() =>
+                      useWalletStore
+                        .getState()
+                        .simulatePayoutFailure(
+                          useWalletStore.getState().activeRole,
+                          useWalletStore.getState().activeTransactionId || "tx-po-01"
+                        )
+                    }
+                    style={styles.miniPill}
+                  >
+                    <Text style={styles.miniPillText}>Simulate Fail</Text>
+                  </Pressable>
+
+                  <Pressable
+                    onPress={() => useWalletStore.getState().resetWalletStore()}
+                    style={styles.miniPill}
+                  >
+                    <Text style={styles.miniPillText}>Reset Wallet</Text>
                   </Pressable>
                 </View>
               </View>

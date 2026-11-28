@@ -1089,3 +1089,124 @@ export function CameraIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
     </View>
   );
 }
+
+export function ArrowLeftIcon({ size = 24, color = "#FFFFFF", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M19 12H5M5 12L12 19M5 12L12 5"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function BankIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function CreditCardIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Rect
+          x="2"
+          y="5"
+          width="20"
+          height="14"
+          rx="2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Line x1="2" y1="10" x2="22" y2="10" stroke={color} strokeWidth="1.8" />
+      </Svg>
+    </View>
+  );
+}
+
+export function ZapIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Polygon
+          points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function ReceiptIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1zM8 7h8M8 11h8M8 15h4"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function DownloadIcon({ size = 18, color = "#FFFFFF", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+export function AlertCircleIcon({ size = 24, color = "#FF5C5C", style }: IconProps) {
+  return (
+    <View style={style}>
+      <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
+        <Line
+          x1="12"
+          y1="8"
+          x2="12"
+          y2="12"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <Circle cx="12" cy="16" r="0.8" fill={color} stroke={color} strokeWidth="1" />
+      </Svg>
+    </View>
+  );
+}

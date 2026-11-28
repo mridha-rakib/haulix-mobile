@@ -18,6 +18,7 @@ import { useDriverAuthStore } from "../src/stores/authStore";
 import { useCompletionEvidenceStore } from "../src/stores/completionEvidenceStore";
 import { useDispatchCrewStore } from "../src/stores/dispatchCrewStore";
 import { useServiceProgressStore } from "../src/stores/serviceProgressStore";
+import { useWalletStore } from "../src/stores/walletStore";
 
 // Keep splash screen visible while loading resources
 SplashScreen.preventAutoHideAsync();
@@ -31,6 +32,9 @@ function DemoParamsWatcher() {
     modal?: string;
     extraApproval?: string;
     reviewStatus?: string;
+    walletRole?: string;
+    failMode?: string;
+    disputeHold?: string;
   }>();
   const setRole = useDriverAuthStore((s) => s.setRole);
   const setCleanMode = useDriverAuthStore((s) => s.setCleanMode);
@@ -42,6 +46,9 @@ function DemoParamsWatcher() {
     }
     if (params.role === "PRIMARY_DRIVER" || params.role === "HELPER") {
       setRole(params.role);
+    }
+    if (params.walletRole === "driver" || params.walletRole === "helper") {
+      useWalletStore.getState().setActiveRole(params.walletRole);
     }
     if (params.scenario) {
       setScenario(params.scenario as Parameters<typeof setScenario>[0]);
@@ -79,14 +86,21 @@ function DemoParamsWatcher() {
       const store = useCompletionEvidenceStore.getState();
       store.setReviewStatus(store.activeJobId, "REVIEW_PENDING");
     }
+    if (params.disputeHold === "1") {
+      useWalletStore.getState().setJobDisputeHold("HX-AZ-DEMO-0042", true);
+    } else if (params.disputeHold === "0") {
+      useWalletStore.getState().setJobDisputeHold("HX-AZ-DEMO-0042", false);
+    }
   }, [
     params.lang,
     params.role,
+    params.walletRole,
     params.scenario,
     params.clean,
     params.modal,
     params.extraApproval,
     params.reviewStatus,
+    params.disputeHold,
     setRole,
     setCleanMode,
     setScenario,
