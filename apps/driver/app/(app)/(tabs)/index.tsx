@@ -1,6 +1,6 @@
 import { radius, spacing } from "@haulix/design-tokens";
-import { type Href, useRouter } from "expo-router";
-import { useState } from "react";
+import { type Href, useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -245,11 +245,18 @@ function HelperDashboardContent({
 
 export default function HomeScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ overlay?: string }>();
   const { role } = useDriverAuthStore();
   const { driverStatus, helperStatus, toggleDriverStatus, toggleHelperStatus } =
     useAvailabilityStore();
 
-  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(params.overlay === "ov05");
+
+  useEffect(() => {
+    if (params.overlay === "ov05") {
+      setOverlayVisible(true);
+    }
+  }, [params.overlay]);
 
   const isDriver = role === "PRIMARY_DRIVER";
   const isOnline = isDriver ? driverStatus === "ONLINE" : helperStatus === "ONLINE";

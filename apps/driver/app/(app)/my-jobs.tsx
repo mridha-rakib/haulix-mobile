@@ -35,7 +35,7 @@ interface PastJobItem {
 export default function MyJobsScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
-  const { activeRole } = useWalletStore();
+  const { activeRole, getWalletForRole } = useWalletStore();
   const [activeTab, setActiveTab] = useState<"completed" | "past">("completed");
 
   const handleBack = () => {
@@ -46,35 +46,16 @@ export default function MyJobsScreen() {
     }
   };
 
-  const completedJobs: CompletedJobItem[] = [
-    {
-      id: "HX-AZ-DEMO-0042",
-      title: "Heavy Living Room & Dining Furniture",
-      pickup: "North Scottsdale",
-      dropoff: "Downtown Tempe",
-      payoutStr: activeRole === "driver" ? "$140.00" : "$65.00",
-      dateStr: "Today · 2:15 PM",
-      statusBadge: "review",
-    },
-    {
-      id: "HX-AZ-DEMO-0038",
-      title: "Commercial Pallet Logistics Delivery",
-      pickup: "Phoenix Sky Harbor Cargo",
-      dropoff: "Chandler Tech Hub",
-      payoutStr: activeRole === "driver" ? "$220.00" : "$95.00",
-      dateStr: "Nov 24, 2026",
-      statusBadge: "completed",
-    },
-    {
-      id: "HX-AZ-DEMO-0031",
-      title: "Two-Bedroom Apartment Relocation",
-      pickup: "Old Town Scottsdale",
-      dropoff: "Mesa Riverview",
-      payoutStr: activeRole === "driver" ? "$380.00" : "$160.00",
-      dateStr: "Nov 20, 2026",
-      statusBadge: "completed",
-    },
-  ];
+  const wallet = getWalletForRole(activeRole);
+  const completedJobs: CompletedJobItem[] = wallet.recentJobs.map((j) => ({
+    id: j.jobId,
+    title: j.jobTitle,
+    pickup: "North Scottsdale",
+    dropoff: "Downtown Tempe",
+    payoutStr: `$${(j.netPayableCents / 100).toFixed(2)}`,
+    dateStr: j.date,
+    statusBadge: j.status === "available" ? "completed" : "review",
+  }));
 
   const pastJobs: PastJobItem[] = [
     {
@@ -91,7 +72,7 @@ export default function MyJobsScreen() {
       reason: "Booking cancelled by customer due to reschedule",
       dateStr: "Nov 22, 2026",
       type: "cancelled",
-      targetRoute: "/(app)/offer-detail",
+      targetRoute: "/(app)/job-offers",
     },
   ];
 

@@ -1476,6 +1476,27 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
     description: "Modal de seguridad urgente: Llamar 911, despacho de seguridad HAULIX y GPS",
   },
 
+  // OV-05 Availability Preferences Overlay (DW-F03)
+  {
+    id: "OV05-EN",
+    name: "OV-05 · Availability preferences preview (English)",
+    figmaNode: "1286:554",
+    route: "/(app)/(tabs)?overlay=ov05",
+    locale: "en",
+    role: "PRIMARY_DRIVER",
+    description:
+      "Bottom sheet modal: Working hours, service radius and preferred shift configuration",
+  },
+  {
+    id: "OV05-ES",
+    name: "OV-05 · Preferencias de disponibilidad (Español)",
+    figmaNode: "1286:568",
+    route: "/(app)/(tabs)?overlay=ov05",
+    locale: "es",
+    role: "PRIMARY_DRIVER",
+    description: "Modal inferior: Horario de trabajo, radio de servicio y turno preferido",
+  },
+
   // 5-Tab Navigation Shell
   {
     id: "TAB-HOME-DRIVER",

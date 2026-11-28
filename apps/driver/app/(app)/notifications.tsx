@@ -17,11 +17,12 @@ import { useWalletStore } from "../../src/stores/walletStore";
 
 export default function NotificationsScreen() {
   const router = useRouter();
-  const { t } = useDriverTranslation();
+  const { t, currentLocale } = useDriverTranslation();
   const { activeRole } = useWalletStore();
   const { getNotificationsForRole, markAsRead, markAllAsRead } = useNotificationStore();
 
   const [activeFilter, setActiveFilter] = useState<"all" | "jobs" | "payments">("all");
+  const isEs = currentLocale === "es";
 
   const allNotifications = getNotificationsForRole(activeRole);
 
@@ -39,7 +40,7 @@ export default function NotificationsScreen() {
     if (router.canGoBack()) {
       router.back();
     } else {
-      router.push("/(app)/(tabs)/home" as Href);
+      router.push("/(app)/(tabs)" as Href);
     }
   };
 
@@ -143,28 +144,34 @@ export default function NotificationsScreen() {
           </View>
         ) : (
           <View style={styles.listContainer}>
-            {filteredNotifications.map((item) => (
-              <Pressable
-                key={item.id}
-                style={[styles.notifCard, !item.isRead && styles.notifCardUnread]}
-                onPress={() => handleItemPress(item.id, item.deepLinkHref)}
-                accessibilityRole="button"
-                accessibilityLabel={`${item.title}, ${item.body}`}
-              >
-                <View style={styles.iconWrap}>{getIconForType(item.type)}</View>
+            {filteredNotifications.map((item) => {
+              const displayTitle = (isEs ? item.titleEs : item.titleEn) || item.title;
+              const displayBody = (isEs ? item.bodyEs : item.bodyEn) || item.body;
+              const displayTime = (isEs ? item.timestampEs : item.timestampEn) || item.timestamp;
 
-                <View style={styles.contentCol}>
-                  <View style={styles.itemTitleRow}>
-                    <Text style={styles.itemTitle}>{item.title}</Text>
-                    {!item.isRead ? <View style={styles.unreadDot} /> : null}
+              return (
+                <Pressable
+                  key={item.id}
+                  style={[styles.notifCard, !item.isRead && styles.notifCardUnread]}
+                  onPress={() => handleItemPress(item.id, item.deepLinkHref)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${displayTitle}, ${displayBody}`}
+                >
+                  <View style={styles.iconWrap}>{getIconForType(item.type)}</View>
+
+                  <View style={styles.contentCol}>
+                    <View style={styles.itemTitleRow}>
+                      <Text style={styles.itemTitle}>{displayTitle}</Text>
+                      {!item.isRead ? <View style={styles.unreadDot} /> : null}
+                    </View>
+                    <Text style={styles.itemBody}>{displayBody}</Text>
+                    <Text style={styles.itemTime}>{displayTime}</Text>
                   </View>
-                  <Text style={styles.itemBody}>{item.body}</Text>
-                  <Text style={styles.itemTime}>{item.timestamp}</Text>
-                </View>
 
-                <ChevronRightIcon color="#8E9E99" size={16} />
-              </Pressable>
-            ))}
+                  <ChevronRightIcon color="#8E9E99" size={16} />
+                </Pressable>
+              );
+            })}
           </View>
         )}
       </ScrollView>

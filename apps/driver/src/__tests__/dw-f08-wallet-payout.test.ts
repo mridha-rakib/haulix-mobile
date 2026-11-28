@@ -92,16 +92,22 @@ describe("DW-F08 Worker Wallet, Ledger & Cash Out", () => {
       expect(wallet.reservedBalanceCents).toBe(50000);
     });
 
-    test("instant fee quote calculates 1.5% with minimum threshold", () => {
+    test("instant fee quote uses approved deterministic quotes without arbitrary formulas", () => {
       const store = useWalletStore.getState();
-      // $1,280.00 * 1.5% = $19.20 (1920 cents)
+      // $1,280.00 -> $19.20 (1920 cents) from approved quote fixtures
       const quote = store.getInstantFeeQuote(128000)!;
+      expect(quote).toBeDefined();
       expect(quote.feeCents).toBe(1920);
       expect(quote.netCents).toBe(128000 - 1920);
 
-      // Low amount minimum fee threshold
+      // Low amount quote threshold from approved quote fixtures
       const lowQuote = store.getInstantFeeQuote(5000)!; // $50.00
-      expect(lowQuote.feeCents).toBe(150); // min $1.50
+      expect(lowQuote).toBeDefined();
+      expect(lowQuote.feeCents).toBe(150); // $1.50
+
+      // Unsupported quote returns null (strictly deterministic)
+      const unapprovedQuote = store.getInstantFeeQuote(12345);
+      expect(unapprovedQuote).toBeNull();
     });
 
     test("instant cash out deducts available balance and creates processing transaction", () => {

@@ -106,14 +106,16 @@ describe("DW-F09 Profile, History, Safety & Support", () => {
     test("submitting a support ticket generates valid ticket number and records details", () => {
       const store = useSupportStore.getState();
 
-      const ticket = store.submitTicket(
+      const res = store.submitTicket(
         "driver",
         "job",
         "Elevator broken at dropoff address; need customer contact assistance.",
         "HX-AZ-DEMO-0042"
       );
 
-      expect(ticket.ticketId).toMatch(/^TKT-2026-\d{4}$/);
+      expect(res.success).toBe(true);
+      const ticket = res.ticket!;
+      expect(ticket.ticketId).toMatch(/^TKT-2026-\d{4}/);
       expect(ticket.workerRole).toBe("driver");
       expect(ticket.category).toBe("job");
       expect(ticket.jobId).toBe("HX-AZ-DEMO-0042");

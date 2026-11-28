@@ -1,0 +1,38 @@
+{
+  "manifestVersion": "1.0.0",
+  "milestone": "DW-FINAL",
+  "project": "HAULIX Mobile \u2014 Driver & Worker",
+  "application": "apps/driver",
+  "package": "com.haulix.driver",
+  "generatedAt": "2026-11-28T14:00:00.000Z",
+  "hardwareTarget": {
+    "device": "Realme Note 60",
+    "serialNumber": "0B04731X200003BB",
+    "androidVersion": 15,
+    "logicalWidthDp": 360,
+    "logicalHeightDp": 800,
+    "densityDpi": 320
+  },
+  "verificationSummary": {
+    "canonicalStates": 68,
+    "bilingualVariants": 136,
+    "supportingOverlays": 14,
+    "totalVisualVariants": 150,
+    "typecheckErrors": 0,
+    "biomeErrors": 0,
+    "jestTestSuitesPassed": 12,
+    "jestTestsPassed": 219,
+    "bundleOutput": "Hermes bytecode 5.3MB (1,872 modules)"
+  },
+  "deliverables": [
+    "docs/qa/driver/dw-final/DW_FINAL_FRONTEND_QA_REPORT.md",
+    "docs/qa/driver/dw-final/DW_FINAL_VISUAL_COMPARISON_MATRIX.md",
+    "docs/qa/driver/dw-final/DW_FINAL_NAVIGATION_INTERACTION_MATRIX.md",
+    "docs/qa/driver/dw-final/DW_FINAL_END_TO_END_TEST_REPORT.md",
+    "docs/qa/driver/dw-final/DW_FINAL_LOCALIZATION_REPORT.md",
+    "docs/qa/driver/dw-final/DW_FINAL_FINANCIAL_INTEGRITY_REPORT.md",
+    "docs/qa/driver/dw-final/DW_FINAL_RESIDUAL_GAP_REGISTER.md",
+    "docs/qa/driver/dw-final/DW_FINAL_RELEASE_READINESS_REPORT.md",
+    "docs/qa/driver/dw-final/DW_FINAL_EVIDENCE_MANIFEST.json"
+  ]
+}

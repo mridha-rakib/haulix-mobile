@@ -10,16 +10,17 @@ export default function RequestReceivedScreen() {
   const router = useRouter();
   const { t } = useDriverTranslation();
   const params = useLocalSearchParams<{ ticketId?: string }>();
-  const { lastTicket } = useSupportStore();
+  const { lastTicket, getTicketById } = useSupportStore();
 
-  const ticketId = params.ticketId || lastTicket?.ticketId || "TKT-2026-8941";
+  const ticket = (params.ticketId ? getTicketById(params.ticketId) : null) || lastTicket;
+  const ticketId = ticket?.ticketId || params.ticketId || "TKT-2026-8941";
 
   const handleReturnSupport = () => {
     router.push("/(app)/help-support" as Href);
   };
 
   const handleReturnHome = () => {
-    router.push("/(app)/(tabs)/home" as Href);
+    router.push("/(app)/(tabs)" as Href);
   };
 
   return (

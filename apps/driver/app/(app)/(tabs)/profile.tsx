@@ -21,244 +21,472 @@ import { useDriverTranslation } from "../../../src/i18n";
 import { useWalletStore } from "../../../src/stores/walletStore";
 import { useWorkerProfileStore } from "../../../src/stores/workerProfileStore";
 
-export default function ProfileScreen() {
+interface ProfileSectionProps {
+  onOpenPhoto: () => void;
+  onSignOut: () => void;
+}
+
+function DriverProfileView({ onOpenPhoto, onSignOut }: ProfileSectionProps) {
   const router = useRouter();
   const { t } = useDriverTranslation();
-  const { setActiveRole } = useWalletStore();
   const { driverProfile } = useWorkerProfileStore();
+
+  return (
+    <>
+      <View style={styles.screenHeader}>
+        <Text style={styles.screenTitle}>{t("driver.profile.title")}</Text>
+      </View>
+
+      <View style={styles.profileCard}>
+        <View style={styles.profileTopRow}>
+          <Pressable
+            onPress={onOpenPhoto}
+            style={styles.avatarWrap}
+            accessibilityRole="button"
+            accessibilityLabel="Change profile photo"
+          >
+            <Image
+              source={{ uri: driverProfile.avatarUrl }}
+              style={styles.avatarImage}
+              resizeMode="cover"
+            />
+            <View style={styles.avatarBadge}>
+              <ShieldIcon color="#0B0F0E" size={12} />
+            </View>
+          </Pressable>
+
+          <View style={styles.profileIdentityCol}>
+            <View style={styles.nameRow}>
+              <Text style={styles.driverName}>{driverProfile.name}</Text>
+              <View style={styles.verifiedBadge}>
+                <Text style={styles.verifiedBadgeText}>{t("driver.profile.roleTag")}</Text>
+              </View>
+            </View>
+
+            <Text style={styles.memberSince}>{t("driver.profile.memberSince")}</Text>
+
+            <View style={styles.statsPillRow}>
+              <View style={styles.statPill}>
+                <StarIcon color="#BAFF42" size={13} />
+                <Text style={styles.statPillText}>{t("driver.profile.statsRating")}</Text>
+              </View>
+              <View style={styles.statPill}>
+                <Text style={styles.statPillTextJobs}>{t("driver.profile.statsJobs")}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* SECTION 1: Personal Information */}
+      <Text style={styles.sectionHeading}>{t("driver.profile.sectionPersonalInfo")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/personal-info" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.personalInfo.title")}
+        >
+          <View style={styles.menuIconWrap}>
+            <UserIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.personalInfo.title")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.personalInfoDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/photo-contact" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.photoContact.title")}
+        >
+          <View style={styles.menuIconWrap}>
+            <DocumentIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.photoContact.title")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.photoContactDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 2: Vehicle & Operations */}
+      <Text style={styles.sectionHeading}>{t("driver.profile.sectionVehicleWork")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/vehicle-docs" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.documentsVehicle")}
+        >
+          <View style={styles.menuIconWrap}>
+            <ShieldIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.documentsVehicle")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.documentsVehicleDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/availability-settings" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.availabilitySettings")}
+        >
+          <View style={styles.menuIconWrap}>
+            <GlobeIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.availabilitySettings")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.availabilityDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/payout-account" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.payoutAccount")}
+        >
+          <View style={styles.menuIconWrap}>
+            <WalletIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.payoutAccount")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.payoutAccountDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 3: Preferences & Security */}
+      <Text style={styles.sectionHeading}>{t("driver.profile.sectionSecurityPrefs")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/language-security" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.languageSecurity")}
+        >
+          <View style={styles.menuIconWrap}>
+            <LockIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.languageSecurity")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.languageSecurityDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/notification-settings" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.notificationSettings")}
+        >
+          <View style={styles.menuIconWrap}>
+            <BellIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.notificationSettings")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.notificationSettingsDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 4: Support & Hub */}
+      <Text style={styles.sectionHeading}>{t("driver.profile.sectionSupport")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/help-support" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.profile.helpSupport")}
+        >
+          <View style={styles.menuIconWrap}>
+            <HeadphonesIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.profile.helpSupport")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.helpSupportDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* Sign Out CTA */}
+      <Pressable
+        style={styles.signOutBtn}
+        onPress={onSignOut}
+        accessibilityRole="button"
+        accessibilityLabel={t("driver.profile.signOut")}
+      >
+        <LogOutIcon color="#EF4444" size={18} />
+        <Text style={styles.signOutBtnText}>{t("driver.profile.signOut")}</Text>
+      </Pressable>
+    </>
+  );
+}
+
+function HelperProfileView({ onOpenPhoto, onSignOut }: ProfileSectionProps) {
+  const router = useRouter();
+  const { t } = useDriverTranslation();
+  const { helperProfile } = useWorkerProfileStore();
+
+  return (
+    <>
+      <View style={styles.screenHeader}>
+        <Text style={styles.screenTitle}>{t("driver.helperProfile.title")}</Text>
+      </View>
+
+      <View style={styles.profileCard}>
+        <View style={styles.profileTopRow}>
+          <Pressable
+            onPress={onOpenPhoto}
+            style={styles.avatarWrap}
+            accessibilityRole="button"
+            accessibilityLabel="Change profile photo"
+          >
+            <Image
+              source={{ uri: helperProfile.avatarUrl }}
+              style={styles.avatarImage}
+              resizeMode="cover"
+            />
+            <View style={styles.avatarBadge}>
+              <ShieldIcon color="#0B0F0E" size={12} />
+            </View>
+          </Pressable>
+
+          <View style={styles.profileIdentityCol}>
+            <View style={styles.nameRow}>
+              <Text style={styles.driverName}>{helperProfile.name}</Text>
+              <View style={styles.verifiedBadge}>
+                <Text style={styles.verifiedBadgeText}>{t("driver.helperProfile.roleTag")}</Text>
+              </View>
+            </View>
+
+            <Text style={styles.memberSince}>{t("driver.helperProfile.memberSince")}</Text>
+
+            <View style={styles.statsPillRow}>
+              <View style={styles.statPill}>
+                <StarIcon color="#BAFF42" size={13} />
+                <Text style={styles.statPillText}>{t("driver.helperProfile.statsRating")}</Text>
+              </View>
+              <View style={styles.statPill}>
+                <Text style={styles.statPillTextJobs}>{t("driver.helperProfile.statsJobs")}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* SECTION 1: Personal Information */}
+      <Text style={styles.sectionHeading}>{t("driver.helperProfile.sectionPersonalInfo")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/helper-personal-info" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperPersonalInfo.title")}
+        >
+          <View style={styles.menuIconWrap}>
+            <UserIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperPersonalInfo.title")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.helperProfile.personalInfoDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/photo-contact" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.photoContact.title")}
+        >
+          <View style={styles.menuIconWrap}>
+            <DocumentIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.photoContact.title")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.photoContactDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 2: Eligibility & Shift Schedule */}
+      <Text style={styles.sectionHeading}>{t("driver.helperProfile.eligibilityDocs")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/helper-docs" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.eligibilityDocs")}
+        >
+          <View style={styles.menuIconWrap}>
+            <ShieldIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.eligibilityDocs")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.helperProfile.eligibilityDocsDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/availability-settings" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.availabilitySettings")}
+        >
+          <View style={styles.menuIconWrap}>
+            <GlobeIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.availabilitySettings")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.helperProfile.availabilityDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/payout-account" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.payoutAccount")}
+        >
+          <View style={styles.menuIconWrap}>
+            <WalletIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.payoutAccount")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.helperProfile.payoutAccountDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 3: Preferences & Security */}
+      <Text style={styles.sectionHeading}>{t("driver.helperProfile.languageSecurity")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/language-security" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.languageSecurity")}
+        >
+          <View style={styles.menuIconWrap}>
+            <LockIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.languageSecurity")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.languageSecurityDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+
+        <View style={styles.menuDivider} />
+
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/notification-settings" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.notificationSettings")}
+        >
+          <View style={styles.menuIconWrap}>
+            <BellIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.notificationSettings")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.notificationSettingsDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* SECTION 4: Help & Support */}
+      <Text style={styles.sectionHeading}>{t("driver.helperProfile.helpSupport")}</Text>
+      <View style={styles.menuSection}>
+        <Pressable
+          style={styles.menuRow}
+          onPress={() => router.push("/(app)/help-support" as Href)}
+          accessibilityRole="button"
+          accessibilityLabel={t("driver.helperProfile.helpSupport")}
+        >
+          <View style={styles.menuIconWrap}>
+            <HeadphonesIcon color="#BAFF42" size={20} />
+          </View>
+          <View style={styles.menuTextCol}>
+            <Text style={styles.menuTitle}>{t("driver.helperProfile.helpSupport")}</Text>
+            <Text style={styles.menuDesc}>{t("driver.profile.helpSupportDesc")}</Text>
+          </View>
+          <ChevronRightIcon color="#8E9E99" size={18} />
+        </Pressable>
+      </View>
+
+      {/* Sign Out CTA */}
+      <Pressable
+        style={styles.signOutBtn}
+        onPress={onSignOut}
+        accessibilityRole="button"
+        accessibilityLabel={t("driver.helperProfile.signOut")}
+      >
+        <LogOutIcon color="#EF4444" size={18} />
+        <Text style={styles.signOutBtnText}>{t("driver.helperProfile.signOut")}</Text>
+      </Pressable>
+    </>
+  );
+}
+
+export default function ProfileScreen() {
+  const router = useRouter();
+  const { activeRole } = useWalletStore();
   const [photoOverlayVisible, setPhotoOverlayVisible] = useState(false);
 
   const handleSignOut = () => {
     router.replace("/(auth)/welcome" as Href);
   };
 
-  const handleSwitchToHelper = () => {
-    setActiveRole("helper");
-    router.push("/(app)/helper-profile" as Href);
-  };
+  const isHelper = activeRole === "helper";
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* Header Title */}
-        <View style={styles.screenHeader}>
-          <Text style={styles.screenTitle}>{t("driver.profile.title")}</Text>
-        </View>
-
-        {/* Driver Profile Card */}
-        <View style={styles.profileCard}>
-          <View style={styles.profileTopRow}>
-            <Pressable
-              onPress={() => setPhotoOverlayVisible(true)}
-              style={styles.avatarWrap}
-              accessibilityRole="button"
-              accessibilityLabel="Change profile photo"
-            >
-              <Image
-                source={{ uri: driverProfile.avatarUrl }}
-                style={styles.avatarImage}
-                resizeMode="cover"
-              />
-              <View style={styles.avatarBadge}>
-                <ShieldIcon color="#0B0F0E" size={12} />
-              </View>
-            </Pressable>
-
-            <View style={styles.profileIdentityCol}>
-              <View style={styles.nameRow}>
-                <Text style={styles.driverName}>{driverProfile.name}</Text>
-                <View style={styles.verifiedBadge}>
-                  <Text style={styles.verifiedBadgeText}>{t("driver.profile.roleTag")}</Text>
-                </View>
-              </View>
-
-              <Text style={styles.memberSince}>{t("driver.profile.memberSince")}</Text>
-
-              <View style={styles.statsPillRow}>
-                <View style={styles.statPill}>
-                  <StarIcon color="#BAFF42" size={13} />
-                  <Text style={styles.statPillText}>{t("driver.profile.statsRating")}</Text>
-                </View>
-                <View style={styles.statPill}>
-                  <Text style={styles.statPillTextJobs}>{t("driver.profile.statsJobs")}</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        {/* SECTION 1: Personal Information */}
-        <Text style={styles.sectionHeading}>{t("driver.profile.sectionPersonalInfo")}</Text>
-        <View style={styles.menuSection}>
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/personal-info" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.personalInfo.title")}
-          >
-            <View style={styles.menuIconWrap}>
-              <UserIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.personalInfo.title")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.personalInfoDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-
-          <View style={styles.menuDivider} />
-
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/photo-contact" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.photoContact.title")}
-          >
-            <View style={styles.menuIconWrap}>
-              <DocumentIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.photoContact.title")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.photoContactDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-        </View>
-
-        {/* SECTION 2: Vehicle & Operations */}
-        <Text style={styles.sectionHeading}>{t("driver.profile.sectionVehicleWork")}</Text>
-        <View style={styles.menuSection}>
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/vehicle-docs" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.documentsVehicle")}
-          >
-            <View style={styles.menuIconWrap}>
-              <ShieldIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.documentsVehicle")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.documentsVehicleDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-
-          <View style={styles.menuDivider} />
-
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/availability-settings" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.availabilitySettings")}
-          >
-            <View style={styles.menuIconWrap}>
-              <GlobeIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.availabilitySettings")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.availabilityDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-
-          <View style={styles.menuDivider} />
-
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/payout-account" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.payoutAccount")}
-          >
-            <View style={styles.menuIconWrap}>
-              <WalletIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.payoutAccount")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.payoutAccountDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-        </View>
-
-        {/* SECTION 3: Preferences & Security */}
-        <Text style={styles.sectionHeading}>{t("driver.profile.sectionSecurityPrefs")}</Text>
-        <View style={styles.menuSection}>
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/language-security" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.languageSecurity")}
-          >
-            <View style={styles.menuIconWrap}>
-              <LockIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.languageSecurity")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.languageSecurityDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-
-          <View style={styles.menuDivider} />
-
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/notification-settings" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.notificationSettings")}
-          >
-            <View style={styles.menuIconWrap}>
-              <BellIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.notificationSettings")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.notificationSettingsDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-        </View>
-
-        {/* SECTION 4: Support & Hub */}
-        <Text style={styles.sectionHeading}>{t("driver.profile.sectionSupport")}</Text>
-        <View style={styles.menuSection}>
-          <Pressable
-            style={styles.menuRow}
-            onPress={() => router.push("/(app)/help-support" as Href)}
-            accessibilityRole="button"
-            accessibilityLabel={t("driver.profile.helpSupport")}
-          >
-            <View style={styles.menuIconWrap}>
-              <HeadphonesIcon color="#BAFF42" size={20} />
-            </View>
-            <View style={styles.menuTextCol}>
-              <Text style={styles.menuTitle}>{t("driver.profile.helpSupport")}</Text>
-              <Text style={styles.menuDesc}>{t("driver.profile.helpSupportDesc")}</Text>
-            </View>
-            <ChevronRightIcon color="#8E9E99" size={18} />
-          </Pressable>
-        </View>
-
-        {/* Switch to Helper Profile Preview CTA */}
-        <Pressable
-          style={styles.helperSwitchBtn}
-          onPress={handleSwitchToHelper}
-          accessibilityRole="button"
-          accessibilityLabel="Switch to Helper Profile Preview"
-        >
-          <Text style={styles.helperSwitchBtnText}>View Helper Profile (DW55) →</Text>
-        </Pressable>
-
-        {/* Sign Out CTA */}
-        <Pressable
-          style={styles.signOutBtn}
-          onPress={handleSignOut}
-          accessibilityRole="button"
-          accessibilityLabel={t("driver.profile.signOut")}
-        >
-          <LogOutIcon color="#EF4444" size={18} />
-          <Text style={styles.signOutBtnText}>{t("driver.profile.signOut")}</Text>
-        </Pressable>
+        {isHelper ? (
+          <HelperProfileView
+            onOpenPhoto={() => setPhotoOverlayVisible(true)}
+            onSignOut={handleSignOut}
+          />
+        ) : (
+          <DriverProfileView
+            onOpenPhoto={() => setPhotoOverlayVisible(true)}
+            onSignOut={handleSignOut}
+          />
+        )}
       </ScrollView>
 
       {/* Photo Update Overlay */}
@@ -311,18 +539,20 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
     borderWidth: 2,
     borderColor: "#BAFF42",
-    backgroundColor: "#1A2620",
+    backgroundColor: "#1B2A22",
   },
   avatarBadge: {
     position: "absolute",
-    bottom: 0,
-    right: 0,
+    bottom: -2,
+    right: -2,
     width: 20,
     height: 20,
     borderRadius: radius.full,
     backgroundColor: "#BAFF42",
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 2,
+    borderColor: "#111815",
   },
   profileIdentityCol: {
     flex: 1,
@@ -330,63 +560,60 @@ const styles = StyleSheet.create({
   nameRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing[2],
-    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginBottom: 2,
   },
   driverName: {
     fontSize: 18,
-    fontWeight: "800",
+    fontWeight: "700",
     color: "#FFFFFF",
   },
   verifiedBadge: {
-    backgroundColor: "rgba(186, 255, 66, 0.15)",
+    backgroundColor: "rgba(186, 255, 66, 0.12)",
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: radius.full,
     borderWidth: 1,
-    borderColor: "#BAFF42",
+    borderColor: "rgba(186, 255, 66, 0.3)",
   },
   verifiedBadgeText: {
     fontSize: 10,
     fontWeight: "800",
     color: "#BAFF42",
-    textTransform: "uppercase",
+    letterSpacing: 0.5,
   },
   memberSince: {
     fontSize: 12,
     color: "#8E9E99",
-    marginTop: 2,
+    marginBottom: spacing[2],
   },
   statsPillRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: spacing[2],
-    marginTop: 8,
   },
   statPill: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#16201B",
-    borderRadius: radius.full,
+    gap: 4,
+    backgroundColor: "#16231C",
     paddingHorizontal: 8,
     paddingVertical: 3,
-    borderWidth: 1,
-    borderColor: "#22332B",
-    gap: 4,
+    borderRadius: radius.full,
   },
   statPillText: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: "#BAFF42",
   },
   statPillTextJobs: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "600",
-    color: "#BAFF42",
+    color: "#CFE0D8",
   },
   sectionHeading: {
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: "800",
     color: "#8E9E99",
     textTransform: "uppercase",
     letterSpacing: 0.8,
@@ -398,35 +625,34 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     borderWidth: 1,
     borderColor: "#22332B",
-    marginBottom: spacing[3],
     overflow: "hidden",
+    marginBottom: spacing[3],
   },
   menuRow: {
     flexDirection: "row",
     alignItems: "center",
-    padding: spacing[3],
+    paddingHorizontal: spacing[3],
+    paddingVertical: 14,
     gap: spacing[3],
   },
   menuIconWrap: {
     width: 36,
     height: 36,
     borderRadius: radius.md,
-    backgroundColor: "#16201B",
+    backgroundColor: "#16231C",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#24342C",
   },
   menuTextCol: {
     flex: 1,
   },
   menuTitle: {
-    fontSize: 14,
-    fontWeight: "700",
+    fontSize: 15,
+    fontWeight: "600",
     color: "#FFFFFF",
   },
   menuDesc: {
-    fontSize: 11,
+    fontSize: 12,
     color: "#8E9E99",
     marginTop: 2,
   },
@@ -434,21 +660,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#1C2A23",
     marginLeft: spacing[3] + 36 + spacing[3],
-  },
-  helperSwitchBtn: {
-    backgroundColor: "#142019",
-    borderRadius: radius.lg,
-    paddingVertical: 12,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#243B2E",
-    marginTop: spacing[2],
-    marginBottom: spacing[3],
-  },
-  helperSwitchBtnText: {
-    color: "#BAFF42",
-    fontSize: 13,
-    fontWeight: "700",
   },
   signOutBtn: {
     flexDirection: "row",

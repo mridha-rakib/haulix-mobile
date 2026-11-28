@@ -205,6 +205,7 @@ export interface CompletionEvidenceState {
     disputeReason?: string
   ) => void;
   setPaymentCaptureOutcome: (jobId: string, outcome: "SUCCESS" | "FAILED") => void;
+  setEarningsEligibility: (jobId: string, eligibility: EarningsEligibility) => void;
   setMockFailureScenario: (enabled: boolean) => void;
   resetCompletionStore: () => void;
 }
@@ -726,6 +727,21 @@ export const useCompletionEvidenceStore = create<CompletionEvidenceState>((set, 
           ...record,
           paymentCaptureStatus: isSuccess ? "CAPTURE_SUCCESS" : "CAPTURE_FAILED",
           earningsEligibility: isSuccess ? "CREDITED" : "ON_HOLD",
+        },
+      },
+    });
+  },
+
+  setEarningsEligibility: (jobId, eligibility) => {
+    const s = get();
+    const targetId = jobId || s.activeJobId;
+    const record = s.getCompletionRecord(targetId);
+    set({
+      completionByJob: {
+        ...s.completionByJob,
+        [targetId]: {
+          ...record,
+          earningsEligibility: eligibility,
         },
       },
     });

@@ -39,8 +39,12 @@ export default function ContactSupportScreen() {
       return;
     }
 
-    const ticket = submitTicket(activeRole, category, message, jobId);
-    router.push(`/(app)/request-received?ticketId=${ticket.ticketId}` as Href);
+    const res = submitTicket(activeRole, category, message, jobId);
+    if (!res.success || !res.ticket) {
+      setErrorMessage(res.error || "Unable to submit support request. Please try again.");
+      return;
+    }
+    router.push(`/(app)/request-received?ticketId=${res.ticket.ticketId}` as Href);
   };
 
   return (

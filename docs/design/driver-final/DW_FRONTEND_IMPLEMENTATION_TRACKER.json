@@ -2,7 +2,7 @@
   "project": "HAULIX Mobile — Driver & Worker Application",
   "application": "apps/driver",
   "package": "com.haulix.driver",
-  "lastUpdated": "2026-11-28T12:30:00.000Z",
+  "lastUpdated": "2026-11-28T14:00:00.000Z",
   "targetRuntime": "Realme Note 60 (RMX3938), Android 15, 360dp logical viewport",
   "totalCanonicalStates": 68,
   "totalBilingualVariants": 136,
@@ -194,6 +194,30 @@
           "title": "Vista previa de asistencia de contacto de emergencia (ES)"
         }
       ]
+    },
+    "DW-FINAL": {
+      "name": "Consolidated Frontend QA, Source Corrections & Release Readiness",
+      "status": "COMPLETED",
+      "canonicalScreensCount": 68,
+      "bilingualVariantsCount": 136,
+      "supportingOverlaysCount": 14,
+      "ownerAcceptance": "PENDING_REVIEW",
+      "deliverables": [
+        "Complete elimination of real device calls, SMS, external mailto (simulated overlay banners)",
+        "Approved deterministic fee quote table fixtures eliminating arbitrary percentage calculations",
+        "Strict quote context integrity (quote ID, worker binding, card binding, expiration)",
+        "Stable payout intent deduplication across all transaction states",
+        "Completion evidence store integration with ledger earnings eligibility",
+        "Elimination of unauthorized role-switching CTA from profile navigation",
+        "Notification center deep link correction, bilingual support, and role-specific preferences",
+        "Support ticket idempotency, collision-resistant IDs, and retrieval tracking",
+        "Offline local base64 avatar fixtures replacing remote network dependencies",
+        "Dynamic My Jobs listing bound directly to wallet activity",
+        "Demo navigator full registration of 150 visual variants (136 screens + 14 overlays)",
+        "Complete resetAllStores utility resetting all 12 application stores",
+        "100% test pass rate across 12 test suites (219 unit tests passing)",
+        "Zero TypeScript errors and clean Android Metro hermes bytecode bundling"
+      ]
     }
   },
   "screens": [
@@ -213,7 +237,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -236,7 +260,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -259,7 +283,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -282,7 +306,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -305,7 +329,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -328,7 +352,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -351,7 +375,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -374,7 +398,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -397,7 +421,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f03/dw09-device-operational-en.png",
         "es": "docs/qa/driver/dw-f03/dw09-device-operational-es.png"
@@ -420,7 +444,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw10-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw10-device-dispatch-es.png"
@@ -443,7 +467,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw11-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw11-device-dispatch-es.png"
@@ -466,7 +490,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw12-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw12-device-dispatch-es.png"
@@ -489,7 +513,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw13-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw13-device-dispatch-es.png"
@@ -512,7 +536,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw14-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw14-device-dispatch-es.png"
@@ -535,7 +559,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw15-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw15-device-dispatch-es.png"
@@ -558,7 +582,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw16-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw16-device-dispatch-es.png"
@@ -581,7 +605,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw17-device-active-job-en.png",
         "es": "docs/qa/driver/dw-f05/dw17-device-active-job-es.png"
@@ -604,7 +628,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw18-device-job-messages-en.png",
         "es": "docs/qa/driver/dw-f05/dw18-device-job-messages-es.png"
@@ -627,7 +651,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw19-device-on-site-progress-en.png",
         "es": "docs/qa/driver/dw-f06/dw19-device-on-site-progress-es.png"
@@ -650,7 +674,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw20-device-additional-work-approval-en.png",
         "es": "docs/qa/driver/dw-f06/dw20-device-additional-work-approval-es.png"
@@ -673,7 +697,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "READY_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f07/dw21-device-completion-evidence-en.png",
         "es": "docs/qa/driver/dw-f07/dw21-device-completion-evidence-es.png"
@@ -696,7 +720,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "READY_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f07/dw22-device-job-completed-en.png",
         "es": "docs/qa/driver/dw-f07/dw22-device-job-completed-es.png"
@@ -719,7 +743,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw23-device-earnings-overview-en.png",
         "docs/qa/driver/dw-f08/dw23-device-earnings-overview-es.png"
@@ -742,7 +766,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw24-device-earnings-detail-en.png",
         "docs/qa/driver/dw-f08/dw24-device-earnings-detail-es.png"
@@ -765,7 +789,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw25-device-cash-out-methods-en.png",
         "docs/qa/driver/dw-f08/dw25-device-cash-out-methods-es.png"
@@ -788,7 +812,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw26-device-cash-out-status-en.png",
         "docs/qa/driver/dw-f08/dw26-device-cash-out-status-es.png"
@@ -811,7 +835,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw27-device-profile-documents-en.png",
         "es": "docs/qa/driver/dw-f09/dw27-device-profile-documents-es.png"
@@ -834,7 +858,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw28-device-my-jobs-en.png",
         "es": "docs/qa/driver/dw-f09/dw28-device-my-jobs-es.png"
@@ -857,7 +881,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw29-device-help-support-en.png",
         "es": "docs/qa/driver/dw-f09/dw29-device-help-support-es.png"
@@ -880,7 +904,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw30-device-notifications-en.png",
         "es": "docs/qa/driver/dw-f09/dw30-device-notifications-es.png"
@@ -903,7 +927,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f03/dw31-device-operational-en.png",
         "es": "docs/qa/driver/dw-f03/dw31-device-operational-es.png"
@@ -926,7 +950,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw32-device-language-security-en.png",
         "es": "docs/qa/driver/dw-f09/dw32-device-language-security-es.png"
@@ -949,7 +973,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -972,7 +996,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw34-device-connection-interrupted-en.png",
         "es": "docs/qa/driver/dw-f05/dw34-device-connection-interrupted-es.png"
@@ -995,7 +1019,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw35-device-payout-history-en.png",
         "docs/qa/driver/dw-f08/dw35-device-payout-history-es.png"
@@ -1018,7 +1042,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw36-device-personal-info-en.png",
         "es": "docs/qa/driver/dw-f09/dw36-device-personal-info-es.png"
@@ -1041,7 +1065,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw37-device-photo-contact-en.png",
         "es": "docs/qa/driver/dw-f09/dw37-device-photo-contact-es.png"
@@ -1064,7 +1088,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -1087,7 +1111,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f03/dw39-device-operational-en.png",
         "es": "docs/qa/driver/dw-f03/dw39-device-operational-es.png"
@@ -1110,7 +1134,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw40-device-payout-account-en.png",
         "docs/qa/driver/dw-f08/dw40-device-payout-account-es.png"
@@ -1133,7 +1157,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw41-device-change-password-en.png",
         "es": "docs/qa/driver/dw-f09/dw41-device-change-password-es.png"
@@ -1156,7 +1180,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw42-device-notification-settings-en.png",
         "es": "docs/qa/driver/dw-f09/dw42-device-notification-settings-es.png"
@@ -1179,7 +1203,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1202,7 +1226,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1225,7 +1249,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw45-device-contact-support-en.png",
         "es": "docs/qa/driver/dw-f09/dw45-device-contact-support-es.png"
@@ -1248,7 +1272,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw46-device-request-received-en.png",
         "es": "docs/qa/driver/dw-f09/dw46-device-request-received-es.png"
@@ -1271,7 +1295,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw47-device-message-status-en.png",
         "es": "docs/qa/driver/dw-f05/dw47-device-message-status-es.png"
@@ -1294,7 +1318,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw48-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw48-device-dispatch-es.png"
@@ -1317,7 +1341,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "SUBMITTED_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f04/dw49-device-dispatch-en.png",
         "es": "docs/qa/driver/dw-f04/dw49-device-dispatch-es.png"
@@ -1340,7 +1364,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw50-device-location-connection-en.png",
         "es": "docs/qa/driver/dw-f05/dw50-device-location-connection-es.png"
@@ -1363,7 +1387,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw51-device-extra-work-pending-en.png",
         "es": "docs/qa/driver/dw-f06/dw51-device-extra-work-pending-es.png"
@@ -1386,7 +1410,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw52-device-extra-work-approved-en.png",
         "es": "docs/qa/driver/dw-f06/dw52-device-extra-work-approved-es.png"
@@ -1409,7 +1433,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw53-device-extra-work-declined-en.png",
         "es": "docs/qa/driver/dw-f06/dw53-device-extra-work-declined-es.png"
@@ -1432,7 +1456,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw54-device-payout-failed-en.png",
         "docs/qa/driver/dw-f08/dw54-device-payout-failed-es.png"
@@ -1455,7 +1479,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw55-device-helper-profile-en.png",
         "es": "docs/qa/driver/dw-f09/dw55-device-helper-profile-es.png"
@@ -1478,7 +1502,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f02/dw08-device-verification-status-en.png",
         "es": "docs/qa/driver/dw-f02/dw08-device-verification-status-es.png"
@@ -1501,7 +1525,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f09/dw57-device-helper-personal-info-en.png",
         "es": "docs/qa/driver/dw-f09/dw57-device-helper-personal-info-es.png"
@@ -1524,7 +1548,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1547,7 +1571,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1570,7 +1594,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1593,7 +1617,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1616,7 +1640,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f05/dw62-device-helper-active-job-en.png",
         "es": "docs/qa/driver/dw-f05/dw62-device-helper-active-job-es.png"
@@ -1639,7 +1663,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f06/dw63-device-helper-on-site-progress-en.png",
         "es": "docs/qa/driver/dw-f06/dw63-device-helper-on-site-progress-es.png"
@@ -1662,7 +1686,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "READY_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f07/dw64-device-helper-work-evidence-en.png",
         "es": "docs/qa/driver/dw-f07/dw64-device-helper-work-evidence-es.png"
@@ -1685,7 +1709,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "READY_FOR_REVIEW",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/qa/driver/dw-f07/dw65-device-helper-work-submitted-en.png",
         "es": "docs/qa/driver/dw-f07/dw65-device-helper-work-submitted-es.png"
@@ -1708,7 +1732,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "APPROVED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": {
         "en": "docs/design/driver-final/screenshots/physical_device_welcome.png",
         "es": "docs/design/driver-final/screenshots/customer_spanish.png"
@@ -1731,7 +1755,7 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw67-device-standard-bank-cashout-en.png",
         "docs/qa/driver/dw-f08/dw67-device-standard-bank-cashout-es.png"
@@ -1754,12 +1778,14 @@
       "navigationQA": "VERIFIED",
       "mockInteractionQA": "VERIFIED",
       "runtimeQA": "VERIFIED",
-      "ownerAcceptance": "VERIFIED",
+      "ownerAcceptance": "PENDING_REVIEW",
       "evidencePaths": [
         "docs/qa/driver/dw-f08/dw68-device-instant-payout-review-en.png",
         "docs/qa/driver/dw-f08/dw68-device-instant-payout-review-es.png"
       ],
       "dependencies": ["PAYMENT_GATEWAY"]
     }
-  ]
+  ],
+  "status": "COMPLETED",
+  "overallOwnerAcceptance": "PENDING_REVIEW"
 }

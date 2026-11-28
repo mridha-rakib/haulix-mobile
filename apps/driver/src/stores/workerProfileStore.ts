@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { LOCAL_AVATARS } from "../assets/localAvatars";
 import type { WorkerRole } from "./walletStore";
 
 export interface EmergencyContact {
@@ -52,10 +53,10 @@ interface WorkerProfileState {
 }
 
 const initialDriverProfile: DriverProfileData = {
-  id: "driver-alex-01",
+  id: "DRV-8821",
   role: "driver",
   name: "Alex Miller",
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
+  avatarUrl: LOCAL_AVATARS.driver_alex,
   rating: 4.95,
   completedJobs: 142,
   memberSince: "May 2024",
@@ -74,10 +75,10 @@ const initialDriverProfile: DriverProfileData = {
 };
 
 const initialHelperProfile: HelperProfileData = {
-  id: "helper-marcus-01",
+  id: "HLP-4402",
   role: "helper",
   name: "Marcus Reed",
-  avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+  avatarUrl: LOCAL_AVATARS.helper_marcus,
   rating: 4.92,
   completedJobs: 78,
   memberSince: "August 2024",

@@ -1,5 +1,6 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { LOCAL_AVATARS } from "../../assets/localAvatars";
 import { useDriverTranslation } from "../../i18n";
 import { useWalletStore } from "../../stores/walletStore";
 import { useWorkerProfileStore } from "../../stores/workerProfileStore";
@@ -21,27 +22,25 @@ export function ProfilePhotoOverlay({
   const { updateAvatar } = useWorkerProfileStore();
 
   const handleCamera = () => {
-    const mockCameraUri =
-      activeRole === "driver"
-        ? "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"
-        : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400";
+    // 100% Offline local avatar
+    const mockCameraUri = LOCAL_AVATARS.avatar_camera;
     updateAvatar(activeRole, mockCameraUri);
     onPhotoSelected?.(mockCameraUri);
     onClose();
   };
 
   const handleGallery = () => {
+    // 100% Offline local avatar
     const mockGalleryUri =
-      activeRole === "driver"
-        ? "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400"
-        : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400";
+      activeRole === "driver" ? LOCAL_AVATARS.driver_alex : LOCAL_AVATARS.helper_marcus;
     updateAvatar(activeRole, mockGalleryUri);
     onPhotoSelected?.(mockGalleryUri);
     onClose();
   };
 
   const handleRemove = () => {
-    const placeholder = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400";
+    // 100% Offline local avatar
+    const placeholder = LOCAL_AVATARS.placeholder;
     updateAvatar(activeRole, placeholder);
     onPhotoSelected?.(placeholder);
     onClose();

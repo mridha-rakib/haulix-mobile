@@ -10,6 +10,7 @@ import { useAvailabilityStore } from "../../stores/availabilityStore";
 import { useCompletionEvidenceStore } from "../../stores/completionEvidenceStore";
 import { useDispatchCrewStore } from "../../stores/dispatchCrewStore";
 import { useDriverDocumentStore, type VerificationScenario } from "../../stores/documentStore";
+import { resetAllStores } from "../../stores/resetAllStores";
 import { useServiceProgressStore } from "../../stores/serviceProgressStore";
 import { useWalletStore } from "../../stores/walletStore";
 
@@ -63,14 +64,7 @@ export function DriverDemoScreenNavigator() {
   };
 
   const handleResetDemoState = () => {
-    logout();
-    resetDocuments();
-    resetAvailability();
-    resetDispatchCrew();
-    useActiveJobStore.getState().resetActiveJob();
-    useServiceProgressStore.getState().resetServiceProgress();
-    setRole("PRIMARY_DRIVER");
-    setCleanMode(false);
+    resetAllStores();
     setIsOpen(false);
     router.replace("/(auth)/welcome");
   };

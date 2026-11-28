@@ -39,7 +39,11 @@ export default function InstantPayoutReviewScreen() {
 
   const handleConfirmTransfer = () => {
     setErrorMessage(null);
-    const result = requestInstantCashOut(activeRole, quote?.quoteId || requestedCents);
+    if (!quote?.quoteId) {
+      setErrorMessage("No valid fee quote available. Please refresh and review a new quote.");
+      return;
+    }
+    const result = requestInstantCashOut(activeRole, quote.quoteId);
     if (!result.success || !result.transaction) {
       setErrorMessage(result.errorMessage || "Instant payout failed");
       return;

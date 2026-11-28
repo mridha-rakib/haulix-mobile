@@ -1,4 +1,18 @@
 import { create } from "zustand";
+import { useCompletionEvidenceStore } from "./completionEvidenceStore";
+
+export const APPROVED_MOCK_FEE_QUOTES: Record<number, number> = {
+  // Canonical Driver Balance: $1,280.00 -> $19.20 fee (Figma 1325:1866)
+  128000: 1920,
+  // Mid withdrawal: $500.00 -> $7.50 fee
+  50000: 750,
+  // Helper canonical balance: $340.00 -> $5.10 fee
+  34000: 510,
+  // Helper partial: $100.00 -> $2.00 fee
+  10000: 200,
+  // Minimum withdrawal threshold: $50.00 -> $1.50 fee
+  5000: 150,
+};
 
 export type WorkerRole = "driver" | "helper";
 
@@ -47,6 +61,9 @@ export type PayoutErrorCode =
   | "INVALID_QUOTE"
   | "QUOTE_EXPIRED"
   | "DUPLICATE_INTENT"
+  | "DUPLICATE_REQUEST"
+  | "WORKER_MISMATCH"
+  | "DESTINATION_MISMATCH"
   | "UNAUTHORIZED_ROLE";
 
 export interface PayoutOperationResult {
@@ -171,7 +188,8 @@ export function calculateFareCommissionBreakdown(
   subtotalCents: number,
   tipCents: number,
   crewSize: number = 1,
-  customDriverSplitPercent?: number
+  customDriverAllocationCents?: number,
+  customHelperAllocationCents?: number
 ): WorkerCompensationBreakdown {
   // 35% HAULIX platform commission applied strictly to gross subtotal
   const platformFeeCents = Math.round(subtotalCents * 0.35);
@@ -199,14 +217,22 @@ export function calculateFareCommissionBreakdown(
     };
   }
 
-  // Multi-worker crew: respect signed role distribution if provided, or default balanced allocation
-  const driverSharePct = customDriverSplitPercent !== undefined ? customDriverSplitPercent : 0.6;
-  const _helperSharePct = 1 - driverSharePct;
+  // Multi-worker crew:
+  // If explicitly documented per-worker mock allocations from approved fixtures are provided, use them.
+  // Otherwise, distribute the worker earnings pool evenly across crew members without unverified percentage assumptions.
+  let driverCompensationCents: number;
+  let helperCompensationCents: number;
 
-  const driverCompensationCents = Math.round(workerPoolCents * driverSharePct);
-  const helperCompensationCents = workerPoolCents - driverCompensationCents;
+  if (customDriverAllocationCents !== undefined && customHelperAllocationCents !== undefined) {
+    driverCompensationCents = customDriverAllocationCents;
+    helperCompensationCents = customHelperAllocationCents;
+  } else {
+    const equalShare = Math.floor(workerPoolCents / crewSize);
+    driverCompensationCents = equalShare;
+    helperCompensationCents = workerPoolCents - equalShare;
+  }
 
-  const driverTipCents = Math.floor(tipCents / 2);
+  const driverTipCents = Math.floor(tipCents / crewSize);
   const helperTipCents = tipCents - driverTipCents;
 
   const perWorkerPool = Math.floor(workerPoolCents / crewSize);
@@ -231,7 +257,7 @@ export function calculateFareCommissionBreakdown(
 }
 
 const INITIAL_DRIVER_LEDGER: WorkerLedger = {
-  workerId: "driver-alex",
+  workerId: "DRV-8821",
   workerRole: "driver",
   availableBalanceCents: 128000, // $1,280.00 (Figma 1086:670)
   pendingBalanceCents: 12000, // $120.00
@@ -255,7 +281,7 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
     {
       id: "tx-po-01",
       intentId: "intent-po-01",
-      workerId: "driver-alex",
+      workerId: "DRV-8821",
       workerRole: "driver",
       amountCents: 64000,
       feeCents: 960,
@@ -270,7 +296,7 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
     {
       id: "tx-po-02",
       intentId: "intent-po-02",
-      workerId: "driver-alex",
+      workerId: "DRV-8821",
       workerRole: "driver",
       amountCents: 45000,
       feeCents: 0,
@@ -285,7 +311,7 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
     {
       id: "tx-po-03",
       intentId: "intent-po-03",
-      workerId: "driver-alex",
+      workerId: "DRV-8821",
       workerRole: "driver",
       amountCents: 85000,
       feeCents: 0,
@@ -364,7 +390,7 @@ const INITIAL_DRIVER_LEDGER: WorkerLedger = {
 };
 
 const INITIAL_HELPER_LEDGER: WorkerLedger = {
-  workerId: "helper-a",
+  workerId: "HLP-4402",
   workerRole: "helper",
   availableBalanceCents: 34000, // $340.00 (Figma 1086:1049)
   pendingBalanceCents: 4900, // $49.00
@@ -388,7 +414,7 @@ const INITIAL_HELPER_LEDGER: WorkerLedger = {
     {
       id: "tx-hlp-01",
       intentId: "intent-hlp-01",
-      workerId: "helper-a",
+      workerId: "HLP-4402",
       workerRole: "helper",
       amountCents: 25000,
       feeCents: 0,
@@ -496,22 +522,18 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
       return null;
     }
 
-    // Deterministic mock quote values:
-    // For canonical driver balance $1,280.00: fee is exactly $19.20 (1920 cents), net $1,260.80 (Figma 1325:1866)
-    let feeAmountCents: number;
-    if (amountCents === 128000) {
-      feeAmountCents = 1920;
-    } else if (amountCents === 34000) {
-      feeAmountCents = 510;
-    } else {
-      feeAmountCents = Math.max(150, Math.round(amountCents * 0.015));
+    // Deterministic mock quote fixtures from approved specifications (Figma 1325:1866):
+    // Removes arbitrary mathematical formulas; unsupported amounts return null (quote-unavailable)
+    if (!(amountCents in APPROVED_MOCK_FEE_QUOTES)) {
+      return null;
     }
 
+    const feeAmountCents = APPROVED_MOCK_FEE_QUOTES[amountCents];
     const netAmountCents = amountCents - feeAmountCents;
     if (netAmountCents <= 0) return null;
 
     const quote: InstantFeeQuote = {
-      quoteId: `quote-${role}-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`,
+      quoteId: `quote-${role}-${Date.now()}-${Math.floor(100000 + Math.random() * 900000)}`,
       workerId: ledger.workerId,
       workerRole: role,
       requestedAmountCents: amountCents,
@@ -556,18 +578,26 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
 
     const intentId = customIntentId || `intent-${role}-${amountCents}-${Date.now()}`;
 
-    // Prevent duplicate active pending reservations
-    const existingIntent = currentLedger.transactions.find(
-      (tx) => tx.intentId === intentId && tx.status === "processing"
-    );
+    // Stable Payout Intent Check across ALL transaction states (processing, completed, failed)
+    const existingIntent = currentLedger.transactions.find((tx) => tx.intentId === intentId);
     if (existingIntent) {
-      return {
-        success: true,
-        transaction: existingIntent,
-      };
+      if (existingIntent.status === "completed" || existingIntent.status === "processing") {
+        return {
+          success: true,
+          transaction: existingIntent,
+        };
+      }
+      if (existingIntent.status === "failed") {
+        return {
+          success: false,
+          error: "DUPLICATE_REQUEST",
+          errorMessage:
+            "A payout with this intent ID has previously failed. Please initiate an explicit retry.",
+        };
+      }
     }
 
-    const txId = `tx-std-${Date.now()}`;
+    const txId = `tx-std-${Date.now()}-${Math.floor(100000 + Math.random() * 900000)}`;
     const refNum = Math.floor(1000 + Math.random() * 9000);
     const referenceId = `TX-PO-2026-${refNum}`;
 
@@ -605,21 +635,46 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
     customIntentId?: string
   ): PayoutOperationResult => {
     let quote = get().activeQuote;
-    if (typeof quoteIdOrAmount === "number") {
-      quote = get().getInstantFeeQuote(role, quoteIdOrAmount);
-    } else if (!quote || quote.quoteId !== quoteIdOrAmount) {
-      if (get().activeQuote?.quoteId === quoteIdOrAmount) {
-        quote = get().activeQuote;
-      }
-    }
     const ledgerKey = role === "driver" ? "driverLedger" : "helperLedger";
     const currentLedger = get()[ledgerKey];
 
-    if (!quote || (typeof quoteIdOrAmount === "string" && quote.quoteId !== quoteIdOrAmount)) {
+    // Section 3.3: Enforce Quote Context Integrity
+    if (typeof quoteIdOrAmount === "string") {
+      if (!quote || quote.quoteId !== quoteIdOrAmount) {
+        return {
+          success: false,
+          error: "INVALID_QUOTE",
+          errorMessage: "The fee quote is invalid or has expired. Please review a new quote.",
+        };
+      }
+    } else {
+      quote = get().getInstantFeeQuote(role, quoteIdOrAmount);
+      if (!quote) {
+        return {
+          success: false,
+          error: "INVALID_QUOTE",
+          errorMessage: "No valid fee quote available for this amount.",
+        };
+      }
+    }
+
+    // Validate worker ID and role binding
+    if (quote.workerId !== currentLedger.workerId || quote.workerRole !== role) {
       return {
         success: false,
-        error: "INVALID_QUOTE",
-        errorMessage: "The fee quote is invalid or has expired. Please review a new quote.",
+        error: "WORKER_MISMATCH",
+        errorMessage: "This fee quote was issued to a different worker context.",
+      };
+    }
+
+    // Validate destination binding
+    const currentCard = currentLedger.payoutAccounts.instantDebitCard;
+    const expectedDest = `${currentCard.cardBrand} ····${currentCard.last4}`;
+    if (quote.maskedDestination !== expectedDest) {
+      return {
+        success: false,
+        error: "DESTINATION_MISMATCH",
+        errorMessage: "The payout destination has changed. Please review a new quote.",
       };
     }
 
@@ -648,20 +703,28 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
       };
     }
 
-    const intentId = customIntentId || `intent-${role}-${amountCents}-${Date.now()}`;
+    const intentId = customIntentId || `intent-${role}-${quote.quoteId}`;
 
-    // Prevent duplicate pending intent
-    const existingIntent = currentLedger.transactions.find(
-      (tx) => tx.intentId === intentId && tx.status === "processing"
-    );
+    // Stable Payout Intent Check across ALL transaction states
+    const existingIntent = currentLedger.transactions.find((tx) => tx.intentId === intentId);
     if (existingIntent) {
-      return {
-        success: true,
-        transaction: existingIntent,
-      };
+      if (existingIntent.status === "completed" || existingIntent.status === "processing") {
+        return {
+          success: true,
+          transaction: existingIntent,
+        };
+      }
+      if (existingIntent.status === "failed") {
+        return {
+          success: false,
+          error: "DUPLICATE_REQUEST",
+          errorMessage:
+            "A payout with this intent ID has previously failed. Please initiate an explicit retry.",
+        };
+      }
     }
 
-    const txId = `tx-inst-${Date.now()}`;
+    const txId = `tx-inst-${Date.now()}-${Math.floor(100000 + Math.random() * 900000)}`;
     const refNum = Math.floor(1000 + Math.random() * 9000);
     const referenceId = `TX-PO-2026-${refNum}`;
 
@@ -895,6 +958,38 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
       return false;
     }
 
+    // Section 3.5: Verify completion record conditions from completionEvidenceStore
+    const evidenceStore = useCompletionEvidenceStore.getState();
+    const completionRecord = evidenceStore.getCompletionRecord(jobId);
+    if (completionRecord) {
+      // 1. Evidence must be submitted
+      if (completionRecord.driverSubmissionStatus !== "SUBMITTED") {
+        return false;
+      }
+      // 2. Unresolved disputes block ledger credit
+      if (completionRecord.disputeStatus !== "NONE") {
+        return false;
+      }
+      // 3. Review condition: Customer confirmed or review window elapsed
+      if (
+        completionRecord.customerReviewStatus !== "CUSTOMER_CONFIRMED" &&
+        completionRecord.customerReviewStatus !== "AUTO_CLOSURE_ELIGIBLE"
+      ) {
+        return false;
+      }
+      // 4. Payment settlement condition
+      if (
+        completionRecord.paymentCaptureStatus !== "SETTLED" &&
+        completionRecord.paymentCaptureStatus !== "CAPTURE_SUCCESS"
+      ) {
+        return false;
+      }
+      // 5. Must not be already credited
+      if (completionRecord.earningsEligibility === "CREDITED") {
+        return false;
+      }
+    }
+
     const updatedJob: JobActivityRecord = {
       ...job,
       status: "available",
@@ -911,6 +1006,10 @@ export const useWalletStore = create<WalletStoreState>((set, get) => ({
         recentJobs: updatedRecentJobs,
       },
     });
+
+    if (completionRecord) {
+      evidenceStore.setEarningsEligibility(jobId, "CREDITED");
+    }
 
     return true;
   },

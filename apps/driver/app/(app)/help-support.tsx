@@ -1,7 +1,7 @@
 import { radius, spacing } from "@haulix/design-tokens";
 import { type Href, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
-import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   AlertTriangleIcon,
@@ -31,7 +31,8 @@ export default function HelpSupportScreen() {
   };
 
   const handleCallDispatcher = () => {
-    Linking.openURL("tel:18005554285").catch(() => {});
+    // Frontend-only preview: Open Emergency Assistance overlay (OV-04)
+    setEmergencyOverlayVisible(true);
   };
 
   return (

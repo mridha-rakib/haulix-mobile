@@ -1,9 +1,16 @@
 import { radius, spacing } from "@haulix/design-tokens";
-import { Linking, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { useDriverTranslation } from "../../i18n";
 import { useWalletStore } from "../../stores/walletStore";
 import { useWorkerProfileStore } from "../../stores/workerProfileStore";
-import { AlertTriangleIcon, MapPinIcon, PhoneIcon, ShieldIcon } from "../icons/DriverIcons";
+import {
+  AlertTriangleIcon,
+  CheckmarkIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ShieldIcon,
+} from "../icons/DriverIcons";
 
 interface EmergencyContactOverlayProps {
   visible: boolean;
@@ -15,24 +22,30 @@ export function EmergencyContactOverlay({ visible, onClose }: EmergencyContactOv
   const { activeRole } = useWalletStore();
   const { getProfileForRole } = useWorkerProfileStore();
   const profile = getProfileForRole(activeRole);
+  const [simulationNotice, setSimulationNotice] = useState<string | null>(null);
 
   const handleCall911 = () => {
-    Linking.openURL("tel:911").catch(() => {});
-  };
-
-  const handleCallSafety = () => {
-    Linking.openURL("tel:18005554285").catch(() => {});
-  };
-
-  const handleShareLocation = () => {
-    Linking.openURL("sms:911?body=HAULIX%20Driver%20Emergency%20Assistance%20Needed").catch(
-      () => {}
+    // Frontend-only preview: Local simulation only, never initiate real device emergency calls
+    setSimulationNotice(
+      "SIMULATED: 911 Emergency dispatch call initiated (Frontend Mock Preview Mode)"
     );
   };
 
+  const handleCallSafety = () => {
+    // Frontend-only preview: Local simulation only
+    setSimulationNotice("SIMULATED: HAULIX 24/7 Safety Dispatch connected (1-800-555-4285)");
+  };
+
+  const handleShareLocation = () => {
+    // Frontend-only preview: Local simulation only, no real SMS transmission
+    setSimulationNotice("SIMULATED: Live GPS location shared with emergency contacts");
+  };
+
   const handleCallContact = () => {
-    const cleaned = profile.emergencyContact.phone.replace(/[^0-9+]/g, "");
-    Linking.openURL(`tel:${cleaned}`).catch(() => {});
+    // Frontend-only preview: Local simulation only, no real telephone dialer
+    setSimulationNotice(
+      `SIMULATED: Calling emergency contact ${profile.emergencyContact.name} (${profile.emergencyContact.phone})`
+    );
   };
 
   return (
@@ -50,6 +63,13 @@ export function EmergencyContactOverlay({ visible, onClose }: EmergencyContactOv
               <Text style={styles.subtitle}>{t("driver.emergencyOverlay.subtitle")}</Text>
             </View>
           </View>
+
+          {simulationNotice && (
+            <View style={styles.simulationBanner}>
+              <CheckmarkIcon color="#BAFF42" size={16} />
+              <Text style={styles.simulationBannerText}>{simulationNotice}</Text>
+            </View>
+          )}
 
           {/* Emergency Actions List */}
           <View style={styles.actionList}>
@@ -292,6 +312,24 @@ const styles = StyleSheet.create({
   dismissBtnText: {
     color: "#FFFFFF",
     fontSize: 14,
+    fontWeight: "600",
+  },
+  simulationBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(186, 255, 66, 0.12)",
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: "#BAFF42",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginBottom: spacing[3],
+    gap: 8,
+  },
+  simulationBannerText: {
+    flex: 1,
+    color: "#BAFF42",
+    fontSize: 12,
     fontWeight: "600",
   },
 });
