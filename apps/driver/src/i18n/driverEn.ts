@@ -570,6 +570,90 @@ export const driverTranslationsEn = {
 				"Production requests location permission through iOS or Android system settings. The prototype cannot change device permissions.",
 			closeCta: "Close preview",
 		},
+		onSiteProgress: {
+			title: "On-site job progress",
+			subtitle: "HX-AZ-DEMO-0042 · Track and complete key steps.",
+			assignedPill: "ASSIGNED",
+			pickupLabel: "Pickup",
+			pickupLocation: "Customer location · Phoenix, AZ 85004",
+			arrivedAtPickup: "Arrived at pickup",
+			workStarted: "Work started",
+			serviceInProgress: "Service in progress",
+			readyForCompletion: "Ready for completion",
+			transitionsTitle: "Server-confirmed transitions",
+			transitionsDesc:
+				"Status changes require valid job assignment and server approval. Times are recorded by the system; not controlled by this preview.",
+			captureProofCta: "Capture completion proof",
+			requestExtraCta: "Request additional work",
+			previewDependencyNotice:
+				"Completion proof (DW21) is scheduled for DW-F07 milestone.",
+		},
+		additionalWorkApproval: {
+			title: "Additional work approval",
+			subtitle: "Request approval for extra services, if needed.",
+			originalScopeLabel: "Original scope",
+			originalScopeDefault: "Furniture removal · 1 sofa + 2 chairs",
+			extraItemTitle: "Additional item / service",
+			extraItemPlaceholder:
+				"Example: extra chair disassembly, stair carry, etc.",
+			noChargeWarning: "Do not change the charge without approval.",
+			previewLabel: "Preview",
+			previewTitle: "Admin approval + customer acceptance required",
+			previewDesc:
+				"HAULIX Admin approval AND customer acceptance are both required before extra work or charges.",
+			submitCta: "Submit request · demo",
+			cancelCta: "Cancel extra request",
+		},
+		extraWorkPending: {
+			title: "Extra work pending",
+			subtitle: "Awaiting Admin approval and customer acceptance",
+			twoApprovalsTitle: "Two approvals required",
+			twoApprovalsDesc:
+				"No extra work or charges until Admin approval AND customer acceptance.",
+			scopeChangeTitle: "Scope change",
+			scopeChangeSubtitle: "Example additional chair / stair carry",
+			twoStageTitle: "Two-stage approval",
+			twoStageDesc:
+				"Admin must approve first; customer then accepts the revised price.",
+			previewApprovedCta: "Preview approved state",
+			previewDeclinedCta: "Preview declined state",
+		},
+		extraWorkApproved: {
+			title: "Extra work approved",
+			subtitle: "Admin-approved + customer-accepted preview",
+			bothRecordedTitle: "Both approvals recorded · Demo",
+			bothRecordedDesc:
+				"Admin-approved scope AND customer-accepted price must be confirmed by the server.",
+			continueSafelyTitle: "Continue safely",
+			continueSafelyDesc: "Only approved additional services can be performed.",
+			backToProgressCta: "Back to job progress",
+		},
+		extraWorkDeclined: {
+			title: "Extra work declined",
+			subtitle: "Customer rejection preview",
+			declinedTitle: "Declined · Example state",
+			declinedDesc: "Do not charge or perform the extra work.",
+			originalScopeTitle: "Original job scope",
+			originalScopeDesc:
+				"Continue with the initially approved service requirements.",
+			backToOriginalCta: "Back to original job",
+		},
+		helperOnSiteProgress: {
+			title: "Helper on-site progress",
+			subtitle: "Record your individual work progress",
+			onSiteTitle: "On site · Example",
+			onSiteDesc: "Worker check-in is recorded by the server.",
+			assignedTasksTitle: "Assigned tasks",
+			assignedTasksDesc: "Furniture removal / loading assistance",
+			safetyTitle: "Safety confirmation",
+			safetyDesc: "Follow job safety rules and dispatch instructions",
+			noUnilateralTitle: "No unilateral completion",
+			noUnilateralDesc:
+				"Your evidence does not independently close the whole job.",
+			captureEvidenceCta: "Capture my work evidence",
+			previewDependencyNotice:
+				"Helper work evidence (DW64) is scheduled for DW-F07 milestone.",
+		},
 	},
 };
 

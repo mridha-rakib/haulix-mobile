@@ -22,6 +22,7 @@ export interface JobMessage {
 
 export interface JobAttachment {
 	id: string;
+	jobId?: string;
 	type: "VOICE" | "IMAGE";
 	duration?: string;
 	titleEn: string;
@@ -38,10 +39,13 @@ export interface JobMessagesState {
 
 	// Actions
 	setCurrentJobId: (jobId: string) => void;
+	getJobMessages: (jobId?: string) => JobMessage[];
+	getJobAttachments: (jobId?: string) => JobAttachment[];
 	sendMessage: (
 		content: string,
 		senderRole?: MessageSenderRole,
 		senderName?: string,
+		jobId?: string,
 	) => JobMessage;
 	retryMessage: (messageId: string) => boolean;
 	failMessage: (messageId: string) => void;
@@ -75,6 +79,7 @@ export const INITIAL_JOB_MESSAGES: JobMessage[] = [
 export const INITIAL_ATTACHMENTS: JobAttachment[] = [
 	{
 		id: "att-voice",
+		jobId: "HX-AZ-DEMO-0042",
 		type: "VOICE",
 		duration: "0:24",
 		titleEn: "Recorded voice note",
@@ -84,6 +89,7 @@ export const INITIAL_ATTACHMENTS: JobAttachment[] = [
 	},
 	{
 		id: "att-photo",
+		jobId: "HX-AZ-DEMO-0042",
 		type: "IMAGE",
 		titleEn: "Photo attached to job conversation",
 		titleEs: "Foto adjunta a la conversación",
@@ -100,11 +106,29 @@ export const useJobMessagesStore = create<JobMessagesState>((set, get) => ({
 
 	setCurrentJobId: (jobId) => set({ currentJobId: jobId }),
 
-	sendMessage: (content, senderRole = "PRIMARY_DRIVER", senderName = "You") => {
+	getJobMessages: (jobId) => {
 		const s = get();
+		const targetId = jobId || s.currentJobId;
+		return s.messages.filter((m) => m.jobId === targetId);
+	},
+
+	getJobAttachments: (jobId) => {
+		const s = get();
+		const targetId = jobId || s.currentJobId;
+		return s.attachments.filter((a) => !a.jobId || a.jobId === targetId);
+	},
+
+	sendMessage: (
+		content,
+		senderRole = "PRIMARY_DRIVER",
+		senderName = "You",
+		jobId,
+	) => {
+		const s = get();
+		const targetJobId = jobId || s.currentJobId;
 		const newMsg: JobMessage = {
 			id: `msg-${Date.now().toString().slice(-6)}`,
-			jobId: s.currentJobId,
+			jobId: targetJobId,
 			senderRole,
 			senderName,
 			time: new Date().toLocaleTimeString([], {

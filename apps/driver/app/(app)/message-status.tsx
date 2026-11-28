@@ -5,12 +5,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeftIcon } from "../../src/components/icons/DriverIcons";
 import { DriverBottomNav } from "../../src/components/navigation/DriverBottomNav";
 import { useDriverTranslation } from "../../src/i18n";
+import { useJobMessagesStore } from "../../src/stores/jobMessagesStore";
 
 export default function MessageStatusScreen() {
 	const router = useRouter();
 	const { t } = useDriverTranslation();
+	const { lastSubmittedMessageId, retryMessage } = useJobMessagesStore();
 
 	const handleReturn = () => {
+		if (lastSubmittedMessageId) {
+			retryMessage(lastSubmittedMessageId);
+		}
 		router.push("/(app)/job-messages" as Href);
 	};
 

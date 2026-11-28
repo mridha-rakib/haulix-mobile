@@ -574,6 +574,88 @@ export const driverTranslationsEs = {
 				"La app solicita acceso a la ubicación mediante los ajustes de iOS o Android. Figma no cambia permisos reales.",
 			closeCta: "Cerrar vista previa",
 		},
+		onSiteProgress: {
+			title: "Progreso del servicio en sitio",
+			subtitle: "HX-AZ-DEMO-0042 · estado del servidor",
+			assignedPill: "LLEGÓ",
+			pickupLabel: "Recogida",
+			pickupLocation: "Ubicación del cliente · Phoenix, AZ 85004",
+			arrivedAtPickup: "Llegó a la recogida",
+			workStarted: "Trabajo iniciado",
+			serviceInProgress: "Servicio en curso",
+			readyForCompletion: "Listo para finalizar",
+			transitionsTitle: "Transiciones confirmadas por servidor",
+			transitionsDesc:
+				"El servidor valida la asignación, los estados y las pruebas. Los plazos no se controlan aquí.",
+			captureProofCta: "Capturar evidencia final",
+			requestExtraCta: "Solicitar trabajo extra",
+			previewDependencyNotice:
+				"Pruebas de finalización (DW21) programadas para el hito DW-F07.",
+		},
+		additionalWorkApproval: {
+			title: "Aprobación de trabajo extra",
+			subtitle: "Se requiere aprobación de Admin y aceptación del cliente.",
+			originalScopeLabel: "Alcance original",
+			originalScopeDefault: "Retiro de muebles · 1 sofá + 2 sillas",
+			extraItemTitle: "Artículo o servicio adicional",
+			extraItemPlaceholder: "Ejemplo: silla adicional encontrada en sitio",
+			noChargeWarning: "No modifiques el cobro sin aprobación.",
+			previewLabel: "PENDIENTE",
+			previewTitle: "Esperar confirmación del cliente",
+			previewDesc:
+				"El Conductor no puede cobrar trabajos extras sin autorización. La política del cliente/administrador y del pago determina la aprobación.",
+			submitCta: "Enviar solicitud · demo",
+			cancelCta: "Cancelar solicitud extra",
+		},
+		extraWorkPending: {
+			title: "Trabajo extra pendiente",
+			subtitle: "Esperando aprobación de Admin y aceptación del cliente",
+			twoApprovalsTitle: "Se requieren dos autorizaciones",
+			twoApprovalsDesc:
+				"No se permite trabajo extra sin aprobación de Admin y aceptación del cliente.",
+			scopeChangeTitle: "Cambio de alcance",
+			scopeChangeSubtitle: "Silla adicional o escaleras · ejemplo",
+			twoStageTitle: "Aprobación en dos etapas",
+			twoStageDesc:
+				"Primero aprueba Admin; luego el cliente acepta el nuevo precio.",
+			previewApprovedCta: "Ver ejemplo aprobado",
+			previewDeclinedCta: "Ver ejemplo rechazado",
+		},
+		extraWorkApproved: {
+			title: "Trabajo extra aprobado",
+			subtitle: "Ejemplo: Admin aprobó y cliente aceptó",
+			bothRecordedTitle: "Ambas aprobaciones · Demo",
+			bothRecordedDesc:
+				"La aprobación de Admin y la aceptación del cliente requieren confirmación del servidor.",
+			continueSafelyTitle: "Continúa de forma segura",
+			continueSafelyDesc: "Realiza solo los trabajos adicionales autorizados.",
+			backToProgressCta: "Volver al progreso",
+		},
+		extraWorkDeclined: {
+			title: "Trabajo extra rechazado",
+			subtitle: "Ejemplo de rechazo del cliente",
+			declinedTitle: "Rechazado · Estado ejemplo",
+			declinedDesc: "No realices ni cobres el trabajo adicional.",
+			originalScopeTitle: "Alcance original",
+			originalScopeDesc: "Continúa con el servicio aprobado inicialmente.",
+			backToOriginalCta: "Volver al trabajo original",
+		},
+		helperOnSiteProgress: {
+			title: "Progreso del ayudante",
+			subtitle: "Registra el avance de tu trabajo individual",
+			onSiteTitle: "En sitio · Ejemplo",
+			onSiteDesc: "El servidor registra tu llegada.",
+			assignedTasksTitle: "Tareas asignadas",
+			assignedTasksDesc: "Ayuda para retirar y cargar muebles",
+			safetyTitle: "Confirmación de seguridad",
+			safetyDesc: "Sigue las reglas y el despacho del trabajo",
+			noUnilateralTitle: "Sin cierre unilateral",
+			noUnilateralDesc:
+				"Tu evidencia no cierra el trabajo completo por sí sola.",
+			captureEvidenceCta: "Capturar evidencia propia",
+			previewDependencyNotice:
+				"Pruebas del ayudante (DW64) programadas para el hito DW-F07.",
+		},
 	},
 };
 

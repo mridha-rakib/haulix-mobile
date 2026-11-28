@@ -25,6 +25,7 @@ export default function ActiveJobScreen() {
 
 	const handleArrival = () => {
 		confirmDriverArrival();
+		router.push("/(app)/on-site-progress" as Href);
 	};
 
 	const handleOpenMessages = () => {

@@ -17,6 +17,7 @@ import { useDriverAuthStore } from "../../stores/authStore";
 import { useAvailabilityStore } from "../../stores/availabilityStore";
 import { useActiveJobStore } from "../../stores/activeJobStore";
 import { useDispatchCrewStore } from "../../stores/dispatchCrewStore";
+import { useServiceProgressStore } from "../../stores/serviceProgressStore";
 import {
 	useDriverDocumentStore,
 	type VerificationScenario,
@@ -79,6 +80,7 @@ export function DriverDemoScreenNavigator() {
 		resetAvailability();
 		resetDispatchCrew();
 		useActiveJobStore.getState().resetActiveJob();
+		useServiceProgressStore.getState().resetServiceProgress();
 		setRole("PRIMARY_DRIVER");
 		setCleanMode(false);
 		setIsOpen(false);
@@ -412,6 +414,60 @@ export function DriverDemoScreenNavigator() {
 										>
 											Network: {networkStatus}
 										</Text>
+									</Pressable>
+								</View>
+							</View>
+
+							{/* DW-F06 Extra Work Approval Scenarios */}
+							<View style={styles.scenarioSection}>
+								<Text style={styles.scenarioLabel}>DW-F06 Extra Work:</Text>
+								<View style={styles.pillRow}>
+									<Pressable
+										onPress={() => {
+											const activeReq = useServiceProgressStore
+												.getState()
+												.getActiveRequest();
+											if (activeReq) {
+												useServiceProgressStore
+													.getState()
+													.setBothApprovals(activeReq.id, false);
+											}
+										}}
+										style={styles.miniPill}
+									>
+										<Text style={styles.miniPillText}>Pending</Text>
+									</Pressable>
+
+									<Pressable
+										onPress={() => {
+											const activeReq = useServiceProgressStore
+												.getState()
+												.getActiveRequest();
+											if (activeReq) {
+												useServiceProgressStore
+													.getState()
+													.setBothApprovals(activeReq.id, true);
+											}
+										}}
+										style={styles.miniPill}
+									>
+										<Text style={styles.miniPillText}>Approve Both</Text>
+									</Pressable>
+
+									<Pressable
+										onPress={() => {
+											const activeReq = useServiceProgressStore
+												.getState()
+												.getActiveRequest();
+											if (activeReq) {
+												useServiceProgressStore
+													.getState()
+													.setCustomerDecision(activeReq.id, "DECLINED");
+											}
+										}}
+										style={styles.miniPill}
+									>
+										<Text style={styles.miniPillText}>Decline</Text>
 									</Pressable>
 								</View>
 							</View>

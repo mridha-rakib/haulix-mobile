@@ -26,11 +26,14 @@ export default function JobMessagesScreen() {
 	const router = useRouter();
 	const { t, currentLocale } = useDriverTranslation();
 	const { role } = useDriverAuthStore();
-	const { messages, attachments, sendMessage } = useJobMessagesStore();
+	const { currentJobId, getJobMessages, getJobAttachments, sendMessage } =
+		useJobMessagesStore();
 	const [inputText, setInputText] = useState("");
 	const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
 	const isEs = currentLocale === "es";
+	const jobMessages = getJobMessages(currentJobId);
+	const jobAttachments = getJobAttachments(currentJobId);
 
 	const handleSend = () => {
 		if (!inputText.trim()) return;
@@ -38,6 +41,7 @@ export default function JobMessagesScreen() {
 			inputText.trim(),
 			role === "HELPER" ? "HELPER" : "PRIMARY_DRIVER",
 			"You",
+			currentJobId,
 		);
 		setInputText("");
 		router.push("/(app)/message-status" as Href);
@@ -63,7 +67,7 @@ export default function JobMessagesScreen() {
 
 					{/* Messages Thread */}
 					<View style={styles.threadContainer}>
-						{messages.map((msg) => {
+						{jobMessages.map((msg) => {
 							const isYou =
 								msg.senderRole === "PRIMARY_DRIVER" ||
 								msg.senderRole === "HELPER";

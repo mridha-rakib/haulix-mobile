@@ -536,21 +536,23 @@ export function TabEarningsIcon({
 	const color = active ? "#BAFF42" : "#8E9E99";
 	return (
 		<Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-			<Path
-				d="M21 12V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V16"
+			<Line
+				x1="12"
+				y1="1"
+				x2="12"
+				y2="23"
 				stroke={color}
 				strokeWidth="1.8"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
 			<Path
-				d="M16 12H22V16H16C14.8954 16 14 15.1046 14 14C14 12.8954 14.8954 12 16 12Z"
+				d="M17 5H9.5C7.567 5 6 6.567 6 8.5C6 10.433 7.567 12 9.5 12H14.5C16.433 12 18 13.567 18 15.5C18 17.433 16.433 19 14.5 19H6"
 				stroke={color}
 				strokeWidth="1.8"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
-			<Circle cx="18" cy="14" r="1" fill={color} />
 		</Svg>
 	);
 }
@@ -1129,6 +1131,95 @@ export function WifiIcon({ size = 20, color = "#BAFF42", style }: IconProps) {
 					strokeLinecap="round"
 				/>
 				<Circle cx="12" cy="20" r="1" fill={color} />
+			</Svg>
+		</View>
+	);
+}
+
+/** 3D Cube / Package icon for original scope in DW20 */
+export function PackageCubeIcon({
+	size = 24,
+	color = "#BAFF42",
+	style,
+}: IconProps) {
+	return (
+		<View style={style}>
+			<Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+				<Path
+					d="M16.5 9.4L7.55 4.24a1.78 1.78 0 0 0-1.8 0L2.8 5.92A1.82 1.82 0 0 0 2 7.5v9a1.82 1.82 0 0 0 .8 1.58l3 1.68a1.78 1.78 0 0 0 1.8 0l8.9-5.16a1.82 1.82 0 0 0 .8-1.58V4.5a1.82 1.82 0 0 0-.8-1.58l-3-1.68a1.78 1.78 0 0 0-1.8 0L3.6 5.8"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<Polyline
+					points="3.27 6.96 12 12.01 20.73 6.96"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<Line
+					x1="12"
+					y1="22.08"
+					x2="12"
+					y2="12"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+			</Svg>
+		</View>
+	);
+}
+
+/** Clipboard notice icon for additional services in DW20 */
+export function ClipboardNoticeIcon({
+	size = 24,
+	color = "#BAFF42",
+	style,
+}: IconProps) {
+	return (
+		<View style={style}>
+			<Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+				<Path
+					d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<Rect
+					x="8"
+					y="2"
+					width="8"
+					height="4"
+					rx="1"
+					ry="1"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<Line
+					x1="9"
+					y1="12"
+					x2="15"
+					y2="12"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+				/>
+				<Line
+					x1="9"
+					y1="16"
+					x2="13"
+					y2="16"
+					stroke={color}
+					strokeWidth="1.8"
+					strokeLinecap="round"
+				/>
 			</Svg>
 		</View>
 	);

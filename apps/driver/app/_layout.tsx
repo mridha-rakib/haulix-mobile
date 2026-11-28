@@ -16,6 +16,7 @@ import { changeLocale } from "../src/i18n";
 import { useActiveJobStore } from "../src/stores/activeJobStore";
 import { useDriverAuthStore } from "../src/stores/authStore";
 import { useDispatchCrewStore } from "../src/stores/dispatchCrewStore";
+import { useServiceProgressStore } from "../src/stores/serviceProgressStore";
 
 // Keep splash screen visible while loading resources
 SplashScreen.preventAutoHideAsync();
@@ -27,6 +28,7 @@ function DemoParamsWatcher() {
 		scenario?: string;
 		clean?: string;
 		modal?: string;
+		extraApproval?: string;
 	}>();
 	const setRole = useDriverAuthStore((s) => s.setRole);
 	const setCleanMode = useDriverAuthStore((s) => s.setCleanMode);
@@ -54,6 +56,21 @@ function DemoParamsWatcher() {
 		} else if (params.modal === "none") {
 			useActiveJobStore.getState().setCallModalOpen(false);
 			useActiveJobStore.getState().setLocationModalOpen(false);
+		}
+		if (params.extraApproval === "approved") {
+			const req = useServiceProgressStore.getState().getActiveRequest();
+			if (req)
+				useServiceProgressStore.getState().setBothApprovals(req.id, true);
+		} else if (params.extraApproval === "declined") {
+			const req = useServiceProgressStore.getState().getActiveRequest();
+			if (req)
+				useServiceProgressStore
+					.getState()
+					.setCustomerDecision(req.id, "DECLINED");
+		} else if (params.extraApproval === "pending") {
+			const req = useServiceProgressStore.getState().getActiveRequest();
+			if (req)
+				useServiceProgressStore.getState().setBothApprovals(req.id, false);
 		}
 	}, [
 		params.lang,

@@ -437,6 +437,138 @@ export const DRIVER_DEMO_SCREENS: DemoScreenItem[] = [
 			"Vista previa de ajustes de dispositivo: modal explicativo de permisos de ubicación y cierre",
 	},
 
+	// DW19 On-site Job Progress (DW-F06)
+	{
+		id: "DW19-EN",
+		name: "DW19 · On-site job progress (English)",
+		figmaNode: "1086:512",
+		route: "/(app)/on-site-progress",
+		locale: "en",
+		role: "PRIMARY_DRIVER",
+		description:
+			"On-site service stepper: Arrived, Work started, In progress & Ready for completion",
+	},
+	{
+		id: "DW19-ES",
+		name: "DW19 · Progreso en sitio (Español)",
+		figmaNode: "1088:841",
+		route: "/(app)/on-site-progress",
+		locale: "es",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Control de etapas en sitio: Llegada, Trabajo iniciado, En curso y Listo para finalizar",
+	},
+
+	// DW20 Additional Work Approval (DW-F06)
+	{
+		id: "DW20-EN",
+		name: "DW20 · Additional work approval (English)",
+		figmaNode: "1086:562",
+		route: "/(app)/additional-work-approval",
+		locale: "en",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Scope expansion intake: Original scope card, extra item input & two-party approval notice",
+	},
+	{
+		id: "DW20-ES",
+		name: "DW20 · Aprobación de trabajo extra (Español)",
+		figmaNode: "1088:891",
+		route: "/(app)/additional-work-approval",
+		locale: "es",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Solicitud de servicios extra: Alcance original, entrada de ítems y aviso de doble aprobación",
+	},
+
+	// DW51 Extra Work Pending (DW-F06)
+	{
+		id: "DW51-EN",
+		name: "DW51 · Extra work pending (English)",
+		figmaNode: "1301:1190",
+		route: "/(app)/extra-work-pending",
+		locale: "en",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Two-party approval wait state: Admin authorization & customer acceptance pending",
+	},
+	{
+		id: "DW51-ES",
+		name: "DW51 · Trabajo extra pendiente (Español)",
+		figmaNode: "1301:2432",
+		route: "/(app)/extra-work-pending",
+		locale: "es",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Estado pendiente de doble aprobación: Autorización de Admin y aceptación del cliente",
+	},
+
+	// DW52 Extra Work Approved (DW-F06)
+	{
+		id: "DW52-EN",
+		name: "DW52 · Extra work approved (English)",
+		figmaNode: "1301:1279",
+		route: "/(app)/extra-work-approved",
+		locale: "en",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Confirmed scope expansion: Both approvals recorded with idempotent scope application",
+	},
+	{
+		id: "DW52-ES",
+		name: "DW52 · Trabajo extra aprobado (Español)",
+		figmaNode: "1301:2521",
+		route: "/(app)/extra-work-approved",
+		locale: "es",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Expansión de alcance confirmada: Ambas aprobaciones registradas y aplicadas de forma segura",
+	},
+
+	// DW53 Extra Work Declined (DW-F06)
+	{
+		id: "DW53-EN",
+		name: "DW53 · Extra work declined (English)",
+		figmaNode: "1301:1362",
+		route: "/(app)/extra-work-declined",
+		locale: "en",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Scope expansion declined: Rejection preview with original scope preservation",
+	},
+	{
+		id: "DW53-ES",
+		name: "DW53 · Trabajo extra rechazado (Español)",
+		figmaNode: "1301:2604",
+		route: "/(app)/extra-work-declined",
+		locale: "es",
+		role: "PRIMARY_DRIVER",
+		description:
+			"Trabajo extra rechazado: Vista previa de rechazo preservando el alcance original",
+	},
+
+	// DW63 Helper On-Site Progress (DW-F06)
+	{
+		id: "DW63-EN",
+		name: "DW63 · Helper on-site progress (English)",
+		figmaNode: "1309:1052",
+		route: "/(app)/helper-on-site-progress",
+		locale: "en",
+		role: "HELPER",
+		description:
+			"Helper individual on-site checklist: Arrival, task assignment, safety & no unilateral completion",
+	},
+	{
+		id: "DW63-ES",
+		name: "DW63 · Progreso del ayudante en sitio (Español)",
+		figmaNode: "1309:1759",
+		route: "/(app)/helper-on-site-progress",
+		locale: "es",
+		role: "HELPER",
+		description:
+			"Seguimiento individual del ayudante en sitio: Llegada, tareas, seguridad y sin cierre unilateral",
+	},
+
 	// DW01 Welcome
 	{
 		id: "DW01-EN",

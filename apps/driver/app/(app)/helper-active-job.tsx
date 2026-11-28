@@ -14,6 +14,7 @@ export default function HelperActiveJobScreen() {
 
 	const handleArrival = () => {
 		confirmHelperArrival();
+		router.push("/(app)/helper-on-site-progress" as Href);
 	};
 
 	const isEs = currentLocale === "es";
@@ -27,7 +28,7 @@ export default function HelperActiveJobScreen() {
 				{/* Header */}
 				<View style={styles.header}>
 					<Pressable
-						onPress={() => router.push("/(app)/dashboard-helper" as Href)}
+						onPress={() => router.push("/(app)/(tabs)" as Href)}
 						style={styles.backButton}
 						accessibilityRole="button"
 						accessibilityLabel="Back"
